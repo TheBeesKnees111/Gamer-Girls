@@ -1,0 +1,14 @@
+#include "PrintByTeam.h"
+#include "ui_DisplayInfo.h"
+
+DisplayInfo::DisplayInfo(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::DisplayInfo)
+{
+    ui->setupUi(this);
+}
+
+DisplayInfo::~DisplayInfo()
+{
+    delete ui;
+}
