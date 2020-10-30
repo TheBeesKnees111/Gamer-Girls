@@ -33,4 +33,6 @@ private:
     Ui::Admin *ui;
 };
 
+// test line
+
 #endif // ADMIN_H
