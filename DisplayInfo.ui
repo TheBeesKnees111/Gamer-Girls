@@ -6,33 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>921</width>
-    <height>663</height>
+    <width>890</width>
+    <height>538</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="PrintSingleTeamPushButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>100</y>
-     <width>121</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Print Single Team</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="PrintStadiumPushButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>240</y>
-     <width>181</width>
-     <height>41</height>
+     <x>180</x>
+     <y>160</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -42,10 +29,10 @@
   <widget class="QPushButton" name="PrintNFCTeamsPushButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>370</y>
-     <width>131</width>
-     <height>41</height>
+     <x>0</x>
+     <y>280</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -55,10 +42,10 @@
   <widget class="QPushButton" name="PrintStadiumByDatePushButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>300</y>
-     <width>181</width>
-     <height>41</height>
+     <x>180</x>
+     <y>220</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -68,10 +55,10 @@
   <widget class="QPushButton" name="PrintAllTeamsPushButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>240</y>
-     <width>131</width>
-     <height>41</height>
+     <x>0</x>
+     <y>160</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -81,10 +68,10 @@
   <widget class="QPushButton" name="PrintAFCTeamsPushButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>300</y>
-     <width>131</width>
-     <height>41</height>
+     <x>0</x>
+     <y>220</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -94,10 +81,10 @@
   <widget class="QPushButton" name="PrintNorthNFCTeamsPushButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>430</y>
+     <x>0</x>
+     <y>340</y>
      <width>131</width>
-     <height>41</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -114,36 +101,31 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>60</y>
-     <width>291</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>50</y>
-     <width>101</width>
+     <y>30</y>
+     <width>241</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>Enter Team Name</string>
+    <string>Select the City You Want</string>
    </property>
   </widget>
   <widget class="QPushButton" name="ShowBermudaGrassStadiumsPushButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>430</y>
-     <width>181</width>
-     <height>41</height>
+     <x>180</x>
+     <y>340</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -153,10 +135,10 @@
   <widget class="QPushButton" name="ShowOpenRoofStadiumsPushButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>370</y>
-     <width>181</width>
-     <height>41</height>
+     <x>180</x>
+     <y>280</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -166,10 +148,10 @@
   <widget class="QPushButton" name="PrintTeamInforByConferencePushButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>490</y>
-     <width>181</width>
-     <height>41</height>
+     <x>180</x>
+     <y>400</y>
+     <width>191</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -179,14 +161,24 @@
   <widget class="QPushButton" name="HomePushButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>600</y>
+     <x>10</x>
+     <y>470</y>
      <width>101</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Home</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>80</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
    </property>
   </widget>
  </widget>
