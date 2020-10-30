@@ -65,10 +65,10 @@
   <widget class="QPushButton" name="ReadInFromFileButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>280</y>
+     <x>50</x>
+     <y>270</y>
      <width>131</width>
-     <height>41</height>
+     <height>61</height>
     </rect>
    </property>
    <property name="text">
