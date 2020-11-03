@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>890</width>
-    <height>538</height>
+    <width>1449</width>
+    <height>772</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,11 +16,16 @@
   <widget class="QPushButton" name="PrintStadiumPushButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>160</y>
-     <width>191</width>
+     <x>0</x>
+     <y>410</y>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Print All Stadiums with Teams</string>
@@ -31,9 +36,14 @@
     <rect>
      <x>0</x>
      <y>280</y>
-     <width>121</width>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Print NFC Teams</string>
@@ -42,11 +52,16 @@
   <widget class="QPushButton" name="PrintStadiumByDatePushButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>220</y>
-     <width>191</width>
+     <x>0</x>
+     <y>470</y>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Print Stadium By Date</string>
@@ -57,9 +72,14 @@
     <rect>
      <x>0</x>
      <y>160</y>
-     <width>121</width>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Print All Teams</string>
@@ -70,9 +90,14 @@
     <rect>
      <x>0</x>
      <y>220</y>
-     <width>121</width>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Print AFC Teams</string>
@@ -83,9 +108,14 @@
     <rect>
      <x>0</x>
      <y>340</y>
-     <width>131</width>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Print North NFC Teams</string>
@@ -94,10 +124,10 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>30</y>
-     <width>451</width>
-     <height>381</height>
+     <x>340</x>
+     <y>20</y>
+     <width>1101</width>
+     <height>741</height>
     </rect>
    </property>
   </widget>
@@ -112,7 +142,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="text">
@@ -122,11 +152,16 @@
   <widget class="QPushButton" name="ShowBermudaGrassStadiumsPushButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>340</y>
-     <width>191</width>
+     <x>0</x>
+     <y>590</y>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Show Bermuda Grass Stadiums</string>
@@ -135,11 +170,16 @@
   <widget class="QPushButton" name="ShowOpenRoofStadiumsPushButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>280</y>
-     <width>191</width>
+     <x>0</x>
+     <y>530</y>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Show Open Roof Stadiums</string>
@@ -148,11 +188,16 @@
   <widget class="QPushButton" name="PrintTeamInforByConferencePushButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>400</y>
-     <width>191</width>
+     <x>0</x>
+     <y>650</y>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Print Team Info By Conference</string>
@@ -161,11 +206,16 @@
   <widget class="QPushButton" name="HomePushButton">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>470</y>
-     <width>101</width>
-     <height>31</height>
+     <x>0</x>
+     <y>710</y>
+     <width>271</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Home</string>
@@ -174,11 +224,16 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>0</x>
      <y>80</y>
-     <width>91</width>
-     <height>31</height>
+     <width>311</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
   </widget>
  </widget>
