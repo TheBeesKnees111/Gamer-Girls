@@ -1,0 +1,116 @@
+1,1,Arizona Cardinals,State Farm Stadium,AT&T Stadium,870
+2,1,Arizona Cardinals,State Farm Stadium,Levi's Stadium,650
+3,1,Arizona Cardinals,State Farm Stadium,NRG Stadium,1115
+4,1,Arizona Cardinals,State Farm Stadium,Broncos Stadium at Mile High,580
+5,1,Arizona Cardinals,State Farm Stadium,Sofi Stadium,372
+6,2,Atlanta Falcons,Mercedes-Benz Stadium,AT&T Stadium,740
+7,2,Atlanta Falcons,Mercedes-Benz Stadium,Bank of America Stadium,225
+8,2,Atlanta Falcons,Mercedes-Benz Stadium,Hard Rock Stadium,600
+9,2,Atlanta Falcons,Mercedes-Benz Stadium,Mercedes-Benz Superdome,425
+10,2,Atlanta Falcons,Mercedes-Benz Stadium,Paul Brown Stadium,375
+11,3,Baltimore Ravens,M&T Bank Stadium,FedExField,90
+12,3,Baltimore Ravens,M&T Bank Stadium,Lincoln Financial Field,80
+13,4,Buffalo Bills,Bills Stadium,Ford Field,210
+14,4,Buffalo Bills,Bills Stadium,Gillette Stadium,429
+15,4,Buffalo Bills,Bills Stadium,Heinz Field,225
+16,4,Buffalo Bills,Bills Stadium,Lambeau Field,430
+17,4,Buffalo Bills,Bills Stadium,CenturyLink Field,2070
+18,5,Carolina Panthers,Bank of America Stadium,TIAA Bank Field,342
+19,5,Carolina Panthers,Bank of America Stadium,FedExField,340
+20,5,Carolina Panthers,Bank of America Stadium,Mercedes-Benz Stadium,225
+21,5,Carolina Panthers,Bank of America Stadium,Heinz Field,365
+22,6,Chicago Bears,Soldier Field,Arrowhead Stadium,415
+23,6,Chicago Bears,Soldier Field,Lambeau Field,80
+24,6,Chicago Bears,Soldier Field,Lucas Oil Stadium,50
+25,7,Cincinnati Bengals,Paul Brown Stadium,FirstEnergy Stadium,225
+26,7,Cincinnati Bengals,Paul Brown Stadium,Mercedes-Benz Stadium,375
+27,7,Cincinnati Bengals,Paul Brown Stadium,Heinz Field,260
+28,7,Cincinnati Bengals,Paul Brown Stadium,Lucas Oil Stadium,250
+29,7,Cincinnati Bengals,Paul Brown Stadium,Nissan Stadium,240
+30,8,Cleveland Browns,FirstEnergy Stadium,Ford Field,90
+31,8,Cleveland Browns,FirstEnergy Stadium,Heinz Field,115
+32,8,Cleveland Browns,FirstEnergy Stadium,Paul Brown Stadium,225
+33,9,Dallas Cowboys,AT&T Stadium,Arrowhead Stadium,460
+34,9,Dallas Cowboys,AT&T Stadium,Mercedes-Benz Stadium,740
+35,9,Dallas Cowboys,AT&T Stadium,NRG Stadium,230
+36,9,Dallas Cowboys,AT&T Stadium,Broncos Stadium at Mile High,650
+37,9,Dallas Cowboys,AT&T Stadium,State Farm Stadium,870
+38,10,Denver Broncos,Broncos Stadium at Mile High,AT&T Stadium,650
+39,10,Denver Broncos,Broncos Stadium at Mile High,Arrowhead Stadium,560
+40,10,Denver Broncos,Broncos Stadium at Mile High,Levi's Stadium,930
+41,10,Denver Broncos,Broncos Stadium at Mile High,Sofi Stadium,1015
+42,10,Denver Broncos,Broncos Stadium at Mile High,State Farm Stadium,580
+43,11,Detroit Lions,Ford Field,FirstEnergy Stadium,90
+44,11,Detroit Lions,Ford Field,Lucas Oil Stadium,240
+45,11,Detroit Lions,Ford Field,Bills Stadium,210
+46,12,Green Bay Packers,Lambeau Field,Bills Stadium,430
+47,12,Green Bay Packers,Lambeau Field,Soldier Field,80
+48,12,Green Bay Packers,Lambeau Field,U.S. Bank Stadium,300
+49,13,Houston Texans,NRG Stadium,AT&T Stadium,230
+50,13,Houston Texans,NRG Stadium,Hard Rock Stadium,965
+51,13,Houston Texans,NRG Stadium,Mercedes-Benz Superdome,320
+52,13,Houston Texans,NRG Stadium,Nissan Stadium,670
+53,13,Houston Texans,NRG Stadium,State Farm Stadium,1115
+54,14,Indianapolis Colts,Lucas Oil Stadium,Ford Field,240
+55,14,Indianapolis Colts,Lucas Oil Stadium,Paul Brown Stadium,250
+56,14,Indianapolis Colts,Lucas Oil Stadium,Soldier Field,50
+57,15,Jacksonville Jaguars,TIAA Bank Field,Bank of America Stadium,342
+58,15,Jacksonville Jaguars,TIAA Bank Field,Raymond James Stadium,170
+59,15,Jacksonville Jaguars,TIAA Bank Field,Hard Rock Stadium,315
+60,16,Kansas City Chiefs,Arrowhead Stadium,AT&T Stadium,460
+61,16,Kansas City Chiefs,Arrowhead Stadium,Nissan Stadium,470
+62,16,Kansas City Chiefs,Arrowhead Stadium,Soldier Field,415
+63,16,Kansas City Chiefs,Arrowhead Stadium,Broncos Stadium at Mile High,560
+64,18,Los Angeles Chargers,Sofi Stadium,Sofi Stadium,15
+65,18,Los Angeles Chargers,Sofi Stadium,Broncos Stadium at Mile High,1015
+66,18,Los Angeles Chargers,Sofi Stadium,State Farm Stadium,372
+67,19,Los Angeles Rams,Sofi Stadium,Levi's Stadium,200
+68,19,Los Angeles Rams,Sofi Stadium,Allegiant Stadium,270
+69,19,Los Angeles Rams,Sofi Stadium,Sofi Stadium,15
+70,19,Los Angeles Rams,Sofi Stadium,U.S. Bank Stadium,1500
+71,20,Miami Dolphins,Hard Rock Stadium,TIAA Bank Field,315
+72,20,Miami Dolphins,Hard Rock Stadium,Mercedes-Benz Stadium,600
+73,20,Miami Dolphins,Hard Rock Stadium,Gillette Stadium,1255
+74,20,Miami Dolphins,Hard Rock Stadium,NRG Stadium,965
+75,20,Miami Dolphins,Hard Rock Stadium,Raymond James Stadium,210
+76,21,Minnesota Vikings,U.S. Bank Stadium,CenturyLink Field,1390
+77,21,Minnesota Vikings,U.S. Bank Stadium,Lambeau Field,300
+78,21,Minnesota Vikings,U.S. Bank Stadium,Nissan Stadium,700
+79,21,Minnesota Vikings,U.S. Bank Stadium,Sofi Stadium,1500
+80,22,New England Patriots,Gillette Stadium,Hard Rock Stadium,1255
+81,22,New England Patriots,Gillette Stadium,Bills Stadium,429
+82,22,New England Patriots,Gillette Stadium,MetLife Stadium,195
+83,23,New Orleans Saints,Mercedes-Benz Superdome,Mercedes-Benz Stadium,425
+84,23,New Orleans Saints,Mercedes-Benz Superdome,NRG Stadium,320
+85,23,New Orleans Saints,Mercedes-Benz Superdome,Raymond James Stadium,480
+86,24,New York Giants,MetLife Stadium,Gillette Stadium,195
+87,24,New York Giants,MetLife Stadium,Lincoln Financial Field,50
+88,25,New York Jets,MetLife Stadium,Gillette Stadium,195
+89,25,New York Jets,MetLife Stadium,Lincoln Financial Field,50
+90,17,Las Vegas Raiders,Allegiant Stadium,CenturyLink Field,1275
+91,17,Las Vegas Raiders,Allegiant Stadium,Levi's Stadium,569
+92,17,Las Vegas Raiders,Allegiant Stadium,Sofi Stadium,270
+93,26,Philadelphia Eagles,Lincoln Financial Field,Heinz Field,315
+94,26,Philadelphia Eagles,Lincoln Financial Field,M&T Bank Stadium,80
+95,26,Philadelphia Eagles,Lincoln Financial Field,MetLife Stadium,50
+96,27,Pittsburgh Steelers,Heinz Field,Bank of America Stadium,365
+97,27,Pittsburgh Steelers,Heinz Field,FirstEnergy Stadium,115
+98,27,Pittsburgh Steelers,Heinz Field,Lincoln Financial Field,315
+99,27,Pittsburgh Steelers,Heinz Field,Paul Brown Stadium,260
+100,27,Pittsburgh Steelers,Heinz Field,Bills Stadium,225
+101,28,San Francisco 49ers,Levi's Stadium,Allegiant Stadium,569
+102,28,San Francisco 49ers,Levi's Stadium,Broncos Stadium at Mile High,930
+103,28,San Francisco 49ers,Levi's Stadium,Sofi Stadium,200
+104,28,San Francisco 49ers,Levi's Stadium,State Farm Stadium,650
+105,29,Seattle Seahawks,CenturyLink Field,Allegiant Stadium,1270
+106,29,Seattle Seahawks,CenturyLink Field,Bills Stadium,2070
+107,29,Seattle Seahawks,CenturyLink Field,U.S. Bank Stadium,1390
+108,30,Tampa Bay Buccaneers,Raymond James Stadium,TIAA Bank Field,170
+109,30,Tampa Bay Buccaneers,Raymond James Stadium,Hard Rock Stadium,210
+110,30,Tampa Bay Buccaneers,Raymond James Stadium,Mercedes-Benz Superdome,480
+111,31,Tennessee Titans,Nissan Stadium,Arrowhead Stadium,470
+112,31,Tennessee Titans,Nissan Stadium,NRG Stadium,670
+113,31,Tennessee Titans,Nissan Stadium,Paul Brown Stadium,240
+114,31,Tennessee Titans,Nissan Stadium,U.S. Bank Stadium,700
+115,32,Washington Redskins,FedExField,Bank of America Stadium,340
+116,32,Washington Redskins,FedExField,M&T Bank Stadium,90
