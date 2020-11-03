@@ -1,7 +1,7 @@
 #ifndef SOUVENIRANDTRIP_H
 #define SOUVENIRANDTRIP_H
 
-#include <QDialog>
+#include "Header.h"
 #include "mainwindow.h"
 
 namespace Ui {
@@ -17,8 +17,6 @@ public:
     ~SouvenirAndTrip();
 
 private slots:
-    void on_HomePushButton_2_clicked();
-
     void on_SearchTeamSouvenirPushButton_clicked();
 
     void on_ConfirmationPushButton_clicked();
@@ -34,6 +32,10 @@ private slots:
     void on_ConfirmMinnesotaTripPushButton_clicked();
 
     void on_ConfirmLosAngelesRamsTripPushButton_clicked();
+
+    ///This function will create a pointer to the main window. It will then hide the
+    ///travel page before showing the main window
+    void on_HomePushButton_clicked();
 
 private:
     Ui::SouvenirAndTrip *ui;

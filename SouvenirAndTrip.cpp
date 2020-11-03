@@ -13,16 +13,6 @@ SouvenirAndTrip::~SouvenirAndTrip()
     delete ui;
 }
 
-void SouvenirAndTrip::on_HomePushButton_2_clicked()
-{
-    MainWindow *mainWindow;
-    mainWindow = new MainWindow(this);
-
-    hide();
-
-    mainWindow -> show();
-}
-
 void SouvenirAndTrip::on_SearchTeamSouvenirPushButton_clicked()
 {
 
@@ -61,4 +51,16 @@ void SouvenirAndTrip::on_ConfirmMinnesotaTripPushButton_clicked()
 void SouvenirAndTrip::on_ConfirmLosAngelesRamsTripPushButton_clicked()
 {
 
+}
+
+///This function will create a pointer to the main window. It will then hide the
+///travel page before showing the main window
+void SouvenirAndTrip::on_HomePushButton_clicked()
+{
+    MainWindow *mainWindow;
+    mainWindow = new MainWindow(this);
+
+    hide();
+
+    mainWindow -> show();
 }
