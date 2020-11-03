@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>958</width>
-    <height>471</height>
+    <width>1555</width>
+    <height>770</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,11 +16,16 @@
   <widget class="QTabWidget" name="TripAndSouvenirTabWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>0</x>
      <y>0</y>
-     <width>941</width>
-     <height>471</height>
+     <width>1561</width>
+     <height>771</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="currentIndex">
     <number>7</number>
@@ -32,20 +37,20 @@
     <widget class="QTableWidget" name="tableWidget">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>51</y>
-       <width>601</width>
-       <height>301</height>
+       <x>430</x>
+       <y>100</y>
+       <width>1091</width>
+       <height>621</height>
       </rect>
      </property>
     </widget>
     <widget class="QPushButton" name="HomePushButton">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>400</y>
-       <width>111</width>
-       <height>41</height>
+       <x>10</x>
+       <y>670</y>
+       <width>141</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -56,9 +61,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>60</y>
-       <width>211</width>
-       <height>21</height>
+       <y>110</y>
+       <width>381</width>
+       <height>31</height>
       </rect>
      </property>
     </widget>
@@ -66,10 +71,15 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
-       <width>321</width>
+       <y>60</y>
+       <width>661</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Select the Team you want to See Souvenirs for</string>
@@ -91,7 +101,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>20</pointsize>
       </font>
      </property>
      <property name="text">
@@ -101,10 +111,10 @@
     <widget class="QComboBox" name="comboBox">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>180</y>
-       <width>65</width>
-       <height>22</height>
+       <x>20</x>
+       <y>190</y>
+       <width>371</width>
+       <height>31</height>
       </rect>
      </property>
     </widget>
@@ -119,7 +129,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -129,10 +139,10 @@
     <widget class="QPushButton" name="ConfirmationPushButton">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>320</y>
-       <width>91</width>
-       <height>41</height>
+       <x>20</x>
+       <y>350</y>
+       <width>171</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -149,13 +159,13 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>461</width>
+       <width>631</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>20</pointsize>
       </font>
      </property>
      <property name="text">
@@ -165,10 +175,10 @@
     <widget class="QComboBox" name="comboBox_2">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>10</x>
        <y>190</y>
-       <width>65</width>
-       <height>22</height>
+       <width>311</width>
+       <height>31</height>
       </rect>
      </property>
     </widget>
@@ -177,13 +187,13 @@
       <rect>
        <x>10</x>
        <y>130</y>
-       <width>251</width>
+       <width>391</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -193,9 +203,9 @@
     <widget class="QCheckBox" name="checkBox">
      <property name="geometry">
       <rect>
-       <x>380</x>
+       <x>480</x>
        <y>190</y>
-       <width>72</width>
+       <width>321</width>
        <height>20</height>
       </rect>
      </property>
@@ -206,15 +216,15 @@
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>320</x>
-       <y>150</y>
+       <x>480</x>
+       <y>140</y>
        <width>441</width>
        <height>31</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -224,10 +234,10 @@
     <widget class="QPushButton" name="ConfirmCustomTripPushButton">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>480</y>
-       <width>131</width>
-       <height>41</height>
+       <x>20</x>
+       <y>440</y>
+       <width>151</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -244,13 +254,13 @@
       <rect>
        <x>20</x>
        <y>10</y>
-       <width>631</width>
+       <width>1091</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>20</pointsize>
       </font>
      </property>
      <property name="text">
@@ -266,8 +276,8 @@
     <widget class="QPushButton" name="ConfirmNewEnglandTripPushButton">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>610</y>
+       <x>10</x>
+       <y>540</y>
        <width>171</width>
        <height>61</height>
       </rect>
@@ -280,32 +290,32 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>120</y>
+       <y>100</y>
        <width>251</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
-      <string>Starting Stadium</string>
+      <string>Starting Stadium:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_16">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>170</y>
-       <width>101</width>
+       <width>171</width>
        <height>41</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -321,8 +331,8 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>200</y>
-       <width>201</width>
+       <y>270</y>
+       <width>301</width>
        <height>22</height>
       </rect>
      </property>
@@ -331,14 +341,14 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>160</y>
-       <width>251</width>
+       <y>220</y>
+       <width>331</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -350,13 +360,13 @@
       <rect>
        <x>20</x>
        <y>40</y>
-       <width>631</width>
-       <height>61</height>
+       <width>881</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -372,8 +382,8 @@
     <widget class="QPushButton" name="ConfirmCustomShortestTripPushButton">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>440</y>
+       <x>10</x>
+       <y>460</y>
        <width>171</width>
        <height>61</height>
       </rect>
@@ -392,8 +402,8 @@
       <rect>
        <x>0</x>
        <y>410</y>
-       <width>131</width>
-       <height>31</height>
+       <width>141</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -405,13 +415,13 @@
       <rect>
        <x>30</x>
        <y>20</y>
-       <width>631</width>
+       <width>861</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>20</pointsize>
       </font>
      </property>
      <property name="text">
@@ -434,8 +444,8 @@
       <rect>
        <x>0</x>
        <y>410</y>
-       <width>121</width>
-       <height>31</height>
+       <width>181</width>
+       <height>51</height>
       </rect>
      </property>
      <property name="text">
@@ -447,13 +457,13 @@
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>631</width>
-       <height>61</height>
+       <width>771</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>20</pointsize>
       </font>
      </property>
      <property name="text">
@@ -477,7 +487,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -488,14 +498,14 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>180</y>
-       <width>141</width>
+       <y>200</y>
+       <width>221</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -518,7 +528,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -530,13 +540,13 @@
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>631</width>
-       <height>61</height>
+       <width>771</width>
+       <height>81</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
@@ -554,9 +564,14 @@
       <rect>
        <x>0</x>
        <y>410</y>
-       <width>131</width>
-       <height>31</height>
+       <width>151</width>
+       <height>51</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Confirm Trip</string>
@@ -567,13 +582,13 @@
       <rect>
        <x>10</x>
        <y>180</y>
-       <width>141</width>
+       <width>241</width>
        <height>61</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>18</pointsize>
       </font>
      </property>
      <property name="text">
