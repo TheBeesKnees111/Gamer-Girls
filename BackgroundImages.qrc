@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/new/Images">
+        <file>FootballPic1.jpg</file>
+        <file>FootballPic2.jpg</file>
+        <file>FootballPic3.jpg</file>
+        <file>FootballPic4.jpg</file>
+        <file>FootballPic5.jpg</file>
+        <file>FootballPic6.jpg</file>
+        <file>FootballPic7.jpg</file>
+    </qresource>
+</RCC>

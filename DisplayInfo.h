@@ -1,7 +1,7 @@
 #ifndef DISPLAYINFO_H
 #define DISPLAYINFO_H
 
-#include <QDialog>
+#include "Header.h"
 #include "mainwindow.h"
 
 namespace Ui {
@@ -35,6 +35,8 @@ private slots:
 
     void on_ShowBermudaGrassStadiumsPushButton_clicked();
 
+    ///This function will create a pointer to the MainWindow UI. The DisplayInfo
+    /// page will be hidden before showing the Main Window
     void on_HomePushButton_clicked();
 
 private:

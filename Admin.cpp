@@ -23,16 +23,13 @@ void Admin::on_DeleteSouvenirPushButton_clicked()
 
 }
 
-void Admin::on_UpdatePushButton_clicked()
-{
-
-}
-
 void Admin::on_ReadInFromFileButton_clicked()
 {
 
 }
 
+///This function will create a pointer to the MainWindow UI. The admin page will be
+/// hidden before showing the Main Window
 void Admin::on_HomePushButton_clicked()
 {
     MainWindow *mainWindow;
@@ -43,7 +40,12 @@ void Admin::on_HomePushButton_clicked()
     mainWindow -> show();
 }
 
-void Admin::on_UpdateStadiumInfoPushButton_clicked()
+void Admin::on_UpdateSouvenirPushButton_clicked()
+{
+
+}
+
+void Admin::on_UpdateStadiumPushButton_clicked()
 {
 
 }

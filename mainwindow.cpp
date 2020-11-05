@@ -6,6 +6,25 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //PROCESSING - Setting Main Window Title
+    this -> setWindowTitle("Let's Play Football");
+
+    /************************************************************
+    * PROCESSING - Assign an image into new QPixmap variable
+    ************************************************************/
+    QPixmap homePageBackground (":/new/Images/FootballPic3.jpg");
+
+    int ImageLabelW = ui -> ImageLabel -> width();
+    int ImageLabelH = ui -> ImageLabel -> height();
+
+
+    ///PROCESSING - Set the label to hold the image specified and align center
+    ui -> ImageLabel -> setAlignment(Qt::AlignCenter);
+    ui -> ImageLabel -> setPixmap(homePageBackground.scaled
+                                 (ImageLabelW, ImageLabelH,
+                                  Qt::KeepAspectRatio));
+
 }
 
 MainWindow::~MainWindow()
@@ -14,10 +33,11 @@ MainWindow::~MainWindow()
 }
 
 
+///This function will create a pointer to the login UI. The mainwindow will be
+/// hidden before showing the login page
 void MainWindow::on_AdminPagePushButton_clicked()
 {
     Login *loginUi;
-
     loginUi = new Login(this);
 
     hide();
@@ -25,10 +45,11 @@ void MainWindow::on_AdminPagePushButton_clicked()
     loginUi -> show();
 }
 
+///This function will create a pointer to the DisplayInfo UI. The mainwindow
+/// will be hidden before showing the DisplayInfo page
 void MainWindow::on_DisplayTeamStadiumInfo_clicked()
 {
     DisplayInfo *displayUI;
-
     displayUI = new DisplayInfo(this);
 
     hide();
@@ -36,6 +57,8 @@ void MainWindow::on_DisplayTeamStadiumInfo_clicked()
     displayUI -> show();
 }
 
+///This function will create a pointer to the Travel UI. The mainwindow will be
+/// hidden before showing the Travel page
 void MainWindow::on_SouvenirAndTripPushButton_clicked()
 {
     SouvenirAndTrip *ui;
@@ -44,4 +67,10 @@ void MainWindow::on_SouvenirAndTripPushButton_clicked()
     hide();
 
     ui -> show();
+}
+
+///This function will return the ui
+Ui::MainWindow* MainWindow::GetUI() const
+{
+    return ui;
 }

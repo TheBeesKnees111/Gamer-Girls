@@ -59,6 +59,8 @@ void DisplayInfo::on_ShowBermudaGrassStadiumsPushButton_clicked()
 
 }
 
+///This function will create a pointer to the MainWindow UI. The DisplayInfo
+/// page will be hidden before showing the Main Window
 void DisplayInfo::on_HomePushButton_clicked()
 {
     MainWindow *mainWindow;
