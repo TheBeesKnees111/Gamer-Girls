@@ -14,4 +14,9 @@
 #include <QRandomGenerator>
 #include <QTime>
 
+//For Std Lib
+#include <string>
+#include <vector>
+
+
 #endif // HEADER_H

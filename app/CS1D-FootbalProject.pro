@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,18 +10,32 @@ CONFIG += c++11
 
 SOURCES += \
     Admin.cpp \
+    Database.cpp \
     DisplayInfo.cpp \
     Login.cpp \
+    PathUtils.cpp \
+    Purchases.cpp \
+    ShortestPath.cpp \
     SouvenirAndTrip.cpp \
+    Souvenirs.cpp \
+    TeamDistances.cpp \
+    TeamInfo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Admin.h \
+    Database.h \
     DisplayInfo.h \
     Header.h \
     Login.h \
+    PathUtils.h \
+    Purchases.h \
+    ShortestPath.h \
     SouvenirAndTrip.h \
+    Souvenirs.h \
+    TeamDistances.h \
+    TeamInfo.h \
     mainwindow.h
 
 FORMS += \
@@ -37,4 +51,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    BackgroundImages.qrc
+    BackgroundImages.qrc \
+    db.qrc
