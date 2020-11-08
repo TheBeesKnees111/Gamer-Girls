@@ -1,17 +1,19 @@
-#include "ShortestPath.h"
+#include "Dijkstras.h"
 #include <iostream>
 
-vector<string> ShortestPath(const cityGraph& graph, cityNode start, cityNode endLocation)
+vector<string> ShortestPath(const cityGraph& graph, cityNode start,
+                            cityNode endLocation)
 {
     //1  function Dijkstra(Graph, start):
     //2
-    //3      create vertex set Q
-    set<string> Q;
+    //3  create vertex set Q
+
+    set<string> Q; // collection of elements w/ no duplicates (keys only)
     map<string, int> dist;
     map<string, string> prev;
 
     //4
-    //5      for each vertex v in Graph:
+    //5 for each vertex v in Graph:
     for (auto node : graph.cities)
     {
         //6          dist[v] ← INFINITY
@@ -22,24 +24,25 @@ vector<string> ShortestPath(const cityGraph& graph, cityNode start, cityNode end
         Q.insert(node.name);
     }
 
-    //10      dist[start] ← 0
+    //10 dist[start] ← 0 -- distance from starting node to itself is 0
     dist[start.name] = 0;
     //11
     //12      while Q is not empty:
     while (!Q.empty())
     {
-        //13          u ← vertex in Q with min dist[u]
-        string u = *min_element(Q.begin(), Q.end(), [dist](string s1, string s2){
+        //13 u ← vertex in Q with min dist[u]
+        string u = *min_element(Q.begin(), Q.end(), [dist](string s1, string s2)
+        {       // lambda conditional below, min_element calls it w/ every pair
                 return dist.at(s1) < dist.at(s2);
-    });
+         });
         //14
-        //15          remove u from Q
+        //15 remove u from Q (because we are/have visit(ed/ing) it)
         Q.erase(u);
         //16
         //17          for each neighbor v of u: // only v that are still in Q
         for (auto v : graph.adjacencyList.at({u}))
         {
-            //18              alt ← dist[u] + length(u, v)
+            //18  alt ← dist[u] + length(u, v)
             int alt = dist[u] + v.distance;
             //19              if alt < dist[v]:
             if (alt < dist[v.fromCity.name])
@@ -54,6 +57,7 @@ vector<string> ShortestPath(const cityGraph& graph, cityNode start, cityNode end
     }
     //23      return dist[], prev[]
 
+    // building actual path
     //1  S ← empty sequence
     vector<string> S;
     //2  u ← endLocation

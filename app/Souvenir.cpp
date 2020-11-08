@@ -1,34 +1,40 @@
-#include "Souvenirs.h"
+#include "Souvenir.h"
 
-Souvenirs::Souvenirs(QObject *parent) : QObject(parent){}
+Souvenir::Souvenir(QObject *parent) : QObject(parent){}
 
 /****************************************************
  * - GETTERS -                                      *
  ****************************************************/
-int Souvenirs::getSouvenirID() const
+int Souvenir::getSouvenirID() const
 {    return souvenirID; }
 
-int Souvenirs::getTeamID() const
+int Souvenir::getTeamID() const
 {    return teamID; }
 
-QString Souvenirs::getItemName() const
+QString Souvenir::getItemName() const
 {    return itemName;   }
 
-float Souvenirs::getItemPrice() const
+float Souvenir::getItemPrice() const
 {    return itemPrice;  }
+
+int Souvenir::getQtyPurchased() const
+{    return qtyPurchased; }
 
 /****************************************************
  * - SETTERS -                                      *
  ****************************************************/
-void Souvenirs::setSouvenirID(int value)
+void Souvenir::setSouvenirID(int value)
 {   souvenirID = value; }
 
-void Souvenirs::setTeamID(int value)
+void Souvenir::setTeamID(int value)
 {    teamID = value;    }
 
-void Souvenirs::setItemName(const QString &value)
+void Souvenir::setItemName(const QString &value)
 {    itemName = value;  }
 
-void Souvenirs::setItemPrice(float value)
+void Souvenir::setItemPrice(float value)
 {    itemPrice = value; }
+
+void Souvenir::setQtyPurchased(int value)
+{    qtyPurchased = value;    }
 

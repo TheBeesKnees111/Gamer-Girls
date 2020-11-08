@@ -4,7 +4,7 @@
 #include <QtSql>
 #include <QtCore>
 #include "Header.h"
-#include "ShortestPath.h"
+#include "Dijkstras.h"
 
 vector<cityNode> createCitiesFromDatabase();
 

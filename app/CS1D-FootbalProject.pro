@@ -11,31 +11,31 @@ CONFIG += c++11
 SOURCES += \
     Admin.cpp \
     Database.cpp \
+    Dijkstras.cpp \
     DisplayInfo.cpp \
     Login.cpp \
     PathUtils.cpp \
     Purchases.cpp \
-    ShortestPath.cpp \
+    Souvenir.cpp \
     SouvenirAndTrip.cpp \
-    Souvenirs.cpp \
-    TeamDistances.cpp \
-    TeamInfo.cpp \
+    Stadium.cpp \
+    Team.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Admin.h \
     Database.h \
+    Dijkstras.h \
     DisplayInfo.h \
     Header.h \
     Login.h \
     PathUtils.h \
     Purchases.h \
-    ShortestPath.h \
+    Souvenir.h \
     SouvenirAndTrip.h \
-    Souvenirs.h \
-    TeamDistances.h \
-    TeamInfo.h \
+    Stadium.h \
+    Team.h \
     mainwindow.h
 
 FORMS += \

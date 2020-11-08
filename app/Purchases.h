@@ -20,7 +20,6 @@ public:
     int getSouvenirID() const;
     int getQtyPurchased() const;
 
-
 public slots:
     void setPurchaseID(int value);
     void setTeamID(int value);
@@ -28,9 +27,9 @@ public slots:
     void setQtyPurchased(int value);
 
 signals:
-    void purchaseIDchanged(int newID);
-    void teamIDchanged(int newID);
-    void souvenirIDchange(int newID);
+    void purchaseIDChanged(int newID);
+    void teamIDChanged(int newID);
+    void souvenirIDChange(int newID);
     void qtyPurchasedChanged(int num);
 };
 

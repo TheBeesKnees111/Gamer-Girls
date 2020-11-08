@@ -14,14 +14,11 @@ vector<cityNode> createCitiesFromDatabase()
         // w/ that & puts it in the vector
         cityNodeList.push_back({city.toStdString()});
     }
-
     return cityNodeList;
-
 }
 
 vector<cityConnection> createConnectionsFromDatabase()
 {
-
     vector<cityConnection> ConnectionNodeList;
     QSqlQuery query;
     query.exec("SELECT fromCity, toCity, Distance FROM Distances " );
@@ -54,9 +51,7 @@ vector<cityConnection> createConnectionsFromDatabase()
                                       {toCity},		// crating cityNode toCity
                                       Distance });	// creating distance
     }
-
     return ConnectionNodeList;
-
 }
 
 cityGraph createCityGraphFromDatabase()
@@ -67,9 +62,9 @@ cityGraph createCityGraphFromDatabase()
     // Adjacency list from the edge list
     for(auto edge : edgeList)
     {
-        string fromCity = edge.fromCity.name;
-        string toCity = edge.toCity.name;
-        int distance = edge.distance;
+        string  fromCity = edge.fromCity.name;
+        string  toCity = edge.toCity.name;
+        int     distance = edge.distance;
 
         // Creates adjacencyList if it doesn't already exist
         adjacencyList[{fromCity}].push_back(edge);

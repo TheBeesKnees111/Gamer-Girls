@@ -30,4 +30,10 @@ void Purchases::setSouvenirID(int value)
 {    souvenirID = value;    }
 
 void Purchases::setQtyPurchased(int value)
-{    qtyPurchased = value;  }
+{   // makes my things work well with Qt things
+    if (value != qtyPurchased)
+    {
+        qtyPurchased = value;
+        emit qtyPurchasedChanged(value);
+    }
+}
