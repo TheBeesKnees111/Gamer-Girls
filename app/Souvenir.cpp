@@ -24,17 +24,47 @@ int Souvenir::getQtyPurchased() const
  * - SETTERS -                                      *
  ****************************************************/
 void Souvenir::setSouvenirID(int value)
-{   souvenirID = value; }
+{
+    if (value != souvenirID)
+    {
+        souvenirID = value;
+        emit souvenirIDChanged(value);
+    }
+}
 
 void Souvenir::setTeamID(int value)
-{    teamID = value;    }
+{
+    if (value != teamID)
+    {
+        teamID = value;
+        emit teamIDChanged(value);
+    }
+}
 
 void Souvenir::setItemName(const QString &value)
-{    itemName = value;  }
+{
+    if (value != itemName)
+    {
+        itemName = value;
+        emit itemNameChanged(value);
+    }
+}
 
 void Souvenir::setItemPrice(float value)
-{    itemPrice = value; }
+{
+    if (value != itemPrice)
+    {
+        itemPrice = value;
+        emit itemPriceChanged(value);
+    }
+}
 
 void Souvenir::setQtyPurchased(int value)
-{    qtyPurchased = value;    }
+{
+    if (value != qtyPurchased)
+    {
+        qtyPurchased = value;
+        emit qtyPurchasedChanged(value);
+    }
+}
 

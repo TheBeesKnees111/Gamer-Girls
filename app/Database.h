@@ -35,6 +35,7 @@ public:
     // DISTANCE METHODS
     int getMilesBetweenStadiums(Stadium* from, Stadium* to);
 
+    // TODO
     // should dijk call get miles from db
     // or create adjacency list & pass to dijk
     // creating the list will make dijk's algo run faster

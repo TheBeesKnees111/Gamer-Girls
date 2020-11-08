@@ -31,7 +31,8 @@ struct cityGraph
     map<cityNode, vector<cityConnection>> adjacencyList;
 };
 
-vector<string> ShortestPath(const cityGraph& graph, cityNode start, cityNode endLocation);
+vector<string> ShortestPath(const cityGraph& graph, cityNode start,
+                            cityNode endLocation);
 
 void printShortestPath(vector<string> path);
 

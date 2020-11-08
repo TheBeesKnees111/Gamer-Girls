@@ -29,7 +29,7 @@ public slots:
 signals:
     void purchaseIDChanged(int newID);
     void teamIDChanged(int newID);
-    void souvenirIDChange(int newID);
+    void souvenirIDChanged(int newID);
     void qtyPurchasedChanged(int num);
 };
 

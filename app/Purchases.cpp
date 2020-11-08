@@ -21,16 +21,34 @@ int Purchases::getQtyPurchased() const
  * - SETTERS -                                      *
  ****************************************************/
 void Purchases::setPurchaseID(int value)
-{    purchaseID = value;    }
+{
+    if (value != purchaseID)
+    {
+        purchaseID = value;
+        emit purchaseIDChanged(value);
+    }
+}
 
 void Purchases::setTeamID(int value)
-{    teamID = value;    }
+{
+    if (value != teamID)
+    {
+        teamID = value;
+        emit teamIDChanged(value);
+    }
+}
 
 void Purchases::setSouvenirID(int value)
-{    souvenirID = value;    }
+{
+    if (value != souvenirID)
+    {
+        souvenirID = value;
+        emit souvenirIDChanged(value);
+    }
+}
 
 void Purchases::setQtyPurchased(int value)
-{   // makes my things work well with Qt things
+{
     if (value != qtyPurchased)
     {
         qtyPurchased = value;

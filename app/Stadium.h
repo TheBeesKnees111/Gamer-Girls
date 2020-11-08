@@ -22,27 +22,27 @@ public:
     explicit Stadium(QObject *parent = nullptr);
 
     QString getStadiumName() const;
-    void setStadiumName(const QString &value);
-
-    int getSeatingCapacity() const;
-    void setSeatingCapacity(int value);
-
+    int     getSeatingCapacity() const;
     QString getLocation() const;
-    void setLocation(const QString &value);
-
     QString getSurfaceType() const;
-    void setSurfaceType(const QString &value);
-
     QString getRoofType() const;
-    void setRoofType(const QString &value);
-
-    int getDateOpened() const;
-    void setDateOpened(int value);
+    int     getDateOpened() const;
 
 public slots:
-
+    void setStadiumName(const QString &value);
+    void setSeatingCapacity(int value);
+    void setLocation(const QString &value);
+    void setSurfaceType(const QString &value);
+    void setRoofType(const QString &value);
+    void setDateOpened(int value);
 
 signals:
+    void stadiumNameChanged(QString value);
+    void seatingCapacityChanged(int value);
+    void locationChanged(QString value);
+    void surfaceTypeChanged(QString value);
+    void roofTypeChanged(QString value);
+    void dateOpenedChanged(int value);
 
 };
 
