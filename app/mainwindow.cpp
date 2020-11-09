@@ -3,6 +3,8 @@
 #include "DisplayInfo.h"
 #include "Login.h"
 #include "SouvenirAndTrip.h"
+#include "Database.h"
+#include "Team.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
                                  (ImageLabelW, ImageLabelH,
                                   Qt::KeepAspectRatio));
 
+    // Create Database
+    db = new Database;
 }
 
 MainWindow::~MainWindow()

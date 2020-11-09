@@ -6,6 +6,7 @@ class Login;
 class DisplayInfo;
 class SouvenirAndTrip;
 class Team;
+class Database;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +38,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Database* db;
 
 };
 #endif // MAINWINDOW_H

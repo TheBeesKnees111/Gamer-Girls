@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/db"/>
     <qresource prefix="/">
-        <file>../db/nfldb.db</file>
+        <file>db/nfldb.db</file>
     </qresource>
 </RCC>

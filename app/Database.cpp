@@ -6,18 +6,22 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
+#include <QFileDialog>
+
 Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
-    // creating the db file
-    QFileInfo db(":/db/nfldb.db");
-    // getting the path as a string
-    QString DB_PATH = db.absoluteFilePath();
-    // printing debug output onto console
-    qDebug() << DB_PATH;
-    // tell sqlite to use the file
-    setDatabaseName(DB_PATH);
-    // open the db
-    open();
+    // Set path
+    setDatabaseName(QDir::currentPath() + "/db/NFLdb.db");
+
+    // Print error if database does not open
+    if (!open())
+    {
+        qDebug() << "Connection to database failed";
+    }
+    else
+    {
+        qDebug() << "Connection to database succeeded";
+    }
 }
 
 Team* Database::getTeamByID(int teamID)
