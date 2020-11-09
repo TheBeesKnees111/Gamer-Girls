@@ -3,7 +3,6 @@
 
 #include <QtSql>
 #include <QtCore>
-#include "Header.h"
 #include "Dijkstras.h"
 
 vector<cityNode> createCitiesFromDatabase();

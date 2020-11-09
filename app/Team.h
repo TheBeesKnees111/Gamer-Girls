@@ -3,11 +3,11 @@
 
 #include <QObject>
 
+class Stadium;
+class Souvenir;
+
 class Team : public QObject
 {
-    class Stadium;
-    class Souvenir;
-
     Q_OBJECT
 
     int                 teamID;
