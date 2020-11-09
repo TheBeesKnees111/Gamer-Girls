@@ -28,7 +28,6 @@ HEADERS += \
     Database.h \
     Dijkstras.h \
     DisplayInfo.h \
-    Header.h \
     Login.h \
     PathUtils.h \
     Purchases.h \

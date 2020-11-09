@@ -1,8 +1,7 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
-#include "Header.h"
-#include "mainwindow.h"
+#include <QDialog>
 
 namespace Ui {
 class Admin;

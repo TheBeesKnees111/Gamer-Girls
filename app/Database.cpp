@@ -1,4 +1,6 @@
 #include "Database.h"
+#include "Team.h"
+#include "Stadium.h"
 
 #include <QFileInfo>
 #include <QSqlError>

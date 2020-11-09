@@ -1,7 +1,6 @@
 #ifndef STADIUM_H
 #define STADIUM_H
 
-#include "Team.h"
 #include <QObject>
 
 class Team;

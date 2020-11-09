@@ -1,4 +1,5 @@
 #include "Stadium.h"
+#include "Team.h"
 
 Stadium::Stadium(QObject *parent) : QObject(parent){}
 

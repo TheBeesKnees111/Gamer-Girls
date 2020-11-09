@@ -1,13 +1,14 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include "Header.h"
 #include <QSqlDatabase>
 #include <QObject>
-#include "Purchases.h"
-#include "Souvenir.h"
-#include "Stadium.h"
-#include "Team.h"
+#include <QDebug>
+
+class Team;
+class Souvenir;
+class Stadium;
+class Purchases;
 
 class Database : public QSqlDatabase
 {

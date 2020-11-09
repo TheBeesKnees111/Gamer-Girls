@@ -2,12 +2,12 @@
 #define TEAM_H
 
 #include <QObject>
-#include "Stadium.h"
-#include "Souvenir.h"
 
-class Stadium;
 class Team : public QObject
 {
+    class Stadium;
+    class Souvenir;
+
     Q_OBJECT
 
     int                 teamID;
@@ -26,7 +26,7 @@ public:
     QString     getDivision() const;
 // Souvenir is a list so needs setup for that.  Didn't get to it yet.
 //    QVector<Souvenir *> getSouvenirList() const;
-    Stadium     *getStadium() const;
+    Stadium*    getStadium() const;
 
 public slots:
     void setTeamID(int value);

@@ -1,3 +1,4 @@
+#include <QDialog>
 #include "DisplayInfo.h"
 #include "ui_DisplayInfo.h"
 

@@ -2,7 +2,6 @@
 #define SOUVENIRS_H
 
 #include <QObject>
-#include "Header.h"
 
 class Souvenir : public QObject
 {

@@ -1,4 +1,7 @@
+#include <QObject>
 #include "Team.h"
+#include "Stadium.h"
+#include "Souvenir.h"
 
 Team::Team(QObject *parent) : QObject(parent){}
 
@@ -22,7 +25,7 @@ QString Team::getDivision() const
 //{    return souvenirList;   }
 
 
-Stadium *Team::getStadium() const
+Stadium* Team::getStadium() const
 {    return stadium; }
 
 /****************************************************
