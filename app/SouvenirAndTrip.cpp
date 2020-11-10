@@ -1,5 +1,6 @@
 #include "SouvenirAndTrip.h"
 #include "ui_SouvenirAndTrip.h"
+#include "mainwindow.h"
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),
@@ -12,7 +13,6 @@ SouvenirAndTrip::~SouvenirAndTrip()
 {
     delete ui;
 }
-
 
 ///This function will create a pointer to the main window. It will then hide the
 ///travel page before showing the main window

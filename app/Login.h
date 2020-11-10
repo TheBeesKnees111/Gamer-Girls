@@ -22,12 +22,14 @@ private slots:
     /// page will be hidden before showing the Main Window
 	void on_Home_PushButton_clicked();
 
+
     ///This function will read the text from the username and password line edits
     ///and check if they are equal to both the administrator's username and
     ///password. If both the correct username and password are entered, then
     ///the administrator page will open; otherwise an error message will appear
     ///telling the user that the username/password is incorrect.
 	void on_Login_PushButton_clicked();
+
 
 private:
     Ui::Login *ui;

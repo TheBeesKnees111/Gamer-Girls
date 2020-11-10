@@ -1,5 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "DisplayInfo.h"
+#include "Login.h"
+#include "SouvenirAndTrip.h"
+#include "Database.h"
+#include "Team.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
 	ui -> Image_Label -> setPixmap(homePageBackground.scaled
 								  (ImageLabelW, ImageLabelH));
 
+    // Create Database
+    db = new Database;
 }
 
 MainWindow::~MainWindow()
@@ -46,7 +53,6 @@ void MainWindow::on_Admin_Page_PushButton_clicked()
 ///This function will create a pointer to the DisplayInfo UI. The mainwindow
 /// will be hidden before showing the DisplayInfo page
 void MainWindow::on_Display_Team_Stadium_Info_clicked()
-{
     DisplayInfo *displayUI;
     displayUI = new DisplayInfo(this);
 

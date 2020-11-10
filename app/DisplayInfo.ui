@@ -222,6 +222,7 @@
    </property>
   </widget>
   <widget class="QComboBox" name="Select_Stadium_ComboBox">
+
    <property name="geometry">
     <rect>
      <x>0</x>

@@ -1,18 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-//For QClasses
 #include <QMainWindow>
-#include <QDialog>
-#include <QMessageBox>
-#include <QDebug>
-
-//For Background Image
-#include <QPixmap>
-
-#include "Login.h"
-#include "DisplayInfo.h"
-#include "SouvenirAndTrip.h"
+class Login;
+class DisplayInfo;
+class SouvenirAndTrip;
+class Team;
+class Database;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,6 +35,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Database* db;
 
 };
 #endif // MAINWINDOW_H

@@ -1,5 +1,7 @@
+#include "mainwindow.h"
 #include "Login.h"
 #include "ui_Login.h"
+#include <QMessageBox>
 
 Login::Login(QWidget *parent) :
     QDialog(parent),
@@ -11,7 +13,6 @@ Login::Login(QWidget *parent) :
 Login::~Login()
 {
     delete ui;
-
 }
 
 ///This function will create a pointer to the MainWindow UI. The Login
@@ -34,7 +35,7 @@ void Login::on_Home_PushButton_clicked()
 ///telling the user that the username/password is incorrect.
 void Login::on_Login_PushButton_clicked()
 {
-    Admin   *adminUI;
+  Admin   *adminUI;
 	QString username = ui -> Username_LineEdit -> text(); //IN & PROC - Check if text is the same as the username
 	QString password = ui -> Password_LineEdit -> text(); //IN & PROC - Check if text is the same as the password
 

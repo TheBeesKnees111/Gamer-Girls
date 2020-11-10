@@ -1,11 +1,29 @@
+#include "mainwindow.h"
+#include <QDialog>
 #include "DisplayInfo.h"
 #include "ui_DisplayInfo.h"
+#include "Team.h"
+#include "Stadium.h"
+#include "Souvenir.h"
 
 DisplayInfo::DisplayInfo(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DisplayInfo)
 {
     ui->setupUi(this);
+}
+
+
+// Intializes viewer table to blank
+void InitializeViewTable (QTableWidget* table, const int &cols, const QStringList &headers)
+{
+
+}
+
+// Populates viewer table with information
+void PopulateViewTable (QTableWidget* table, QVector<Team*> teamList)
+{
+
 }
 
 DisplayInfo::~DisplayInfo()
