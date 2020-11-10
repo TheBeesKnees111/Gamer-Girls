@@ -1,7 +1,6 @@
 #ifndef LOGIN_H
 #define LOGIN_H
 
-#include "Header.h"
 #include "mainwindow.h"
 #include "Admin.h"
 

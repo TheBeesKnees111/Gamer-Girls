@@ -1,8 +1,7 @@
 #ifndef SOUVENIRANDTRIP_H
 #define SOUVENIRANDTRIP_H
 
-#include "Header.h"
-#include "mainwindow.h"
+#include <QDialog>
 
 namespace Ui {
 class SouvenirAndTrip;

@@ -1,5 +1,6 @@
 #include "SouvenirAndTrip.h"
 #include "ui_SouvenirAndTrip.h"
+#include <mainwindow.h>
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),

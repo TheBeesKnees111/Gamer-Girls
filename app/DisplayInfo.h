@@ -1,8 +1,8 @@
 #ifndef DISPLAYINFO_H
 #define DISPLAYINFO_H
 
-#include "Header.h"
 #include "mainwindow.h"
+#include <QDialog>
 
 namespace Ui {
 class DisplayInfo;
