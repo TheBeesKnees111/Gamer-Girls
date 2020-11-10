@@ -1,10 +1,8 @@
 #include "Database.h"
 #include "Team.h"
 #include "Stadium.h"
-
 #include <QFileInfo>
 #include <QSqlError>
-
 #include <QFileDialog>
 
 Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
@@ -33,36 +31,22 @@ Team* Database::GetTeamByID(const int &teamID)
 
     if(query.exec())
     {
-        // TODO change these to direct assignment
         query.next();
-
-        // for the value in column 0 of the current row, turn it to a string
-        // then create a QString value because it's QtSql
-        int teamID = query.value(0).toInt();
-        QString teamName = query.value(T_NAME).toString();
-        QString stadiumName = query.value(2).toString();
-        int seatingCap = query.value(3).toInt();
-        QString location = query.value(4).toString();
-        QString conference = query.value(5).toString();
-        QString division = query.value(6).toString();
-        QString surfaceType = query.value(7).toString();
-        QString roofType = query.value(8).toString();
-        int dateOpened = query.value(9).toInt();
 
         Team *team = new Team;
         Stadium *stadium = new Stadium;
 
 
-        team->setTeamID(teamID);
-        team->setTeamName(query.value(T_NAME).toString());
-        stadium->setStadiumName(stadiumName);
-        stadium->setSeatingCapacity(seatingCap);
-        stadium->setLocation(location);
-        team->setConference(conference);
-        team->setDivision(division);
-        stadium->setSurfaceType(surfaceType);
-        stadium->setRoofType(roofType);
-        stadium->setDateOpened(dateOpened);
+        team->setTeamID(query.value(T_ID).toInt());
+        team->setTeamName(query.value(T_TEAM_NAME).toString());
+        stadium->setStadiumName(query.value(T_STADIUM_NAME).toString());
+        stadium->setSeatingCapacity(query.value(T_SEATING_CAP).toInt());
+        stadium->setLocation(query.value(T_LOCATION).toString());
+        team->setConference(query.value(T_CONFERENCE).toString());
+        team->setDivision(query.value(T_DIVISION).toString());
+        stadium->setSurfaceType(query.value(T_SURFACE_TYPE).toString());
+        stadium->setRoofType(query.value(T_ROOF_TYPE).toString());
+        stadium->setDateOpened(query.value(T_DATE_OPENED).toInt());
 
         team->setStadium(stadium);
 
@@ -77,8 +61,7 @@ Team* Database::GetTeamByID(const int &teamID)
     return teamDbMap[teamID];
 }
 
-// Uber object for use in all display sections. Will overwrite upon return
-// to home page
+// Uber object for use in all display sections. Will overwrite upon return to homepage
 QVector<Team*> Database::GetTeams()
 {
     query.prepare("SELECT teamID, teamName, stadiumName, seatingCap, location, "
@@ -88,40 +71,24 @@ QVector<Team*> Database::GetTeams()
     {
         while(query.next())
         {
-            // TODO INSERT ENUM AND CONSOLIDATE ASSIGNMENT/DECLARATION
-            // for the value in column 0 of the current row, turn it to a string
-            // then create a QString value because it's QtSql
-            int teamID = query.value(0).toInt();
-            QString teamName = query.value(1).toString();
-            QString stadiumName = query.value(2).toString();
-            int seatingCap = query.value(3).toInt();
-            QString location = query.value(4).toString();
-            QString conference = query.value(5).toString();
-            QString division = query.value(6).toString();
-            QString surfaceType = query.value(7).toString();
-            QString roofType = query.value(8).toString();
-            int dateOpened = query.value(9).toInt();
-
             Team *team = new Team;
             Stadium *stadium = new Stadium;
 
-            team->setTeamID(teamID);
-            //    stadium->setTeamID(teamID); //TODO add this method to Stadium
-            team->setTeamName(teamName);
-            stadium->setStadiumName(stadiumName);
-            stadium->setSeatingCapacity(seatingCap);
-            stadium->setLocation(location);
-            team->setConference(conference);
-            team->setDivision(division);
-            stadium->setSurfaceType(surfaceType);
-            stadium->setRoofType(roofType);
-            stadium->setDateOpened(dateOpened);
+            team->setTeamID(query.value(T_ID).toInt());
+            team->setTeamName(query.value(T_TEAM_NAME).toString());
+            stadium->setStadiumName(query.value(T_STADIUM_NAME).toString());
+            stadium->setSeatingCapacity(query.value(T_SEATING_CAP).toInt());
+            stadium->setLocation(query.value(T_LOCATION).toString());
+            team->setConference(query.value(T_CONFERENCE).toString());
+            team->setDivision(query.value(T_DIVISION).toString());
+            stadium->setSurfaceType(query.value(T_SURFACE_TYPE).toString());
+            stadium->setRoofType(query.value(T_ROOF_TYPE).toString());
+            stadium->setDateOpened(query.value(T_DATE_OPENED).toInt());
 
             team->setStadium(stadium);
-            //    stadium->setTeam(team); //TODO add this method to Stadium
 
-            teamDbMap[teamID] = team;
-            stadiumDbMap[teamID] = stadium;
+            teamDbMap[team->getTeamID()] = team;
+            stadiumDbMap[team->getTeamID()] = stadium;
         }
     }
     else
@@ -183,4 +150,91 @@ int Database::GetMilesBetweenStadiums(const QString &origin, const QString &dest
                  << " while executing query " << query.executedQuery();
         return -1;
     }
+}
+
+// Add souvenir to database
+void AddSouvenir(const QString &team, const QString &souvenirName, const QString &price)
+{
+
+}
+
+// Change price of souvenir in database
+void UpdateSouvenirPrice(const QString &SouvenirName, const QString teamName, const QString &price)
+{
+
+}
+
+// Remove souvenir from database
+void DeleteSouvenir(const QString &SouvenirName, const QString &teamName)
+{
+
+}
+
+// Get Info for one team (Requirement 2)
+Team* GetSingleTeam(const QString &teamName);
+
+// Get all teams ordered by team name (Requirement 3)
+QVector<Team*> GetTeamsOrderByName()
+{
+
+}
+
+// Get all teams and stadiums ordered by stadium name (Requirement 4)
+QVector<Team*> GetTeamsOrderByStadium()
+{
+
+}
+
+// Get all AFC Teams sorted by team name (Requirement 5)
+QVector<Team*> GetAFCTeamsOrderByTeamName()
+{
+
+}
+
+// Get all NFC teams sorted by team name (Requirement 6)
+QVector<Team*> GetNFCTeamsOrderByTeamName()
+{
+
+}
+
+// Get all NFC North teams ordered by team name (Requirement 7)
+QVector<Team*> GetNorthNFCTeamsOrderByTeamName()
+{
+
+}
+
+// Get all stadiums sorted by date opened (Requirement 8)
+QVector<Team*> GetStadiumsOrderByDateOpened()
+{
+
+}
+
+// Get all open roof stadiums (Requirement 9)
+QVector<Team*> GetOpenRoofStadiums()
+{
+
+}
+
+// Get stadiums ordered by seating capacity (Requirement 10)
+QVector<Team*> GetStadiumsOrderBySeatingCap()
+{
+
+}
+
+// Get teams ordered by conference (Requirement 11)
+QVector<Team*> GetTeamsOrderByConference()
+{
+
+}
+
+// Get teams with bermuda grass surface type (Requirement 12)
+QVector<Team*> GetBermudaGrassTeams()
+{
+
+}
+
+// Get all souvenirs for one team (Requirement 13)
+Team* GetSingleTeamSouvenirs(const QString &teamName)
+{
+
 }
