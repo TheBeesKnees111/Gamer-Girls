@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="PrintStadiumPushButton">
+  <widget class="QPushButton" name="Print_Stadium_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -31,7 +31,7 @@
     <string>Print All Stadiums with Teams</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="PrintNFCTeamsPushButton">
+  <widget class="QPushButton" name="Print_NFC_Teams_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -49,7 +49,7 @@
     <string>Print NFC Teams</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="PrintStadiumByDatePushButton">
+  <widget class="QPushButton" name="Print_Stadium_B_yDate_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -67,7 +67,7 @@
     <string>Print Stadium By Date</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="PrintAllTeamsPushButton">
+  <widget class="QPushButton" name="Print_All_Teams_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -85,7 +85,7 @@
     <string>Print All Teams</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="PrintAFCTeamsPushButton">
+  <widget class="QPushButton" name="Print_AFC_Teams_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -103,7 +103,7 @@
     <string>Print AFC Teams</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="PrintNorthNFCTeamsPushButton">
+  <widget class="QPushButton" name="Print_North_NFC_Teams_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -121,7 +121,7 @@
     <string>Print North NFC Teams</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QTableWidget" name="Datatable_TableWidget">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -149,7 +149,7 @@
     <string>Select the City You Want</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="ShowBermudaGrassStadiumsPushButton">
+  <widget class="QPushButton" name="Show_Bermuda_Grass_Stadiums_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -167,7 +167,7 @@
     <string>Show Bermuda Grass Stadiums</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="ShowOpenRoofStadiumsPushButton">
+  <widget class="QPushButton" name="Show_Open_Roof_Stadiums_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -185,7 +185,7 @@
     <string>Show Open Roof Stadiums</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="PrintTeamInforByConferencePushButton">
+  <widget class="QPushButton" name="Print_Team_Info_By_ConferencePushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -203,7 +203,7 @@
     <string>Print Team Info By Conference</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="HomePushButton">
+  <widget class="QPushButton" name="Home_PushButton">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -221,7 +221,8 @@
     <string>Home</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="Select_Stadium_ComboBox">
+
    <property name="geometry">
     <rect>
      <x>0</x>

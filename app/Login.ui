@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="HomePushButton">
+  <widget class="QPushButton" name="Home_PushButton">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -31,7 +31,7 @@
     <string>Home</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="LoginPushButton">
+  <widget class="QPushButton" name="Login_PushButton">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -49,7 +49,7 @@
     <string>Login</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="UsernameLineEdit">
+  <widget class="QLineEdit" name="Username_LineEdit">
    <property name="geometry">
     <rect>
      <x>360</x>
@@ -64,7 +64,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QLineEdit" name="PasswordLineEdit">
+  <widget class="QLineEdit" name="Password_LineEdit">
    <property name="geometry">
     <rect>
      <x>360</x>

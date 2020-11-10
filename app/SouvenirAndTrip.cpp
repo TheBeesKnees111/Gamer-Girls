@@ -1,6 +1,6 @@
 #include "SouvenirAndTrip.h"
 #include "ui_SouvenirAndTrip.h"
-#include <mainwindow.h>
+#include "mainwindow.h"
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),
@@ -14,49 +14,9 @@ SouvenirAndTrip::~SouvenirAndTrip()
     delete ui;
 }
 
-void SouvenirAndTrip::on_SearchTeamSouvenirPushButton_clicked()
-{
-
-}
-
-void SouvenirAndTrip::on_ConfirmationPushButton_clicked()
-{
-
-}
-
-void SouvenirAndTrip::on_ConfirmCustomTripPushButton_clicked()
-{
-
-}
-
-void SouvenirAndTrip::on_ConfirmNewEnglandTripPushButton_clicked()
-{
-
-}
-
-void SouvenirAndTrip::on_ConfirmCustomShortestTripPushButton_clicked()
-{
-
-}
-
-void SouvenirAndTrip::on_ConfirmMSTTrip_clicked()
-{
-
-}
-
-void SouvenirAndTrip::on_ConfirmMinnesotaTripPushButton_clicked()
-{
-
-}
-
-void SouvenirAndTrip::on_ConfirmLosAngelesRamsTripPushButton_clicked()
-{
-
-}
-
 ///This function will create a pointer to the main window. It will then hide the
 ///travel page before showing the main window
-void SouvenirAndTrip::on_HomePushButton_clicked()
+void SouvenirAndTrip::on_Home_PushButton_clicked()
 {
     MainWindow *mainWindow;
     mainWindow = new MainWindow(this);

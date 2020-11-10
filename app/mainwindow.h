@@ -20,21 +20,18 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    ///This function will return the ui
-    Ui::MainWindow* GetUI() const;
-
 private slots:
     ///This function will create a pointer to the login UI. The mainwindow will be
     /// hidden before showing the login page
-    void on_AdminPagePushButton_clicked();
+	void on_Admin_Page_PushButton_clicked();
 
     ///This function will create a pointer to the DisplayInfo UI. The mainwindow
     /// will be hidden before showing the DisplayInfo page
-    void on_DisplayTeamStadiumInfo_clicked();
+	void on_Display_Team_Stadium_Info_clicked();
 
     ///This function will create a pointer to the Travel UI. The mainwindow will be
     /// hidden before showing the Travel page
-    void on_SouvenirAndTripPushButton_clicked();
+	void on_Souvenir_And_Trip_PushButton_clicked();
 
 private:
     Ui::MainWindow *ui;

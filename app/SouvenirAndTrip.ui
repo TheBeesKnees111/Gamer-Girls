@@ -34,7 +34,7 @@
     <attribute name="title">
      <string>View One Team's Souvenirs</string>
     </attribute>
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="QTableWidget" name="Datatable_TableWidget">
      <property name="geometry">
       <rect>
        <x>430</x>
@@ -44,7 +44,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="HomePushButton">
+    <widget class="QPushButton" name="Home_PushButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -57,7 +57,7 @@
       <string>Home</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox_3">
+    <widget class="QComboBox" name="Select_Team_ComboBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -136,7 +136,7 @@
       <string>Select Your Destination Stadium</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="ConfirmationPushButton">
+    <widget class="QPushButton" name="Confirmation_PushButton">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -231,7 +231,7 @@
       <string>Select cities you want to go to</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="ConfirmCustomTripPushButton">
+    <widget class="QPushButton" name="Confirm_Custom_Trip_PushButton">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -273,7 +273,7 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="ConfirmNewEnglandTripPushButton">
+    <widget class="QPushButton" name="Confirm_New_England_Trip_PushButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -379,7 +379,7 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="ConfirmCustomShortestTripPushButton">
+    <widget class="QPushButton" name="Confirm_Custom_Shortest_Trip_PushButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -397,7 +397,7 @@
     <attribute name="title">
      <string>Minimum Spanning Tree</string>
     </attribute>
-    <widget class="QPushButton" name="ConfirmMSTTrip">
+    <widget class="QPushButton" name="Confirm_MST_Trip">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -439,7 +439,7 @@
     <attribute name="title">
      <string>Minnesota Trip</string>
     </attribute>
-    <widget class="QPushButton" name="ConfirmMinnesotaTripPushButton">
+    <widget class="QPushButton" name="Confirm_Minnesota_Trip_PushButton">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -559,7 +559,7 @@
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="ConfirmLosAngelesRamsTripPushButton">
+    <widget class="QPushButton" name="Confirm_Lo_sAngeles_Rams_Trip_PushButton">
      <property name="geometry">
       <rect>
        <x>0</x>
