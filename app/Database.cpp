@@ -4,7 +4,6 @@
 
 #include <QFileInfo>
 #include <QSqlError>
-#include <QSqlQuery>
 
 #include <QFileDialog>
 
@@ -24,93 +23,23 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     }
 }
 
-Team* Database::getTeamByID(int teamID)
+Team* Database::GetTeamByID(const int &teamID)
 {
-    // if the dabase map doesn't contain the team object, add it
-    if (!teamDbMap.contains(teamID))
-    {
-        runGetTeamAndStadiumByIDQry(teamID);
-    }
-    return teamDbMap[teamID];
-}
-
-QVector<Team*> Database::getTeams()
-{
-    runGetAllTeamsAndStadiums();
-    return teamDbMap.values().toVector();
-}
-
-QVector<Stadium*> Database::getStadiums()
-{
-    runGetAllTeamsAndStadiums();
-    return stadiumDbMap.values().toVector();
-}
-
-Stadium* Database::getStadiumByID(int stadiumID)
-{
-
-}
-
-QVector<Souvenir*> Database::getSouvenirs()
-{
-
-}
-
-Souvenir* Database::getSouvenierByID(int souvenirID)
-{
-
-}
-
-QVector<Purchases*> Database::getPurchases()
-{
-
-}
-
-Purchases* Database::getPurchasesByID(int purchaseID)
-{
-
-}
-
-int Database::getMilesBetweenStadiums(Stadium *from, Stadium *to)
-{
-    QSqlQuery query;
-    query.prepare("SELECT milesBetween FROM teamDistances "
-                  "WHERE fromStadium = (:fromStadium) "
-                  "and toStadium = (:toStadium)");
-
-    query.bindValue(":fromStadium", from->getStadiumName());
-    query.bindValue(":toStadium", to->getStadiumName());
-
-    if (query.exec())
-    {
-        query.next();
-        int milesBetween = query.value(0).toInt();
-        return milesBetween;
-    }
-    else
-    {
-        qDebug() << "Error " << query.lastError().text()
-                 << " while executing query " << query.executedQuery();
-        return -1;
-    }
-}
-
-void Database::runGetTeamAndStadiumByIDQry(int teamID)
-{
-    QSqlQuery query;
     query.prepare("SELECT teamID, teamName, stadiumName, seatingCap, location, "
                   "conference, division, surfaceType, roofType, dateOpened "
                   "FROM teamInfo "
                   "WHERE teamID = (:teamID)");
     query.bindValue(":teamID", teamID);
+
     if(query.exec())
     {
+        // TODO change these to direct assignment
         query.next();
 
         // for the value in column 0 of the current row, turn it to a string
         // then create a QString value because it's QtSql
-        //    int teamID = query.value(0).toInt();
-        QString teamName = query.value(1).toString();
+        int teamID = query.value(0).toInt();
+        QString teamName = query.value(T_NAME).toString();
         QString stadiumName = query.value(2).toString();
         int seatingCap = query.value(3).toInt();
         QString location = query.value(4).toString();
@@ -123,9 +52,9 @@ void Database::runGetTeamAndStadiumByIDQry(int teamID)
         Team *team = new Team;
         Stadium *stadium = new Stadium;
 
+
         team->setTeamID(teamID);
-        //    stadium->setTeamID(teamID);
-        team->setTeamName(teamName);
+        team->setTeamName(query.value(T_NAME).toString());
         stadium->setStadiumName(stadiumName);
         stadium->setSeatingCapacity(seatingCap);
         stadium->setLocation(location);
@@ -136,21 +65,22 @@ void Database::runGetTeamAndStadiumByIDQry(int teamID)
         stadium->setDateOpened(dateOpened);
 
         team->setStadium(stadium);
-        //    stadium->setTeam(team);
 
         teamDbMap[teamID] = team;
-        stadiumDbMap[teamID] = stadium;
     }
     else
     {
         qDebug() << "Error " << query.lastError().text()
                  << " while executing query " << query.executedQuery();
     }
+
+    return teamDbMap[teamID];
 }
 
-void Database::runGetAllTeamsAndStadiums()
+// Uber object for use in all display sections. Will overwrite upon return
+// to home page
+QVector<Team*> Database::GetTeams()
 {
-    QSqlQuery query;
     query.prepare("SELECT teamID, teamName, stadiumName, seatingCap, location, "
                   "conference, division, surfaceType, roofType, dateOpened "
                   "FROM teamInfo ");
@@ -158,6 +88,7 @@ void Database::runGetAllTeamsAndStadiums()
     {
         while(query.next())
         {
+            // TODO INSERT ENUM AND CONSOLIDATE ASSIGNMENT/DECLARATION
             // for the value in column 0 of the current row, turn it to a string
             // then create a QString value because it's QtSql
             int teamID = query.value(0).toInt();
@@ -197,5 +128,59 @@ void Database::runGetAllTeamsAndStadiums()
     {
         qDebug() << "Error " << query.lastError().text()
                  << " while executing query " << query.executedQuery();
+    }
+
+
+    return teamDbMap.values().toVector();
+}
+
+Stadium* Database::getStadiumByID(int stadiumID)
+{
+
+}
+
+// For use in admin section
+QVector<Souvenir*> Database::getSouvenirs()
+{
+
+}
+
+//
+Souvenir* Database::getSouvenierByID(int souvenirID)
+{
+
+}
+
+QVector<Purchases*> Database::getPurchases()
+{
+
+}
+
+Purchases* Database::getPurchasesByID(int purchaseID)
+{
+
+}
+
+// TODO
+int Database::GetMilesBetweenStadiums(const QString &origin, const QString &destination)
+{
+    query.prepare("SELECT milesBetween FROM teamDistances "
+                  "WHERE fromStadium = (:fromStadium) "
+                  "and toStadium = (:toStadium)");
+
+    query.bindValue(":fromStadium", origin);
+    query.bindValue(":toStadium", destination);
+
+    if (query.exec())
+    {
+        query.next();
+        int milesBetween = query.value(0).toInt();
+        return milesBetween;
+    }
+    else
+    {
+        qDebug() << "Error " << query.lastError().text()
+                 << " while executing query " << query.executedQuery();
+        return -1;
     }
 }

@@ -10,7 +10,6 @@ class Stadium : public QObject
 
     QString stadiumName;
     int     stadiumID;
-    Team    *team;
     int     seatingCapacity;
     QString location;
     QString surfaceType;

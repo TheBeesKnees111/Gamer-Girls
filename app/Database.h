@@ -4,6 +4,7 @@
 #include <QSqlDatabase>
 #include <QObject>
 #include <QDebug>
+#include <QSqlQuery>
 
 class Team;
 class Souvenir;
@@ -17,9 +18,12 @@ public:
 
     Database();
 
+    // TODO FINISH THIS ENUM
+    enum TeamStats { T_ID, T_NAME };
+
     // TEAM METHODS
-    Team* getTeamByID(int teamID);
-    QVector<Team*> getTeams();
+    Team* GetTeamByID(const int &teamID);
+    QVector<Team*> GetTeams();
 
     // STADIUM METHODS
     QVector<Stadium*> getStadiums();
@@ -34,7 +38,7 @@ public:
     Purchases* getPurchasesByID(int purchaseID);
 
     // DISTANCE METHODS
-    int getMilesBetweenStadiums(Stadium* from, Stadium* to);
+    int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
 
     // TODO
     // should dijk call get miles from db
@@ -49,6 +53,8 @@ private:
 
     void runGetTeamAndStadiumByIDQry(int teamID);
     void runGetAllTeamsAndStadiums();
+
+    QSqlQuery query;
 };
 
 #endif // DATABASE_H

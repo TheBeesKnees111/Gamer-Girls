@@ -11,11 +11,8 @@ CONFIG += c++11
 SOURCES += \
     Admin.cpp \
     Database.cpp \
-    Dijkstras.cpp \
     DisplayInfo.cpp \
     Login.cpp \
-    PathUtils.cpp \
-    Purchases.cpp \
     Souvenir.cpp \
     SouvenirAndTrip.cpp \
     Stadium.cpp \
@@ -26,11 +23,8 @@ SOURCES += \
 HEADERS += \
     Admin.h \
     Database.h \
-    Dijkstras.h \
     DisplayInfo.h \
     Login.h \
-    PathUtils.h \
-    Purchases.h \
     Souvenir.h \
     SouvenirAndTrip.h \
     Stadium.h \
