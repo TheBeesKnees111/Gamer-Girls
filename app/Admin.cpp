@@ -9,6 +9,30 @@ Admin::Admin(QWidget *parent) :
     ui->setupUi(this);
 }
 
+// Initializes souvenir table to blank
+void InitializeSouvenirTable (QTableView* table)
+{
+
+}
+
+// Populates souvenir table with relevant information
+void PopulateSouvenirTable (QTableView* table, QSqlQueryModel* model)
+{
+
+}
+
+// Intializes stadium table to blank
+void InitializeStadiumTable (QTableView* table)
+{
+
+}
+
+// Populates stadium table with relevant information
+void PopulateStadiumTable (QTableView* table, QSqlQueryModel* model)
+{
+
+}
+
 Admin::~Admin()
 {
     delete ui;
