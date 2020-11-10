@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="AdminPagePushButton">
+   <widget class="QPushButton" name="Admin_Page_PushButton">
     <property name="geometry">
      <rect>
       <x>1010</x>
@@ -32,7 +32,7 @@
      <string>Admin Page</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="DisplayTeamStadiumInfo">
+   <widget class="QPushButton" name="Display_Team_Stadium_Info">
     <property name="geometry">
      <rect>
       <x>530</x>
@@ -50,7 +50,7 @@
      <string>Display Team/Stadium Info</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="SouvenirAndTripPushButton">
+   <widget class="QPushButton" name="Souvenir_And_Trip_PushButton">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -68,7 +68,7 @@
      <string>Souvenir And Trip Page</string>
     </property>
    </widget>
-   <widget class="QLabel" name="ImageLabel">
+   <widget class="QLabel" name="Image_Label">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -84,10 +84,10 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <zorder>ImageLabel</zorder>
-   <zorder>AdminPagePushButton</zorder>
-   <zorder>DisplayTeamStadiumInfo</zorder>
-   <zorder>SouvenirAndTripPushButton</zorder>
+   <zorder>Image_Label</zorder>
+   <zorder>Admin_Page_PushButton</zorder>
+   <zorder>Display_Team_Stadium_Info</zorder>
+   <zorder>Souvenir_And_Trip_PushButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -95,7 +95,7 @@
      <x>0</x>
      <y>0</y>
      <width>1318</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

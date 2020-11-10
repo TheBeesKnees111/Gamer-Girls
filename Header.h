@@ -10,8 +10,4 @@
 //For Background Image
 #include <QPixmap>
 
-//For RNG
-#include <QRandomGenerator>
-#include <QTime>
-
 #endif // HEADER_H

@@ -13,17 +13,15 @@ MainWindow::MainWindow(QWidget *parent)
     /************************************************************
     * PROCESSING - Assign an image into new QPixmap variable
     ************************************************************/
-    QPixmap homePageBackground (":/new/Images/FootballPic3.jpg");
-
-    int ImageLabelW = ui -> ImageLabel -> width();
-    int ImageLabelH = ui -> ImageLabel -> height();
+	QPixmap homePageBackground (":/new/Images/FootballPic4.jpg");
+	int ImageLabelW = ui -> Image_Label -> width();
+	int ImageLabelH = ui -> Image_Label -> height();
 
 
     ///PROCESSING - Set the label to hold the image specified and align center
-    ui -> ImageLabel -> setAlignment(Qt::AlignCenter);
-    ui -> ImageLabel -> setPixmap(homePageBackground.scaled
-                                 (ImageLabelW, ImageLabelH,
-                                  Qt::KeepAspectRatio));
+	ui -> Image_Label -> setAlignment(Qt::AlignCenter);
+	ui -> Image_Label -> setPixmap(homePageBackground.scaled
+								  (ImageLabelW, ImageLabelH));
 
 }
 
@@ -35,7 +33,7 @@ MainWindow::~MainWindow()
 
 ///This function will create a pointer to the login UI. The mainwindow will be
 /// hidden before showing the login page
-void MainWindow::on_AdminPagePushButton_clicked()
+void MainWindow::on_Admin_Page_PushButton_clicked()
 {
     Login *loginUi;
     loginUi = new Login(this);
@@ -47,7 +45,7 @@ void MainWindow::on_AdminPagePushButton_clicked()
 
 ///This function will create a pointer to the DisplayInfo UI. The mainwindow
 /// will be hidden before showing the DisplayInfo page
-void MainWindow::on_DisplayTeamStadiumInfo_clicked()
+void MainWindow::on_Display_Team_Stadium_Info_clicked()
 {
     DisplayInfo *displayUI;
     displayUI = new DisplayInfo(this);
@@ -59,7 +57,7 @@ void MainWindow::on_DisplayTeamStadiumInfo_clicked()
 
 ///This function will create a pointer to the Travel UI. The mainwindow will be
 /// hidden before showing the Travel page
-void MainWindow::on_SouvenirAndTripPushButton_clicked()
+void MainWindow::on_Souvenir_And_Trip_PushButton_clicked()
 {
     SouvenirAndTrip *ui;
     ui = new SouvenirAndTrip(this);
@@ -67,10 +65,4 @@ void MainWindow::on_SouvenirAndTripPushButton_clicked()
     hide();
 
     ui -> show();
-}
-
-///This function will return the ui
-Ui::MainWindow* MainWindow::GetUI() const
-{
-    return ui;
 }

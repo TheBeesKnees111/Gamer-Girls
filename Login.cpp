@@ -11,11 +11,12 @@ Login::Login(QWidget *parent) :
 Login::~Login()
 {
     delete ui;
+
 }
 
 ///This function will create a pointer to the MainWindow UI. The Login
 /// page will be hidden before showing the Main Window
-void Login::on_HomePushButton_clicked()
+void Login::on_Home_PushButton_clicked()
 {
     MainWindow *mainWindow;
     mainWindow = new MainWindow(this);
@@ -31,11 +32,11 @@ void Login::on_HomePushButton_clicked()
 ///password. If both the correct username and password are entered, then
 ///the administrator page will open; otherwise an error message will appear
 ///telling the user that the username/password is incorrect.
-void Login::on_LoginPushButton_clicked()
+void Login::on_Login_PushButton_clicked()
 {
     Admin   *adminUI;
-    QString username = ui -> UsernameLineEdit -> text(); //IN & PROC - Check if text is the same as the username
-    QString password = ui -> PasswordLineEdit -> text(); //IN & PROC - Check if text is the same as the password
+	QString username = ui -> Username_LineEdit -> text(); //IN & PROC - Check if text is the same as the username
+	QString password = ui -> Password_LineEdit -> text(); //IN & PROC - Check if text is the same as the password
 
      //Check if correct username and password are entered
      //Else show an error message.

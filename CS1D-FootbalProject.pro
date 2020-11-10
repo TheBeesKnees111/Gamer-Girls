@@ -19,7 +19,6 @@ SOURCES += \
 HEADERS += \
     Admin.h \
     DisplayInfo.h \
-    Header.h \
     Login.h \
     SouvenirAndTrip.h \
     mainwindow.h
