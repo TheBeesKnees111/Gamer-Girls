@@ -125,10 +125,10 @@ public:
     const int BERMUDA_GRASS_COL_COUNT = 2;
 
     // Column positions in "Bermuda Grass Teams" table
-    enum BermudaGrassTeamsColPositions { BG_TEAM_NAME, BG_GRASS_TYPE };
+    enum BermudaGrassTeamsColPositions { BG_TEAM_NAME, BG_SURFACE_TYPE };
 
     // Column names in "Bermuda Grass Teams" table
-    QStringList BermudaGrassTeamsColNames { "Team Name", "Grass Type" };
+    QStringList BermudaGrassTeamsColNames { "Team Name", "Surface Type" };
 
     // Number of columns in "One Team's Souvenirs" table
     const int ONE_TEAM_SOUVENIR_COL_COUNT = 3;
