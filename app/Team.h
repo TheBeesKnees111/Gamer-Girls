@@ -2,6 +2,7 @@
 #define TEAM_H
 
 #include <QObject>
+#include <QVector>
 
 class Stadium;
 class Souvenir;
