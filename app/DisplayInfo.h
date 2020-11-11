@@ -18,9 +18,6 @@ class DisplayInfo : public QDialog
     Q_OBJECT
 
 public:
-    explicit DisplayInfo(QWidget *parent = nullptr);
-    ~DisplayInfo();
-
                 /*
                  * Attributes
                  */

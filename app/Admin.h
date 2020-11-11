@@ -15,11 +15,7 @@ class Admin : public QDialog
     Q_OBJECT
 
 public:
-
-    explicit Admin(QWidget *parent = nullptr);
-    ~Admin();
-
-    // Attributes
+// Attributes
 
     // TODO Page indexes
     enum AdminPages { };

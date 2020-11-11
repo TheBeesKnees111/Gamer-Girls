@@ -4,6 +4,8 @@
 #include <QFileInfo>
 #include <QSqlError>
 #include <QFileDialog>
+#include <QVector>
+
 
 Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
@@ -101,32 +103,33 @@ QVector<Team*> Database::GetTeams()
     return teamDbMap.values().toVector();
 }
 
-Stadium* Database::getStadiumByID(int stadiumID)
-{
+//Stadium* Database::getStadiumByID(int stadiumID)
+//{
 
-}
+//}
 
-// For use in admin section
-QVector<Souvenir*> Database::getSouvenirs()
-{
+//// For use in admin section
+//QVector<Souvenir*> Database::getSouvenirs()
+//{
 
-}
+//}
 
-//
-Souvenir* Database::getSouvenierByID(int souvenirID)
-{
+////
+//Souvenir* Database::getSouvenierByID(int souvenirID)
+//{
 
-}
+//}
 
-QVector<Purchases*> Database::getPurchases()
-{
+//QVector<Purchases*> Database::getPurchases()
+//{
 
-}
+//}
 
-Purchases* Database::getPurchasesByID(int purchaseID)
-{
+//Purchases* Database::getPurchasesByID(int purchaseID)
+//{
 
-}
+//}
+
 
 // TODO
 int Database::GetMilesBetweenStadiums(const QString &origin, const QString &destination)
@@ -173,68 +176,69 @@ void DeleteSouvenir(const QString &SouvenirName, const QString &teamName)
 // Get Info for one team (Requirement 2)
 Team* GetSingleTeam(const QString &teamName);
 
-// Get all teams ordered by team name (Requirement 3)
-QVector<Team*> GetTeamsOrderByName()
-{
+//// Get all teams ordered by team name (Requirement 3)
+//QVector<Team*> GetTeamsOrderByName()
+//{
 
-}
+//}
 
-// Get all teams and stadiums ordered by stadium name (Requirement 4)
-QVector<Team*> GetTeamsOrderByStadium()
-{
+//// Get all teams and stadiums ordered by stadium name (Requirement 4)
+//QVector<Team*> GetTeamsOrderByStadium()
+//{
 
-}
+//}
 
-// Get all AFC Teams sorted by team name (Requirement 5)
-QVector<Team*> GetAFCTeamsOrderByTeamName()
-{
+//// Get all AFC Teams sorted by team name (Requirement 5)
+//QVector<Team*> GetAFCTeamsOrderByTeamName()
+//{
 
-}
+//}
 
-// Get all NFC teams sorted by team name (Requirement 6)
-QVector<Team*> GetNFCTeamsOrderByTeamName()
-{
+//// Get all NFC teams sorted by team name (Requirement 6)
+//QVector<Team*> GetNFCTeamsOrderByTeamName()
+//{
 
-}
+//}
 
-// Get all NFC North teams ordered by team name (Requirement 7)
-QVector<Team*> GetNorthNFCTeamsOrderByTeamName()
-{
+//// Get all NFC North teams ordered by team name (Requirement 7)
+//QVector<Team*> GetNorthNFCTeamsOrderByTeamName()
+//{
 
-}
+//}
 
-// Get all stadiums sorted by date opened (Requirement 8)
-QVector<Team*> GetStadiumsOrderByDateOpened()
-{
+//// Get all stadiums sorted by date opened (Requirement 8)
+//QVector<Team*> GetStadiumsOrderByDateOpened()
+//{
 
-}
+//}
 
-// Get all open roof stadiums (Requirement 9)
-QVector<Team*> GetOpenRoofStadiums()
-{
+//// Get all open roof stadiums (Requirement 9)
+//QVector<Team*> GetOpenRoofStadiums()
+//{
 
-}
+//}
 
-// Get stadiums ordered by seating capacity (Requirement 10)
-QVector<Team*> GetStadiumsOrderBySeatingCap()
-{
+//// Get stadiums ordered by seating capacity (Requirement 10)
+//QVector<Team*> GetStadiumsOrderBySeatingCap()
+//{
 
-}
+//}
 
-// Get teams ordered by conference (Requirement 11)
-QVector<Team*> GetTeamsOrderByConference()
-{
+//// Get teams ordered by conference (Requirement 11)
+//QVector<Team*> GetTeamsOrderByConference()
+//{
 
-}
+//}
 
-// Get teams with bermuda grass surface type (Requirement 12)
-QVector<Team*> GetBermudaGrassTeams()
-{
+//// Get teams with bermuda grass surface type (Requirement 12)
+//QVector<Team*> GetBermudaGrassTeams()
+//{
 
-}
+//}
 
-// Get all souvenirs for one team (Requirement 13)
-Team* GetSingleTeamSouvenirs(const QString &teamName)
-{
+//// Get all souvenirs for one team (Requirement 13)
+//Team* GetSingleTeamSouvenirs(const QString &teamName)
+//{
 
-}
+//}
+

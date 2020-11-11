@@ -53,6 +53,7 @@ void MainWindow::on_Admin_Page_PushButton_clicked()
 ///This function will create a pointer to the DisplayInfo UI. The mainwindow
 /// will be hidden before showing the DisplayInfo page
 void MainWindow::on_Display_Team_Stadium_Info_clicked()
+{
     DisplayInfo *displayUI;
     displayUI = new DisplayInfo(this);
 
