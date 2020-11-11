@@ -4,7 +4,6 @@
 #include <QFileInfo>
 #include <QSqlError>
 #include <QFileDialog>
-#include <QVector>
 
 
 Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
@@ -103,33 +102,26 @@ QVector<Team*> Database::GetTeams()
     return teamDbMap.values().toVector();
 }
 
-//Stadium* Database::getStadiumByID(int stadiumID)
-//{
+Stadium* Database::getStadiumByID(int stadiumID)
+{
+    Stadium * stadium = nullptr;
 
-//}
+    return stadium;
+}
 
-//// For use in admin section
-//QVector<Souvenir*> Database::getSouvenirs()
-//{
+// For use in admin section
+QVector<Souvenir*> Database::getSouvenirs()
+{
 
-//}
+}
 
-////
-//Souvenir* Database::getSouvenierByID(int souvenirID)
-//{
+//
+Souvenir* Database::getSouvenierByID(int souvenirID)
+{
+    Souvenir * souvenir = nullptr;
 
-//}
-
-//QVector<Purchases*> Database::getPurchases()
-//{
-
-//}
-
-//Purchases* Database::getPurchasesByID(int purchaseID)
-//{
-
-//}
-
+    return souvenir;
+}
 
 // TODO
 int Database::GetMilesBetweenStadiums(const QString &origin, const QString &destination)

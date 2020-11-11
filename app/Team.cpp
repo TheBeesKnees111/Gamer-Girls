@@ -20,9 +20,8 @@ QString Team::getConference() const
 QString Team::getDivision() const
 {    return division;   }
 
-// Souvenir is a list so needs setup for that.  Didn't get to it yet.
-//QVector<Souvenir *> Team::getSouvenirList() const
-//{    return souvenirList;   }
+QVector<Souvenir *> Team::getSouvenirList() const
+{    return souvenirList;   }
 
 
 Stadium* Team::getStadium() const
@@ -67,15 +66,14 @@ void Team::setDivision(const QString &value)
     }
 }
 
-// Souvenir is a list so needs setup for that.  Didn't get to it yet.
-//void Team::setSouvenirList(const QVector<Souvenir *> &value)
-//{
-//    if (value != souvenirList)
-//    {
-//        souvenirList = value;
-//        emit souvenirListChanged(value);
-//    }
-//}
+void Team::setSouvenirList(const QVector<Souvenir *> &value)
+{
+    if (value != souvenirList)
+    {
+        souvenirList = value;
+        emit souvenirListChanged(value);
+    }
+}
 
 
 void Team::setStadium(Stadium *value)

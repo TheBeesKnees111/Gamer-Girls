@@ -5,11 +5,11 @@
 #include <QObject>
 #include <QDebug>
 #include <QSqlQuery>
+#include <QVector>
 
 class Team;
 class Souvenir;
 class Stadium;
-class Purchases;
 
 class Database : public QSqlDatabase
 {
@@ -36,10 +36,6 @@ public:
     // SOUVENIR METHODS
     QVector<Souvenir*> getSouvenirs();
     Souvenir* getSouvenierByID(int souvenirID);
-
-    // PURCHASES METHODS
-    QVector<Purchases*> getPurchases();
-    Purchases* getPurchasesByID(int purchaseID);
 
     // DISTANCE METHODS
     int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
@@ -114,7 +110,6 @@ private:
     QMap<int, Team*> teamDbMap;
     QMap<int, Stadium*> stadiumDbMap;
     QMap<int, Souvenir*> souvenirDbMap;
-    QMap<int, Purchases*> purchasesDbMap;
 
     void runGetTeamAndStadiumByIDQry(int teamID);
     void runGetAllTeamsAndStadiums();

@@ -25,8 +25,7 @@ public:
     QString     getTeamName() const;
     QString     getConference() const;
     QString     getDivision() const;
-// Souvenir is a list so needs setup for that.  Didn't get to it yet.
-//    QVector<Souvenir *> getSouvenirList() const;
+    QVector<Souvenir *> getSouvenirList() const;
     Stadium*    getStadium() const;
 
 public slots:
@@ -34,8 +33,7 @@ public slots:
     void setTeamName(const QString &value);
     void setConference(const QString &value);
     void setDivision(const QString &value);
-// Souvenir is a list so needs setup for that.  Didn't get to it yet.
-//    void setSouvenirList(const QVector<Souvenir *> &value);
+    void setSouvenirList(const QVector<Souvenir *> &value);
     void setStadium(Stadium *value);
 
 signals:
@@ -43,8 +41,7 @@ signals:
     void teamNameChanged(QString value);
     void conferenceChanged(QString value);
     void divisionChanged(QString value);
-// Souvenir is a list so needs setup for that.  Didn't get to it yet.
-//    void souvenirListChanged(const QVector<Souvenir *> *value);
+    void souvenirListChanged(const QVector<Souvenir *> value);
     void stadiumChanged(Stadium *value);
 
 };
