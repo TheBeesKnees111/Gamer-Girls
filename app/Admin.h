@@ -15,7 +15,7 @@ class Admin : public QDialog
     Q_OBJECT
 
 public:
-    // Attributes
+// Attributes
 
     // TODO Page indexes
     enum AdminPages { };
