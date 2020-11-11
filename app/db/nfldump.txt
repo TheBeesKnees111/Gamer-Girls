@@ -1,0 +1,355 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE teamInfo
+(
+teamID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+teamName text,
+stadiumName text,
+seatingCap int,
+location text,
+conference text,
+division text,
+surfaceType text,
+roofType text,
+dateOpened int
+);
+INSERT INTO teamInfo VALUES(1,'Arizona Cardinals','State Farm Stadium','63,400','Glendale, Arizona','National Football Conference','NFC West','Bermuda Grass','Retractable',2026);
+INSERT INTO teamInfo VALUES(2,'Atlanta Falcons','Mercedes-Benz Stadium','71,000','Atlanta, Georgia','National Football Conference','NFC South','FieldTurf Classic HD','Fixed',2017);
+INSERT INTO teamInfo VALUES(3,'Baltimore Ravens','M&T Bank Stadium','71,008','Baltimore, Maryland','American Football Conference','AFC North','Bermuda Grass','Open',1998);
+INSERT INTO teamInfo VALUES(4,'Buffalo Bills','Bills Stadiuim','71,608','Orchard Park, New York','American Football Conference','AFC East','A-Turf Titan 50','Open',1973);
+INSERT INTO teamInfo VALUES(5,'Carolina Panthers','Bank of America Stadium','75,419','Charlotte, North Carolina','National Football Conference','NFC South','Bermuda Grass','Open',1996);
+INSERT INTO teamInfo VALUES(6,'Chicago Bears','Soldier Field','61,500','Chicago, Illinois','National Football Conference','NFC North','Kentucky Bluegrass','Open',1924);
+INSERT INTO teamInfo VALUES(7,'Cincinnati Bengals','Paul Brown Stadium','65,515','Cincinnati, Ohio','American Football Conference','AFC North','UBU Speed Series S5-M Synthetic Turf','Open',2000);
+INSERT INTO teamInfo VALUES(8,'Cleveland Browns','FirstEnergy Stadium','67,895','Cleveland, Ohio','American Football Conference','AFC North','Kentucky Bluegrass','Open',1999);
+INSERT INTO teamInfo VALUES(9,'Dallas Cowboys','AT&T Stadium','80,000','Arlington, Texas','National Football Conference','NFC East','Hellas Matrix Turf','Retractable',2009);
+INSERT INTO teamInfo VALUES(10,'Denver Broncos','Empower Field at Mile High','76,125','Denver, Colorado','American Football Conference','AFC West','Kentucky Bluegrass','Open',2001);
+INSERT INTO teamInfo VALUES(11,'Detroit Lions','Ford Field','65,000','Detroit, Michigan','National Football Conference','NFC North','FieldTurf Classic HD','Fixed',2002);
+INSERT INTO teamInfo VALUES(12,'Green Bay Packers','Lambeau Field','81,435','Green Bay, Wisconsin','National Football Conference','NFC North','Desso GrassMaster','Open',1957);
+INSERT INTO teamInfo VALUES(13,'Houston Texans','NRG Stadium','72,220','Houston, Texas','American Football Conference','AFC South','Hellas Matrix Turf','Retractable',2002);
+INSERT INTO teamInfo VALUES(14,'Indianapolis Colts','Lucas Oil Stadium','67,000','Indianapolis, Indiana','American Football Conference','AFC South','FieldTurf Classic HD','Retractable',2008);
+INSERT INTO teamInfo VALUES(15,'Jacksonville Jaguars','TIAA Bank Field','69,132','Jacksonville, Florida','American Football Conference','AFC South','Bermuda Grass','Open',1995);
+INSERT INTO teamInfo VALUES(16,'Kansas City Chiefs','Arrowhead Stadium','76,416','Kansas City, Missouri','American Football Conference','AFC West','Bermuda Grass','Open',1972);
+INSERT INTO teamInfo VALUES(17,'Las Vegas Raiders','Allegiant Stadium ','65,000','Paradise, Nevada','American Football Conference','AFC West','Bermuda Grass','Fixed',2020);
+INSERT INTO teamInfo VALUES(18,'Los Angeles Chargers','SoFi Stadium','70,240','Inglewood, California','American Football Conference','AFC West','Bermuda Grass','Fixed',2020);
+INSERT INTO teamInfo VALUES(19,'Los Angeles Rams','SoFi Stadium','70,240','Inglewood, California','National Football Conference','NFC West','Bermuda Grass','Fixed ',2020);
+INSERT INTO teamInfo VALUES(20,'Miami Dolphins','Hard Rock Stadium','65,326','Miami Gardens, Florida','American Football Conference','AFC East','Platinum TE Paspalum','Open',1987);
+INSERT INTO teamInfo VALUES(21,'Minnesota Vikings','U.S. Bank Stadium','66,655','Minneapolis, Minnesota','National Football Conference','NFC North','UBU Speed Series S5-M Synthetic Turf','Fixed',2016);
+INSERT INTO teamInfo VALUES(22,'New England Patriots','Gillette Stadium','66,829','Foxborough, Massachusetts','American Football Conference','AFC East','FieldTurf Revolution','Open',2002);
+INSERT INTO teamInfo VALUES(23,'New Orleans Saints','Mercedes-Benz Superdome','73,000','New Orleans, Louisiana','National Football Conference','NFC South','UBU Sports Speed Series S5-M Synthetic Turf','Fixed',1975);
+INSERT INTO teamInfo VALUES(24,'New York Giants','MetLife Stadium','82,500','East Rutherford, New Jersey','National Football Conference','NFC East','UBU Sports Speed Series S5-M Synthetic Turf','Open',2010);
+INSERT INTO teamInfo VALUES(25,'New York Jets','MetLife Stadium','82,500','East Rutherford, New Jersey','American Football Conference','AFC East','UBU Sports Speed Series S5-M Synthetic Turf','Open',2010);
+INSERT INTO teamInfo VALUES(26,'Philadelphia Eagles','Lincoln Financial Field','69,596','Philadelphia, Pennsylvania','National Football Conference','NFC East','Desso GrassMaster','Open',2003);
+INSERT INTO teamInfo VALUES(27,'Pittsburgh Steelers','Heinz Field','68,400','Pittsburgh, Pennsylvania','American Football Conference','AFC North','Kentucky Bluegrass','Open',2001);
+INSERT INTO teamInfo VALUES(28,'San Francisco 49ers','Levi''s Stadium','68,500','Santa Clara, California','National Football Conference','NFC West','Bermuda grass  ','Open',2014);
+INSERT INTO teamInfo VALUES(29,'Seattle Seahawks','CenturyLink Field','68,000','Seattle, Washington','National Football Conference','NFC West','FieldTurf Revolution','Open',2002);
+INSERT INTO teamInfo VALUES(30,'Tampa Bay Buccaneers','Raymond James Stadium','65,890','Tampa, Florida','National Football Conference','NFC South','Bermuda Grass','Open',1998);
+INSERT INTO teamInfo VALUES(31,'Tennessee Titans','Nissan Stadium','69,143','Nashville, Tennessee','American Football Conference','AFC South','Bermuda Grass','Open',1999);
+INSERT INTO teamInfo VALUES(32,'Washington Football Team','FedExField','82,000','Landover, Maryland','National Football Conference','NFC East','Bermuda Grass','Open',1997);
+CREATE TABLE teamDistances
+(
+distanceID INTEGER PRIMARY KEY AUTOINCREMENT,
+teamID int,
+teamName text,
+fromStadium text,
+toStadium text,
+milesBetween int,
+FOREIGN KEY(teamID) REFERENCES teamInfo(teamID) ON DELETE CASCADE
+);
+INSERT INTO teamDistances VALUES(1,1,'Arizona Cardinals','State Farm Stadium','AT&T Stadium',870);
+INSERT INTO teamDistances VALUES(2,1,'Arizona Cardinals','State Farm Stadium','Levi''s Stadium',650);
+INSERT INTO teamDistances VALUES(3,1,'Arizona Cardinals','State Farm Stadium','NRG Stadium',1115);
+INSERT INTO teamDistances VALUES(4,1,'Arizona Cardinals','State Farm Stadium','Broncos Stadium at Mile High',580);
+INSERT INTO teamDistances VALUES(5,1,'Arizona Cardinals','State Farm Stadium','Sofi Stadium',372);
+INSERT INTO teamDistances VALUES(6,2,'Atlanta Falcons','Mercedes-Benz Stadium','AT&T Stadium',740);
+INSERT INTO teamDistances VALUES(7,2,'Atlanta Falcons','Mercedes-Benz Stadium','Bank of America Stadium',225);
+INSERT INTO teamDistances VALUES(8,2,'Atlanta Falcons','Mercedes-Benz Stadium','Hard Rock Stadium',600);
+INSERT INTO teamDistances VALUES(9,2,'Atlanta Falcons','Mercedes-Benz Stadium','Mercedes-Benz Superdome',425);
+INSERT INTO teamDistances VALUES(10,2,'Atlanta Falcons','Mercedes-Benz Stadium','Paul Brown Stadium',375);
+INSERT INTO teamDistances VALUES(11,3,'Baltimore Ravens','M&T Bank Stadium','FedExField',90);
+INSERT INTO teamDistances VALUES(12,3,'Baltimore Ravens','M&T Bank Stadium','Lincoln Financial Field',80);
+INSERT INTO teamDistances VALUES(13,4,'Buffalo Bills','Bills Stadium','Ford Field',210);
+INSERT INTO teamDistances VALUES(14,4,'Buffalo Bills','Bills Stadium','Gillette Stadium',429);
+INSERT INTO teamDistances VALUES(15,4,'Buffalo Bills','Bills Stadium','Heinz Field',225);
+INSERT INTO teamDistances VALUES(16,4,'Buffalo Bills','Bills Stadium','Lambeau Field',430);
+INSERT INTO teamDistances VALUES(17,4,'Buffalo Bills','Bills Stadium','CenturyLink Field',2070);
+INSERT INTO teamDistances VALUES(18,5,'Carolina Panthers','Bank of America Stadium','TIAA Bank Field',342);
+INSERT INTO teamDistances VALUES(19,5,'Carolina Panthers','Bank of America Stadium','FedExField',340);
+INSERT INTO teamDistances VALUES(20,5,'Carolina Panthers','Bank of America Stadium','Mercedes-Benz Stadium',225);
+INSERT INTO teamDistances VALUES(21,5,'Carolina Panthers','Bank of America Stadium','Heinz Field',365);
+INSERT INTO teamDistances VALUES(22,6,'Chicago Bears','Soldier Field','Arrowhead Stadium',415);
+INSERT INTO teamDistances VALUES(23,6,'Chicago Bears','Soldier Field','Lambeau Field',80);
+INSERT INTO teamDistances VALUES(24,6,'Chicago Bears','Soldier Field','Lucas Oil Stadium',50);
+INSERT INTO teamDistances VALUES(25,7,'Cincinnati Bengals','Paul Brown Stadium','FirstEnergy Stadium',225);
+INSERT INTO teamDistances VALUES(26,7,'Cincinnati Bengals','Paul Brown Stadium','Mercedes-Benz Stadium',375);
+INSERT INTO teamDistances VALUES(27,7,'Cincinnati Bengals','Paul Brown Stadium','Heinz Field',260);
+INSERT INTO teamDistances VALUES(28,7,'Cincinnati Bengals','Paul Brown Stadium','Lucas Oil Stadium',250);
+INSERT INTO teamDistances VALUES(29,7,'Cincinnati Bengals','Paul Brown Stadium','Nissan Stadium',240);
+INSERT INTO teamDistances VALUES(30,8,'Cleveland Browns','FirstEnergy Stadium','Ford Field',90);
+INSERT INTO teamDistances VALUES(31,8,'Cleveland Browns','FirstEnergy Stadium','Heinz Field',115);
+INSERT INTO teamDistances VALUES(32,8,'Cleveland Browns','FirstEnergy Stadium','Paul Brown Stadium',225);
+INSERT INTO teamDistances VALUES(33,9,'Dallas Cowboys','AT&T Stadium','Arrowhead Stadium',460);
+INSERT INTO teamDistances VALUES(34,9,'Dallas Cowboys','AT&T Stadium','Mercedes-Benz Stadium',740);
+INSERT INTO teamDistances VALUES(35,9,'Dallas Cowboys','AT&T Stadium','NRG Stadium',230);
+INSERT INTO teamDistances VALUES(36,9,'Dallas Cowboys','AT&T Stadium','Broncos Stadium at Mile High',650);
+INSERT INTO teamDistances VALUES(37,9,'Dallas Cowboys','AT&T Stadium','State Farm Stadium',870);
+INSERT INTO teamDistances VALUES(38,10,'Denver Broncos','Broncos Stadium at Mile High','AT&T Stadium',650);
+INSERT INTO teamDistances VALUES(39,10,'Denver Broncos','Broncos Stadium at Mile High','Arrowhead Stadium',560);
+INSERT INTO teamDistances VALUES(40,10,'Denver Broncos','Broncos Stadium at Mile High','Levi''s Stadium',930);
+INSERT INTO teamDistances VALUES(41,10,'Denver Broncos','Broncos Stadium at Mile High','Sofi Stadium',1015);
+INSERT INTO teamDistances VALUES(42,10,'Denver Broncos','Broncos Stadium at Mile High','State Farm Stadium',580);
+INSERT INTO teamDistances VALUES(43,11,'Detroit Lions','Ford Field','FirstEnergy Stadium',90);
+INSERT INTO teamDistances VALUES(44,11,'Detroit Lions','Ford Field','Lucas Oil Stadium',240);
+INSERT INTO teamDistances VALUES(45,11,'Detroit Lions','Ford Field','Bills Stadium',210);
+INSERT INTO teamDistances VALUES(46,12,'Green Bay Packers','Lambeau Field','Bills Stadium',430);
+INSERT INTO teamDistances VALUES(47,12,'Green Bay Packers','Lambeau Field','Soldier Field',80);
+INSERT INTO teamDistances VALUES(48,12,'Green Bay Packers','Lambeau Field','U.S. Bank Stadium',300);
+INSERT INTO teamDistances VALUES(49,13,'Houston Texans','NRG Stadium','AT&T Stadium',230);
+INSERT INTO teamDistances VALUES(50,13,'Houston Texans','NRG Stadium','Hard Rock Stadium',965);
+INSERT INTO teamDistances VALUES(51,13,'Houston Texans','NRG Stadium','Mercedes-Benz Superdome',320);
+INSERT INTO teamDistances VALUES(52,13,'Houston Texans','NRG Stadium','Nissan Stadium',670);
+INSERT INTO teamDistances VALUES(53,13,'Houston Texans','NRG Stadium','State Farm Stadium',1115);
+INSERT INTO teamDistances VALUES(54,14,'Indianapolis Colts','Lucas Oil Stadium','Ford Field',240);
+INSERT INTO teamDistances VALUES(55,14,'Indianapolis Colts','Lucas Oil Stadium','Paul Brown Stadium',250);
+INSERT INTO teamDistances VALUES(56,14,'Indianapolis Colts','Lucas Oil Stadium','Soldier Field',50);
+INSERT INTO teamDistances VALUES(57,15,'Jacksonville Jaguars','TIAA Bank Field','Bank of America Stadium',342);
+INSERT INTO teamDistances VALUES(58,15,'Jacksonville Jaguars','TIAA Bank Field','Raymond James Stadium',170);
+INSERT INTO teamDistances VALUES(59,15,'Jacksonville Jaguars','TIAA Bank Field','Hard Rock Stadium',315);
+INSERT INTO teamDistances VALUES(60,16,'Kansas City Chiefs','Arrowhead Stadium','AT&T Stadium',460);
+INSERT INTO teamDistances VALUES(61,16,'Kansas City Chiefs','Arrowhead Stadium','Nissan Stadium',470);
+INSERT INTO teamDistances VALUES(62,16,'Kansas City Chiefs','Arrowhead Stadium','Soldier Field',415);
+INSERT INTO teamDistances VALUES(63,16,'Kansas City Chiefs','Arrowhead Stadium','Broncos Stadium at Mile High',560);
+INSERT INTO teamDistances VALUES(64,18,'Los Angeles Chargers','Sofi Stadium','Sofi Stadium',15);
+INSERT INTO teamDistances VALUES(65,18,'Los Angeles Chargers','Sofi Stadium','Broncos Stadium at Mile High',1015);
+INSERT INTO teamDistances VALUES(66,18,'Los Angeles Chargers','Sofi Stadium','State Farm Stadium',372);
+INSERT INTO teamDistances VALUES(67,19,'Los Angeles Rams','Sofi Stadium','Levi''s Stadium',200);
+INSERT INTO teamDistances VALUES(68,19,'Los Angeles Rams','Sofi Stadium','Allegiant Stadium',270);
+INSERT INTO teamDistances VALUES(69,19,'Los Angeles Rams','Sofi Stadium','Sofi Stadium',15);
+INSERT INTO teamDistances VALUES(70,19,'Los Angeles Rams','Sofi Stadium','U.S. Bank Stadium',1500);
+INSERT INTO teamDistances VALUES(71,20,'Miami Dolphins','Hard Rock Stadium','TIAA Bank Field',315);
+INSERT INTO teamDistances VALUES(72,20,'Miami Dolphins','Hard Rock Stadium','Mercedes-Benz Stadium',600);
+INSERT INTO teamDistances VALUES(73,20,'Miami Dolphins','Hard Rock Stadium','Gillette Stadium',1255);
+INSERT INTO teamDistances VALUES(74,20,'Miami Dolphins','Hard Rock Stadium','NRG Stadium',965);
+INSERT INTO teamDistances VALUES(75,20,'Miami Dolphins','Hard Rock Stadium','Raymond James Stadium',210);
+INSERT INTO teamDistances VALUES(76,21,'Minnesota Vikings','U.S. Bank Stadium','CenturyLink Field',1390);
+INSERT INTO teamDistances VALUES(77,21,'Minnesota Vikings','U.S. Bank Stadium','Lambeau Field',300);
+INSERT INTO teamDistances VALUES(78,21,'Minnesota Vikings','U.S. Bank Stadium','Nissan Stadium',700);
+INSERT INTO teamDistances VALUES(79,21,'Minnesota Vikings','U.S. Bank Stadium','Sofi Stadium',1500);
+INSERT INTO teamDistances VALUES(80,22,'New England Patriots','Gillette Stadium','Hard Rock Stadium',1255);
+INSERT INTO teamDistances VALUES(81,22,'New England Patriots','Gillette Stadium','Bills Stadium',429);
+INSERT INTO teamDistances VALUES(82,22,'New England Patriots','Gillette Stadium','MetLife Stadium',195);
+INSERT INTO teamDistances VALUES(83,23,'New Orleans Saints','Mercedes-Benz Superdome','Mercedes-Benz Stadium',425);
+INSERT INTO teamDistances VALUES(84,23,'New Orleans Saints','Mercedes-Benz Superdome','NRG Stadium',320);
+INSERT INTO teamDistances VALUES(85,23,'New Orleans Saints','Mercedes-Benz Superdome','Raymond James Stadium',480);
+INSERT INTO teamDistances VALUES(86,24,'New York Giants','MetLife Stadium','Gillette Stadium',195);
+INSERT INTO teamDistances VALUES(87,24,'New York Giants','MetLife Stadium','Lincoln Financial Field',50);
+INSERT INTO teamDistances VALUES(88,25,'New York Jets','MetLife Stadium','Gillette Stadium',195);
+INSERT INTO teamDistances VALUES(89,25,'New York Jets','MetLife Stadium','Lincoln Financial Field',50);
+INSERT INTO teamDistances VALUES(90,17,'Las Vegas Raiders','Allegiant Stadium','CenturyLink Field',1275);
+INSERT INTO teamDistances VALUES(91,17,'Las Vegas Raiders','Allegiant Stadium','Levi''s Stadium',569);
+INSERT INTO teamDistances VALUES(92,17,'Las Vegas Raiders','Allegiant Stadium','Sofi Stadium',270);
+INSERT INTO teamDistances VALUES(93,26,'Philadelphia Eagles','Lincoln Financial Field','Heinz Field',315);
+INSERT INTO teamDistances VALUES(94,26,'Philadelphia Eagles','Lincoln Financial Field','M&T Bank Stadium',80);
+INSERT INTO teamDistances VALUES(95,26,'Philadelphia Eagles','Lincoln Financial Field','MetLife Stadium',50);
+INSERT INTO teamDistances VALUES(96,27,'Pittsburgh Steelers','Heinz Field','Bank of America Stadium',365);
+INSERT INTO teamDistances VALUES(97,27,'Pittsburgh Steelers','Heinz Field','FirstEnergy Stadium',115);
+INSERT INTO teamDistances VALUES(98,27,'Pittsburgh Steelers','Heinz Field','Lincoln Financial Field',315);
+INSERT INTO teamDistances VALUES(99,27,'Pittsburgh Steelers','Heinz Field','Paul Brown Stadium',260);
+INSERT INTO teamDistances VALUES(100,27,'Pittsburgh Steelers','Heinz Field','Bills Stadium',225);
+INSERT INTO teamDistances VALUES(101,28,'San Francisco 49ers','Levi''s Stadium','Allegiant Stadium',569);
+INSERT INTO teamDistances VALUES(102,28,'San Francisco 49ers','Levi''s Stadium','Broncos Stadium at Mile High',930);
+INSERT INTO teamDistances VALUES(103,28,'San Francisco 49ers','Levi''s Stadium','Sofi Stadium',200);
+INSERT INTO teamDistances VALUES(104,28,'San Francisco 49ers','Levi''s Stadium','State Farm Stadium',650);
+INSERT INTO teamDistances VALUES(105,29,'Seattle Seahawks','CenturyLink Field','Allegiant Stadium',1270);
+INSERT INTO teamDistances VALUES(106,29,'Seattle Seahawks','CenturyLink Field','Bills Stadium',2070);
+INSERT INTO teamDistances VALUES(107,29,'Seattle Seahawks','CenturyLink Field','U.S. Bank Stadium',1390);
+INSERT INTO teamDistances VALUES(108,30,'Tampa Bay Buccaneers','Raymond James Stadium','TIAA Bank Field',170);
+INSERT INTO teamDistances VALUES(109,30,'Tampa Bay Buccaneers','Raymond James Stadium','Hard Rock Stadium',210);
+INSERT INTO teamDistances VALUES(110,30,'Tampa Bay Buccaneers','Raymond James Stadium','Mercedes-Benz Superdome',480);
+INSERT INTO teamDistances VALUES(111,31,'Tennessee Titans','Nissan Stadium','Arrowhead Stadium',470);
+INSERT INTO teamDistances VALUES(112,31,'Tennessee Titans','Nissan Stadium','NRG Stadium',670);
+INSERT INTO teamDistances VALUES(113,31,'Tennessee Titans','Nissan Stadium','Paul Brown Stadium',240);
+INSERT INTO teamDistances VALUES(114,31,'Tennessee Titans','Nissan Stadium','U.S. Bank Stadium',700);
+INSERT INTO teamDistances VALUES(115,32,'Washington Redskins','FedExField','Bank of America Stadium',340);
+INSERT INTO teamDistances VALUES(116,32,'Washington Redskins','FedExField','M&T Bank Stadium',90);
+CREATE TABLE souvenirs
+(
+souvenirID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+teamID int,
+itemName text,
+itemPrice float,
+FOREIGN KEY(teamID) REFERENCES teamInfo(teamID) ON DELETE CASCADE
+);
+INSERT INTO souvenirs VALUES(1,1,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(2,1,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(3,1,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(4,1,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(5,1,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(6,2,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(7,2,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(8,2,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(9,2,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(10,2,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(11,3,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(12,3,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(13,3,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(14,3,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(15,3,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(16,4,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(17,4,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(18,4,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(19,4,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(20,4,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(21,5,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(22,5,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(23,5,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(24,5,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(25,5,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(26,6,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(27,6,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(28,6,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(29,6,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(30,6,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(31,7,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(32,7,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(33,7,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(34,7,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(35,7,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(36,8,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(37,8,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(38,8,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(39,8,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(40,8,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(41,9,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(42,9,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(43,9,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(44,9,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(45,9,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(46,10,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(47,10,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(48,10,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(49,10,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(50,10,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(51,11,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(52,11,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(53,11,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(54,11,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(55,11,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(56,12,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(57,12,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(58,12,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(59,12,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(60,12,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(61,13,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(62,13,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(63,13,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(64,13,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(65,13,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(66,14,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(67,14,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(68,14,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(69,14,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(70,14,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(71,15,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(72,15,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(73,15,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(74,15,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(75,15,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(76,16,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(77,16,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(78,16,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(79,16,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(80,16,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(81,17,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(82,17,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(83,17,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(84,17,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(85,17,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(86,18,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(87,18,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(88,18,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(89,18,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(90,18,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(91,19,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(92,19,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(93,19,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(94,19,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(95,19,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(96,20,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(97,20,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(98,20,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(99,20,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(100,20,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(101,21,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(102,21,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(103,21,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(104,21,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(105,21,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(106,22,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(107,22,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(108,22,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(109,22,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(110,22,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(111,23,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(112,23,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(113,23,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(114,23,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(115,23,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(116,24,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(117,24,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(118,24,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(119,24,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(120,24,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(121,25,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(122,25,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(123,25,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(124,25,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(125,25,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(126,26,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(127,26,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(128,26,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(129,26,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(130,26,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(131,27,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(132,27,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(133,27,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(134,27,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(135,27,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(136,28,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(137,28,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(138,28,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(139,28,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(140,28,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(141,29,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(142,29,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(143,29,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(144,29,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(145,29,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(146,30,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(147,30,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(148,30,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(149,30,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(150,30,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(151,31,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(152,31,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(153,31,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(154,31,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(155,31,'Team Jersey',199.99000000000000908);
+INSERT INTO souvenirs VALUES(156,32,'Signed Helmets',77.989999999999994884);
+INSERT INTO souvenirs VALUES(157,32,'Autographed Football',99.89000000000000057);
+INSERT INTO souvenirs VALUES(158,32,'Team Pennant',17.989999999999998436);
+INSERT INTO souvenirs VALUES(159,32,'Team Picture',29.989999999999998436);
+INSERT INTO souvenirs VALUES(160,32,'Team Jersey',199.99000000000000908);
+CREATE TABLE purchases
+(
+purchaseID int,
+teamID int,
+souvenirID int,
+qtyPurchased int,
+FOREIGN KEY(teamID) REFERENCES teamInfo(teamID) ON DELETE CASCADE,
+FOREIGN KEY(souvenirID) REFERENCES souvenirs(souvenirID) ON DELETE CASCADE
+);
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('teamInfo',32);
+INSERT INTO sqlite_sequence VALUES('souvenirs',160);
+INSERT INTO sqlite_sequence VALUES('teamDistances',116);
+COMMIT;
