@@ -11,6 +11,8 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     // Set path
     setDatabaseName(QDir::currentPath() + "/db/NFLdb.db");
 
+	qDebug() << QDir::currentPath() + "/db/NFLdb.db";
+
     // Print error if database does not open
     if (!open())
     {
@@ -102,32 +104,63 @@ QVector<Team*> Database::GetTeams()
     return teamDbMap.values().toVector();
 }
 
-//Stadium* Database::getStadiumByID(int stadiumID)
-//{
+Stadium* Database::getStadiumByID(const int& teamID)
+{
+	query.prepare("SELECT stadiumName, seatingCap, location, "
+				  "surfaceType, roofType, dateOpened "
+				  "FROM teamInfo "
+				  "WHERE teamID = (:teamID)");
+	query.bindValue(":teamID", teamID);
 
-//}
+	if(query.exec())
+	{
+		query.next();
 
-//// For use in admin section
-//QVector<Souvenir*> Database::getSouvenirs()
-//{
+		Stadium *stadium = new Stadium;
 
-//}
+		stadium -> setStadiumName    (query.value(T_STADIUM_NAME).toString());
+		stadium -> setSeatingCapacity(query.value(T_SEATING_CAP).toInt());
+		stadium -> setLocation       (query.value(T_LOCATION).toString());
+		stadium -> setSurfaceType    (query.value(T_SURFACE_TYPE).toString());
+		stadium -> setRoofType       (query.value(T_ROOF_TYPE).toString());
+		stadium -> setDateOpened     (query.value(T_DATE_OPENED).toInt());
 
-////
-//Souvenir* Database::getSouvenierByID(int souvenirID)
-//{
+		stadiumDbMap[teamID] = stadium;
+	}
+	else
+	{
+		qDebug() << "Error " << query.lastError().text()
+				 << " while executing query " << query.executedQuery();
+	}
 
-//}
+	return stadiumDbMap[teamID];
+}
 
-//QVector<Purchases*> Database::getPurchases()
-//{
+// For use in admin section
+QVector<Souvenir*> Database::getSouvenirs()
+{
+	QVector<Souvenir*> v(NULL);
 
-//}
+	return v;
+}
 
-//Purchases* Database::getPurchasesByID(int purchaseID)
-//{
+//
+Souvenir* Database::getSouvenierByID(int souvenirID)
+{
+	return nullptr;
+}
 
-//}
+QVector<Purchases*> Database::getPurchases()
+{
+	QVector<Purchases*> v(NULL);
+
+	return v;
+}
+
+Purchases* Database::getPurchasesByID(int purchaseID)
+{
+	return nullptr;
+}
 
 // TODO
 int Database::GetMilesBetweenStadiums(const QString &origin, const QString &destination)
@@ -174,68 +207,88 @@ void DeleteSouvenir(const QString &SouvenirName, const QString &teamName)
 // Get Info for one team (Requirement 2)
 Team* GetSingleTeam(const QString &teamName);
 
-//// Get all teams ordered by team name (Requirement 3)
-//QVector<Team*> GetTeamsOrderByName()
-//{
+// Get all teams ordered by team name (Requirement 3)
+QVector<Team*> GetTeamsOrderByName()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get all teams and stadiums ordered by stadium name (Requirement 4)
-//QVector<Team*> GetTeamsOrderByStadium()
-//{
+// Get all teams and stadiums ordered by stadium name (Requirement 4)
+QVector<Team*> GetTeamsOrderByStadium()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get all AFC Teams sorted by team name (Requirement 5)
-//QVector<Team*> GetAFCTeamsOrderByTeamName()
-//{
+// Get all AFC Teams sorted by team name (Requirement 5)
+QVector<Team*> GetAFCTeamsOrderByTeamName()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get all NFC teams sorted by team name (Requirement 6)
-//QVector<Team*> GetNFCTeamsOrderByTeamName()
-//{
+// Get all NFC teams sorted by team name (Requirement 6)
+QVector<Team*> GetNFCTeamsOrderByTeamName()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get all NFC North teams ordered by team name (Requirement 7)
-//QVector<Team*> GetNorthNFCTeamsOrderByTeamName()
-//{
+// Get all NFC North teams ordered by team name (Requirement 7)
+QVector<Team*> GetNorthNFCTeamsOrderByTeamName()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get all stadiums sorted by date opened (Requirement 8)
-//QVector<Team*> GetStadiumsOrderByDateOpened()
-//{
+// Get all stadiums sorted by date opened (Requirement 8)
+QVector<Team*> GetStadiumsOrderByDateOpened()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get all open roof stadiums (Requirement 9)
-//QVector<Team*> GetOpenRoofStadiums()
-//{
+// Get all open roof stadiums (Requirement 9)
+QVector<Team*> GetOpenRoofStadiums()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get stadiums ordered by seating capacity (Requirement 10)
-//QVector<Team*> GetStadiumsOrderBySeatingCap()
-//{
+// Get stadiums ordered by seating capacity (Requirement 10)
+QVector<Team*> GetStadiumsOrderBySeatingCap()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get teams ordered by conference (Requirement 11)
-//QVector<Team*> GetTeamsOrderByConference()
-//{
+// Get teams ordered by conference (Requirement 11)
+QVector<Team*> GetTeamsOrderByConference()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get teams with bermuda grass surface type (Requirement 12)
-//QVector<Team*> GetBermudaGrassTeams()
-//{
+// Get teams with bermuda grass surface type (Requirement 12)
+QVector<Team*> GetBermudaGrassTeams()
+{
+	QVector<Team*> v(NULL);
 
-//}
+	return v;
+}
 
-//// Get all souvenirs for one team (Requirement 13)
-//Team* GetSingleTeamSouvenirs(const QString &teamName)
-//{
-
-//}
+// Get all souvenirs for one team (Requirement 13)
+Team* GetSingleTeamSouvenirs(const QString &teamName)
+{
+	return nullptr;
+}
