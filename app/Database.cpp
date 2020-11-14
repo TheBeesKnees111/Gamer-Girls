@@ -15,7 +15,7 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     QString macPathFile = "/db";
     setDatabaseName(QDir::currentPath() + windowsPathFile);
 
-	qDebug() << QDir::currentPath() + "/db/NFLdb.db";
+	qDebug() << QDir::currentPath() + windowsPathFile;
 
     // Print error if database does not open
     if (!open())

@@ -24,8 +24,9 @@ private slots:
     ///travel page before showing the main window
 	void on_Home_PushButton_clicked();
 
+	void on_Souvenir_Select_Team_ComboBox_currentIndexChanged(int teamID);
 
-private:
+	private:
 	Database            *database;
 	QSqlQueryModel      *queryModel;
     Ui::SouvenirAndTrip *ui;
