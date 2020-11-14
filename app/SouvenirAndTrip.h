@@ -1,6 +1,9 @@
 #ifndef SOUVENIRANDTRIP_H
 #define SOUVENIRANDTRIP_H
 
+#include "Database.h"
+#include <QSqlQueryModel>
+#include <QSpinBox>
 #include <QDialog>
 
 namespace Ui {
@@ -23,6 +26,8 @@ private slots:
 
 
 private:
+	Database            *database;
+	QSqlQueryModel      *queryModel;
     Ui::SouvenirAndTrip *ui;
 };
 

@@ -31,7 +31,7 @@ public:
 
     // STADIUM METHODS
     QVector<Stadium*> getStadiums();
-    Stadium* getStadiumByID(int stadiumID);
+	Stadium* getStadiumByID(const int& teamID);
 
     // SOUVENIR METHODS
     QVector<Souvenir*> getSouvenirs();
@@ -111,9 +111,9 @@ public:
     // creating the list will make dijk's algo run faster
 
 private:
-    QMap<int, Team*> teamDbMap;
-    QMap<int, Stadium*> stadiumDbMap;
-    QMap<int, Souvenir*> souvenirDbMap;
+	QMap<int, Team*>      teamDbMap;
+	QMap<int, Stadium*>   stadiumDbMap;
+	QMap<int, Souvenir*>  souvenirDbMap;
     QMap<int, Purchases*> purchasesDbMap;
 
     void runGetTeamAndStadiumByIDQry(int teamID);
