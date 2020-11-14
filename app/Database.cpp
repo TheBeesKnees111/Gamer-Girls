@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QVector>
 
+
 Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
@@ -162,6 +163,7 @@ Purchases* Database::getPurchasesByID(int purchaseID)
 	return nullptr;
 }
 
+
 // TODO
 int Database::GetMilesBetweenStadiums(const QString &origin, const QString &destination)
 {
@@ -292,3 +294,4 @@ Team* GetSingleTeamSouvenirs(const QString &teamName)
 {
 	return nullptr;
 }
+
