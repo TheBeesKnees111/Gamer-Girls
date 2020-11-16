@@ -15,7 +15,7 @@ class RouteDisplayer : public QDialog
 	Q_OBJECT
 
 public:
-	explicit RouteDisplayer(QWidget *parent, QList<int> route, int totalDistance);
+	explicit RouteDisplayer(QWidget *parent, QStringList cities, QList <int> distances);
 	~RouteDisplayer();
 
 private:

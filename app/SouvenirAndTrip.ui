@@ -231,31 +231,15 @@
       <string>Confirm Trip</string>
      </property>
     </widget>
-    <widget class="QFrame" name="Select_Cities_Frame">
+    <widget class="QListWidget" name="Select_Cities_ListWidget">
      <property name="geometry">
       <rect>
        <x>480</x>
        <y>180</y>
-       <width>731</width>
-       <height>521</height>
+       <width>741</width>
+       <height>391</height>
       </rect>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <widget class="QListWidget" name="Select_Cities_ListWidget">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>741</width>
-        <height>391</height>
-       </rect>
-      </property>
-     </widget>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_4">

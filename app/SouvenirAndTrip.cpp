@@ -3,6 +3,7 @@
 #include "ui_SouvenirAndTrip.h"
 #include "mainwindow.h"
 
+
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SouvenirAndTrip)
@@ -16,7 +17,7 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
 	 * -------------------------------------------------------------------------
 	 * Initialize comboboxes to hold stadium names and team names
 	 **************************************************************************/
-	query.exec("SELECT teamName, stadiumName FROM teamInfo");
+	query.exec("SELECT teamName FROM teamInfo");
 
 	if(!query.exec())
 		qDebug() << "Error: TRIPS PAGE -> Adding Team Name to ComboBox ";
@@ -26,12 +27,11 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
 		while (query.next())
 		{
 			QString teamName    = query.value(0).toString();
-			QString stadiumName = query.value(1).toString();
 
 			ui -> Souvenir_Select_Team_ComboBox       -> addItem(teamName);
-			ui -> Green_Bay_Select_Stadium_ComboBox   -> addItem(stadiumName);
-			ui -> Custom_Trip_Select_Stadium_ComboBox -> addItem(stadiumName);
-			ui -> Shortest_Distance_Select_Stadium_ComboBox -> addItem(stadiumName);
+			ui -> Green_Bay_Select_Stadium_ComboBox   -> addItem(teamName);
+			ui -> Custom_Trip_Select_Stadium_ComboBox -> addItem(teamName);
+			ui -> Shortest_Distance_Select_Stadium_ComboBox -> addItem(teamName);
 
 		}
 
@@ -75,10 +75,15 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
 	QStringListIterator it(itemLabels);
 	while (it.hasNext())
 	{
-		  QListWidgetItem *listItem = new QListWidgetItem(it.next(), ui -> Select_Cities_ListWidget);
-		  listItem->setCheckState(Qt::Unchecked);
-		  ui->Select_Cities_ListWidget->addItem(listItem);
+		listItem = new QListWidgetItem(it.next(), ui ->
+		Select_Cities_ListWidget);
+
+		listItem -> setCheckState(Qt::Unchecked);
+		ui->Select_Cities_ListWidget->addItem(listItem);
 	}
+
+	ui -> Select_Cities_ListWidget -> sortItems();
+
 
 }
 
@@ -99,35 +104,28 @@ void SouvenirAndTrip::on_Home_PushButton_clicked()
     mainWindow -> show();
 }
 
-void SouvenirAndTrip::on_Souvenir_Select_Team_ComboBox_currentIndexChanged(int teamID)
+			/*********************************************
+			 ************** CUSTOM TRIP TAB **************
+			 *********************************************/
+///For CUSTOM TRIP push button clicked
+/// Will call rout displayer and show cities the user has selected to travel to
+void SouvenirAndTrip::on_Confirm_Custom_Trip_PushButton_clicked()
 {
-	teamID++;
-	QSqlQuery query;
+	QStringList listOfStadiums;
+	QList<int>  listOfDistances;
 
-	query.prepare("SELECT souvenirID, itemName, itemPrice FROM souvenirs "
-				  "WHERE teamID = :teamID");
-
-	query.bindValue(":teamID", teamID);
-
-	if(!query.exec())
-		qDebug() << "Failed: " << teamID;
-
-	else
+	for(int index = 0; index < ui -> Select_Cities_ListWidget -> count(); index++)
 	{
-		for(int index = 0; index <=12; index++)
+		if(ui -> Select_Cities_ListWidget -> item(index) -> checkState() == Qt::Checked)
 		{
-			query.next();
-			int souvenirID       = query.value(index++).toInt();
-			QString souvenirName = query.value(index++).toString();
-			double souvenirPrice = query.value(index++).toDouble();
-
-			query.next();
-			qDebug() << "souvenirID   : " << souvenirID;
-			qDebug() << "souvenirName : " << souvenirName;
-			qDebug() << "souvenirPrice: " << souvenirPrice;
-			qDebug() << "";
+			listOfStadiums.push_back(ui -> Select_Cities_ListWidget -> item(index) -> text());
 		}
+	}
 
+	while(!listOfStadiums.isEmpty())
+	{
+		qDebug() << listOfStadiums.first();
+		listOfStadiums.pop_front();
 	}
 
 }
