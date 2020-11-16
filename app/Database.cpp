@@ -287,11 +287,11 @@ QVector<Team>* Database::GetTeamsOrderByName()
 }
 
 // Get all teams and stadiums ordered by stadium name (Requirement 4)
-QVector<Team>* Database::GetTeamsOrderByStadium()
+QVector<Team*>* Database::GetTeamsOrderByStadium()
 {
-    QVector<Team>* teams = new QVector<Team>;
-    Team team;
-    Stadium* stadium = new Stadium;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
 
     query.prepare("SELECT stadiumName, teamName FROM teamInfo order by stadiumName");
 
@@ -299,11 +299,16 @@ QVector<Team>* Database::GetTeamsOrderByStadium()
     {
         while(query.next())
         {
+            team = new Team;
+            stadium = new Stadium;
             stadium->setStadiumName(query.value(0).toString());
-            team.setTeamName(query.value(1).toString());
-            team.setStadium(stadium);
+            team->setTeamName(query.value(1).toString());
+            team->setStadium(stadium);
 
-            //teams->push_back(team);
+            teams->push_back(team);
+
+            qDebug() << "Stadium Name: " << team->getStadium()->getStadiumName();
+            qDebug() << "Team Name: " << team->getTeamName();
         }
     }
 
@@ -311,8 +316,8 @@ QVector<Team>* Database::GetTeamsOrderByStadium()
         qDebug() << "PRINTING OBJECTS";
     for(int index = 0; index < teams->size(); index++)
     {
-        qDebug() << "Stadium Name: " << teams->at(index).getStadium()->getStadiumName();
-        qDebug() << "Team Name: " << teams->at(index).getTeamName();
+        qDebug() << "Stadium Name: " << teams->at(index)->getStadium()->getStadiumName();
+        qDebug() << "Team Name: " << teams->at(index)->getTeamName();
     }
 
     return teams;

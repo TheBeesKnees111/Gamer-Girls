@@ -158,7 +158,7 @@ public:
     void PopulateAllTeams(QTableWidget* table, QStringList teamList);
 
     // Populates stadiums with teams ordered by stadium name (requirement 4)
-    void PopulateTeamsOrderByStadium(QVector<Team>* teamList);
+    void PopulateTeamsOrderByStadium(QVector<Team*>* teamList);
 
     // Delete table rows (helper method)
     void DeleteAllTableRows(QTableWidget *table);

@@ -92,7 +92,7 @@ void DisplayInfo::PopulateAllTeams(QTableWidget* table, QStringList teamList)
 }
 
 // Populates stadiums with teams ordered by stadium name (requirement 4)
-void DisplayInfo::PopulateTeamsOrderByStadium(QVector<Team>* teamList)
+void DisplayInfo::PopulateTeamsOrderByStadium(QVector<Team*>* teamList)
 {
     for(int index = 0; index < teamList->size(); index++)
     {
@@ -100,9 +100,9 @@ void DisplayInfo::PopulateTeamsOrderByStadium(QVector<Team>* teamList)
         ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
 
         // Populate Stadium Name Column
-        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AS_STADIUM_NAME, new QTableWidgetItem(teamList->at(index).getStadium()->getStadiumName()));
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AS_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
         // Populate Team Name Column
-        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AS_TEAM_NAME, new QTableWidgetItem(teamList->at(index).getTeamName()));
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AS_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
     }
 }
 
@@ -151,12 +151,9 @@ void DisplayInfo::on_Print_All_Teams_PushButton_clicked()
     PopulateAllTeams(ui->Datatable_TableWidget, TeamNameComboBoxLabels);
 }
 
-
-// ------------ NAVIGATION END -------------- //
-
 void DisplayInfo::on_Print_Stadium_PushButton_clicked()
 {
-    QVector<Team>* teamList = new QVector<Team>;
+    QVector<Team*>* teamList = new QVector<Team*>;
     teamList = db->GetTeamsOrderByStadium();
 
     // Initialize Table
@@ -165,3 +162,7 @@ void DisplayInfo::on_Print_Stadium_PushButton_clicked()
     // Populate Table
     PopulateTeamsOrderByStadium(teamList);
 }
+
+// ------------ NAVIGATION END -------------- //
+
+
