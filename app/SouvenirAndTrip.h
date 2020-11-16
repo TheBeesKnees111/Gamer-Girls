@@ -5,6 +5,7 @@
 #include <QSqlQueryModel>
 #include <QSpinBox>
 #include <QDialog>
+#include <QListWidgetItem>
 
 namespace Ui {
 class SouvenirAndTrip;
@@ -24,11 +25,13 @@ private slots:
     ///travel page before showing the main window
 	void on_Home_PushButton_clicked();
 
+	void on_Confirm_Custom_Trip_PushButton_clicked();
 
-private:
+	private:
 	Database            *database;
 	QSqlQueryModel      *queryModel;
     Ui::SouvenirAndTrip *ui;
+	QListWidgetItem     *listItem;
 };
 
 #endif // SOUVENIRANDTRIP_H

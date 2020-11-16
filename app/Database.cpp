@@ -15,7 +15,7 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     QString macPathFile = "/db";
     setDatabaseName(QDir::currentPath() + windowsPathFile);
 
-	qDebug() << QDir::currentPath() + "/db/NFLdb.db";
+	qDebug() << QDir::currentPath() + windowsPathFile;
 
     // Print error if database does not open
     if (!open())
@@ -26,6 +26,19 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     {
         qDebug() << "Connection to database succeeded";
     }
+}
+
+int GetTeamIDByCityName(QString location)
+{
+	QSqlQuery query;
+
+	query.prepare("SELECT teamID FROM teamInfo WHERE location = :location");
+	query.bindValue(":location", location);
+
+	if(!query.exec())
+		qDebug() << query.lastError();
+
+	return query.value(0).toInt();
 }
 
 Team* Database::GetTeamByID(const int &teamID)
