@@ -29,7 +29,7 @@ INSERT INTO teamInfo VALUES(13,'Houston Texans','NRG Stadium','72220','Houston, 
 INSERT INTO teamInfo VALUES(14,'Indianapolis Colts','Lucas Oil Stadium','67000','Indianapolis, Indiana','American Football Conference','AFC South','FieldTurf Classic HD','Retractable',2008);
 INSERT INTO teamInfo VALUES(15,'Jacksonville Jaguars','TIAA Bank Field','69132','Jacksonville, Florida','American Football Conference','AFC South','Bermuda Grass','Open',1995);
 INSERT INTO teamInfo VALUES(16,'Kansas City Chiefs','Arrowhead Stadium','76416','Kansas City, Missouri','American Football Conference','AFC West','Bermuda Grass','Open',1972);
-INSERT INTO teamInfo VALUES(17,'Las Vegas Raiders','Allegiant Stadium ','65000','Paradise, Nevada','American Football Conference','AFC West','Bermuda Grass','Fixed',2020);
+INSERT INTO teamInfo VALUES(17,'Las Vegas Raiders','Allegiant Stadium','65000','Paradise, Nevada','American Football Conference','AFC West','Bermuda Grass','Fixed',2020);
 INSERT INTO teamInfo VALUES(18,'Los Angeles Chargers','SoFi Stadium','70240','Inglewood, California','American Football Conference','AFC West','Bermuda Grass','Fixed',2020);
 INSERT INTO teamInfo VALUES(19,'Los Angeles Rams','SoFi Stadium','70240','Inglewood, California','National Football Conference','NFC West','Bermuda Grass','Fixed ',2020);
 INSERT INTO teamInfo VALUES(20,'Miami Dolphins','Hard Rock Stadium','65326','Miami Gardens, Florida','American Football Conference','AFC East','Platinum TE Paspalum','Open',1987);
