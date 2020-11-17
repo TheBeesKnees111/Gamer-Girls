@@ -1,6 +1,7 @@
 #include "Database.h"
 #include "Team.h"
 #include "Stadium.h"
+#include "Souvenir.h"
 #include <QFileInfo>
 #include <QSqlError>
 #include <QFileDialog>
@@ -304,20 +305,8 @@ QVector<Team*>* Database::GetTeamsOrderByStadium()
             stadium->setStadiumName(query.value(0).toString());
             team->setTeamName(query.value(1).toString());
             team->setStadium(stadium);
-
             teams->push_back(team);
-
-            qDebug() << "Stadium Name: " << team->getStadium()->getStadiumName();
-            qDebug() << "Team Name: " << team->getTeamName();
         }
-    }
-
-    // DEBUG
-        qDebug() << "PRINTING OBJECTS";
-    for(int index = 0; index < teams->size(); index++)
-    {
-        qDebug() << "Stadium Name: " << teams->at(index)->getStadium()->getStadiumName();
-        qDebug() << "Team Name: " << teams->at(index)->getTeamName();
     }
 
     return teams;
@@ -466,7 +455,35 @@ QVector<Team*>* Database::GetBermudaGrassTeams()
 // Get all souvenirs for one team (Requirement 13)
 Team* Database::GetSingleTeamSouvenirs(const QString &teamName)
 {
-    Team* team = nullptr;
+    Team* team = new Team;
+    QVector<Souvenir*> souvenirs;
+    Souvenir* souvenir = nullptr;
+
+    query.prepare("select teamInfo.teamName, souvenirs.itemName, souvenirs.itemPrice from teamInfo, souvenirs where teamInfo.teamName = :teamName and teamInfo.teamID = souvenirs.teamID");
+
+    query.bindValue(":teamName", teamName);
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            if(team->getTeamName() != query.value(0).toString())
+            {
+                team->setTeamName(query.value(0).toString());
+            }
+
+            souvenir = new Souvenir;
+            souvenir->setItemName(query.value(1).toString());
+            souvenir->setItemPrice(query.value(2).toFloat());
+
+            souvenirs.push_back(souvenir);
+        }
+
+        team->setSouvenirList(souvenirs);
+    }
+    else
+    {
+        qDebug() << "GetSingleTeamSouvenirs Failed!";
+    }
 
     return team;
 }
