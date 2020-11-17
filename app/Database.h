@@ -70,38 +70,41 @@ public:
      * DisplayInfo.ui Information Retrieval Methods
      */
 
+    // Get team names
+    QStringList GetTeamNames();
+
     // Get Info for one team (Requirement 2)
     Team* GetSingleTeam(const QString &teamName);
 
     // Get all teams ordered by team name (Requirement 3)
-    QVector<Team*> GetTeamsOrderByName();
+    QVector<Team>* GetTeamsOrderByName();
 
     // Get all teams and stadiums ordered by stadium name (Requirement 4)
-    QVector<Team*> GetTeamsOrderByStadium();
+    QVector<Team*>* GetTeamsOrderByStadium();
 
     // Get all AFC Teams sorted by team name (Requirement 5)
-    QVector<Team*> GetAFCTeamsOrderByTeamName();
+    QVector<Team*>* GetAFCTeamsOrderByTeamName();
 
     // Get all NFC teams sorted by team name (Requirement 6)
-    QVector<Team*> GetNFCTeamsOrderByTeamName();
+    QVector<Team*>* GetNFCTeamsOrderByTeamName();
 
     // Get all NFC North teams ordered by team name (Requirement 7)
-    QVector<Team*> GetNorthNFCTeamsOrderByTeamName();
+    QVector<Team*>* GetNorthNFCTeamsOrderByTeamName();
 
     // Get all stadiums sorted by date opened (Requirement 8)
-    QVector<Team*> GetStadiumsOrderByDateOpened();
+    QVector<Team*>* GetStadiumsOrderByDateOpened();
 
     // Get all open roof stadiums (Requirement 9)
-    QVector<Team*> GetOpenRoofStadiums();
+    QVector<Team*>* GetOpenRoofStadiums();
 
     // Get stadiums ordered by seating capacity (Requirement 10)
-    QVector<Team*> GetStadiumsOrderBySeatingCap();
+    QVector<Team*>* GetStadiumsOrderBySeatingCap();
 
     // Get teams ordered by conference (Requirement 11)
-    QVector<Team*> GetTeamsOrderByConference();
+    QVector<Team*>* GetTeamsOrderByConference();
 
     // Get teams with bermuda grass surface type (Requirement 12)
-    QVector<Team*> GetBermudaGrassTeams();
+    QVector<Team*>* GetBermudaGrassTeams();
 
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);

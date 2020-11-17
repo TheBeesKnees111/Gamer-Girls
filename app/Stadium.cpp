@@ -9,7 +9,7 @@ Stadium::Stadium(QObject *parent) : QObject(parent){}
 QString Stadium::getStadiumName() const
 {    return stadiumName;    }
 
-int Stadium::getSeatingCapacity() const
+QString Stadium::getSeatingCapacity() const
 {    return seatingCapacity;    }
 
 QString Stadium::getLocation() const
@@ -36,7 +36,7 @@ void Stadium::setStadiumName(const QString &value)
     }
 }
 
-void Stadium::setSeatingCapacity(int value)
+void Stadium::setSeatingCapacity(const QString value)
 {
     if (value != seatingCapacity)
     {
