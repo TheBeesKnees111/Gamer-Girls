@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     Admin.cpp \
+    BFS.cpp \
     Database.cpp \
     DisplayInfo.cpp \
     Login.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 
 HEADERS += \
     Admin.h \
+    BFS.h \
     Database.h \
     DisplayInfo.h \
     Login.h \
