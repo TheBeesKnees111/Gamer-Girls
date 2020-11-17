@@ -10,6 +10,13 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
 {
 	ui->setupUi(this);
 
+
+
+
+
+
+
+
 	QSqlQuery query;
 
 	/***************************************************************************

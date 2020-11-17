@@ -2,34 +2,39 @@
 #define BFS_H
 #include <QString>
 #include <QVector>
+#include <QStringList>
 
-class AdjacencyMatrix
+class BFS
 {
 public:
     // City positions in list
-    enum STADIUMS
+//    enum Stadiums
+//    {
+//        ARIZONA, ATLANTA, BALTIMORE, BUFFALO, CAROLINA, CHICAGO, CINCINNATI,
+//        CLEVELAND, DALLAS, DENVER, DETROIT, GREEN_BAY, HOUSTON, INDIANAPOLIS,
+//        JACKSONVILLE, KANSAS_CITY, LOS_ANGELES, MIAMI, MINNESOTA, NEW_ENGLAND,
+//        NEW_ORLEANS, NEW_YORK, LAS_VEGAS, PHILADELPHIA, PITTSBURGH, SAN_FRANCISCO,
+//        SEATTLE, TAMPA_BAY, TENNESSEE, WASHINGTON
+//    };
+
+    // TEST DATA
+    enum cities
     {
         SEATTLE, SAN_FRANCISCO, LOS_ANGELES, DENVER, KANSAS_CITY, DALLAS,
         CHICAGO, HOUSTON, ATLANTA, NEW_YORK, MIAMI, BOSTON
     };
 
     // Attributes
-    int aMatrix [12][12]; // Adjacency matrix with distances
+    int matrix [12][12]; // Adjacency matrix with distances
     bool visited [12] = { false }; // List of visited cities
-    QVector<QString> cityNames; // List of city names
+    QStringList* stadiumNames; // List of city names
 
     // Methods
     void Add(const int &from, const int &to, const int &distance);
 
-    AdjacencyMatrix();
-};
+    void Resize();
 
-class BFS
-{
-public:
-
-
-
+    void Traverse();
 
     BFS();
 };

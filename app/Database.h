@@ -105,6 +105,12 @@ public:
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);
 
+
+
+
+    // Get CityNames in specific order for BFS
+    QStringList* GetBFSStadiums();
+
     // TODO
     // should dijk call get miles from db
     // or create adjacency list & pass to dijk

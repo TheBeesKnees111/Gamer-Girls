@@ -5,6 +5,7 @@
 #include "SouvenirAndTrip.h"
 #include "Database.h"
 #include "Team.h"
+#include "BFS.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,6 +31,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Create Database
     db = new Database;
+
+    BFS bfs;
+    bfs.Traverse();
 }
 
 MainWindow::~MainWindow()
