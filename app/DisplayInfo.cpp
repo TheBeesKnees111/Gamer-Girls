@@ -264,6 +264,8 @@ void DisplayInfo::on_Show_Open_Roof_Stadiums_PushButton_clicked()
 {
     QVector<Team*>* teamList = new QVector<Team*>;
     int openStadiumCount = db->GetOpenStadiumCount();
+    QString totalStadiums = "Open Roof Stadiums: ";
+
     teamList = db->GetOpenRoofStadiums();
 
     // Initialize Table
@@ -272,9 +274,10 @@ void DisplayInfo::on_Show_Open_Roof_Stadiums_PushButton_clicked()
     // Populate Table
     PopulateOpenRoofStadiums(teamList);
 
-    // TODO This is where we populate the label at the bottom for 'number of stadiums'
-    qDebug() << "Open stadiums: " << openStadiumCount;
-    // label = openStadiumCount
+    // Populate label
+    totalStadiums = totalStadiums + QVariant(openStadiumCount).toString();
+    ui->label_output_totals->setText(totalStadiums);
+
 }
 
 // ------------ NAVIGATION END -------------- //
