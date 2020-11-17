@@ -30,14 +30,13 @@ MainWindow::MainWindow(QWidget *parent)
                                   (ImageLabelW, ImageLabelH));
 
     // Create Database
-    db = new Database;
+    db = Database::getInstance();
 
-    StadiumGraph graph = db->createStadiumGraph();
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
     Stadium* start{db->getStadiumByName("Soldier Field")};
     Stadium* endLocation{db->getStadiumByName("Ford Field")};
 
-    // FIXME printed path is empty.  Need to stop thru the debugger from here
-    QMap<QString, StadiumDistance*> spanningTree = Dijkstra(graph, start);
+    QHash<QString, StadiumDistance*> spanningTree = Dijkstra(graph, start);
     QVector<StadiumDistance*> path = buildPath(spanningTree, endLocation);
     printDijkstra(path);
 }

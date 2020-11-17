@@ -10,7 +10,6 @@ CONFIG += c++11
 
 SOURCES += \
     Admin.cpp \
-    DPathUtils.cpp \
     Database.cpp \
     Dijkstra.cpp \
     DisplayInfo.cpp \
@@ -20,13 +19,13 @@ SOURCES += \
     SouvenirAndTrip.cpp \
     Stadium.cpp \
     StadiumDistance.cpp \
+    StadiumGraph.cpp \
     Team.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     Admin.h \
-    DPathUtils.h \
     Database.h \
     Dijkstra.h \
     DisplayInfo.h \
@@ -36,6 +35,7 @@ HEADERS += \
     SouvenirAndTrip.h \
     Stadium.h \
     StadiumDistance.h \
+    StadiumGraph.h \
     Team.h \
     mainwindow.h
 

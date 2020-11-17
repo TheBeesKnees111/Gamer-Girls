@@ -8,7 +8,6 @@
 #include <QtSql>
 #include <QtCore>
 #include <vector>
-#include "Dijkstra.h"
 #include "StadiumDistance.h"
 using namespace std;
 
@@ -21,39 +20,31 @@ class Database : public QSqlDatabase
 {
 
 public:
-
-    Database();
+    // Database() constructor moved to private
+    static Database *getInstance();
 
     // Enum for team statistics
-    enum TeamStats
-    {
-        T_ID, T_TEAM_NAME, T_STADIUM_NAME, T_SEATING_CAP, T_LOCATION,
-        T_CONFERENCE, T_DIVISION, T_SURFACE_TYPE, T_ROOF_TYPE, T_DATE_OPENED
-    };
-
-    // DIJKSTRA METHODS
-    //vector<cityNode> createCitiesFromDatabase();
-    QVector<Stadium*> getStadiums();
-
-    //vector<cityConnection> createConnectionsFromDatabase();
-    QVector<StadiumDistance*> createConnections();
-
-    //cityGraph createCityGraphFromDatabase();
-    StadiumGraph createStadiumGraph();
-
-
-    // STADIUM DISTANCE METHODS
-    StadiumDistance* getStadiumDistanceByID(int id);
+//    enum TeamStats
+//    {
+//        T_ID, T_TEAM_NAME, T_STADIUM_NAME, T_SEATING_CAP, T_LOCATION,
+//        T_CONFERENCE, T_DIVISION, T_SURFACE_TYPE, T_ROOF_TYPE, T_DATE_OPENED
+//    };
 
 
     // TEAM METHODS
     Team* GetTeamByID(const int &teamID);
     QVector<Team*> GetTeams();  // TODO call in main window for initial setup
+    // TODO Need to methods to update and create teams
+    // They need to update the caches as well as the database
 
     // STADIUM METHODS
-//    QVector<Stadium*> getStadiums();
+    QVector<Stadium*> getStadiums();
     Stadium* getStadiumByID(const int& teamID);
     Stadium* getStadiumByName(const QString name);
+
+    // STADIUM DISTANCE METHODS
+    QVector<StadiumDistance*> getStadiumDistances();
+    StadiumDistance* getStadiumDistanceByID(int id);
 
     // SOUVENIR METHODS
     QVector<Souvenir*> getSouvenirs();
@@ -127,28 +118,24 @@ public:
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);
 
-    // TODO
-    // should dijk call get miles from db
-    // or create adjacency list & pass to dijk
-    // creating the list will make dijk's algo run faster
-
 private:
+    // Moved so that outside code can't call the constructor & must call getInstance
+    Database();
+    static Database *instance;  // this is the singleton pattern
+
     // these maps cache the values of these queries so we only have to run them once
-    QMap<int, Team*>        teamDbMap;
-    QMap<int, Souvenir*>    souvenirDbMap;
-    QMap<int, Purchases*>   purchasesDbMap;
-    QMap<QString, Stadium*> stadiumDbMapByName;
-    QMap<int, Stadium*>     stadiumDbMapByID;
+    QMap<int, Team*>            teamDbCache;
+    QMap<QString, Stadium*>     stadiumDbCacheByName;
+    QMap<int, Stadium*>         stadiumDbCacheByID;
+    QMap<int, StadiumDistance*> stadiumDistanceCache;
+    QMap<int, Souvenir*>        souvenirDbCache;
+    QMap<int, Purchases*>       purchasesDbCache;
 
-    void runGetTeamAndStadiumByIDQry(int teamID);
+    // This will run whenever a team or stadium is requested to ensure the
+    // caches are populated.  Once created, they don't need to be created again.
     void runGetAllTeamsAndStadiums();
+    void runGetAllStadiumDistances();
 
-    // RAII resource aquisition is initialization (constructor/destructor)
-    // constructor will aquire resources to run the query,
-    // destructor will release those resources
-    // query should be declared in the function where it's used so the resources
-    // are cleaned up properly, not accidentally reused across methods.
-    QSqlQuery query;
 };
 
 #endif // DATABASE_H
