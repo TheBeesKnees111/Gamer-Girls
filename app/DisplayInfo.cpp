@@ -170,6 +170,24 @@ void DisplayInfo::PopulateStadiumsOrderByCapacity(QVector<Team*>* teamList)
     }
 }
 
+// Populate teams by conference name (requirement 11)
+void DisplayInfo::PopulateTeamsOrderByConference(QVector<Team*>* teamList)
+{
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        // Create Row
+        ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, CT_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Stadium Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, CT_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
+        // Populate Conference Colum
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, CT_CONFERENCE, new QTableWidgetItem(teamList->at(index)->getConference()));
+        // Populate Location
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, CT_LOCATION, new QTableWidgetItem(teamList->at(index)->getStadium()->getLocation()));
+    }
+}
+
 
 // ------------ NAVIGATION START -------------- //
 
@@ -317,7 +335,21 @@ void DisplayInfo::on_Print_Seating_Cap_PushButton_clicked()
     ui->label_output_totals->setText(totalStadiums);
 }
 
+void DisplayInfo::on_Print_Team_Info_By_ConferencePushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    teamList = db->GetTeamsOrderByConference();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, BY_CONFERENCE_COL_COUNT, TeamsByConferenceColNames);
+
+    // Populate Table
+    PopulateTeamsOrderByConference(teamList);
+}
+
 // ------------ NAVIGATION END -------------- //
+
+
 
 
 

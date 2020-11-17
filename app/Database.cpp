@@ -528,7 +528,30 @@ int Database::GetTotalSeatingCapacity()
 // Get teams ordered by conference (Requirement 11)
 QVector<Team*>* Database::GetTeamsOrderByConference()
 {
-    QVector<Team*>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT teamName, stadiumName, conference, location from teamInfo order by conference");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            team->setTeamName(query.value(0).toString());
+            stadium->setStadiumName(query.value(1).toString());
+            team->setConference(query.value(2).toString());
+            stadium->setLocation(query.value(3).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetTeamsOrderByConference Failed";
+    }
 
     return teams;
 }
