@@ -166,6 +166,9 @@ public:
     // Populate NFL stadiums by date opened (requirement 8)
     void PopulateStadiumsByDate(QVector<Team*>* teamList);
 
+    // Populate open roof stadiums (requirement 9)
+    void PopulateOpenRoofStadiums(QVector<Team*>* teamList);
+
     // Delete table rows (helper method)
     void DeleteAllTableRows(QTableWidget *table);
 
@@ -196,6 +199,8 @@ private slots:
     void on_Print_North_NFC_Teams_PushButton_clicked();
 
     void on_Print_Stadium_B_yDate_PushButton_clicked();
+
+    void on_Show_Open_Roof_Stadiums_PushButton_clicked();
 
 private:
     Ui::DisplayInfo *ui;

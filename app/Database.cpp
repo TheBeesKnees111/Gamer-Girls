@@ -423,9 +423,54 @@ QVector<Team*>* Database::GetStadiumsOrderByDateOpened()
 // Get all open roof stadiums (Requirement 9)
 QVector<Team*>* Database::GetOpenRoofStadiums()
 {
-    QVector<Team*>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT stadiumName, teamName, roofType FROM teamInfo WHERE roofType = 'Open'");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            stadium->setStadiumName(query.value(0).toString());
+            team->setTeamName(query.value(1).toString());
+            stadium->setRoofType(query.value(2).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetOpenRoofStadiums Failed";
+    }
 
     return teams;
+}
+
+// Get number of open roof stadiums (Requirement 9)
+int Database::GetOpenStadiumCount()
+{
+    int count = 0;
+
+    query.prepare("SELECT DISTINCT stadiumName FROM teaminfo WHERE roofType = 'Open'");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            count++;
+        }
+    }
+    else
+    {
+        qDebug() << "GetOpenRoofStadiums Failed";
+    }
+
+
+    return count;
 }
 
 // Get stadiums ordered by seating capacity (Requirement 10)

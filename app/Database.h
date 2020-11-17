@@ -96,6 +96,9 @@ public:
     // Get all open roof stadiums (Requirement 9)
     QVector<Team*>* GetOpenRoofStadiums();
 
+    // Get number of open roof stadiums (Requirement 9)
+    int GetOpenStadiumCount();
+
     // Get stadiums ordered by seating capacity (Requirement 10)
     QVector<Team*>* GetStadiumsOrderBySeatingCap();
 
