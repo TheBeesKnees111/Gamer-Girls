@@ -9,6 +9,7 @@
 #include <QtCore>
 #include <vector>
 #include "Dijkstra.h"
+#include "StadiumDistance.h"
 using namespace std;
 
 class Team;
@@ -32,21 +33,27 @@ public:
 
     // DIJKSTRA METHODS
     //vector<cityNode> createCitiesFromDatabase();
-    vector<StadiumNode> GetStadiums();
+    QVector<Stadium*> getStadiums();
 
     //vector<cityConnection> createConnectionsFromDatabase();
-    vector<StadiumConnection> createConnections();
+    QVector<StadiumDistance*> createConnections();
 
     //cityGraph createCityGraphFromDatabase();
     StadiumGraph createStadiumGraph();
 
+
+    // STADIUM DISTANCE METHODS
+    StadiumDistance* getStadiumDistanceByID(int id);
+
+
     // TEAM METHODS
     Team* GetTeamByID(const int &teamID);
-    QVector<Team*> GetTeams();
+    QVector<Team*> GetTeams();  // TODO call in main window for initial setup
 
     // STADIUM METHODS
-    QVector<Stadium*> getStadiums();
+//    QVector<Stadium*> getStadiums();
     Stadium* getStadiumByID(const int& teamID);
+    Stadium* getStadiumByName(const QString name);
 
     // SOUVENIR METHODS
     QVector<Souvenir*> getSouvenirs();
@@ -126,14 +133,21 @@ public:
     // creating the list will make dijk's algo run faster
 
 private:
-    QMap<int, Team*>      teamDbMap;
-    QMap<int, Stadium*>   stadiumDbMap;
-    QMap<int, Souvenir*>  souvenirDbMap;
-    QMap<int, Purchases*> purchasesDbMap;
+    // these maps cache the values of these queries so we only have to run them once
+    QMap<int, Team*>        teamDbMap;
+    QMap<int, Souvenir*>    souvenirDbMap;
+    QMap<int, Purchases*>   purchasesDbMap;
+    QMap<QString, Stadium*> stadiumDbMapByName;
+    QMap<int, Stadium*>     stadiumDbMapByID;
 
     void runGetTeamAndStadiumByIDQry(int teamID);
     void runGetAllTeamsAndStadiums();
 
+    // RAII resource aquisition is initialization (constructor/destructor)
+    // constructor will aquire resources to run the query,
+    // destructor will release those resources
+    // query should be declared in the function where it's used so the resources
+    // are cleaned up properly, not accidentally reused across methods.
     QSqlQuery query;
 };
 

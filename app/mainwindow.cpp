@@ -33,10 +33,12 @@ MainWindow::MainWindow(QWidget *parent)
     db = new Database;
 
     StadiumGraph graph = db->createStadiumGraph();
-    StadiumNode start{"Buffalo Bills"};
-    StadiumNode endLocation{"Arizona Cardinals"};
+    Stadium* start{db->getStadiumByName("Soldier Field")};
+    Stadium* endLocation{db->getStadiumByName("Ford Field")};
 
-    vector<string> path = Dijkstra(graph, start, endLocation);
+    // FIXME printed path is empty.  Need to stop thru the debugger from here
+    QMap<QString, StadiumDistance*> spanningTree = Dijkstra(graph, start);
+    QVector<StadiumDistance*> path = buildPath(spanningTree, endLocation);
     printDijkstra(path);
 }
 

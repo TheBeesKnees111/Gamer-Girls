@@ -19,6 +19,7 @@ SOURCES += \
     Souvenir.cpp \
     SouvenirAndTrip.cpp \
     Stadium.cpp \
+    StadiumDistance.cpp \
     Team.cpp \
     main.cpp \
     mainwindow.cpp
@@ -34,6 +35,7 @@ HEADERS += \
     Souvenir.h \
     SouvenirAndTrip.h \
     Stadium.h \
+    StadiumDistance.h \
     Team.h \
     mainwindow.h
 
