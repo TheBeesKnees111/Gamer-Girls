@@ -38,7 +38,7 @@ INSERT INTO teamInfo VALUES(22,'New England Patriots','Gillette Stadium','66829'
 INSERT INTO teamInfo VALUES(23,'New Orleans Saints','Mercedes-Benz Superdome','73000','New Orleans, Louisiana','National Football Conference','NFC South','UBU Sports Speed Series S5-M Synthetic Turf','Fixed',1975);
 INSERT INTO teamInfo VALUES(24,'New York Giants','MetLife Stadium','82500','East Rutherford, New Jersey','National Football Conference','NFC East','UBU Sports Speed Series S5-M Synthetic Turf','Open',2010);
 INSERT INTO teamInfo VALUES(25,'New York Jets','MetLife Stadium','82500','East Rutherford, New Jersey','American Football Conference','AFC East','UBU Sports Speed Series S5-M Synthetic Turf','Open',2010);
-INSERT INTO teamInfo VALUES(26,'Philadelphia Eagles','Lincoln Financial Field','69,596','Philadelphia, Pennsylvania','National Football Conference','NFC East','Desso GrassMaster','Open',2003);
+INSERT INTO teamInfo VALUES(26,'Philadelphia Eagles','Lincoln Financial Field','69596','Philadelphia, Pennsylvania','National Football Conference','NFC East','Desso GrassMaster','Open',2003);
 INSERT INTO teamInfo VALUES(27,'Pittsburgh Steelers','Heinz Field','68400','Pittsburgh, Pennsylvania','American Football Conference','AFC North','Kentucky Bluegrass','Open',2001);
 INSERT INTO teamInfo VALUES(28,'San Francisco 49ers','Levi''s Stadium','68500','Santa Clara, California','National Football Conference','NFC West','Bermuda grass  ','Open',2014);
 INSERT INTO teamInfo VALUES(29,'Seattle Seahawks','CenturyLink Field','68000','Seattle, Washington','National Football Conference','NFC West','FieldTurf Revolution','Open',2002);
