@@ -122,6 +122,20 @@ QVector<Team*> Database::GetTeams()
     return teamDbMap.values().toVector();
 }
 
+//Return team name by ID
+QString Database::GetTeamNameByID(const int& teamID)
+{
+	query.prepare("SELECT teamName FROM teamInfo "
+				  "WHERE teamID = (:teamID)");
+	query.bindValue(":teamID", teamID);
+
+	if(!query.exec())
+		qDebug() << "ERROR - Database::GetTeamNameByID " << query.lastError();
+
+	return query.value(0).toString();
+}
+
+
 Stadium* Database::getStadiumByID(const int& teamID)
 {
 	query.prepare("SELECT stadiumName, seatingCap, location, "

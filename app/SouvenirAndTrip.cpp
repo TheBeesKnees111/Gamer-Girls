@@ -9,7 +9,7 @@
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SouvenirAndTrip)
+	ui(new Ui::SouvenirAndTrip)
 {
 	ui->setupUi(this);
 
