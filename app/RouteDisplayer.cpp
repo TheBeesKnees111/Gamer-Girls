@@ -1,11 +1,11 @@
 #include "RouteDisplayer.h"
 #include "ui_RouteDisplayer.h"
 
-RouteDisplayer::RouteDisplayer(QWidget *parent, QList<int> route, int totalDistance) :
-    QDialog(parent),
-    ui(new Ui::RouteDisplayer),
-    route(route),
-    totalDistance(totalDistance)
+RouteDisplayer::RouteDisplayer(QWidget *parent, QStringList cities, QList<int> distances) :
+	QDialog(parent),
+	ui(new Ui::RouteDisplayer),
+	route(distances),
+	totalDistance(totalDistance)
 {
     ui->setupUi(this);
 

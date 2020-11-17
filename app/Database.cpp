@@ -2,6 +2,7 @@
 #include "Team.h"
 #include "Stadium.h"
 #include "StadiumDistance.h"
+#include "Souvenir.h"
 #include <QFileInfo>
 #include <QSqlError>
 #include <QFileDialog>
@@ -40,8 +41,7 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     //    setDatabaseName(QDir::currentPath() + windowsPathFile);
     QString macPathFile = "/db";
     setDatabaseName(QDir::currentPath() + macPathFile);
-
-    qDebug() << QDir::currentPath() + "/db/nfldb.db";
+    qDebug() << QDir::currentPath() + macPathFile;
 
     // Print error if database does not open
     if (!open())
@@ -52,6 +52,19 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     {
         qDebug() << "Connection to database succeeded";
     }
+}
+
+int GetTeamIDByCityName(QString location)
+{
+    QSqlQuery query;
+
+    query.prepare("SELECT teamID FROM teamInfo WHERE location = :location");
+    query.bindValue(":location", location);
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    return query.value(0).toInt();
 }
 
 // DIJKSTRA ALGO
@@ -144,110 +157,294 @@ Purchases* Database::getPurchasesByID(int purchaseID)
 }
 
 // Add souvenir to database
-void AddSouvenir(const QString &team, const QString &souvenirName, const QString &price)
+void Database::AddSouvenir(const QString &team, const QString &souvenirName, const QString &price)
 {
 
 }
 
 // Change price of souvenir in database
-void UpdateSouvenirPrice(const QString &SouvenirName, const QString teamName, const QString &price)
+void Database::UpdateSouvenirPrice(const QString &SouvenirName, const QString teamName, const QString &price)
 {
 
 }
 
 // Remove souvenir from database
-void DeleteSouvenir(const QString &SouvenirName, const QString &teamName)
+void Database::DeleteSouvenir(const QString &SouvenirName, const QString &teamName)
 {
 
 }
 
-// Get Info for one team (Requirement 2)
-Team* GetSingleTeam(const QString &teamName);
-
-// Get all teams ordered by team name (Requirement 3)
-QVector<Team*> GetTeamsOrderByName()
+// Get all team names (for use in comboboxes)
+QStringList Database::GetTeamNames()
 {
-    QVector<Team*> v(NULL);
+    QSqlQuery query;
+    QStringList teamNames;
+    query.prepare("SELECT teamName from teaminfo order by teamName");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            // Add name to stringlist
+            teamNames.append(query.value(0).toString());
+        }
+    }
+    else
+    {
+        qDebug() << "GetTeamNames() failed";
+    }
+
+    return teamNames;
+}
+
+// Get Info for one team (Requirement 2)
+Team* Database::GetSingleTeam(const QString &teamName)
+{
+    QSqlQuery query;
+    Team* team = new Team;
+    Stadium* stadium = new Stadium;
+    query.prepare("select * from teaminfo where teamname = :teamName");
+    query.bindValue(":teamName", teamName);
+
+    // Execute
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team->setTeamName(query.value(1).toString());
+            stadium->setStadiumName(query.value(2).toString());
+            stadium->setSeatingCapacity(query.value(3).toInt());
+            stadium->setLocation(query.value(4).toString());
+            team->setConference(query.value(5).toString());
+            team->setDivision(query.value(6).toString());
+            stadium->setSurfaceType(query.value(7).toString());
+            stadium->setRoofType(query.value(8).toString());
+            stadium->setDateOpened(query.value(9).toInt());
+            team->setStadium(stadium);
+        }
+    }
+    else
+    {
+        qDebug() << "GetSingleTeam failed";
+    }
+
+    return team;
+}
+
+// TODO, USED COMBOBOX LABELS FOR THIS ONE. MIGHT NOT NEED THIS METHOD
+// Get all teams ordered by team name (Requirement 3)
+QVector<Team*>* Database::GetTeamsOrderByName()
+{
+    QVector<Team*> *v(NULL);
 
     return v;
 }
 
 // Get all teams and stadiums ordered by stadium name (Requirement 4)
-QVector<Team*> GetTeamsOrderByStadium()
+QVector<Team*>* Database::GetTeamsOrderByStadium()
 {
-    QVector<Team*> v(NULL);
+    QSqlQuery query;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
 
-    return v;
+    query.prepare("SELECT stadiumName, teamName FROM teamInfo order by stadiumName");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            stadium->setStadiumName(query.value(0).toString());
+            team->setTeamName(query.value(1).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+
+    return teams;
 }
 
 // Get all AFC Teams sorted by team name (Requirement 5)
-QVector<Team*> GetAFCTeamsOrderByTeamName()
+QVector<Team*>* Database::GetAFCTeamsOrderByTeamName()
 {
-    QVector<Team*> v(NULL);
+    QSqlQuery query;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
 
-    return v;
+    query.prepare("SELECT teamName, conference FROM teamInfo WHERE conference = 'American Football Conference' ORDER BY teamName");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            team->setTeamName(query.value(0).toString());
+            team->setConference(query.value(1).toString());
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetAFCTeamsOrderByTeamName Failed";
+    }
+
+    return teams;
 }
 
 // Get all NFC teams sorted by team name (Requirement 6)
-QVector<Team*> GetNFCTeamsOrderByTeamName()
+QVector<Team*>* Database::GetNFCTeamsOrderByTeamName()
 {
-    QVector<Team*> v(NULL);
+    QSqlQuery query;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
 
-    return v;
+    query.prepare("SELECT teamName, conference FROM teamInfo WHERE conference = 'National Football Conference' ORDER BY teamName");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            team->setTeamName(query.value(0).toString());
+            team->setConference(query.value(1).toString());
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetNFCTeamsOrderByTeamName Failed";
+    }
+
+    return teams;
 }
 
 // Get all NFC North teams ordered by team name (Requirement 7)
-QVector<Team*> GetNorthNFCTeamsOrderByTeamName()
+QVector<Team*>* Database::GetNorthNFCTeamsOrderByTeamName()
 {
-    QVector<Team*> v(NULL);
+    QSqlQuery query;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
 
-    return v;
+    query.prepare("SELECT teamName, division FROM teamInfo WHERE division = 'NFC North' ORDER BY teamName;");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            team->setTeamName(query.value(0).toString());
+            team->setConference(query.value(1).toString());
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetNFCNORTHTeamsOrderByTeamName Failed";
+    }
+
+    return teams;
 }
 
 // Get all stadiums sorted by date opened (Requirement 8)
-QVector<Team*> GetStadiumsOrderByDateOpened()
+QVector<Team*>* Database::GetStadiumsOrderByDateOpened()
 {
-    QVector<Team*> v(NULL);
+    QSqlQuery query;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
 
-    return v;
+    query.prepare("SELECT stadiumName, teamName, dateOpened FROM teaminfo ORDER BY dateOpened;");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            stadium->setStadiumName(query.value(0).toString());
+            team->setTeamName(query.value(1).toString());
+            stadium->setDateOpened(query.value(2).toInt());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetStadiumsOrderByDateOpened Failed";
+    }
+
+    return teams;
 }
 
 // Get all open roof stadiums (Requirement 9)
-QVector<Team*> GetOpenRoofStadiums()
+QVector<Team*>* Database::GetOpenRoofStadiums()
 {
-    QVector<Team*> v(NULL);
+    QVector<Team*>* teams = nullptr;
 
-    return v;
+    return teams;
 }
 
 // Get stadiums ordered by seating capacity (Requirement 10)
-QVector<Team*> GetStadiumsOrderBySeatingCap()
+QVector<Team*>* Database::GetStadiumsOrderBySeatingCap()
 {
-    QVector<Team*> v(NULL);
+    QVector<Team*>* teams = nullptr;
 
-    return v;
+    return teams;
 }
 
 // Get teams ordered by conference (Requirement 11)
-QVector<Team*> GetTeamsOrderByConference()
+QVector<Team*>* Database::GetTeamsOrderByConference()
 {
-    QVector<Team*> v(NULL);
+    QVector<Team*>* teams = nullptr;
 
-    return v;
+    return teams;
 }
 
 // Get teams with bermuda grass surface type (Requirement 12)
-QVector<Team*> GetBermudaGrassTeams()
+QVector<Team*>* Database::GetBermudaGrassTeams()
 {
-    QVector<Team*> v(NULL);
+    QVector<Team*>* teams = nullptr;
 
-    return v;
+    return teams;
 }
 
 // Get all souvenirs for one team (Requirement 13)
-Team* GetSingleTeamSouvenirs(const QString &teamName)
+Team* Database::GetSingleTeamSouvenirs(const QString &teamName)
 {
-    return nullptr;
+    QSqlQuery query;
+    Team* team = new Team;
+    QVector<Souvenir*> souvenirs;
+    Souvenir* souvenir = nullptr;
+
+    query.prepare("select teamInfo.teamName, souvenirs.itemName, souvenirs.itemPrice from teamInfo, souvenirs where teamInfo.teamName = :teamName and teamInfo.teamID = souvenirs.teamID");
+
+    query.bindValue(":teamName", teamName);
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            if(team->getTeamName() != query.value(0).toString())
+            {
+                team->setTeamName(query.value(0).toString());
+            }
+
+            souvenir = new Souvenir;
+            souvenir->setItemName(query.value(1).toString());
+            souvenir->setItemPrice(query.value(2).toFloat());
+
+            souvenirs.push_back(souvenir);
+        }
+
+        team->setSouvenirList(souvenirs);
+    }
+    else
+    {
+        qDebug() << "GetSingleTeamSouvenirs Failed!";
+    }
+
+    return team;
 }
 
 

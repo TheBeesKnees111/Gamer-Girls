@@ -57,3 +57,5 @@ compile_commands.json
 *_qmlcache.qrc
 
 app/CS1D-FootbalProject.app/
+
+*.stash

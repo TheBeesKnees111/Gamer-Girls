@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>869</width>
-    <height>503</height>
+    <width>871</width>
+    <height>637</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,66 +39,11 @@
     <string>Travel Plan:</string>
    </property>
   </widget>
-  <widget class="QTableWidget" name="SelectFoodTable">
-   <property name="geometry">
-    <rect>
-     <x>680</x>
-     <y>30</y>
-     <width>141</width>
-     <height>361</height>
-    </rect>
-   </property>
-   <property name="sortingEnabled">
-    <bool>true</bool>
-   </property>
-   <property name="columnCount">
-    <number>4</number>
-   </property>
-   <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>80</number>
-   </attribute>
-   <attribute name="verticalHeaderVisible">
-    <bool>false</bool>
-   </attribute>
-   <column>
-    <property name="text">
-     <string>Qty</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>City</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Food</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Price</string>
-    </property>
-   </column>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>430</y>
-     <width>121</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Total Food Price:</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>330</y>
+     <x>40</x>
+     <y>440</y>
      <width>121</width>
      <height>16</height>
     </rect>
@@ -133,8 +78,8 @@
   <widget class="QDialogButtonBox" name="Confirmation_PushButton">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>410</y>
+     <x>30</x>
+     <y>520</y>
      <width>91</width>
      <height>61</height>
     </rect>
@@ -151,8 +96,8 @@
     <rect>
      <x>30</x>
      <y>40</y>
-     <width>601</width>
-     <height>241</height>
+     <width>821</width>
+     <height>381</height>
     </rect>
    </property>
    <property name="font">
@@ -175,19 +120,6 @@
      <string>Miles To Next City</string>
     </property>
    </column>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>650</x>
-     <y>10</y>
-     <width>211</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Select Foods:</string>
-   </property>
   </widget>
  </widget>
  <resources/>

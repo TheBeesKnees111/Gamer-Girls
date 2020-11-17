@@ -36,7 +36,7 @@ void Stadium::setStadiumName(const QString &value)
     }
 }
 
-void Stadium::setSeatingCapacity(int value)
+void Stadium::setSeatingCapacity(const int value)
 {
     if (value != seatingCapacity)
     {
