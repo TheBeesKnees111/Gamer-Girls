@@ -102,6 +102,9 @@ public:
     // Get stadiums ordered by seating capacity (Requirement 10)
     QVector<Team*>* GetStadiumsOrderBySeatingCap();
 
+    // Get total seating capacity of entire NFL (Requirement 10)
+    int GetTotalSeatingCapacity();
+
     // Get teams ordered by conference (Requirement 11)
     QVector<Team*>* GetTeamsOrderByConference();
 

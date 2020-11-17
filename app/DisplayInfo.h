@@ -169,6 +169,9 @@ public:
     // Populate open roof stadiums (requirement 9)
     void PopulateOpenRoofStadiums(QVector<Team*>* teamList);
 
+    // Populate stadiums ordered by capacity (requirement 10)
+    void PopulateStadiumsOrderByCapacity(QVector<Team*>* teamList);
+
     // Delete table rows (helper method)
     void DeleteAllTableRows(QTableWidget *table);
 
@@ -185,7 +188,6 @@ private slots:
     /// page will be hidden before showing the Main Window
 	void on_Home_PushButton_clicked();
 
-
     void on_Select_Stadium_ComboBox_activated(const QString &arg1);
 
     void on_Print_All_Teams_PushButton_clicked();
@@ -201,6 +203,8 @@ private slots:
     void on_Print_Stadium_B_yDate_PushButton_clicked();
 
     void on_Show_Open_Roof_Stadiums_PushButton_clicked();
+
+    void on_Print_Seating_Cap_PushButton_clicked();
 
 private:
     Ui::DisplayInfo *ui;

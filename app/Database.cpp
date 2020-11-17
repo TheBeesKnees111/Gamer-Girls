@@ -466,9 +466,8 @@ int Database::GetOpenStadiumCount()
     }
     else
     {
-        qDebug() << "GetOpenRoofStadiums Failed";
+        qDebug() << "GetOpenStadiumsCount Failed";
     }
-
 
     return count;
 }
@@ -476,10 +475,55 @@ int Database::GetOpenStadiumCount()
 // Get stadiums ordered by seating capacity (Requirement 10)
 QVector<Team*>* Database::GetStadiumsOrderBySeatingCap()
 {
-    QVector<Team*>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT stadiumName, teamName, seatingCap FROM teamInfo ORDER BY seatingCap;");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            stadium->setStadiumName(query.value(0).toString());
+            team->setTeamName(query.value(1).toString());
+            stadium->setSeatingCapacity(query.value(2).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetStadiumsOrderBySeatingCap Failed";
+    }
 
     return teams;
 }
+
+// Get total seating capacity of entire NFL (Requirement 10)
+int Database::GetTotalSeatingCapacity()
+{
+    int count = 0;
+
+    query.prepare("SELECT DISTINCT seatingCap FROM teamInfo");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            count = count + query.value(0).toInt();
+        }
+    }
+    else
+    {
+        qDebug() << "GetOpenStadiumsCount Failed";
+    }
+
+    return count;
+}
+
 
 // Get teams ordered by conference (Requirement 11)
 QVector<Team*>* Database::GetTeamsOrderByConference()

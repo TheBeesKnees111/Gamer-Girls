@@ -154,6 +154,23 @@ void DisplayInfo::PopulateOpenRoofStadiums(QVector<Team*>* teamList)
 }
 
 
+// Populate stadiums ordered by capacity (requirement 10)
+void DisplayInfo::PopulateStadiumsOrderByCapacity(QVector<Team*>* teamList)
+{
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        // Create Row
+        ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Populate Stadium Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
+        // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Date Opened Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_SEATING_CAP, new QTableWidgetItem(teamList->at(index)->getStadium()->getSeatingCapacity()));
+    }
+}
+
+
 // ------------ NAVIGATION START -------------- //
 
 
@@ -278,6 +295,26 @@ void DisplayInfo::on_Show_Open_Roof_Stadiums_PushButton_clicked()
     totalStadiums = totalStadiums + QVariant(openStadiumCount).toString();
     ui->label_output_totals->setText(totalStadiums);
 
+}
+
+
+void DisplayInfo::on_Print_Seating_Cap_PushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    int totalSeating = db->GetTotalSeatingCapacity();
+    QString totalStadiums = "Seating Capacity: ";
+
+    teamList = db->GetStadiumsOrderBySeatingCap();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, STADIUMS_SEATING_CAP, SeatingCapStadiumsColNames);
+
+    // Populate Table
+    PopulateStadiumsOrderByCapacity(teamList);
+
+    // Populate label
+    totalStadiums = totalStadiums + QVariant(totalSeating).toString();
+    ui->label_output_totals->setText(totalStadiums);
 }
 
 // ------------ NAVIGATION END -------------- //

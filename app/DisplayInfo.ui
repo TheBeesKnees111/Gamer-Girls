@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>410</y>
+     <y>390</y>
      <width>271</width>
      <height>31</height>
     </rect>
@@ -53,7 +53,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>470</y>
+     <y>440</y>
      <width>271</width>
      <height>31</height>
     </rect>
@@ -171,7 +171,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>530</y>
+     <y>480</y>
      <width>271</width>
      <height>31</height>
     </rect>
@@ -247,6 +247,19 @@
    </property>
    <property name="text">
     <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Print_Seating_Cap_PushButton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>530</y>
+     <width>271</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Print Stadiums by Seating Capacity</string>
    </property>
   </widget>
  </widget>
