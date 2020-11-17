@@ -111,6 +111,9 @@ public:
     // Get teams with bermuda grass surface type (Requirement 12)
     QVector<Team*>* GetBermudaGrassTeams();
 
+    // Get total bermuda grass stadiums (Requirement 12)
+    int GetBermudaGrassTeamCount();
+
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);
 

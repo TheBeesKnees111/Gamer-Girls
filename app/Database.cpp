@@ -559,9 +559,52 @@ QVector<Team*>* Database::GetTeamsOrderByConference()
 // Get teams with bermuda grass surface type (Requirement 12)
 QVector<Team*>* Database::GetBermudaGrassTeams()
 {
-    QVector<Team*>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT teamName, surfaceType FROM teamInfo WHERE surfaceType = 'Bermuda Grass'");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            team->setTeamName(query.value(0).toString());
+            stadium->setSurfaceType(query.value(1).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetBermudaGrassTeams";
+    }
 
     return teams;
+}
+
+// Get total bermuda grass stadiums (Requirement 12)
+int Database::GetBermudaGrassTeamCount()
+{
+    int count = 0;
+
+    query.prepare("SELECT teamName, surfaceType FROM teamInfo WHERE surfaceType = 'Bermuda Grass'");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            count++;
+        }
+    }
+    else
+    {
+        qDebug() << "GetBermudaGrassStadiumCount Failed";
+    }
+
+    return count;
 }
 
 // Get all souvenirs for one team (Requirement 13)

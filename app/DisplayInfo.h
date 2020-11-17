@@ -175,6 +175,9 @@ public:
     // Populate teams by conference name (requirement 11)
     void PopulateTeamsOrderByConference(QVector<Team*>* teamList);
 
+    // Populate teams of type Bermuda Grass (requirement 12)
+    void PopulateBermudaGrassTeams(QVector<Team*>* teamList);
+
     // Delete table rows (helper method)
     void DeleteAllTableRows(QTableWidget *table);
 
@@ -210,6 +213,8 @@ private slots:
     void on_Print_Seating_Cap_PushButton_clicked();
 
     void on_Print_Team_Info_By_ConferencePushButton_clicked();
+
+    void on_Show_Bermuda_Grass_Stadiums_PushButton_clicked();
 
 private:
     Ui::DisplayInfo *ui;
