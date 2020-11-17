@@ -82,7 +82,7 @@ public:
     QVector<Team*>* GetTeamsOrderByStadium();
 
     // Get all AFC Teams sorted by team name (Requirement 5)
-    QVector<Team>* GetAFCTeamsOrderByTeamName();
+    QVector<Team*>* GetAFCTeamsOrderByTeamName();
 
     // Get all NFC teams sorted by team name (Requirement 6)
     QVector<Team>* GetNFCTeamsOrderByTeamName();

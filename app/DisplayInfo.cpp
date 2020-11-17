@@ -106,6 +106,20 @@ void DisplayInfo::PopulateTeamsOrderByStadium(QVector<Team*>* teamList)
     }
 }
 
+// Populates teams from AFC conference ordered by team name (requirement 5)
+void DisplayInfo::PopulateAFCTeams(QVector<Team*>* teamList)
+{
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        // Create Row
+        ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Populate Stadium Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AN_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AN_CONFERENCE, new QTableWidgetItem(teamList->at(index)->getConference()));
+    }
+}
+
 
 // ------------ NAVIGATION START -------------- //
 
@@ -163,6 +177,20 @@ void DisplayInfo::on_Print_Stadium_PushButton_clicked()
     PopulateTeamsOrderByStadium(teamList);
 }
 
+
+void DisplayInfo::on_Print_AFC_Teams_PushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    teamList = db->GetAFCTeamsOrderByTeamName();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, AFC_COL_COUNT, AFCTeamColNames);
+
+    // Populate Table
+    PopulateAFCTeams(teamList);
+}
+
 // ------------ NAVIGATION END -------------- //
+
 
 

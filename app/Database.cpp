@@ -324,9 +324,27 @@ QVector<Team*>* Database::GetTeamsOrderByStadium()
 }
 
 // Get all AFC Teams sorted by team name (Requirement 5)
-QVector<Team>* Database::GetAFCTeamsOrderByTeamName()
+QVector<Team*>* Database::GetAFCTeamsOrderByTeamName()
 {
-    QVector<Team>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+
+    query.prepare("SELECT teamName, conference FROM teamInfo WHERE conference = 'American Football Conference' ORDER BY teamName");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            team->setTeamName(query.value(0).toString());
+            team->setConference(query.value(1).toString());
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetAFCTeamsOrderByTeamName Failed";
+    }
 
     return teams;
 }

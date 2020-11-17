@@ -160,6 +160,9 @@ public:
     // Populates stadiums with teams ordered by stadium name (requirement 4)
     void PopulateTeamsOrderByStadium(QVector<Team*>* teamList);
 
+    // Populates teams from AFC conference ordered by team name (requirement 5)
+    void PopulateAFCTeams(QVector<Team*>* teamList);
+
     // Delete table rows (helper method)
     void DeleteAllTableRows(QTableWidget *table);
 
@@ -182,6 +185,8 @@ private slots:
     void on_Print_All_Teams_PushButton_clicked();
 
     void on_Print_Stadium_PushButton_clicked();
+
+    void on_Print_AFC_Teams_PushButton_clicked();
 
 private:
     Ui::DisplayInfo *ui;
