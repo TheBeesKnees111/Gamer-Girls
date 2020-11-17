@@ -137,6 +137,71 @@ void DisplayInfo::PopulateStadiumsByDate(QVector<Team*>* teamList)
     }
 }
 
+// Populate open roof stadiums (requirement 9)
+void DisplayInfo::PopulateOpenRoofStadiums(QVector<Team*>* teamList)
+{
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        // Create Row
+        ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Populate Stadium Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, OS_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
+        // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, OS_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Date Opened Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, OS_ROOF_TYPE, new QTableWidgetItem(teamList->at(index)->getStadium()->getRoofType()));
+    }
+}
+
+
+// Populate stadiums ordered by capacity (requirement 10)
+void DisplayInfo::PopulateStadiumsOrderByCapacity(QVector<Team*>* teamList)
+{
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        // Create Row
+        ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Populate Stadium Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
+        // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Date Opened Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_SEATING_CAP, new QTableWidgetItem(teamList->at(index)->getStadium()->getSeatingCapacity()));
+    }
+}
+
+// Populate teams by conference name (requirement 11)
+void DisplayInfo::PopulateTeamsOrderByConference(QVector<Team*>* teamList)
+{
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        // Create Row
+        ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, CT_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Stadium Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, CT_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
+        // Populate Conference Colum
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, CT_CONFERENCE, new QTableWidgetItem(teamList->at(index)->getConference()));
+        // Populate Location
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, CT_LOCATION, new QTableWidgetItem(teamList->at(index)->getStadium()->getLocation()));
+    }
+}
+
+// Populate teams of type Bermuda Grass (requirement 12)
+void DisplayInfo::PopulateBermudaGrassTeams(QVector<Team*>* teamList)
+{
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        // Create Row
+        ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, BG_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Stadium Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, BG_SURFACE_TYPE, new QTableWidgetItem(teamList->at(index)->getStadium()->getSurfaceType()));
+    }
+}
+
 
 // ------------ NAVIGATION START -------------- //
 
@@ -243,7 +308,86 @@ void DisplayInfo::on_Print_Stadium_B_yDate_PushButton_clicked()
     PopulateStadiumsByDate(teamList);
 }
 
+
+void DisplayInfo::on_Show_Open_Roof_Stadiums_PushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    int openStadiumCount = db->GetOpenStadiumCount();
+    QString totalStadiums = "Open Roof Stadiums: ";
+
+    teamList = db->GetOpenRoofStadiums();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, OPEN_ROOF_COL_COUNT, OpenStadiumsColNames);
+
+    // Populate Table
+    PopulateOpenRoofStadiums(teamList);
+
+    // Populate label
+    totalStadiums = totalStadiums + QVariant(openStadiumCount).toString();
+    ui->label_output_totals->setText(totalStadiums);
+
+}
+
+
+void DisplayInfo::on_Print_Seating_Cap_PushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    int totalSeating = db->GetTotalSeatingCapacity();
+    QString totalStadiums = "Seating Capacity: ";
+
+    teamList = db->GetStadiumsOrderBySeatingCap();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, STADIUMS_SEATING_CAP, SeatingCapStadiumsColNames);
+
+    // Populate Table
+    PopulateStadiumsOrderByCapacity(teamList);
+
+    // Populate label
+    totalStadiums = totalStadiums + QVariant(totalSeating).toString();
+    ui->label_output_totals->setText(totalStadiums);
+}
+
+void DisplayInfo::on_Print_Team_Info_By_ConferencePushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    teamList = db->GetTeamsOrderByConference();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, BY_CONFERENCE_COL_COUNT, TeamsByConferenceColNames);
+
+    // Populate Table
+    PopulateTeamsOrderByConference(teamList);
+}
+
+
+
+void DisplayInfo::on_Show_Bermuda_Grass_Stadiums_PushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    int bermudaGrassTotal = db->GetBermudaGrassTeamCount();
+    QString totalStadiums = "Bermuda Grass Teams: ";
+
+    teamList = db->GetBermudaGrassTeams();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, BERMUDA_GRASS_COL_COUNT, BermudaGrassTeamsColNames);
+
+    // Populate Table
+    PopulateBermudaGrassTeams(teamList);
+
+    // Populate label
+    totalStadiums = totalStadiums + QVariant(bermudaGrassTotal).toString();
+    ui->label_output_totals->setText(totalStadiums);
+
+
+}
+
+
 // ------------ NAVIGATION END -------------- //
+
+
 
 
 

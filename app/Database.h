@@ -96,14 +96,23 @@ public:
     // Get all open roof stadiums (Requirement 9)
     QVector<Team*>* GetOpenRoofStadiums();
 
+    // Get number of open roof stadiums (Requirement 9)
+    int GetOpenStadiumCount();
+
     // Get stadiums ordered by seating capacity (Requirement 10)
     QVector<Team*>* GetStadiumsOrderBySeatingCap();
+
+    // Get total seating capacity of entire NFL (Requirement 10)
+    int GetTotalSeatingCapacity();
 
     // Get teams ordered by conference (Requirement 11)
     QVector<Team*>* GetTeamsOrderByConference();
 
     // Get teams with bermuda grass surface type (Requirement 12)
     QVector<Team*>* GetBermudaGrassTeams();
+
+    // Get total bermuda grass stadiums (Requirement 12)
+    int GetBermudaGrassTeamCount();
 
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);
