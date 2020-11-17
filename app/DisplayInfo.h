@@ -23,7 +23,7 @@ public:
                  */
 
     // Number of columns in "Show One Team" table
-    const int ONE_TEAM_COL_COUNT = 10;
+    const int ONE_TEAM_COL_COUNT = 9;
 
     // Column positions in "Show One Team" table
     enum OneTeamColPositions
@@ -146,10 +146,25 @@ public:
                  */
 
     // Intializes viewer table to blank
-    void InitializeViewTable (QTableWidget* table, const int &cols, const QStringList &headers);
+    void InitializeViewTable(QTableWidget* table, const int &cols, const QStringList &headers);
 
     // Populates viewer table with information
-    void PopulateViewTable (QTableWidget* table, QVector<Team*> teamList);
+    void PopulateViewTable(QTableWidget* table, QVector<Team*> teamList);
+
+    // Populate single team information (requirement 2)
+    void PopulateOneTeam(QTableWidget* table, Team* team);
+
+    // Populates all team names (requirement 3)
+    void PopulateAllTeams(QTableWidget* table, QStringList teamList);
+
+    // Populates stadiums with teams ordered by stadium name (requirement 4)
+    void PopulateTeamsOrderByStadium(QVector<Team*>* teamList);
+
+    // Populates teams from AFC conference ordered by team name (requirement 5)
+    void PopulateAFCTeams(QVector<Team*>* teamList);
+
+    // Delete table rows (helper method)
+    void DeleteAllTableRows(QTableWidget *table);
 
     // Constructor
     explicit DisplayInfo(QWidget *parent = nullptr);
@@ -165,8 +180,19 @@ private slots:
 	void on_Home_PushButton_clicked();
 
 
+    void on_Select_Stadium_ComboBox_activated(const QString &arg1);
+
+    void on_Print_All_Teams_PushButton_clicked();
+
+    void on_Print_Stadium_PushButton_clicked();
+
+    void on_Print_AFC_Teams_PushButton_clicked();
+
 private:
     Ui::DisplayInfo *ui;
+
+    //TODO we should figure out how to avoid using this
+    Database* db;
 };
 
 #endif // DISPLAYINFO_H
