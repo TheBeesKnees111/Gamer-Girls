@@ -28,6 +28,7 @@ public:
     // TEAM METHODS
     Team* GetTeamByID(const int &teamID);
     QVector<Team*> GetTeams();
+	QString GetTeamNameByID(const int& teamID);
 
     // STADIUM METHODS
     QVector<Stadium*> getStadiums();

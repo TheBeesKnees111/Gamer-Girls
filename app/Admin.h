@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QString>
 #include <QTableView>
+#include <QSqlQuery>
 #include <QSqlQueryModel>
 
 namespace Ui {
@@ -91,13 +92,13 @@ public:
     void InitializeSouvenirTable (QTableView* table);
 
     // Populates souvenir table with relevant information
-    void PopulateSouvenirTable (QTableView* table, QSqlQueryModel* model);
+	void PopulateSouvenirTable (QSqlQueryModel* model);
 
     // Intializes stadium table to blank
     void InitializeStadiumTable (QTableView* table);
 
     // Populates stadium table with relevant information
-    void PopulateStadiumTable (QTableView* table, QSqlQueryModel* model);
+	void PopulateStadiumTable (QSqlQueryModel* model);
 
     // Constructor
     explicit Admin(QWidget *parent = nullptr);

@@ -16,7 +16,7 @@ class SouvenirAndTrip : public QDialog
     Q_OBJECT
 
 public:
-    explicit SouvenirAndTrip(QWidget *parent = nullptr);
+	explicit SouvenirAndTrip(QWidget *parent = nullptr);
     ~SouvenirAndTrip();
 
 private slots:
