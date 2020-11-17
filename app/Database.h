@@ -5,6 +5,11 @@
 #include <QObject>
 #include <QDebug>
 #include <QSqlQuery>
+#include <QtSql>
+#include <QtCore>
+#include <vector>
+#include "Dijkstra.h"
+using namespace std;
 
 class Team;
 class Souvenir;
@@ -25,13 +30,23 @@ public:
         T_CONFERENCE, T_DIVISION, T_SURFACE_TYPE, T_ROOF_TYPE, T_DATE_OPENED
     };
 
+    // DIJKSTRA METHODS
+    //vector<cityNode> createCitiesFromDatabase();
+    vector<StadiumNode> GetStadiums();
+
+    //vector<cityConnection> createConnectionsFromDatabase();
+    vector<StadiumConnection> createConnections();
+
+    //cityGraph createCityGraphFromDatabase();
+    StadiumGraph createStadiumGraph();
+
     // TEAM METHODS
     Team* GetTeamByID(const int &teamID);
     QVector<Team*> GetTeams();
 
     // STADIUM METHODS
     QVector<Stadium*> getStadiums();
-	Stadium* getStadiumByID(const int& teamID);
+    Stadium* getStadiumByID(const int& teamID);
 
     // SOUVENIR METHODS
     QVector<Souvenir*> getSouvenirs();
@@ -111,9 +126,9 @@ public:
     // creating the list will make dijk's algo run faster
 
 private:
-	QMap<int, Team*>      teamDbMap;
-	QMap<int, Stadium*>   stadiumDbMap;
-	QMap<int, Souvenir*>  souvenirDbMap;
+    QMap<int, Team*>      teamDbMap;
+    QMap<int, Stadium*>   stadiumDbMap;
+    QMap<int, Souvenir*>  souvenirDbMap;
     QMap<int, Purchases*> purchasesDbMap;
 
     void runGetTeamAndStadiumByIDQry(int teamID);

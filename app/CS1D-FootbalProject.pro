@@ -10,7 +10,9 @@ CONFIG += c++11
 
 SOURCES += \
     Admin.cpp \
+    DPathUtils.cpp \
     Database.cpp \
+    Dijkstra.cpp \
     DisplayInfo.cpp \
     Login.cpp \
     RouteDisplayer.cpp \
@@ -23,7 +25,9 @@ SOURCES += \
 
 HEADERS += \
     Admin.h \
+    DPathUtils.h \
     Database.h \
+    Dijkstra.h \
     DisplayInfo.h \
     Login.h \
     RouteDisplayer.h \
