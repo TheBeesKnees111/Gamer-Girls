@@ -160,8 +160,11 @@ public:
     // Populates stadiums with teams ordered by stadium name (requirement 4)
     void PopulateTeamsOrderByStadium(QVector<Team*>* teamList);
 
-    // Populates teams from AFC conference ordered by team name (requirement 5)
-    void PopulateAFCTeams(QVector<Team*>* teamList);
+    // Populates teams from conference/division ordered by team name (requirement 5, 6, 7)
+    void PopulateConferenceTeams(QVector<Team*>* teamList);
+
+    // Populate NFL stadiums by date opened (requirement 8)
+    void PopulateStadiumsByDate(QVector<Team*>* teamList);
 
     // Delete table rows (helper method)
     void DeleteAllTableRows(QTableWidget *table);
@@ -187,6 +190,12 @@ private slots:
     void on_Print_Stadium_PushButton_clicked();
 
     void on_Print_AFC_Teams_PushButton_clicked();
+
+    void on_Print_NFC_Teams_PushButton_clicked();
+
+    void on_Print_North_NFC_Teams_PushButton_clicked();
+
+    void on_Print_Stadium_B_yDate_PushButton_clicked();
 
 private:
     Ui::DisplayInfo *ui;

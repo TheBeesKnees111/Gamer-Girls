@@ -1,6 +1,7 @@
 #include "Database.h"
 #include "Team.h"
 #include "Stadium.h"
+#include "Souvenir.h"
 #include <QFileInfo>
 #include <QSqlError>
 #include <QFileDialog>
@@ -304,20 +305,8 @@ QVector<Team*>* Database::GetTeamsOrderByStadium()
             stadium->setStadiumName(query.value(0).toString());
             team->setTeamName(query.value(1).toString());
             team->setStadium(stadium);
-
             teams->push_back(team);
-
-            qDebug() << "Stadium Name: " << team->getStadium()->getStadiumName();
-            qDebug() << "Team Name: " << team->getTeamName();
         }
-    }
-
-    // DEBUG
-        qDebug() << "PRINTING OBJECTS";
-    for(int index = 0; index < teams->size(); index++)
-    {
-        qDebug() << "Stadium Name: " << teams->at(index)->getStadium()->getStadiumName();
-        qDebug() << "Team Name: " << teams->at(index)->getTeamName();
     }
 
     return teams;
@@ -350,57 +339,115 @@ QVector<Team*>* Database::GetAFCTeamsOrderByTeamName()
 }
 
 // Get all NFC teams sorted by team name (Requirement 6)
-QVector<Team>* Database::GetNFCTeamsOrderByTeamName()
+QVector<Team*>* Database::GetNFCTeamsOrderByTeamName()
 {
-    QVector<Team>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+
+    query.prepare("SELECT teamName, conference FROM teamInfo WHERE conference = 'National Football Conference' ORDER BY teamName");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            team->setTeamName(query.value(0).toString());
+            team->setConference(query.value(1).toString());
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetNFCTeamsOrderByTeamName Failed";
+    }
 
     return teams;
 }
 
 // Get all NFC North teams ordered by team name (Requirement 7)
-QVector<Team>* Database::GetNorthNFCTeamsOrderByTeamName()
+QVector<Team*>* Database::GetNorthNFCTeamsOrderByTeamName()
 {
-    QVector<Team>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+
+    query.prepare("SELECT teamName, division FROM teamInfo WHERE division = 'NFC North' ORDER BY teamName;");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            team->setTeamName(query.value(0).toString());
+            team->setConference(query.value(1).toString());
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetNFCNORTHTeamsOrderByTeamName Failed";
+    }
 
     return teams;
 }
 
 // Get all stadiums sorted by date opened (Requirement 8)
-QVector<Team>* Database::GetStadiumsOrderByDateOpened()
+QVector<Team*>* Database::GetStadiumsOrderByDateOpened()
 {
-    QVector<Team>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT stadiumName, teamName, dateOpened FROM teaminfo ORDER BY dateOpened;");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            stadium->setStadiumName(query.value(0).toString());
+            team->setTeamName(query.value(1).toString());
+            stadium->setDateOpened(query.value(2).toInt());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetStadiumsOrderByDateOpened Failed";
+    }
 
     return teams;
 }
 
 // Get all open roof stadiums (Requirement 9)
-QVector<Team>* Database::GetOpenRoofStadiums()
+QVector<Team*>* Database::GetOpenRoofStadiums()
 {
-    QVector<Team>* teams = nullptr;
+    QVector<Team*>* teams = nullptr;
 
     return teams;
 }
 
 // Get stadiums ordered by seating capacity (Requirement 10)
-QVector<Team>* Database::GetStadiumsOrderBySeatingCap()
+QVector<Team*>* Database::GetStadiumsOrderBySeatingCap()
 {
-    QVector<Team>* teams = nullptr;
+    QVector<Team*>* teams = nullptr;
 
     return teams;
 }
 
 // Get teams ordered by conference (Requirement 11)
-QVector<Team>* Database::GetTeamsOrderByConference()
+QVector<Team*>* Database::GetTeamsOrderByConference()
 {
-    QVector<Team>* teams = nullptr;
+    QVector<Team*>* teams = nullptr;
 
     return teams;
 }
 
 // Get teams with bermuda grass surface type (Requirement 12)
-QVector<Team>* Database::GetBermudaGrassTeams()
+QVector<Team*>* Database::GetBermudaGrassTeams()
 {
-    QVector<Team>* teams = nullptr;
+    QVector<Team*>* teams = nullptr;
 
     return teams;
 }
@@ -408,7 +455,35 @@ QVector<Team>* Database::GetBermudaGrassTeams()
 // Get all souvenirs for one team (Requirement 13)
 Team* Database::GetSingleTeamSouvenirs(const QString &teamName)
 {
-    Team* team = nullptr;
+    Team* team = new Team;
+    QVector<Souvenir*> souvenirs;
+    Souvenir* souvenir = nullptr;
+
+    query.prepare("select teamInfo.teamName, souvenirs.itemName, souvenirs.itemPrice from teamInfo, souvenirs where teamInfo.teamName = :teamName and teamInfo.teamID = souvenirs.teamID");
+
+    query.bindValue(":teamName", teamName);
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            if(team->getTeamName() != query.value(0).toString())
+            {
+                team->setTeamName(query.value(0).toString());
+            }
+
+            souvenir = new Souvenir;
+            souvenir->setItemName(query.value(1).toString());
+            souvenir->setItemPrice(query.value(2).toFloat());
+
+            souvenirs.push_back(souvenir);
+        }
+
+        team->setSouvenirList(souvenirs);
+    }
+    else
+    {
+        qDebug() << "GetSingleTeamSouvenirs Failed!";
+    }
 
     return team;
 }

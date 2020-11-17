@@ -85,7 +85,6 @@ void DisplayInfo::PopulateAllTeams(QTableWidget* table, QStringList teamList)
     {
         // Create Row
         table->insertRow(table->rowCount());
-
         // Populate Name Column
         table->setItem(table->rowCount() -1, AT_NAME, new QTableWidgetItem(teamList.at(index)));
     }
@@ -98,7 +97,6 @@ void DisplayInfo::PopulateTeamsOrderByStadium(QVector<Team*>* teamList)
     {
         // Create Row
         ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
-
         // Populate Stadium Name Column
         ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AS_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
         // Populate Team Name Column
@@ -107,16 +105,35 @@ void DisplayInfo::PopulateTeamsOrderByStadium(QVector<Team*>* teamList)
 }
 
 // Populates teams from AFC conference ordered by team name (requirement 5)
-void DisplayInfo::PopulateAFCTeams(QVector<Team*>* teamList)
+void DisplayInfo::PopulateConferenceTeams(QVector<Team*>* teamList)
 {
     for(int index = 0; index < teamList->size(); index++)
     {
         // Create Row
         ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
-        // Populate Stadium Name Column
-        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AN_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
         // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AN_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Conference/Division Name Column
         ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, AN_CONFERENCE, new QTableWidgetItem(teamList->at(index)->getConference()));
+    }
+}
+
+void DisplayInfo::PopulateStadiumsByDate(QVector<Team*>* teamList)
+{
+    // Date opened item
+    QTableWidgetItem* dateOpenedItem;
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        // Set date opened item
+        dateOpenedItem = new QTableWidgetItem(QString::number(teamList->at(index)->getStadium()->getDateOpened()));
+        // Create Row
+        ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Populate Stadium Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SD_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
+        // Populate Team Name Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SD_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
+        // Populate Date Opened Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SD_DATE_OPENED, dateOpenedItem);
     }
 }
 
@@ -187,10 +204,52 @@ void DisplayInfo::on_Print_AFC_Teams_PushButton_clicked()
     InitializeViewTable(ui->Datatable_TableWidget, AFC_COL_COUNT, AFCTeamColNames);
 
     // Populate Table
-    PopulateAFCTeams(teamList);
+    PopulateConferenceTeams(teamList);
+}
+
+void DisplayInfo::on_Print_NFC_Teams_PushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    teamList = db->GetNFCTeamsOrderByTeamName();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, NFC_COL_COUNT, NFCTeamColNames);
+
+    // Populate Table
+    PopulateConferenceTeams(teamList);
+}
+
+void DisplayInfo::on_Print_North_NFC_Teams_PushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    teamList = db->GetNorthNFCTeamsOrderByTeamName();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, NORTH_NFC_COL_COUNT, NFCNorthTeamColNames);
+
+    // Populate Table
+    PopulateConferenceTeams(teamList);
+}
+
+void DisplayInfo::on_Print_Stadium_B_yDate_PushButton_clicked()
+{
+    QVector<Team*>* teamList = new QVector<Team*>;
+    teamList = db->GetStadiumsOrderByDateOpened();
+
+    // Initialize Table
+    InitializeViewTable(ui->Datatable_TableWidget, BY_DATE_COL_COUNT, StadiumsByDateColNames);
+
+    // Populate Table
+    PopulateStadiumsByDate(teamList);
 }
 
 // ------------ NAVIGATION END -------------- //
+
+
+
+
+
+
 
 
 
