@@ -38,6 +38,7 @@ public:
     // They need to update the caches as well as the database
 
 	QString GetTeamNameByID(const int& teamID);
+	void    AddTeamToDatabase();
 
     // STADIUM METHODS
     QVector<Stadium*> getStadiums();

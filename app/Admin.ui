@@ -24,7 +24,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="currentIndex">
@@ -81,7 +81,7 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
     </widget>
@@ -219,7 +219,7 @@
       </rect>
      </property>
     </widget>
-    <widget class="QComboBox" name="Add_RoofT_ype_ComboBox">
+    <widget class="QComboBox" name="Add_Roof_Type_ComboBox">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -330,6 +330,11 @@
        <width>1331</width>
        <height>711</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QLabel" name="label">
