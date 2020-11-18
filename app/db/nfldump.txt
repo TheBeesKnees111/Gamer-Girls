@@ -31,16 +31,16 @@ INSERT INTO teamInfo VALUES(15,'Jacksonville Jaguars','TIAA Bank Field','69132',
 INSERT INTO teamInfo VALUES(16,'Kansas City Chiefs','Arrowhead Stadium','76416','Kansas City, Missouri','American Football Conference','AFC West','Bermuda Grass','Open',1972);
 INSERT INTO teamInfo VALUES(17,'Las Vegas Raiders','Allegiant Stadium','65000','Paradise, Nevada','American Football Conference','AFC West','Bermuda Grass','Fixed',2020);
 INSERT INTO teamInfo VALUES(18,'Los Angeles Chargers','SoFi Stadium','70240','Inglewood, California','American Football Conference','AFC West','Bermuda Grass','Fixed',2020);
-INSERT INTO teamInfo VALUES(19,'Los Angeles Rams','SoFi Stadium','70240','Inglewood, California','National Football Conference','NFC West','Bermuda Grass','Fixed ',2020);
+INSERT INTO teamInfo VALUES(19,'Los Angeles Rams','SoFi Stadium','70240','Inglewood, California','National Football Conference','NFC West','Bermuda Grass','Fixed',2020);
 INSERT INTO teamInfo VALUES(20,'Miami Dolphins','Hard Rock Stadium','65326','Miami Gardens, Florida','American Football Conference','AFC East','Platinum TE Paspalum','Open',1987);
 INSERT INTO teamInfo VALUES(21,'Minnesota Vikings','U.S. Bank Stadium','66655','Minneapolis, Minnesota','National Football Conference','NFC North','UBU Speed Series S5-M Synthetic Turf','Fixed',2016);
 INSERT INTO teamInfo VALUES(22,'New England Patriots','Gillette Stadium','66829','Foxborough, Massachusetts','American Football Conference','AFC East','FieldTurf Revolution','Open',2002);
 INSERT INTO teamInfo VALUES(23,'New Orleans Saints','Mercedes-Benz Superdome','73000','New Orleans, Louisiana','National Football Conference','NFC South','UBU Sports Speed Series S5-M Synthetic Turf','Fixed',1975);
 INSERT INTO teamInfo VALUES(24,'New York Giants','MetLife Stadium','82500','East Rutherford, New Jersey','National Football Conference','NFC East','UBU Sports Speed Series S5-M Synthetic Turf','Open',2010);
 INSERT INTO teamInfo VALUES(25,'New York Jets','MetLife Stadium','82500','East Rutherford, New Jersey','American Football Conference','AFC East','UBU Sports Speed Series S5-M Synthetic Turf','Open',2010);
-INSERT INTO teamInfo VALUES(26,'Philadelphia Eagles','Lincoln Financial Field','69,596','Philadelphia, Pennsylvania','National Football Conference','NFC East','Desso GrassMaster','Open',2003);
+INSERT INTO teamInfo VALUES(26,'Philadelphia Eagles','Lincoln Financial Field','69596','Philadelphia, Pennsylvania','National Football Conference','NFC East','Desso GrassMaster','Open',2003);
 INSERT INTO teamInfo VALUES(27,'Pittsburgh Steelers','Heinz Field','68400','Pittsburgh, Pennsylvania','American Football Conference','AFC North','Kentucky Bluegrass','Open',2001);
-INSERT INTO teamInfo VALUES(28,'San Francisco 49ers','Levi''s Stadium','68500','Santa Clara, California','National Football Conference','NFC West','Bermuda grass  ','Open',2014);
+INSERT INTO teamInfo VALUES(28,'San Francisco 49ers','Levi''s Stadium','68500','Santa Clara, California','National Football Conference','NFC West','Bermuda Grass','Open',2014);
 INSERT INTO teamInfo VALUES(29,'Seattle Seahawks','CenturyLink Field','68000','Seattle, Washington','National Football Conference','NFC West','FieldTurf Revolution','Open',2002);
 INSERT INTO teamInfo VALUES(30,'Tampa Bay Buccaneers','Raymond James Stadium','65890','Tampa, Florida','National Football Conference','NFC South','Bermuda Grass','Open',1998);
 INSERT INTO teamInfo VALUES(31,'Tennessee Titans','Nissan Stadium','69143','Nashville, Tennessee','American Football Conference','AFC South','Bermuda Grass','Open',1999);
@@ -58,7 +58,7 @@ FOREIGN KEY(teamID) REFERENCES teamInfo(teamID) ON DELETE CASCADE
 INSERT INTO teamDistances VALUES(1,1,'Arizona Cardinals','State Farm Stadium','AT&T Stadium',870);
 INSERT INTO teamDistances VALUES(2,1,'Arizona Cardinals','State Farm Stadium','Levi''s Stadium',650);
 INSERT INTO teamDistances VALUES(3,1,'Arizona Cardinals','State Farm Stadium','NRG Stadium',1115);
-INSERT INTO teamDistances VALUES(4,1,'Arizona Cardinals','State Farm Stadium','Broncos Stadium at Mile High',580);
+INSERT INTO teamDistances VALUES(4,1,'Arizona Cardinals','State Farm Stadium','Empower Field at Mile High',580);
 INSERT INTO teamDistances VALUES(5,1,'Arizona Cardinals','State Farm Stadium','SoFi Stadium',372);
 INSERT INTO teamDistances VALUES(6,2,'Atlanta Falcons','Mercedes-Benz Stadium','AT&T Stadium',740);
 INSERT INTO teamDistances VALUES(7,2,'Atlanta Falcons','Mercedes-Benz Stadium','Bank of America Stadium',225);
@@ -90,7 +90,7 @@ INSERT INTO teamDistances VALUES(32,8,'Cleveland Browns','FirstEnergy Stadium','
 INSERT INTO teamDistances VALUES(33,9,'Dallas Cowboys','AT&T Stadium','Arrowhead Stadium',460);
 INSERT INTO teamDistances VALUES(34,9,'Dallas Cowboys','AT&T Stadium','Mercedes-Benz Stadium',740);
 INSERT INTO teamDistances VALUES(35,9,'Dallas Cowboys','AT&T Stadium','NRG Stadium',230);
-INSERT INTO teamDistances VALUES(36,9,'Dallas Cowboys','AT&T Stadium','Broncos Stadium at Mile High',650);
+INSERT INTO teamDistances VALUES(36,9,'Dallas Cowboys','AT&T Stadium','Empower Field at Mile High',650);
 INSERT INTO teamDistances VALUES(37,9,'Dallas Cowboys','AT&T Stadium','State Farm Stadium',870);
 INSERT INTO teamDistances VALUES(38,10,'Denver Broncos','Empower Field at Mile High','AT&T Stadium',650);
 INSERT INTO teamDistances VALUES(39,10,'Denver Broncos','Empower Field at Mile High','Arrowhead Stadium',560);
@@ -117,9 +117,9 @@ INSERT INTO teamDistances VALUES(59,15,'Jacksonville Jaguars','TIAA Bank Field',
 INSERT INTO teamDistances VALUES(60,16,'Kansas City Chiefs','Arrowhead Stadium','AT&T Stadium',460);
 INSERT INTO teamDistances VALUES(61,16,'Kansas City Chiefs','Arrowhead Stadium','Nissan Stadium',470);
 INSERT INTO teamDistances VALUES(62,16,'Kansas City Chiefs','Arrowhead Stadium','Soldier Field',415);
-INSERT INTO teamDistances VALUES(63,16,'Kansas City Chiefs','Arrowhead Stadium','Broncos Stadium at Mile High',560);
+INSERT INTO teamDistances VALUES(63,16,'Kansas City Chiefs','Arrowhead Stadium','Empower Field at Mile High',560);
 INSERT INTO teamDistances VALUES(64,18,'Los Angeles Chargers','SoFi Stadium','SoFi Stadium',15);
-INSERT INTO teamDistances VALUES(65,18,'Los Angeles Chargers','SoFi Stadium','Broncos Stadium at Mile High',1015);
+INSERT INTO teamDistances VALUES(65,18,'Los Angeles Chargers','SoFi Stadium','Empower Field at Mile High',1015);
 INSERT INTO teamDistances VALUES(66,18,'Los Angeles Chargers','SoFi Stadium','State Farm Stadium',372);
 INSERT INTO teamDistances VALUES(67,19,'Los Angeles Rams','SoFi Stadium','Levi''s Stadium',200);
 INSERT INTO teamDistances VALUES(68,19,'Los Angeles Rams','SoFi Stadium','Allegiant Stadium',270);
@@ -156,7 +156,7 @@ INSERT INTO teamDistances VALUES(98,27,'Pittsburgh Steelers','Heinz Field','Linc
 INSERT INTO teamDistances VALUES(99,27,'Pittsburgh Steelers','Heinz Field','Paul Brown Stadium',260);
 INSERT INTO teamDistances VALUES(100,27,'Pittsburgh Steelers','Heinz Field','Bills Stadium',225);
 INSERT INTO teamDistances VALUES(101,28,'San Francisco 49ers','Levi''s Stadium','Allegiant Stadium',569);
-INSERT INTO teamDistances VALUES(102,28,'San Francisco 49ers','Levi''s Stadium','Broncos Stadium at Mile High',930);
+INSERT INTO teamDistances VALUES(102,28,'San Francisco 49ers','Levi''s Stadium','Empower Field at Mile High',930);
 INSERT INTO teamDistances VALUES(103,28,'San Francisco 49ers','Levi''s Stadium','SoFi Stadium',200);
 INSERT INTO teamDistances VALUES(104,28,'San Francisco 49ers','Levi''s Stadium','State Farm Stadium',650);
 INSERT INTO teamDistances VALUES(105,29,'Seattle Seahawks','CenturyLink Field','Allegiant Stadium',1270);

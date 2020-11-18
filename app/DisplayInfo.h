@@ -166,6 +166,18 @@ public:
     // Populate NFL stadiums by date opened (requirement 8)
     void PopulateStadiumsByDate(QVector<Team*>* teamList);
 
+    // Populate open roof stadiums (requirement 9)
+    void PopulateOpenRoofStadiums(QVector<Team*>* teamList);
+
+    // Populate stadiums ordered by capacity (requirement 10)
+    void PopulateStadiumsOrderByCapacity(QVector<Team*>* teamList);
+
+    // Populate teams by conference name (requirement 11)
+    void PopulateTeamsOrderByConference(QVector<Team*>* teamList);
+
+    // Populate teams of type Bermuda Grass (requirement 12)
+    void PopulateBermudaGrassTeams(QVector<Team*>* teamList);
+
     // Delete table rows (helper method)
     void DeleteAllTableRows(QTableWidget *table);
 
@@ -182,7 +194,6 @@ private slots:
     /// page will be hidden before showing the Main Window
 	void on_Home_PushButton_clicked();
 
-
     void on_Select_Stadium_ComboBox_activated(const QString &arg1);
 
     void on_Print_All_Teams_PushButton_clicked();
@@ -196,6 +207,14 @@ private slots:
     void on_Print_North_NFC_Teams_PushButton_clicked();
 
     void on_Print_Stadium_B_yDate_PushButton_clicked();
+
+    void on_Show_Open_Roof_Stadiums_PushButton_clicked();
+
+    void on_Print_Seating_Cap_PushButton_clicked();
+
+    void on_Print_Team_Info_By_ConferencePushButton_clicked();
+
+    void on_Show_Bermuda_Grass_Stadiums_PushButton_clicked();
 
 private:
     Ui::DisplayInfo *ui;

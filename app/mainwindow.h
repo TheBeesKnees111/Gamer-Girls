@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+	MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -34,7 +34,7 @@ private slots:
 	void on_Souvenir_And_Trip_PushButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
+	Ui::MainWindow *ui;
     Database* db;
 
 };

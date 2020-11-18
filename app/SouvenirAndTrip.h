@@ -22,6 +22,7 @@ class SouvenirAndTrip : public QDialog
 
 public:
 
+
     const int SOUVENIR_COL_COUNT = 3;
     enum SouvenirColPositions { TEAM_NAME, SOUVENIR_NAME, SOUVENIR_PRICE };
     QStringList souvenirComboBoxLabels;

@@ -113,6 +113,20 @@ QVector<Team*> Database::GetTeams()
     return teamDbCache.values().toVector();
 }
 
+//Return team name by ID
+QString Database::GetTeamNameByID(const int& teamID)
+{
+	query.prepare("SELECT teamName FROM teamInfo "
+				  "WHERE teamID = (:teamID)");
+	query.bindValue(":teamID", teamID);
+
+	if(!query.exec())
+		qDebug() << "ERROR - Database::GetTeamNameByID " << query.lastError();
+
+	return query.value(0).toString();
+}
+
+
 Stadium* Database::getStadiumByID(const int& teamID)
 {
     if (!stadiumDbCacheByID.contains(teamID))
@@ -381,23 +395,135 @@ QVector<Team*>* Database::GetStadiumsOrderByDateOpened()
 // Get all open roof stadiums (Requirement 9)
 QVector<Team*>* Database::GetOpenRoofStadiums()
 {
-    QVector<Team*>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT stadiumName, teamName, roofType FROM teamInfo WHERE roofType = 'Open'");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            stadium->setStadiumName(query.value(0).toString());
+            team->setTeamName(query.value(1).toString());
+            stadium->setRoofType(query.value(2).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetOpenRoofStadiums Failed";
+    }
 
     return teams;
+}
+
+// Get number of open roof stadiums (Requirement 9)
+int Database::GetOpenStadiumCount()
+{
+    int count = 0;
+
+    query.prepare("SELECT DISTINCT stadiumName FROM teaminfo WHERE roofType = 'Open'");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            count++;
+        }
+    }
+    else
+    {
+        qDebug() << "GetOpenStadiumsCount Failed";
+    }
+
+    return count;
 }
 
 // Get stadiums ordered by seating capacity (Requirement 10)
 QVector<Team*>* Database::GetStadiumsOrderBySeatingCap()
 {
-    QVector<Team*>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT stadiumName, teamName, seatingCap FROM teamInfo ORDER BY seatingCap;");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            stadium->setStadiumName(query.value(0).toString());
+            team->setTeamName(query.value(1).toString());
+            stadium->setSeatingCapacity(query.value(2).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetStadiumsOrderBySeatingCap Failed";
+    }
 
     return teams;
 }
 
+// Get total seating capacity of entire NFL (Requirement 10)
+int Database::GetTotalSeatingCapacity()
+{
+    int count = 0;
+
+    query.prepare("SELECT DISTINCT seatingCap FROM teamInfo");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            count = count + query.value(0).toInt();
+        }
+    }
+    else
+    {
+        qDebug() << "GetOpenStadiumsCount Failed";
+    }
+
+    return count;
+}
+
+
 // Get teams ordered by conference (Requirement 11)
 QVector<Team*>* Database::GetTeamsOrderByConference()
 {
-    QVector<Team*>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT teamName, stadiumName, conference, location from teamInfo order by conference");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            team->setTeamName(query.value(0).toString());
+            stadium->setStadiumName(query.value(1).toString());
+            team->setConference(query.value(2).toString());
+            stadium->setLocation(query.value(3).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetTeamsOrderByConference Failed";
+    }
 
     return teams;
 }
@@ -405,9 +531,52 @@ QVector<Team*>* Database::GetTeamsOrderByConference()
 // Get teams with bermuda grass surface type (Requirement 12)
 QVector<Team*>* Database::GetBermudaGrassTeams()
 {
-    QVector<Team*>* teams = nullptr;
+    QVector<Team*>* teams = new QVector<Team*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+
+    query.prepare("SELECT teamName, surfaceType FROM teamInfo WHERE surfaceType = 'Bermuda Grass'");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            team = new Team;
+            stadium = new Stadium;
+            team->setTeamName(query.value(0).toString());
+            stadium->setSurfaceType(query.value(1).toString());
+            team->setStadium(stadium);
+            teams->push_back(team);
+        }
+    }
+    else
+    {
+        qDebug() << "GetBermudaGrassTeams";
+    }
 
     return teams;
+}
+
+// Get total bermuda grass stadiums (Requirement 12)
+int Database::GetBermudaGrassTeamCount()
+{
+    int count = 0;
+
+    query.prepare("SELECT teamName, surfaceType FROM teamInfo WHERE surfaceType = 'Bermuda Grass'");
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            count++;
+        }
+    }
+    else
+    {
+        qDebug() << "GetBermudaGrassStadiumCount Failed";
+    }
+
+    return count;
 }
 
 // Get all souvenirs for one team (Requirement 13)
