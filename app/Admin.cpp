@@ -33,7 +33,6 @@ void InitializeSouvenirTable (QTableView* table)
 void Admin::PopulateSouvenirTable (QSqlQueryModel* model)
 {
 	QSqlQuery query;
-	Database  database;
 
 	model = new QSqlQueryModel;
 

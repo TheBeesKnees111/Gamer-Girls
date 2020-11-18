@@ -136,6 +136,7 @@ private:
     // Moved so that outside code can't call the constructor & must call getInstance
     Database();
     static Database *instance;  // this is the singleton pattern
+	QSqlQuery query;
 
     // these maps cache the values of these queries so we only have to run them once
     QMap<int, Team*>            teamDbCache;

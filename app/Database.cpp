@@ -37,11 +37,11 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-    //    QString windowsPathFile =  "/db/NFLdb.db";
-    //    setDatabaseName(QDir::currentPath() + windowsPathFile);
-    QString macPathFile = "/db";
-    setDatabaseName(QDir::currentPath() + macPathFile);
-    qDebug() << QDir::currentPath() + macPathFile;
+		QString windowsPathFile =  "/db/NFLdb.db";
+		setDatabaseName(QDir::currentPath() + windowsPathFile);
+//    QString macPathFile = "/db";
+//    setDatabaseName(QDir::currentPath() + macPathFile);
+//    qDebug() << QDir::currentPath() + macPathFile;
 
     // Print error if database does not open
     if (!open())
@@ -116,6 +116,7 @@ QVector<Team*> Database::GetTeams()
 //Return team name by ID
 QString Database::GetTeamNameByID(const int& teamID)
 {
+
 	query.prepare("SELECT teamName FROM teamInfo "
 				  "WHERE teamID = (:teamID)");
 	query.bindValue(":teamID", teamID);
@@ -461,7 +462,7 @@ QVector<Team*>* Database::GetStadiumsOrderBySeatingCap()
             stadium = new Stadium;
             stadium->setStadiumName(query.value(0).toString());
             team->setTeamName(query.value(1).toString());
-            stadium->setSeatingCapacity(query.value(2).toString());
+			stadium->setSeatingCapacity(query.value(2).toInt());
             team->setStadium(stadium);
             teams->push_back(team);
         }
