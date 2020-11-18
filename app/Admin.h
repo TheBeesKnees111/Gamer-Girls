@@ -90,7 +90,7 @@ public:
      */
 
 	// Populates combo boxes with relevant information
-	void PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox, int enumType);
+	void PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox);
 
     // Initializes souvenir table to blank
     void InitializeSouvenirTable (QTableView* table);
@@ -116,6 +116,10 @@ private slots:
     /// hidden before showing the Main Window
 	void on_Home_PushButton_clicked();
 
+	///This will check that all data for a team has been selected
+	///When the button is pushed the database will be queried to add the team
+	///with all information selected
+	///If any field is left blank then it will display an error message
 	void on_Add_Team_PushButton_clicked();
 
 	private:
