@@ -6,6 +6,7 @@
 #include <QTableView>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QStandardItemModel>
 
 namespace Ui {
 class Admin;

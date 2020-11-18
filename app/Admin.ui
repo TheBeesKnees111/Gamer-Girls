@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="View_Table">
     <attribute name="title">
@@ -466,7 +466,7 @@
       <rect>
        <x>460</x>
        <y>10</y>
-       <width>1321</width>
+       <width>1371</width>
        <height>711</height>
       </rect>
      </property>

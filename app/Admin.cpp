@@ -53,9 +53,12 @@ void InitializeStadiumTable (QTableView* table)
 
 }
 
-// Populates stadium table with relevant information
+/// Populates stadium table with relevant information
 void Admin::PopulateStadiumTable (QSqlQueryModel* model)
 {
+	QStandardItemModel itemModel;
+	QStringList        headerList;
+
 	model = new QSqlQueryModel;
 
 	//Set query to display all data related to the teams
@@ -76,6 +79,23 @@ void Admin::PopulateStadiumTable (QSqlQueryModel* model)
 	ui -> Edit_Stadium_TableView -> setColumnWidth(4, 240);
 	ui -> Edit_Stadium_TableView -> setColumnWidth(5, 200);
 	ui -> Edit_Stadium_TableView -> setColumnWidth(7, 200);
+
+	//Hide teamID columns
+	ui -> Admin_Datatable        -> hideColumn(0);
+	ui -> Edit_Stadium_TableView -> hideColumn(0);
+
+	//Change column names
+	headerList.push_front("Team");
+	headerList.push_front("Stadium");
+	headerList.push_front("Capacity");
+	headerList.push_front("Location");
+	headerList.push_front("Conference");
+	headerList.push_front("Division");
+	headerList.push_front("Surface");
+	headerList.push_front("Roof");
+	headerList.push_front("Date");
+
+	itemModel.setHorizontalHeaderLabels(headerList);
 
 }
 
