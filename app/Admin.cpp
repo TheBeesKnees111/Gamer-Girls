@@ -151,8 +151,8 @@ void Admin::on_Add_Team_PushButton_clicked()
 	QString   stadiumName = ui -> Add_Stadium_Name_LineEdit -> text();
 	QString   location    = ui -> Add_Location_LineEdit     -> text();
 
-	bool      blankData   = //teamName == "" && stadiumName == "" || location     == "" ||
-							//ui -> Add_Seating_Capacity_SpinBox -> text()        ==  0 ||
+	bool      blankData   = teamName == "" && stadiumName == "" || location     == "" ||
+							ui -> Add_Seating_Capacity_SpinBox -> text()        ==  0 ||
 							ui -> Add_Conference_ComboBox      -> currentText() == "" ||
 							ui -> Add_Division_ComboBox        -> currentText() == "" ||
 							ui -> Add_Roof_Type_ComboBox       -> currentText() == "" ||
