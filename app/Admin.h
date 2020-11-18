@@ -6,6 +6,7 @@
 #include <QTableView>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QComboBox>
 
 namespace Ui {
 class Admin;
@@ -88,6 +89,9 @@ public:
      * Methods
      */
 
+	// Populates combo boxes with relevant information
+	void PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox, int enumType);
+
     // Initializes souvenir table to blank
     void InitializeSouvenirTable (QTableView* table);
 
@@ -112,7 +116,9 @@ private slots:
     /// hidden before showing the Main Window
 	void on_Home_PushButton_clicked();
 
-private:
+	void on_Add_Team_PushButton_clicked();
+
+	private:
     Ui::Admin *ui;
 };
 
