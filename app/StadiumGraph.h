@@ -18,7 +18,15 @@ struct StadiumGraph
     // Called a factory function (like a named constructor).
     // included in the struct because it's a funtion of a graph.
     static StadiumGraph createStadiumGraph(Database *db);
+
+    void printAdjList();
 };
 
+// GRAPH UTILITIES
+// given any spanning tree and a given node,
+// trace the path from the given node to the root(origin)
+QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stadium *destination);
+
+void printPath(QVector<StadiumDistance*> path);
 
 #endif // STADIUMGRAPH_H

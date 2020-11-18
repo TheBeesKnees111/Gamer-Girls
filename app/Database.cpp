@@ -480,26 +480,34 @@ void Database::runGetAllTeamsAndStadiums()
 
             // TODO set object parents for these so they get cleaned up
             Team *team = new Team;
-            Stadium *stadium = new Stadium;
 
             team->setTeamID(teamID);
-            //    stadium->setTeamID(teamID); //TODO add this method to Stadium
             team->setTeamName(teamName);
-            stadium->setStadiumName(stadiumName);
-            stadium->setSeatingCapacity(seatingCap);
-            stadium->setLocation(location);
             team->setConference(conference);
             team->setDivision(division);
-            stadium->setSurfaceType(surfaceType);
-            stadium->setRoofType(roofType);
-            stadium->setDateOpened(dateOpened);
+
+            // TODO set object parents for these so they get cleaned up
+            Stadium *stadium = nullptr;
+            if (stadiumDbCacheByName.contains(stadiumName))
+            {
+                stadium = stadiumDbCacheByName[stadiumName];
+            }
+            else
+            {
+                stadium = new Stadium;
+                stadium->setStadiumName(stadiumName);
+                stadium->setSeatingCapacity(seatingCap);
+                stadium->setLocation(location);
+                stadium->setSurfaceType(surfaceType);
+                stadium->setRoofType(roofType);
+                stadium->setDateOpened(dateOpened);
+                stadiumDbCacheByID[teamID] = stadium;
+                stadiumDbCacheByName[stadium->getStadiumName()] = stadium;
+            }
 
             team->setStadium(stadium);
-            //    stadium->setTeam(team); //TODO add this method to Stadium
 
             teamDbCache[teamID] = team;
-            stadiumDbCacheByID[teamID] = stadium;
-            stadiumDbCacheByName[stadium->getStadiumName()] = stadium;
         }
     }
     else

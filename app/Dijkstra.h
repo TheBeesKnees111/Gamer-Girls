@@ -22,10 +22,4 @@ using namespace std;
 // for the shortest path.
 QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium* start);
 
-// given any spanning tree and a given node,
-// trace the path from the given node to the root(origin)
-QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stadium *destination);
-
-void printDijkstra(QVector<StadiumDistance*> path);
-
 #endif // DIJKSTRA_H

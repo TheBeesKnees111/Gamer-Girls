@@ -1,4 +1,7 @@
 #include "StadiumGraph.h"
+#include <iostream>
+using namespace std;
+
 
 // This creates a graph of Stadiums.  It is an adjacency list made
 // using a map of vectors.  The key for each entry is the Stadium,
@@ -15,11 +18,85 @@ StadiumGraph StadiumGraph::createStadiumGraph(Database *db)
         //        Stadium* toStadium = edge->getToStadium();
         //        int milesBetween = edge->getDistance();
 
-        // Creates adjacencyList if it doesn't already exist
-        adjacencyList[fromStadium].push_back(edge);
-        // creating the reverse edge
-        //        adjacencyList[toStadium].push_back(edge);
+        if (fromStadium != edge->getToStadium())
+        {
+            // Creates adjacencyList if it doesn't already exist
+            adjacencyList[fromStadium].push_back(edge);
+        }
     }
     // creating graph when returning
     return {db->getStadiums(), adjacencyList};
+}
+
+void StadiumGraph::printAdjList()
+{
+    for (auto stadium : adjacencyList.keys())
+    {
+        cout << stadium->getStadiumName().toStdString()
+             << " at " << stadium->getLocation().toStdString() << endl;
+       for ( auto neighbor : adjacencyList[stadium])
+       {
+            cout << "\t=> " << neighbor->getToStadium()->getStadiumName().toStdString()
+                 << " (" << neighbor->getDistance() << ")"
+                 << endl;
+       }
+
+    }
+}
+
+
+// given a spanning tree and a given node,
+// trace the path from the given node to the root(origin)
+QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stadium *destination)
+{
+    //1  S ← empty sequence
+    QVector<StadiumDistance*> S;
+    //2  u ← endLocation
+    Stadium *currentStadium = destination;
+    //3  if prev[u] is defined or u = start:
+    // Do something only if the vertex is reachable
+    if(prev[currentStadium->getStadiumName()] != nullptr)
+    {
+        //4      while u is defined:
+        // Construct the shortest path with a stack S
+        while (currentStadium != nullptr)
+        {
+            //5          insert u at the beginning of S
+            // Push the vertex onto the stack
+//            S.push_back(currentStadium->getStadiumName());
+
+            //6          u ← prev[u]
+            // Traverse from endLocation to start
+            StadiumDistance *parent = prev[currentStadium->getStadiumName()];
+
+            if (parent != nullptr)
+            {
+                S.push_back(parent);
+                currentStadium = parent->getFromStadium();
+            }
+            else
+                currentStadium = nullptr;
+        }
+        reverse(S.begin(), S.end());
+    }
+    return S;
+}
+
+void printPath(QVector<StadiumDistance*> path)
+{
+    int totalMiles = 0;
+    cout << "Shortest path: " << endl;
+    for (auto DistanceNode : path)
+    {
+        Stadium *fromStadium = DistanceNode->getFromStadium();
+        Stadium *toStadium = DistanceNode->getToStadium();
+        cout << fromStadium->getStadiumName().toStdString()
+             << " at " << fromStadium->getLocation().toStdString()
+             << " === " << DistanceNode->getDistance() << " ===> "
+             << toStadium->getStadiumName().toStdString()
+             << " at " << toStadium->getLocation().toStdString()
+             << endl;
+            totalMiles += DistanceNode->getDistance();
+    }
+    cout <<"\tTOTAL MILES: " << totalMiles << endl;
 }

@@ -13,8 +13,9 @@ QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *st
     QHash<QString, StadiumDistance*> prev;        // parent map
     // gave the priority queue a lambda to determine the priority of a stadium
     priority_queue<Stadium*, vector<Stadium*>, function<bool(Stadium*, Stadium*)>>
-        pending { [&dist](Stadium* lhs, Stadium* rhs)
-        {return dist[lhs->getStadiumName()] < dist[rhs->getStadiumName()];} };
+        pending { [&dist](Stadium* lhs, Stadium* rhs){
+            return dist[lhs->getStadiumName()] < dist[rhs->getStadiumName()];
+        }};
 
     //4
     //5      for each vertex v in Graph:
@@ -61,6 +62,7 @@ QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *st
                 dist[adjacent->getToStadium()->getStadiumName()] = alt;
                 //21                  prev[v] ← u
                 prev[adjacent->getToStadium()->getStadiumName()] = adjacent;
+                pending.push(adjacent->getToStadium());
             }
         }
         //22
@@ -68,61 +70,3 @@ QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *st
     //23      return dist[], prev[]
     return prev;
 }
-
-// given a spanning tree and a given node,
-// trace the path from the given node to the root(origin)
-QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stadium *destination)
-{
-    //1  S ← empty sequence
-    QVector<StadiumDistance*> S;
-    //2  u ← endLocation
-    Stadium *currentStadium = destination;
-    //3  if prev[u] is defined or u = start:
-    // Do something only if the vertex is reachable
-    if(prev[currentStadium->getStadiumName()] != nullptr)
-    {
-        //4      while u is defined:
-        // Construct the shortest path with a stack S
-        while (currentStadium != nullptr)
-        {
-            //5          insert u at the beginning of S
-            // Push the vertex onto the stack
-//            S.push_back(currentStadium->getStadiumName());
-
-            //6          u ← prev[u]
-            // Traverse from endLocation to start
-            StadiumDistance *parent = prev[currentStadium->getStadiumName()];
-
-            if (parent != nullptr)
-            {
-                S.push_back(parent);
-                currentStadium = parent->getFromStadium();
-            }
-            else
-                currentStadium = nullptr;
-        }
-        reverse(S.begin(), S.end());
-    }
-    return S;
-}
-
-
-void printDijkstra(QVector<StadiumDistance*> path)
-{
-    int totalMiles = 0;
-    cout << "Shortest path: " << endl;
-    for (auto DistanceNode : path)
-    {
-        cout << DistanceNode->getFromStadium()->getStadiumName().toStdString()
-             << " === " << DistanceNode->getDistance() << " ===> "
-        << DistanceNode->getToStadium()->getStadiumName().toStdString() << endl;
-            totalMiles += DistanceNode->getDistance();
-    }
-    cout <<"\tTOTAL MILES: " << totalMiles << endl;
-}
-
-//bool operator< (const Stadium& lhs, const Stadium& rhs)
-//{
-//    return (lhs.name < rhs.name);
-//}
-

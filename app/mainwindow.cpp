@@ -29,16 +29,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui -> Image_Label -> setPixmap(homePageBackground.scaled
                                   (ImageLabelW, ImageLabelH));
 
-    // Create Database
-    db = Database::getInstance();
-
-    StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
-    Stadium* start{db->getStadiumByName("Soldier Field")};
-    Stadium* endLocation{db->getStadiumByName("Ford Field")};
-
-    QHash<QString, StadiumDistance*> spanningTree = Dijkstra(graph, start);
-    QVector<StadiumDistance*> path = buildPath(spanningTree, endLocation);
-    printDijkstra(path);
 }
 
 MainWindow::~MainWindow()
