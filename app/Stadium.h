@@ -10,7 +10,7 @@ class Stadium : public QObject
 
     QString stadiumName;
     int     stadiumID;
-    QString seatingCapacity;
+    int seatingCapacity;
     QString location;
     QString surfaceType;
     QString roofType;
@@ -20,7 +20,7 @@ public:
     explicit Stadium(QObject *parent = nullptr);
 
     QString getStadiumName() const;
-    QString getSeatingCapacity() const;
+    int getSeatingCapacity() const;
     QString getLocation() const;
     QString getSurfaceType() const;
     QString getRoofType() const;
@@ -28,7 +28,7 @@ public:
 
 public slots:
     void setStadiumName(const QString &value);
-    void setSeatingCapacity(const QString value);
+    void setSeatingCapacity(const int value);
     void setLocation(const QString &value);
     void setSurfaceType(const QString &value);
     void setRoofType(const QString &value);
@@ -36,7 +36,7 @@ public slots:
 
 signals:
     void stadiumNameChanged(QString value);
-    void seatingCapacityChanged(QString value);
+    void seatingCapacityChanged(int value);
     void locationChanged(QString value);
     void surfaceTypeChanged(QString value);
     void roofTypeChanged(QString value);

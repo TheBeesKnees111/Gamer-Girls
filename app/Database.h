@@ -5,6 +5,11 @@
 #include <QObject>
 #include <QDebug>
 #include <QSqlQuery>
+#include <QtSql>
+#include <QtCore>
+#include <vector>
+#include "StadiumDistance.h"
+using namespace std;
 
 class Team;
 class Souvenir;
@@ -15,24 +20,33 @@ class Database : public QSqlDatabase
 {
 
 public:
-
-    Database();
+    // Database() constructor moved to private
+    static Database *getInstance();
 
     // Enum for team statistics
-    enum TeamStats
-    {
-        T_ID, T_TEAM_NAME, T_STADIUM_NAME, T_SEATING_CAP, T_LOCATION,
-        T_CONFERENCE, T_DIVISION, T_SURFACE_TYPE, T_ROOF_TYPE, T_DATE_OPENED
-    };
+//    enum TeamStats
+//    {
+//        T_ID, T_TEAM_NAME, T_STADIUM_NAME, T_SEATING_CAP, T_LOCATION,
+//        T_CONFERENCE, T_DIVISION, T_SURFACE_TYPE, T_ROOF_TYPE, T_DATE_OPENED
+//    };
+
 
     // TEAM METHODS
     Team* GetTeamByID(const int &teamID);
-    QVector<Team*> GetTeams();
+    QVector<Team*> GetTeams();  // TODO call in main window for initial setup
+    // TODO Need to methods to update and create teams
+    // They need to update the caches as well as the database
+
 	QString GetTeamNameByID(const int& teamID);
 
     // STADIUM METHODS
     QVector<Stadium*> getStadiums();
-	Stadium* getStadiumByID(const int& teamID);
+    Stadium* getStadiumByID(const int& teamID);
+    Stadium* getStadiumByName(const QString name);
+
+    // STADIUM DISTANCE METHODS
+    QVector<StadiumDistance*> getStadiumDistances();
+    StadiumDistance* getStadiumDistanceByID(int id);
 
     // SOUVENIR METHODS
     QVector<Souvenir*> getSouvenirs();
@@ -77,7 +91,7 @@ public:
     Team* GetSingleTeam(const QString &teamName);
 
     // Get all teams ordered by team name (Requirement 3)
-    QVector<Team>* GetTeamsOrderByName();
+    QVector<Team*>* GetTeamsOrderByName();
 
     // Get all teams and stadiums ordered by stadium name (Requirement 4)
     QVector<Team*>* GetTeamsOrderByStadium();
@@ -118,21 +132,24 @@ public:
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);
 
-    // TODO
-    // should dijk call get miles from db
-    // or create adjacency list & pass to dijk
-    // creating the list will make dijk's algo run faster
-
 private:
-	QMap<int, Team*>      teamDbMap;
-	QMap<int, Stadium*>   stadiumDbMap;
-	QMap<int, Souvenir*>  souvenirDbMap;
-    QMap<int, Purchases*> purchasesDbMap;
+    // Moved so that outside code can't call the constructor & must call getInstance
+    Database();
+    static Database *instance;  // this is the singleton pattern
 
-    void runGetTeamAndStadiumByIDQry(int teamID);
+    // these maps cache the values of these queries so we only have to run them once
+    QMap<int, Team*>            teamDbCache;
+    QMap<QString, Stadium*>     stadiumDbCacheByName;
+    QMap<int, Stadium*>         stadiumDbCacheByID;
+    QMap<int, StadiumDistance*> stadiumDistanceCache;
+    QMap<int, Souvenir*>        souvenirDbCache;
+    QMap<int, Purchases*>       purchasesDbCache;
+
+    // This will run whenever a team or stadium is requested to ensure the
+    // caches are populated.  Once created, they don't need to be created again.
     void runGetAllTeamsAndStadiums();
+    void runGetAllStadiumDistances();
 
-    QSqlQuery query;
 };
 
 #endif // DATABASE_H

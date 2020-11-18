@@ -11,12 +11,15 @@ CONFIG += c++11
 SOURCES += \
     Admin.cpp \
     Database.cpp \
+    Dijkstra.cpp \
     DisplayInfo.cpp \
     Login.cpp \
     RouteDisplayer.cpp \
     Souvenir.cpp \
     SouvenirAndTrip.cpp \
     Stadium.cpp \
+    StadiumDistance.cpp \
+    StadiumGraph.cpp \
     Team.cpp \
     main.cpp \
     mainwindow.cpp
@@ -24,12 +27,15 @@ SOURCES += \
 HEADERS += \
     Admin.h \
     Database.h \
+    Dijkstra.h \
     DisplayInfo.h \
     Login.h \
     RouteDisplayer.h \
     Souvenir.h \
     SouvenirAndTrip.h \
     Stadium.h \
+    StadiumDistance.h \
+    StadiumGraph.h \
     Team.h \
     mainwindow.h
 

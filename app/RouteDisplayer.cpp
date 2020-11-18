@@ -7,25 +7,25 @@ RouteDisplayer::RouteDisplayer(QWidget *parent, QStringList cities, QList<int> d
 	route(distances),
 	totalDistance(totalDistance)
 {
-	ui->setupUi(this);
+    ui->setupUi(this);
 
-	QSqlQuery query;
-	query.prepare("SELECT location FROM teamInfo");
+    QSqlQuery query;
+    query.prepare("SELECT location FROM teamInfo");
 
-	while(query.next())
-	{
-		QString cityName = query.value(Database::T_LOCATION).toString();
+    while(query.next())
+    {
+        QString cityName = query.value(0).toString();
 
-		ui -> Route_List_TableWidget -> insertRow (ui -> Route_List_TableWidget -> rowCount());
-		ui -> Route_List_TableWidget -> setItem   (ui -> Route_List_TableWidget -> rowCount()-1, 0,
-								 new QTableWidgetItem(cityName));
+        ui -> Route_List_TableWidget -> insertRow (ui -> Route_List_TableWidget -> rowCount());
+        ui -> Route_List_TableWidget -> setItem   (ui -> Route_List_TableWidget -> rowCount()-1, 0,
+                                 new QTableWidgetItem(cityName));
 
-	}
+    }
 
 }
 
 RouteDisplayer::~RouteDisplayer()
 {
-	delete ui;
+    delete ui;
 }
 

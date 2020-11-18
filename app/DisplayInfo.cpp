@@ -18,7 +18,7 @@ DisplayInfo::DisplayInfo(QWidget *parent) :
     // creates a new connection to 'ui' which previously referenced mainwindow,
     // i created a new database connection here since it's out of scope.
     // there's probably a better way to do it, so lemme know
-    db = new Database;
+    db = Database::getInstance();
     TeamNameComboBoxLabels = db->GetTeamNames();
 
     // Initialize and populate combobox
