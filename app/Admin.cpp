@@ -157,6 +157,9 @@ void Admin::on_Read_In_From_File_Button_clicked()
 	{
 		qDebug() << "FILE OPENED";
 
+		/***********************************************************************
+		 * ADDING TO DATATABLE
+		 **********************************************************************/
 		//Read int each line as text
 		QString teamName        = file.readLine();
 		QString stadiumName     = file.readLine();
@@ -196,6 +199,20 @@ void Admin::on_Read_In_From_File_Button_clicked()
 
 		//Populate datatable with new info
 		PopulateStadiumTable(model);
+
+		/***********************************************************************
+		 * ADDING TO SOUVENIR TABLE
+		 **********************************************************************/
+		for(int index = 0; index < defaultSouvenirs.size(); index++)
+		{
+			query.prepare("INSERT OR IGNORE INTO souvenirs(teamID, itemName, itemPrice)"
+						  " VALUES(:teamID, :itemName, :itemPrice)");
+
+			query.bindValue(":teamID",    teamID);
+			query.bindValue(":itemName",  defaultSouvenirs[index]);
+			query.bindValue(":itemPrice", souvenirPrices  [index]);
+		}
+
 	}
 
 }
