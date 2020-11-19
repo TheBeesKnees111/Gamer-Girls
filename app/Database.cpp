@@ -127,7 +127,6 @@ QString Database::GetTeamNameByID(const int& teamID)
 	return query.value(0).toString();
 }
 
-
 Stadium* Database::getStadiumByID(const int& teamID)
 {
     if (!stadiumDbCacheByID.contains(teamID))

@@ -156,7 +156,8 @@ void Admin::on_Read_In_From_File_Button_clicked()
 
 	//Only run if the file is opened
 	if(file.isOpen())
-	{
+	{//begin if(file.isOpen())
+
 		qDebug() << "FILE OPENED";
 
 		/***********************************************************************
@@ -233,6 +234,40 @@ void Admin::on_Read_In_From_File_Button_clicked()
 		//Repopulate Souvenr Table with updated information
 		PopulateSouvenirTable(model);
 
-	}
+	}//end if(file.isOpen())
 
+}
+
+//Add souvenir to database and datatable
+void Admin::on_Add_Souvenir_PushButton_clicked()
+{
+	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
+	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
+	QString   teamName     = ui -> Team_Name_ComboBox     -> currentText();
+	QSqlQuery query;
+	int       teamID;
+
+	qDebug() << souvenirName;
+	qDebug() << price;
+	qDebug() << teamName;
+
+	//Set definition of blank data
+	bool    blankData    = (souvenirName == "" || price == 0.00 ||
+							teamName     == "");
+
+	if(blankData)
+		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
+
+	else
+	{
+		//Pull teamId from team name selected by the user
+		query.prepare("INSERT OR IGNORE INTO "
+					  "souvenirs(teamID,  itemName,  itemrice) "
+					  "VALUES   (:teamID, :itemName, :itemPrice)");
+
+		query.bindValue(":teamID",    ui -> Team_Name_ComboBox -> currentIndex() + 1);
+		query.bindValue(":itemName",  souvenirName);
+		query.bindValue(":itemPrice", price);
+
+	}
 }
