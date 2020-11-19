@@ -40,6 +40,7 @@ public:
 	QString GetTeamNameByID(const int& teamID);
 	void    AddTeamToDatabase();
 
+
     // STADIUM METHODS
     QVector<Stadium*> getStadiums();
     Stadium* getStadiumByID(const int& teamID);

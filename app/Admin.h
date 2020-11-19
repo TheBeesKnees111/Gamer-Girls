@@ -129,6 +129,8 @@ private slots:
 	///with all information entered in a file
 	void on_Read_In_From_File_Button_clicked();
 
+	void on_Add_Souvenir_PushButton_clicked();
+
 	private:
     Ui::Admin *ui;
 };
