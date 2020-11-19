@@ -66,6 +66,8 @@ MainWindow::MainWindow(QWidget *parent)
             // Create new Vertex Item
             origin = new AdjacencyList::Vertex;
 
+            origin->visited = false;
+
             // Populate Vertex Item with origin stadium
             origin->startCity = vertexQuery.value(0).toString();
 
@@ -73,7 +75,7 @@ MainWindow::MainWindow(QWidget *parent)
             qDebug() << "Origin City: " << origin->startCity;
 
             // Run query to pull that stadium's destination stadiums and their distances
-            edgeQuery.prepare("SELECT toStadium, milesBetween FROM teamDistances, teamInfo "
+            edgeQuery.prepare("SELECT DISTINCT toStadium, milesBetween FROM teamDistances, teamInfo "
                               "WHERE teamdistances.fromStadium = teamInfo.stadiumName "
                               "AND teamInfo.stadiumName = :origin");
 

@@ -5,7 +5,6 @@
 #include <QVector>
 #include "Database.h"
 
-
 class AdjacencyList
 {
 public:
@@ -19,14 +18,10 @@ public:
     {
         QString startCity;
         QList<Edge> destinations;
+        bool visited;
     };
 
-
     QVector<Vertex> list;
-
-    void Add(Vertex toAdd);
-
-    void Populate();
 
     AdjacencyList();
 };
