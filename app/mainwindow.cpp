@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "---- POPULATE ADJACENCY LIST START -----";
 
         // Create adjacencylist pointer
-        AdjacencyList* list = nullptr;
+        AdjacencyList* list = new AdjacencyList;
 
         // Create Edge pointer
         AdjacencyList::Edge* destination = nullptr;
@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
             if(edgeQuery.exec())
             {
                 // While query has destination stadiums left on list
-                while(edgeQuery.exec())
+                while(edgeQuery.next())
                 {
                     // Create new Edge item
                     destination = new AdjacencyList::Edge;
@@ -100,7 +100,7 @@ MainWindow::MainWindow(QWidget *parent)
                     qDebug() << "Destination City Distance: " << destination->distance;
 
                     // Insert Edge into Vertex
-                    origin->destinations->push_back(*destination);
+                    origin->destinations.push_back(*destination);
 
                 }// End While Edge
             }
@@ -118,13 +118,15 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Starting final print!";
         for(int originsIndex = 0; originsIndex < list->list.size(); originsIndex++)
         {
-            qDebug() << "Arriving at: " << list->list.at(0).startCity;
-            for(int destinationsIndex = 0; destinationsIndex < list->list.at(originsIndex).destinations->size(); destinationsIndex ++)
+            qDebug() << "Arriving at: " << list->list.at(originsIndex).startCity;
+            for(int destinationsIndex = 0; destinationsIndex < list->list.at(originsIndex).destinations.size(); destinationsIndex ++)
             {
-                qDebug() << "Destination #" << destinationsIndex << ":";
-                qDebug() << "Destination Name: " << list->list.at(originsIndex).destinations->at(destinationsIndex).endCity;
-                qDebug() << "Destination Distance: " << list->list.at(originsIndex).destinations->at(destinationsIndex).distance;
+                qDebug() << "-Destination #" << destinationsIndex+1;
+                qDebug() << "--Name: " << list->list.at(originsIndex).destinations.at(destinationsIndex).endCity;
+                qDebug() << "--Distance: " << list->list.at(originsIndex).destinations.at(destinationsIndex).distance;
             }
+
+            qDebug() << "-------";
 
         }
 

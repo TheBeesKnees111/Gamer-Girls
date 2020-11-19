@@ -18,7 +18,7 @@ public:
     struct Vertex
     {
         QString startCity;
-        QList<Edge>* destinations;
+        QList<Edge> destinations;
     };
 
 
