@@ -150,6 +150,7 @@ void Admin::on_Read_In_From_File_Button_clicked()
 	QTextStream     inFile(&file);
 	QSqlQueryModel *model = nullptr;
 	int             teamID = 33;
+	int             souvenirID = teamID * 5;
 	file.open(QIODevice::ReadOnly);
 
 	//Only run if the file is opened
@@ -205,13 +206,21 @@ void Admin::on_Read_In_From_File_Button_clicked()
 		 **********************************************************************/
 		for(int index = 0; index < defaultSouvenirs.size(); index++)
 		{
-			query.prepare("INSERT OR IGNORE INTO souvenirs(teamID, itemName, itemPrice)"
-						  " VALUES(:teamID, :itemName, :itemPrice)");
+			query.prepare("INSERT OR IGNORE INTO "
+						  "souvenirs(souvenirID, teamID, itemName, itemPrice) "
+						  "VALUES   (:souvenirID, :teamID, :itemName, :itemPrice)");
 
-			query.bindValue(":teamID",    teamID);
-			query.bindValue(":itemName",  defaultSouvenirs[index]);
-			query.bindValue(":itemPrice", souvenirPrices  [index]);
+			query.bindValue(":souvenirID", souvenirID++);
+			query.bindValue(":teamID",     teamID);
+			query.bindValue(":itemName",   defaultSouvenirs[index]);
+			query.bindValue(":itemPrice",  souvenirPrices  [index]);
+
+			if(!query.exec())
+				qDebug() << query.lastError();
 		}
+
+		//Repopulate Souvenr Table with updated information
+		PopulateSouvenirTable(model);
 
 	}
 
