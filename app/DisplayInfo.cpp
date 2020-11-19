@@ -62,7 +62,9 @@ void DisplayInfo::PopulateOneTeam(QTableWidget* table, Team* team)
 {
     // Date opened item
     QTableWidgetItem* dateOpenedItem;
+    QTableWidgetItem* seatingCapItem;
     dateOpenedItem = new QTableWidgetItem(QString::number(team->getStadium()->getDateOpened()));
+    seatingCapItem = new QTableWidgetItem(QString::number(team->getStadium()->getSeatingCapacity()));
 
     // Insert row
     table->insertRow(0);
@@ -70,7 +72,7 @@ void DisplayInfo::PopulateOneTeam(QTableWidget* table, Team* team)
     // Populate data
     table->setItem(0, OT_TEAM_NAME, new QTableWidgetItem(team->getTeamName()));
     table->setItem(0, OT_STADIUM_NAME, new QTableWidgetItem(team->getStadium()->getStadiumName()));
-    table->setItem(0, OT_SEATING_CAP, new QTableWidgetItem(team->getStadium()->getSeatingCapacity()));
+    table->setItem(0, OT_SEATING_CAP, seatingCapItem);
     table->setItem(0, OT_LOCATION, new QTableWidgetItem(team->getStadium()->getLocation()));
     table->setItem(0, OT_CONFERENCE, new QTableWidgetItem(team->getConference()));
     table->setItem(0, OT_DIVISION, new QTableWidgetItem(team->getDivision()));
