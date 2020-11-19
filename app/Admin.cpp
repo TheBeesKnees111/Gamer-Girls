@@ -149,7 +149,7 @@ void Admin::on_Read_In_From_File_Button_clicked()
 	QFile           file(":/Input/Input.txt");
 	QTextStream     inFile(&file);
 	QSqlQueryModel *model = nullptr;
-	int             teamID = ui -> Admin_Datatable -> model() -> rowCount();
+	int             teamID = 33;
 	file.open(QIODevice::ReadOnly);
 
 	//Only run if the file is opened
