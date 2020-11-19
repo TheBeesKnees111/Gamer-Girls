@@ -27,6 +27,7 @@ Admin::Admin(QWidget *parent) :
 	PopulateComboBoxes("SELECT division FROM teamInfo"   , ui -> Division_Combo_Box);
 	PopulateComboBoxes("SELECT surfaceType FROM teamInfo", ui -> Surface_Type_ComboBox);
 	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Roof_Type_ComboBox);
+	PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
 }
 
@@ -162,15 +163,25 @@ void Admin::on_Read_In_From_File_Button_clicked()
 		 * ADDING TO DATATABLE
 		 **********************************************************************/
 		//Read int each line as text
-		QString teamName        = file.readLine();
-		QString stadiumName     = file.readLine();
+		QString teamName        = file.readLine().trimmed();
+		QString stadiumName     = file.readLine().trimmed();
 		int     seatingCapacity = file.readLine().toInt();
-		QString location        = file.readLine();
-		QString conference      = file.readLine();
-		QString division        = file.readLine();
-		QString surfaceType     = file.readLine();
-		QString roofType        = file.readLine();
+		QString location        = file.readLine().trimmed();
+		QString conference      = file.readLine().trimmed();
+		QString division        = file.readLine().trimmed();
+		QString surfaceType     = file.readLine().trimmed();
+		QString roofType        = file.readLine().trimmed();
 		int     dateOpened      = file.readLine().toInt();
+
+		qDebug() << teamName;
+		qDebug() << stadiumName;
+		qDebug() << seatingCapacity;
+		qDebug() << location;
+		qDebug() << conference;
+		qDebug() << division;
+		qDebug() << surfaceType;
+		qDebug() << roofType;
+		qDebug() << dateOpened;
 
 		//Add team to table for teamInfo
 		query.prepare("INSERT OR IGNORE INTO"
