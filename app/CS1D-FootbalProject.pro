@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     Admin.cpp \
+    DFS.cpp \
     Database.cpp \
     Dijkstra.cpp \
     DisplayInfo.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 
 HEADERS += \
     Admin.h \
+    DFS.h \
     Database.h \
     Dijkstra.h \
     DisplayInfo.h \

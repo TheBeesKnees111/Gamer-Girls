@@ -40,13 +40,12 @@ void StadiumGraph::printAdjList()
                  << " (" << neighbor->getDistance() << ")"
                  << endl;
        }
-
     }
 }
 
 
 // given a spanning tree and a given node,
-// trace the path from the given node to the root(origin)
+// trace the path from the given node(destination) to the root(origin)
 QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stadium *destination)
 {
     //1  S ← empty sequence

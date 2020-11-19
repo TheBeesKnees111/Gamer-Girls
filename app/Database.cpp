@@ -37,11 +37,13 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-		QString windowsPathFile =  "/db/NFLdb.db";
-		setDatabaseName(QDir::currentPath() + windowsPathFile);
-//    QString macPathFile = "/db";
-//    setDatabaseName(QDir::currentPath() + macPathFile);
-//    qDebug() << QDir::currentPath() + macPathFile;
+//		QString windowsPathFile =  "/db/NFLdb.db";
+//		setDatabaseName(QDir::currentPath() + windowsPathFile);
+//    qDebug() << QDir::currentPath() + windowsPathFile;
+    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
+    setDatabaseName(rebecca);
+    QString macPathFile = "/db";
+    qDebug() << QDir::currentPath() + macPathFile;
 
     // Print error if database does not open
     if (!open())
@@ -117,14 +119,14 @@ QVector<Team*> Database::GetTeams()
 QString Database::GetTeamNameByID(const int& teamID)
 {
 
-	query.prepare("SELECT teamName FROM teamInfo "
-				  "WHERE teamID = (:teamID)");
-	query.bindValue(":teamID", teamID);
+    query.prepare("SELECT teamName FROM teamInfo "
+                  "WHERE teamID = (:teamID)");
+    query.bindValue(":teamID", teamID);
 
-	if(!query.exec())
-		qDebug() << "ERROR - Database::GetTeamNameByID " << query.lastError();
+    if(!query.exec())
+        qDebug() << "ERROR - Database::GetTeamNameByID " << query.lastError();
 
-	return query.value(0).toString();
+    return query.value(0).toString();
 }
 
 
@@ -462,7 +464,7 @@ QVector<Team*>* Database::GetStadiumsOrderBySeatingCap()
             stadium = new Stadium;
             stadium->setStadiumName(query.value(0).toString());
             team->setTeamName(query.value(1).toString());
-			stadium->setSeatingCapacity(query.value(2).toInt());
+            stadium->setSeatingCapacity(query.value(2).toInt());
             team->setStadium(stadium);
             teams->push_back(team);
         }

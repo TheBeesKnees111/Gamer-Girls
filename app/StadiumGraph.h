@@ -8,7 +8,7 @@
 // Graph of cities and their connections
 struct StadiumGraph
 {
-    QVector<Stadium*> cities;
+    QVector<Stadium*> Stadiums;
     QHash<Stadium*, QVector<StadiumDistance*>> adjacencyList;
 
     // Utility function for the graph.  This doesn't run any queries

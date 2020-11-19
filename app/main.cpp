@@ -33,14 +33,11 @@ void testDijkstra()
     runDijkstra(graph, "Soldier Field", "Ford Field");
     runDijkstra(graph, "SoFi Stadium", "Bills Stadium");
     runDijkstra(graph, "SoFi Stadium", "Gillette Stadium");
-
     runDijkstra(graph, "Gillette Stadium", "Lincoln Financial Field");
     runDijkstra(graph, "Lincoln Financial Field", "Gillette Stadium");
-
     runDijkstra(graph, "Bank of America Stadium", "Gillette Stadium");
     runDijkstra(graph, "Allegiant Stadium", "Bills Stadium");
     runDijkstra(graph, "Allegiant Stadium", "CenturyLink Field");
-
 }
 
 int main(int argc, char *argv[])

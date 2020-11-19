@@ -1,24 +1,24 @@
-#include "Dijkstra.h"
+#include "DFS.h"
 #include <iostream>
-#include <queue>
+#include <QStack>
 #include <QMap>
 
 
-//1  function Dijkstra(Graph, start):
-QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *start)
+//1  function DFS(Graph, start):
+QHash<QString, StadiumDistance*> DFS(const StadiumGraph& graph, Stadium *start)
 {
-    //2
-    //3      create vertex set pending
     QHash<QString, int> dist;
 
+    // DFS ==> REPLACE PQ W/ STACK & REMOVE DIST
+    //3      create vertex set pending (container of nodes to process)
+    QStack<StadiumDistance*> pending;
+
+    // list of visited cities
     QHash<QString, StadiumDistance*> prev;        // parent map
 
-    // gave the priority queue a lambda to determine the priority of a stadium
-    priority_queue<Stadium*, vector<Stadium*>, function<bool(Stadium*, Stadium*)>>
-        pending { [&dist](Stadium* lhs, Stadium* rhs){
-            return dist[lhs->getStadiumName()] < dist[rhs->getStadiumName()];
-        }};
-    //4
+    // list of discovery edges
+    QVector<StadiumDistance*> path;
+
     //5      for each vertex v in Graph:
     for (auto node : graph.Stadiums)
     {
