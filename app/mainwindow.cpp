@@ -32,118 +32,20 @@ MainWindow::MainWindow(QWidget *parent)
                                   (ImageLabelW, ImageLabelH));
 
 
-    // DEBUG: Populating Adjacency List
-    AdjacencyList* aList;
+
 
     // Create Database
     db = Database::getInstance();
 
-    // START POPULATE ADJACENCY LIST
-    QSqlQuery vertexQuery;
-    QSqlQuery edgeQuery;
+    // DEBUG: Populating Adjacency List
+    AdjacencyList* aList = db->GetAdjacencyList();
 
-    vertexQuery.prepare("SELECT DISTINCT stadiumName from teamInfo");
-
-    // If query executes
-    if(vertexQuery.exec())
-    {
-        // DEBUG
-        qDebug() << "---- POPULATE ADJACENCY LIST START -----";
-
-        // Create adjacencylist pointer
-        AdjacencyList* list = new AdjacencyList;
-
-        // Create Edge pointer
-        AdjacencyList::Edge* destination = nullptr;
-
-        // Create Vertex pointer
-        AdjacencyList::Vertex* origin = nullptr;
-
-
-        // While query has stadium names left on list
-        while(vertexQuery.next())
-        {
-            // Create new Vertex Item
-            origin = new AdjacencyList::Vertex;
-
-            origin->visited = false;
-
-            // Populate Vertex Item with origin stadium
-            origin->startCity = vertexQuery.value(0).toString();
-
-            // DEBUG
-            qDebug() << "Origin City: " << origin->startCity;
-
-            // Run query to pull that stadium's destination stadiums and their distances
-            edgeQuery.prepare("SELECT DISTINCT toStadium, milesBetween FROM teamDistances, teamInfo "
-                              "WHERE teamdistances.fromStadium = teamInfo.stadiumName "
-                              "AND teamInfo.stadiumName = :origin");
-
-            // Bind origin stadium name to query
-            edgeQuery.bindValue(":origin", origin->startCity);
-
-            // If query executes,
-            if(edgeQuery.exec())
-            {
-                // While query has destination stadiums left on list
-                while(edgeQuery.next())
-                {
-                    // Create new Edge item
-                    destination = new AdjacencyList::Edge;
-
-                    // Populate edge item with destination stadium
-                    destination->endCity = edgeQuery.value(0).toString();
-
-                    // Populate edge item with destination stadium's distance
-                    destination->distance = edgeQuery.value(1).toInt();
-
-                    // DEBUG
-                    qDebug() << "Destination City Name: " << destination->endCity;
-                    qDebug() << "Destination City Distance: " << destination->distance;
-
-                    // Insert Edge into Vertex
-                    origin->destinations.push_back(*destination);
-
-                }// End While Edge
-            }
-            else
-            {
-                qDebug() << "PopulateAdjList failed at Edge Query";
-            }
-
-            // Insert completed vertex into adjacency list
-            list->list.push_back(*origin);
-
-        } // End While Vertex
-
-        // DEBUG: PRINT ENTIRE LIST
-        qDebug() << "Starting final print!";
-        for(int originsIndex = 0; originsIndex < list->list.size(); originsIndex++)
-        {
-            qDebug() << "Arriving at: " << list->list.at(originsIndex).startCity;
-            for(int destinationsIndex = 0; destinationsIndex < list->list.at(originsIndex).destinations.size(); destinationsIndex ++)
-            {
-                qDebug() << "-Destination #" << destinationsIndex+1;
-                qDebug() << "--Name: " << list->list.at(originsIndex).destinations.at(destinationsIndex).endCity;
-                qDebug() << "--Distance: " << list->list.at(originsIndex).destinations.at(destinationsIndex).distance;
-            }
-
-            qDebug() << "-------";
-
-        }
-
-    }
-    else
-    {
-        qDebug() << "PopulateAdjList failed at Vertex Query";
-    }
-
-
-    // END POPULATE ADJACENCY LIST
 
 
     // DEBUG: Testing BFS
-    //BFS bfs(aList);
+    BFS bfs(aList);
+
+    bfs.Traverse();
 
 }
 

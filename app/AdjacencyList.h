@@ -10,13 +10,14 @@ class AdjacencyList
 public:
     struct Edge
     {
-        QString endCity;
+        QString destination;
         int distance;
+        bool visited;
     };
 
     struct Vertex
     {
-        QString startCity;
+        QString origin;
         QList<Edge> destinations;
         bool visited;
     };

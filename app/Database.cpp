@@ -7,6 +7,7 @@
 #include <QSqlError>
 #include <QFileDialog>
 #include <QVector>
+#include "AdjacencyList.h"
 
 // singleton design pattern
 // ensures that there's only ever 1 instance of this class
@@ -715,4 +716,108 @@ void Database::runGetAllStadiumDistances()
         qDebug() << "Error " << query.lastError().text()
                  << " while executing query " << query.executedQuery();
     }
+}
+
+// Get adjacency list for algorithms
+AdjacencyList* Database::GetAdjacencyList()
+{
+    QSqlQuery vertexQuery;
+    QSqlQuery edgeQuery;
+    AdjacencyList* list = nullptr;
+
+    vertexQuery.prepare("SELECT DISTINCT stadiumName from teamInfo");
+
+    // If query executes
+    if(vertexQuery.exec())
+    {
+//        // DEBUG
+//        qDebug() << "---- POPULATE ADJACENCY LIST START -----";
+
+        // Create adjacencylist pointer
+        list = new AdjacencyList;
+
+        // Create Edge pointer
+        AdjacencyList::Edge* destination = nullptr;
+
+        // Create Vertex pointer
+        AdjacencyList::Vertex* origin = nullptr;
+
+
+        // While query has stadium names left on list
+        while(vertexQuery.next())
+        {
+            // Create new Vertex Item
+            origin = new AdjacencyList::Vertex;
+
+            origin->visited = false;
+
+            // Populate Vertex Item with origin stadium
+            origin->origin = vertexQuery.value(0).toString();
+
+            // Run query to pull that stadium's destination stadiums and their distances
+            edgeQuery.prepare("SELECT DISTINCT toStadium, milesBetween FROM teamDistances, teamInfo "
+                              "WHERE teamdistances.fromStadium = teamInfo.stadiumName "
+                              "AND teamInfo.stadiumName = :origin order by milesBetween");
+
+            // Bind origin stadium name to query
+            edgeQuery.bindValue(":origin", origin->origin);
+
+            // If query executes,
+            if(edgeQuery.exec())
+            {
+                // While query has destination stadiums left on list
+                while(edgeQuery.next())
+                {
+                    // Create new Edge item
+                    destination = new AdjacencyList::Edge;
+
+                    // Populate edge item with destination stadium
+                    destination->destination = edgeQuery.value(0).toString();
+
+                    // Populate edge item with destination stadium's distance
+                    destination->distance = edgeQuery.value(1).toInt();
+
+                    destination->visited = false;
+
+//                    // DEBUG
+//                    qDebug() << "Destination City Name: " << destination->endCity;
+//                    qDebug() << "Destination City Distance: " << destination->distance;
+
+                    // Insert Edge into Vertex
+                    origin->destinations.push_back(*destination);
+
+                }// End While Edge
+            }
+            else
+            {
+                qDebug() << "GetAdjacencyList failed at Edge Query";
+            }
+
+            // Insert completed vertex into adjacency list
+            list->list.push_back(*origin);
+
+        } // End While Vertex
+
+        // DEBUG: PRINT ENTIRE LIST
+        qDebug() << "Starting final print!";
+        for(int originsIndex = 0; originsIndex < list->list.size(); originsIndex++)
+        {
+            qDebug() << "Arriving at: " << list->list.at(originsIndex).origin;
+            for(int destinationsIndex = 0; destinationsIndex < list->list.at(originsIndex).destinations.size(); destinationsIndex ++)
+            {
+                qDebug() << "-Destination #" << destinationsIndex+1;
+                qDebug() << "--Name: " << list->list.at(originsIndex).destinations.at(destinationsIndex).destination;
+                qDebug() << "--Distance: " << list->list.at(originsIndex).destinations.at(destinationsIndex).distance;
+            }
+
+            qDebug() << "-------";
+        }
+
+    }
+    else
+    {
+        qDebug() << "GetAdjacencyList failed at Vertex Query";
+    }
+
+    return list;
 }

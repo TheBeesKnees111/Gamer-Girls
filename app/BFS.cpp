@@ -7,90 +7,96 @@
 BFS::BFS(AdjacencyList *list)
 {
     aList = list;
+
+    for(int index = 0; index < aList->list.size(); index++)
+    {
+        originNames.push_back(aList->list.at(index).origin);
+    }
 }
 
 void BFS::Traverse()
 {
-//    qDebug() << "---- BFS START ----";
+    qDebug() << "---- BFS START ----";
 
-//    QQueue<int> traversal;
-//    QMap<int, QString> neighbors;
-//    QMap<int, QString>::iterator it;
-//    const int MATRIX_SIZE = 12;
-//    int distanceTraveled = 0;
-//    QVector<QString> traversalOutput;
+    QQueue<AdjacencyList::Vertex> traversal;
+    QString originName;
+    int distanceTraveled = 0;
+    QVector<QString> traversalOutput;
 
-//    // Insert starting city into traversal queue
-//    traversal.enqueue(KANSAS_CITY);
+    AdjacencyList::Vertex origin;
 
-//    // Mark starting city as visited
-//    visited[KANSAS_CITY] = true;
-//    traversalOutput.push_back("Kansas City");
+    // Insert starting city into traversal queue
+    for(int index = 0; index < aList->list.size(); index++)
+    {
+        if(aList->list.at(index).origin == "SoFi Stadium")
+        {
+            // Mark as visited
+            aList->list.operator[](index).visited = true;
 
-//    // While the traversal list is not empty,
-//    while(!traversal.empty())
-//    {
-//        qDebug() << "Arriving at: " << stadiumNames->at(traversal.head());
-//        // Store location of front of queue
-//        int row = traversal.front();
+            // Add to traversal list
+            traversal.enqueue(aList->list.at(index));
 
-//        // Pop city
-//        traversal.dequeue();
+            // Add to output list
+            traversalOutput.push_back("SoFi Stadium");
+        }
+        else
+        {
+            qDebug() << "SoFi Stadium not found";
+        }
+    }
 
-//        // Check matrix for neighbors
-//        for(int column = 0; column < MATRIX_SIZE; column++)
-//        {
-//            // Find all neighbors of current city that have not been visited
-//            if(matrix[row][column] > 0 && !visited[column])
-//            {
-//                // Add distance and cityname to neighbors map (ordered map)
-//                neighbors.insert(matrix[row][column], stadiumNames->at(column));
+    // While the traversal list is not empty,
+    while(!traversal.empty())
+    {
+        qDebug() << "Arriving at: " << traversal.head().origin;
 
-//                // Sum distance traveled;
-//                distanceTraveled = distanceTraveled + matrix[row][column];
+        origin = traversal.head();
 
-//                // Mark this city as visited
-//                visited[column] = true;
-//            }// End find unvisited neighbors
-//            else if(matrix[row][column] > 0 && visited[column])
-//            {
-//                qDebug() << "Cross Edge: " << stadiumNames->at(column);
-//            }
-//        }// End find neighbors
+        // Pop city
+        traversal.dequeue();
 
-//        // Insert all neighbors into queue
-//        for(it = neighbors.begin(); it != neighbors.end(); ++it)
-//        {
-//            for(int index = 0; index < stadiumNames->size(); index++)
-//            {
-//                // If the name matches, add the matrix location to the queue
-//                if(it->contains(stadiumNames->at(index)))
-//                {
-//                    traversal.enqueue(index);
-//                    qDebug() << "Discovery Edge: " << stadiumNames->at(traversal.last());
-//                }
-//            }
-//        }// End insert neighbors
+        // Check this list position for neighbors
+        for(int index = 0; index < origin.destinations.size(); index++)
+        {
+            // Find all neighbors of current city that have not been visited
+            if(origin.destinations.at(index).distance > 0 && !origin.destinations.at(index).visited)
+            {
+                originName = origin.destinations.at(index).destination;
 
-//        // If queue not empty, insert name into output vector
-//        if(!traversal.empty())
-//        {
-//            traversalOutput.push_back(stadiumNames->at(traversal.head()));
-//        }
+                // Mark as visited
+                aList->list.operator[](index).visited = true;
 
-//        // Clear neighbors list
-//        neighbors.clear();
-//    }
+                // Add to traversal list
+                traversal.enqueue(aList->list.at(index));
 
-//    // Print final traversal path
-//    qDebug() << "Printing final path: ";
-//    for(int index = 0; index < traversalOutput.size(); index++)
-//    {
-//        qDebug() << "City #" << index + 1 << ": " << traversalOutput.at(index);
-//    }
+                // Add to output list
+                traversalOutput.push_back(originName);
 
-//    qDebug() << "Distance Traveled: " << distanceTraveled;
+                qDebug() << "Discovery Edge: " << originNames.at((traversal.back()));
+
+                // Sum distance traveled;
+                distanceTraveled = distanceTraveled + origin.destinations.at(index).distance;
+
+            }// End find unvisited neighbors
+            else if(origin.destinations.at(index).distance > 0 && origin.destinations.at(index).visited)
+            {
+                qDebug() << "Cross Edge: " << originNames.at(index);
+            }
+        }// End find neighbors
+
+        // ISNT IT SUPPOSED TO POP?!
+
+    }
+
+    // Print final traversal path
+    qDebug() << "Printing final path: ";
+    for(int index = 0; index < traversalOutput.size(); index++)
+    {
+        qDebug() << "City #" << index + 1 << ": " << traversalOutput.at(index);
+    }
+
+    qDebug() << "Distance Traveled: " << distanceTraveled;
 
 
-//    qDebug() << "---- BFS END ----";
+    qDebug() << "---- BFS END ----";
 }
