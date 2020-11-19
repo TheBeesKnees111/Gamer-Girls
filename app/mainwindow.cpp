@@ -75,10 +75,10 @@ MainWindow::MainWindow(QWidget *parent)
             // Run query to pull that stadium's destination stadiums and their distances
             edgeQuery.prepare("SELECT toStadium, milesBetween FROM teamDistances, teamInfo "
                               "WHERE teamdistances.fromStadium = teamInfo.stadiumName "
-                              "AND teamInfo.stadiumName = :originStadium");
+                              "AND teamInfo.stadiumName = :origin");
 
             // Bind origin stadium name to query
-            edgeQuery.bindValue(":originStadium", origin->startCity);
+            edgeQuery.bindValue(":origin", origin->startCity);
 
             // If query executes,
             if(edgeQuery.exec())
