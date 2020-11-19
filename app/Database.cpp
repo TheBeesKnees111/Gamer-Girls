@@ -462,7 +462,7 @@ QVector<Team*>* Database::GetStadiumsOrderBySeatingCap()
             stadium = new Stadium;
             stadium->setStadiumName(query.value(0).toString());
             team->setTeamName(query.value(1).toString());
-			stadium->setSeatingCapacity(query.value(2).toInt());
+            stadium->setSeatingCapacity(query.value(2).toInt());
             team->setStadium(stadium);
             teams->push_back(team);
         }

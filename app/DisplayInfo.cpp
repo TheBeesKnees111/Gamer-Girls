@@ -62,7 +62,9 @@ void DisplayInfo::PopulateOneTeam(QTableWidget* table, Team* team)
 {
     // Date opened item
     QTableWidgetItem* dateOpenedItem;
+    QTableWidgetItem* seatingCapItem;
     dateOpenedItem = new QTableWidgetItem(QString::number(team->getStadium()->getDateOpened()));
+    seatingCapItem = new QTableWidgetItem(QString::number(team->getStadium()->getSeatingCapacity()));
 
     // Insert row
     table->insertRow(0);
@@ -70,7 +72,7 @@ void DisplayInfo::PopulateOneTeam(QTableWidget* table, Team* team)
     // Populate data
     table->setItem(0, OT_TEAM_NAME, new QTableWidgetItem(team->getTeamName()));
     table->setItem(0, OT_STADIUM_NAME, new QTableWidgetItem(team->getStadium()->getStadiumName()));
-    table->setItem(0, OT_SEATING_CAP, new QTableWidgetItem(team->getStadium()->getSeatingCapacity()));
+    table->setItem(0, OT_SEATING_CAP, seatingCapItem);
     table->setItem(0, OT_LOCATION, new QTableWidgetItem(team->getStadium()->getLocation()));
     table->setItem(0, OT_CONFERENCE, new QTableWidgetItem(team->getConference()));
     table->setItem(0, OT_DIVISION, new QTableWidgetItem(team->getDivision()));
@@ -148,7 +150,7 @@ void DisplayInfo::PopulateOpenRoofStadiums(QVector<Team*>* teamList)
         ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, OS_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
         // Populate Team Name Column
         ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, OS_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
-        // Populate Date Opened Column
+        // Populate Roof Type Column
         ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, OS_ROOF_TYPE, new QTableWidgetItem(teamList->at(index)->getStadium()->getRoofType()));
     }
 }
@@ -157,16 +159,21 @@ void DisplayInfo::PopulateOpenRoofStadiums(QVector<Team*>* teamList)
 // Populate stadiums ordered by capacity (requirement 10)
 void DisplayInfo::PopulateStadiumsOrderByCapacity(QVector<Team*>* teamList)
 {
+    QTableWidgetItem* seatingCapItem;
+
     for(int index = 0; index < teamList->size(); index++)
     {
         // Create Row
         ui->Datatable_TableWidget->insertRow(ui->Datatable_TableWidget->rowCount());
+        // Set date opened item
+        seatingCapItem = new QTableWidgetItem(QString::number(teamList->at(index)->getStadium()->getSeatingCapacity()));
+
         // Populate Stadium Name Column
         ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_STADIUM_NAME, new QTableWidgetItem(teamList->at(index)->getStadium()->getStadiumName()));
         // Populate Team Name Column
         ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_TEAM_NAME, new QTableWidgetItem(teamList->at(index)->getTeamName()));
-        // Populate Date Opened Column
-        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_SEATING_CAP, new QTableWidgetItem(teamList->at(index)->getStadium()->getSeatingCapacity()));
+        // Populate Seating Cap Column
+        ui->Datatable_TableWidget->setItem(ui->Datatable_TableWidget->rowCount() -1, SC_SEATING_CAP, seatingCapItem);
     }
 }
 
