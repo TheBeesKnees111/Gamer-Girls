@@ -38,7 +38,11 @@ void testDijkstra()
 //    runDijkstra(graph, "Lincoln Financial Field", "Gillette Stadium");
 //    runDijkstra(graph, "Bank of America Stadium", "Gillette Stadium");
 //    runDijkstra(graph, "Allegiant Stadium", "Bills Stadium");
+<<<<<<< HEAD
 //    runDijkstra(graph, "Lambeau Field", "Hard Rock Stadium");
+=======
+    runDijkstra(graph, "Lambeau Field", "Hard Rock Stadium");
+>>>>>>> dfs
 }
 
 // Creates & prints the specified path for DFS
@@ -85,7 +89,11 @@ int main(int argc, char *argv[])
     MainWindow w;
 
     // TEST FOR DIJKSTRA & DFS
+<<<<<<< HEAD
 //    testDijkstra();
+=======
+    testDijkstra();
+>>>>>>> dfs
     testDFS();
     // END TEST
 
