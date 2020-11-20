@@ -64,6 +64,7 @@ int GetTeamIDByCityName(QString location)
     if(!query.exec())
         qDebug() << query.lastError();
 
+	query.next();
     return query.value(0).toInt();
 }
 
