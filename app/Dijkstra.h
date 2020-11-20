@@ -22,4 +22,8 @@ using namespace std;
 // for the shortest path.
 QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium* start);
 
+void runDijkstra(const StadiumGraph& graph, QString start, QString end);
+
+void testDijkstra();
+
 #endif // DIJKSTRA_H
