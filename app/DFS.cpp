@@ -2,6 +2,7 @@
 #include <iostream>
 #include <QStack>
 #include <QMap>
+
 using namespace std;
 
 // DFS method
@@ -70,4 +71,40 @@ QVector<StadiumDistance*> DFS(const StadiumGraph& graph, Stadium *start)
         }
     }
     return path;
+}
+
+// Creates & prints the specified path for DFS
+void runDFS(const StadiumGraph& graph, QString start)
+{
+    Database* db = Database::getInstance();
+
+    Stadium* startLocation{db->getStadiumByName(start)};
+
+    // Create the DFS starting from this location
+    QVector<StadiumDistance*> spanningTree = DFS(graph, startLocation);
+
+    cout << "===================================================================" << endl;
+    cout << "DFS PATH FROM " << start.toStdString() <<  endl;
+    cout << "===================================================================" << endl;
+
+    // Print the path
+    printPath(spanningTree);
+}
+
+// Runs / calls path for DFS from start stadium
+void testDFS()
+{
+    // Create Database
+    Database* db = Database::getInstance();
+
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
+//    graph.printAdjList();
+
+//    runDFS(graph, "Soldier Field");
+//    runDFS(graph, "SoFi Stadium");
+//    runDFS(graph, "Gillette Stadium");
+//    runDFS(graph, "Lincoln Financial Field");
+//    runDFS(graph, "Bank of America Stadium");
+//    runDFS(graph, "Allegiant Stadium");
+    runDFS(graph, "U.S. Bank Stadium");
 }

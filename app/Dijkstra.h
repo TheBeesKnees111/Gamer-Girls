@@ -12,6 +12,7 @@
 #include <algorithm>
 #include <string>
 #include <QHash>
+#include <iostream>
 
 using namespace std;
 
@@ -25,5 +26,11 @@ using namespace std;
 // to all other stadiums. Returns the complete spanning tree which can be used
 // for multiple searches for the shortest path from the start location.
 QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium* start);
+
+// Creates and prints the specified path for Dijkstra
+void runDijkstra(const StadiumGraph& graph, QString start, QString end);
+
+// Runs / calls various paths for Dijkstra
+void testDijkstra();
 
 #endif // DIJKSTRA_H

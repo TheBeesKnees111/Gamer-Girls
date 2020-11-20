@@ -3,7 +3,6 @@
 #include <queue>
 #include <QMap>
 
-
 //1  function Dijkstra(Graph, start):
 QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *start)
 {
@@ -59,4 +58,38 @@ QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *st
         }
     }
     return visited;
+}
+
+void runDijkstra(const StadiumGraph& graph, QString start, QString end)
+{
+    Database* db = Database::getInstance();
+
+    Stadium* startLocation{db->getStadiumByName(start)};
+    Stadium* endLocation{db->getStadiumByName(end)};
+
+    QHash<QString, StadiumDistance*> spanningTree = Dijkstra(graph, startLocation);
+    QVector<StadiumDistance*> path = buildPath(spanningTree, endLocation);
+    cout << "===================================================================" << endl;
+    cout << "DIJKSTRA PATH FROM " << start.toStdString() << " to " << end.toStdString() << endl;
+    cout << "===================================================================" << endl;
+    printPath(path);
+}
+
+// Runs / calls various paths for Dijkstra
+void testDijkstra()
+{
+    // Create Database
+    Database* db = Database::getInstance();
+
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
+//    graph.printAdjList();
+
+//    runDijkstra(graph, "Soldier Field", "Ford Field");
+//    runDijkstra(graph, "SoFi Stadium", "Bills Stadium");
+//    runDijkstra(graph, "SoFi Stadium", "Gillette Stadium");
+//    runDijkstra(graph, "Gillette Stadium", "Lincoln Financial Field");
+//    runDijkstra(graph, "Lincoln Financial Field", "Gillette Stadium");
+//    runDijkstra(graph, "Bank of America Stadium", "Gillette Stadium");
+//    runDijkstra(graph, "Allegiant Stadium", "Bills Stadium");
+//    runDijkstra(graph, "Lambeau Field", "Hard Rock Stadium");
 }
