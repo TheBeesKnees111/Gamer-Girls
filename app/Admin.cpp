@@ -145,6 +145,8 @@ void Admin::on_Read_In_From_File_Button_clicked()
 {
 	QFile           file(":/Input/Input.txt");
 	QTextStream     inFile(&file);
+	QSqlQueryModel *model = nullptr;
+	int             teamID = 33;
 	file.open(QIODevice::ReadOnly);
 
 	//Only run if the file is opened
@@ -174,11 +176,16 @@ void Admin::on_Read_In_From_File_Button_clicked()
 		QString roofType        = file.readLine().trimmed();
 		int     dateOpened      = file.readLine().toInt();
 
-		while(!file.atEnd())
-		{
-			otherStadiums.push_back(file.readLine().trimmed());
-			miles.push_back(file.readLine().toInt());
-		}
+		//Add team to table for teamInfo
+		query.prepare("INSERT OR IGNORE INTO"
+					  " teamInfo(teamID,     teamName,    stadiumName, "
+					  "         seatingCap,  location,    conference,  "
+					  "			division,    surfaceType, roofType,"
+					  "         dateOpened) "
+					  " VALUES(:teamID,    :teamName,   :stadiumName, "
+					  "        :seatingCap,:location,   :conference,  "
+					  "        :division,  :surfaceType,:roofType,    "
+					  "        :dateOpened)");
 
 		if(!(ui -> Team_Name_ComboBox -> findText(stadiumName)))
 		{
@@ -227,38 +234,4 @@ void Admin::on_Read_In_From_File_Button_clicked()
 	}//end if(file.isOpen())
 
 
-}
-
-//Add souvenir to database and datatable
-void Admin::on_Add_Souvenir_PushButton_clicked()
-{
-	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
-	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
-	int       teamID       = ui -> Team_Name_ComboBox -> currentIndex() + 1;
-	QSqlQuery query;
-
-	qDebug() << souvenirName;
-	qDebug() << price;
-	qDebug() << teamID;
-
-	//Set definition of blank data
-	bool    blankData    = (souvenirName == "" || price == 0.00 ||
-							teamID       == 0);
-
-	if(blankData)
-		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
-
-	else
-	{
-		//Pull teamId from team name selected by the user
-		query.prepare("INSERT INTO "
-					  "souvenirs(teamID,  itemName,  itemrice) "
-					  "VALUES   (:teamID, :itemName, :itemPrice) "
-					  "WHERE teamID = :teamID");
-
-		query.bindValue(":teamID",    teamID);
-		query.bindValue(":itemName",  souvenirName);
-		query.bindValue(":itemPrice", price);
-
-	}
 }
