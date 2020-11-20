@@ -5,11 +5,14 @@
 #include "Team.h"
 #include "Souvenir.h"
 #include "Stadium.h"
+#include "RouteDisplayer.h"
+#include "StadiumGraph.h"
+#include "Dijkstra.h"
 
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),
-	ui(new Ui::SouvenirAndTrip)
+    ui(new Ui::SouvenirAndTrip)
 {
     ui->setupUi(this);
 
@@ -19,8 +22,6 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     // Retrieving combobox labels for 'display souvenirs for one team'
     souvenirComboBoxLabels = database->GetTeamNames();
     ui->Souvenir_Select_Team_ComboBox->addItems(souvenirComboBoxLabels);
-
-
 
 
     QSqlQuery query;
@@ -115,6 +116,40 @@ void SouvenirAndTrip::on_Home_PushButton_clicked()
     hide();
 
     mainWindow -> show();
+}
+
+//FIXME
+/*********************************************
+ ************** GREEN BAY TRIP **************
+ *********************************************/
+///For GREEN BAY TRIP push button clicked
+/// Will call rout displayer and show cities the user has selected to travel to
+void SouvenirAndTrip::on_Confirm_Green_Bay_Trip_PushButton_clicked()
+{
+    // Create Database
+    Database* db = Database::getInstance();
+
+    // TODO - CALL SHORTEST PATH HERE?
+    // get stadium origin
+    Stadium* origin {db->getStadiumByName("Lambeau Field")};
+    // get city selected
+    Stadium* destination{db->getStadiumByName(ui->GreenBaySelect->value())};
+
+    // create graph
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
+
+    // create spanning tree for all destinations
+    QHash<QString, StadiumDistance*> spanningTree = Dijkstra(graph, origin);
+
+    // get path for destination location
+    QVector<StadiumDistance*> path = buildPath(spanningTree, destination);
+
+    // send to route displayer
+    QDialog * routeDisplay = new RouteDisplayer(this, path);
+    // set window title
+    routeDisplay->setWindowTitle(origin->getStadiumName());
+    // open window
+    routeDisplay->show();
 }
 
             /*********************************************

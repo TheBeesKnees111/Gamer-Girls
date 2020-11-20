@@ -12,16 +12,20 @@ class RouteDisplayer;
 
 class RouteDisplayer : public QDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit RouteDisplayer(QWidget *parent, QStringList cities, QList <int> distances);
-	~RouteDisplayer();
+    // TODO - CAN WE CALL DIFFERENT CONSTRUCTORS W/ DIFF PARAMETERS?
+    explicit RouteDisplayer(QWidget *parent, QVector<StadiumDistance*> path );
+
+//	explicit RouteDisplayer(QWidget *parent, QStringList cities, QList <int> distances);
+    ~RouteDisplayer();
 
 private:
-	Ui::RouteDisplayer *ui;
-	QList<int> route;
-	int totalDistance;
+    Ui::RouteDisplayer *ui;
+    static QVector<StadiumDistance*> path;
+//    QList<int> route;
+//    int totalDistance;
 };
 
 #endif // ROUTEDISPLAYER_H

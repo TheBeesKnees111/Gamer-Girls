@@ -3,11 +3,9 @@
 #include <queue>
 #include <QMap>
 
-
+//1  function Dijkstra(Graph, start):
 QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *start)
 {
-    //1  function Dijkstra(Graph, start):
-    //2
     //3      create vertex set pending
     QHash<QString, int> dist;
     QHash<QString, StadiumDistance*> prev;        // parent map
@@ -16,8 +14,6 @@ QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *st
         pending { [&dist](Stadium* lhs, Stadium* rhs){
         return dist[lhs->getStadiumName()] < dist[rhs->getStadiumName()];
     }};
-
-//4
 //5      for each vertex v in Graph:
 for (auto node : graph.cities)
 {
@@ -28,10 +24,8 @@ for (auto node : graph.cities)
     //8          add v to pending
     //        pending.push(node);
 }
-
 //10      dist[start] ← 0
 dist[start->getStadiumName()] = 0;
-//11
 // loop thru start's adjacent vertices & add them to the pending list
 for (auto neighbor : graph.adjacencyList[start])
 {
@@ -45,10 +39,8 @@ while (!pending.empty())
 {
     //13          u ← vertex in pending with min dist[u]
     Stadium *currentStadium = pending.top();
-    //14
     //15          remove u from pending
     pending.pop();
-    //16
     //17          for each neighbor v of u:
     // only v that are still in pending
     for (auto adjacent : graph.adjacencyList[currentStadium])
@@ -65,7 +57,6 @@ while (!pending.empty())
             pending.push(adjacent->getToStadium());
         }
     }
-    //22
 }
 //23      return dist[], prev[]
 return prev;

@@ -37,13 +37,13 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-        QString windowsPathFile =  "/db/NFLdb.db";
-        setDatabaseName(QDir::currentPath() + windowsPathFile);
-        qDebug() << QDir::currentPath() + windowsPathFile;
-//    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
-//    setDatabaseName(rebecca);
-//    QString macPathFile = "/db";
-//    qDebug() << QDir::currentPath() + macPathFile;
+//        QString windowsPathFile =  "/db/NFLdb.db";
+//        setDatabaseName(QDir::currentPath() + windowsPathFile);
+//        qDebug() << QDir::currentPath() + windowsPathFile;
+    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
+    setDatabaseName(rebecca);
+    QString macPathFile = "/db";
+    qDebug() << QDir::currentPath() + macPathFile;
 
     // Print error if database does not open
     if (!open())
