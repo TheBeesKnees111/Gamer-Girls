@@ -39,6 +39,7 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
 		QString windowsPathFile =  "/db/NFLdb.db";
 		setDatabaseName(QDir::currentPath() + windowsPathFile);
+		qDebug() << QDir::currentPath() + windowsPathFile;
 //    QString macPathFile = "/db";
 //    setDatabaseName(QDir::currentPath() + macPathFile);
 //    qDebug() << QDir::currentPath() + macPathFile;

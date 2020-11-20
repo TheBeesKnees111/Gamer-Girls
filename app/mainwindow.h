@@ -35,7 +35,7 @@ private slots:
 
 private:
 	Ui::MainWindow *ui;
-    Database* db;
+	Database*       db;
 
 };
 #endif // MAINWINDOW_H

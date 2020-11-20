@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	ui->setupUi(this);
 
+	//INSTANTIATE DATABASE
+	Database::getInstance();
+
     //PROCESSING - Setting Main Window Title
 	this -> setWindowTitle("Let's Play Football");
 
