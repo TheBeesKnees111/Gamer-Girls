@@ -180,7 +180,10 @@ void Admin::on_Read_In_From_File_Button_clicked()
 			miles.push_back(file.readLine().toInt());
 		}
 
-		if(!(ui -> Team_Name_ComboBox -> findText(stadiumName)))
+		qDebug() << "ui -> Team_Name_ComboBox -> findText(teamName) "
+				 << ui -> Team_Name_ComboBox -> findText(teamName);
+
+		if(ui -> Team_Name_ComboBox -> findText(teamName) == -1)
 		{
 			//Add team to table for teamInfo
 			query.prepare("INSERT OR IGNORE INTO"
@@ -210,6 +213,7 @@ void Admin::on_Read_In_From_File_Button_clicked()
 
 			//Populate datatable with new info
 			PopulateStadiumTable(model);
+			PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
 			/***********************************************************************
 		 * ADDING TO SOUVENIR TABLE
