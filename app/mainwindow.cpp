@@ -47,6 +47,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     bfs.Traverse();
 
+    db->CreateShoppingList(bfs.GetTraversalList());
+
 }
 
 MainWindow::~MainWindow()

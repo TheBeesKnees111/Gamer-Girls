@@ -817,3 +817,132 @@ AdjacencyList* Database::GetAdjacencyList()
 
     return list;
 }
+
+
+
+// Populate Shopping Cart List
+QVector<Team*>* Database::CreateShoppingList(const QStringList &stadiumNames)
+{
+    QVector<Team*>* shoppingList = new QVector<Team*>;
+    QVector<Souvenir*>* souvenirList = new QVector<Souvenir*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+    Souvenir* souvenir = nullptr;
+
+    qDebug() << "--SHOPPING CART CREATION START--";
+
+    // Populate stadium name for each team
+    for(int index = 0; index < stadiumNames.size(); index++)
+    {
+        // Create team and stadium
+        team = new Team;
+        stadium = new Stadium;
+
+        // Name stadium from stadium names
+        stadium->setStadiumName(stadiumNames.at(index));
+
+        // Add to team
+        team->setStadium(stadium);
+
+        team->setTeamName(stadiumNames.at(index));
+
+
+        // TODO  LEFT OFF HEREEEEEE
+        // DEBUG
+        qDebug() << "Stadium Name Added: " << team->getStadium()->getStadiumName();
+
+        // Prep query
+        query.prepare("SELECT teamName FROM teamInfo WHERE stadiumName = :stadiumName");
+
+        // Bind value
+        query.bindValue(":stadiumName", stadiumNames.at(index));
+
+        // Execute
+        if(query.exec())
+        {
+            // Create new stadium object
+            stadium = new Stadium;
+
+            while(query.next())
+            {
+                // Populate stadium name
+                stadium->setStadiumName(query.value(0).toString());
+            }
+
+            // Add stadium to team
+            shoppingList->at(index)->setStadium(stadium);
+
+            // DEBUG
+            qDebug() << "Team Name: " << shoppingList->at(index)->getTeamName()
+                     << "Stadium Name: " << shoppingList->at(index)->getStadium()->getStadiumName();
+        }
+        else
+        {
+            qDebug() << "CreateShoppingList() failed at creating teams from stadium names";
+        }
+
+        // Add team to shopping list
+        shoppingList->push_back(team);
+    }
+
+    // Populate souvnirs for each team
+    for(int index = 0; index < stadiumNames.size(); index++)
+    {
+        // Prep query
+        query.prepare("SELECT itemName, itemPrice FROM souvenirs, teamInfo WHERE teamInfo.teamID = souvenirs.teamID AND teamInfo.teamName = :teamName");
+
+        // Bind value
+        query.bindValue(":teamName", stadiumNames.at(index));
+
+        // Execute
+        if(query.exec())
+        {
+            // Populate team with souvenirs
+            while(query.next())
+            {
+                // Populate souvenir
+                souvenir = new Souvenir;
+                souvenir->setItemName(query.value(0).toString());
+                souvenir->setItemPrice(query.value(0).toFloat());
+
+                // Insert souvenir into list
+                souvenirList->push_back(souvenir);
+
+                // DEBUG
+                qDebug() << "Souvenir Name: " << souvenir->getItemName();
+                qDebug() << "Souvenir Price: " << souvenir->getItemPrice();
+            }
+
+            // Insert list into team
+            shoppingList->at(index)->setSouvenirList(*souvenirList);
+        }
+        else
+        {
+            qDebug() << "CreateShoppingList() failed at adding souvenirs to team";
+        }
+    }
+
+    qDebug() << "--SHOPPING CART CREATION END--";
+    qDebug() << "----";
+    qDebug() << "----";
+    qDebug() << "--PRINTING SHOPPING CART START --";
+
+    for(int index = 0; index < shoppingList->size(); index++)
+    {
+        qDebug() << "Team #" << index+1;
+        qDebug() << "Name: ";
+        qDebug() << "Stadium: ";
+        qDebug() << "Souvenir List: ";
+
+        for(int sIndex = 0; sIndex < shoppingList->at(index)->getSouvenirList().size(); sIndex++)
+        {
+            qDebug() << "-Name: " << shoppingList->at(index)->getSouvenirList().at(sIndex)->getItemName();
+            qDebug() << "-Price: " << shoppingList->at(index)->getSouvenirList().at(sIndex)->getItemPrice();
+        }
+    }
+
+    qDebug() << "--PRINTING SHOPPING CART END --";
+
+    return shoppingList;
+
+}

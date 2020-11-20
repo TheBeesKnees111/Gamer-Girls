@@ -12,17 +12,19 @@ BFS::BFS(AdjacencyList *list)
     {
         originNames.push_back(aList->list.at(index).origin);
     }
+
+    distanceTraveled = 0;
+    traversalList.clear();
 }
 
 void BFS::Traverse()
 {
-    qDebug() << "---- BFS START ----";
+//    // DEBUG
+//    qDebug() << "---- BFS START ----";
 
     QQueue<int> traversal;
     int currentCity;
     QString originName;
-    int distanceTraveled = 0;
-    QVector<QString> traversalOutput;
 
     // Create boolian visited list
     const int SIZE = aList->list.size();
@@ -40,7 +42,7 @@ void BFS::Traverse()
             traversal.enqueue(index);
 
             // Add to output list
-            traversalOutput.push_back("SoFi Stadium");
+            traversalList.push_back("SoFi Stadium");
         }
     }
 
@@ -69,62 +71,34 @@ void BFS::Traverse()
                     traversal.enqueue(listIndex);
 
                     // Add connection to output list
-                    traversalOutput.push_back(aList->list.at(listIndex).origin);
+                    traversalList.push_back(aList->list.at(listIndex).origin);
 
                     distanceTraveled = distanceTraveled + aList->list.at(currentCity).destinations.at(index).distance;
                 }
             }
         }
     }
-//        qDebug() << "Arriving at: " << traversal.head().origin;
 
-//        origin = traversal.head();
-
-//        // Pop city
-//        traversal.dequeue();
-
-//        // Check this list position for neighbors
-//        for(int index = 0; index < origin.destinations.size(); index++)
-//        {
-//            // Find all neighbors of current city that have not been visited
-//            if(!origin.destinations.at(index).visited)
-//            {
-//                originName = origin.destinations.at(index).destination;
-
-//                // Mark as visited
-//                aList->list.operator[](index).visited = true;
-
-//                // Add to traversal list
-//                traversal.enqueue(aList->list.at(index));
-
-//                // Add to output list
-//                traversalOutput.push_back(originName);
-
-//                qDebug() << "Discovery Edge: " << originNames.at(traversal.size()-1);
-
-//                // Sum distance traveled;
-//                distanceTraveled = distanceTraveled + origin.destinations.at(index).distance;
-
-//            }// End find unvisited neighbors
-//            else if(origin.destinations.at(index).distance > 0 && origin.destinations.at(index).visited)
-//            {
-//                qDebug() << "Cross Edge: " << originNames.at(index);
-//            }
-//        }// End find neighbors
-
-//        // ISNT IT SUPPOSED TO POP?!
-
+//    // Print final traversal path
+//    qDebug() << "Printing final path: ";
+//    for(int index = 0; index < traversalList.size(); index++)
+//    {
+//        qDebug() << "City #" << index + 1 << ": " << traversalList.at(index);
 //    }
 
-    // Print final traversal path
-    qDebug() << "Printing final path: ";
-    for(int index = 0; index < traversalOutput.size(); index++)
-    {
-        qDebug() << "City #" << index + 1 << ": " << traversalOutput.at(index);
-    }
-
-    qDebug() << "Distance Traveled: " << distanceTraveled;
+//    qDebug() << "Distance Traveled: " << distanceTraveled;
 
 
-    qDebug() << "---- BFS END ----";
+//    qDebug() << "---- BFS END ----";
+}
+
+
+QStringList BFS::GetTraversalList() const
+{
+    return traversalList;
+}
+
+int BFS::GetDistanceTraveled() const
+{
+    return distanceTraveled;
 }

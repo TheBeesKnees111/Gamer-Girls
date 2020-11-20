@@ -137,6 +137,9 @@ public:
     // Get adjacency list for algorithms
     AdjacencyList* GetAdjacencyList();
 
+    // Populate Shopping Cart List
+    QVector<Team*>* CreateShoppingList(const QStringList &teamNames);
+
 
 private:
     // Moved so that outside code can't call the constructor & must call getInstance
