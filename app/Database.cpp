@@ -37,11 +37,12 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-		QString windowsPathFile =  "/db/NFLdb.db";
-		setDatabaseName(QDir::currentPath() + windowsPathFile);
-		qDebug() << QDir::currentPath() + windowsPathFile;
+        QString windowsPathFile =  "/db/NFLdb.db";
+        setDatabaseName(QDir::currentPath() + windowsPathFile);
+        qDebug() << QDir::currentPath() + windowsPathFile;
+//    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
+//    setDatabaseName(rebecca);
 //    QString macPathFile = "/db";
-//    setDatabaseName(QDir::currentPath() + macPathFile);
 //    qDebug() << QDir::currentPath() + macPathFile;
 
     // Print error if database does not open
@@ -65,7 +66,7 @@ int GetTeamIDByCityName(QString location)
     if(!query.exec())
         qDebug() << query.lastError();
 
-	query.next();
+    query.next();
     return query.value(0).toInt();
 }
 
@@ -119,15 +120,15 @@ QVector<Team*> Database::GetTeams()
 QString Database::GetTeamNameByID(const int& teamID)
 {
 
-	query.prepare("SELECT teamName FROM teamInfo "
-				  "WHERE teamID = :teamID");
-	query.bindValue(":teamID", teamID);
+    query.prepare("SELECT teamName FROM teamInfo "
+                  "WHERE teamID = :teamID");
+    query.bindValue(":teamID", teamID);
 
-	if(!query.exec())
-		qDebug() << "ERROR - Database::GetTeamNameByID " << query.lastError();
+    if(!query.exec())
+        qDebug() << "ERROR - Database::GetTeamNameByID " << query.lastError();
 
-	query.next();
-	return query.value(0).toString();
+    query.next();
+    return query.value(0).toString();
 }
 
 Stadium* Database::getStadiumByID(const int& teamID)
@@ -147,15 +148,15 @@ Stadium *Database::getStadiumByName(const QString stadiumName)
 
 int Database::GetIDByStadiumName(const QString& stadiumName)
 {
-	query.prepare("select teamID from teamInfo WHERE stadiumName = :stadiumName");
+    query.prepare("select teamID from teamInfo WHERE stadiumName = :stadiumName");
 
-	query.bindValue(":stadiumName", stadiumName);
+    query.bindValue(":stadiumName", stadiumName);
 
-	if(!query.exec())
-		qDebug() << "Database::GetIDByStadiumName " << query.lastError();
+    if(!query.exec())
+        qDebug() << "Database::GetIDByStadiumName " << query.lastError();
 
-	query.next();
-	return query.value(0).toInt();
+    query.next();
+    return query.value(0).toInt();
 }
 
 // For use in admin section
@@ -207,24 +208,24 @@ void Database::DeleteSouvenir(const QString &SouvenirName, const QString &teamNa
 void Database::AddDefaultSouvenirsToDatabase(int souvenirID, int teamID, QStringList souvenirs, QVector<double> prices)
 {
 
-	for(int index = 0; index < souvenirs.size(); index++)
-	{//begin for
+    for(int index = 0; index < souvenirs.size(); index++)
+    {//begin for
 
-		query.prepare("INSERT OR IGNORE INTO "
-					  "souvenirs(souvenirID, teamID, itemName, itemPrice) "
-					  "VALUES   (:souvenirID, :teamID, :itemName, :itemPrice)");
+        query.prepare("INSERT OR IGNORE INTO "
+                      "souvenirs(souvenirID, teamID, itemName, itemPrice) "
+                      "VALUES   (:souvenirID, :teamID, :itemName, :itemPrice)");
 
-		//Bind query values
-		query.bindValue(":souvenirID", ++souvenirID);
-		query.bindValue(":teamID",     teamID);
-		query.bindValue(":itemName",   souvenirs[index]);
-		query.bindValue(":itemPrice",  prices   [index]);
+        //Bind query values
+        query.bindValue(":souvenirID", ++souvenirID);
+        query.bindValue(":teamID",     teamID);
+        query.bindValue(":itemName",   souvenirs[index]);
+        query.bindValue(":itemPrice",  prices   [index]);
 
-		//Output error message if query fails
-		if(!query.exec())
-			qDebug() << query.lastError();
+        //Output error message if query fails
+        if(!query.exec())
+            qDebug() << query.lastError();
 
-	}//end for
+    }//end for
 
 }
 
@@ -254,60 +255,60 @@ QStringList Database::GetTeamNames()
 
 void Database::AddDistancesToDataBaseFromFile(QString& stadiumName, QStringList& otherStadiums, QVector <int>& miles)
 {
-	int     teamID;
-	QString teamName;
+    int     teamID;
+    QString teamName;
 
-	qDebug() << "stadiumName: " << stadiumName;
+    qDebug() << "stadiumName: " << stadiumName;
 
-	//Add stadiums with from stadium being Qualcomm
-	for(int index = 0; index < otherStadiums.size(); index++)
-	{//begin for
+    //Add stadiums with from stadium being Qualcomm
+    for(int index = 0; index < otherStadiums.size(); index++)
+    {//begin for
 
-		teamID   = GetIDByStadiumName(stadiumName);
-		teamName = GetTeamNameByID   (teamID);
+        teamID   = GetIDByStadiumName(stadiumName);
+        teamName = GetTeamNameByID   (teamID);
 
-		query.prepare("INSERT INTO "
-					  "teamDistances(teamID, teamName, fromStadium, toStadium,"
-					  "milesBetween) "
-					  "VALUES       (:teamID, :teamName, :fromStadium, :toStadium,"
-					  ":milesBetween)");
+        query.prepare("INSERT INTO "
+                      "teamDistances(teamID, teamName, fromStadium, toStadium,"
+                      "milesBetween) "
+                      "VALUES       (:teamID, :teamName, :fromStadium, :toStadium,"
+                      ":milesBetween)");
 
-		query.bindValue(":teamID",       teamID);
-		query.bindValue(":teamName",     teamName);
-		query.bindValue(":fromStadium",  stadiumName);
-		query.bindValue(":toStadium",    otherStadiums[index]);
-		query.bindValue(":milesBetween", miles[index]);
+        query.bindValue(":teamID",       teamID);
+        query.bindValue(":teamName",     teamName);
+        query.bindValue(":fromStadium",  stadiumName);
+        query.bindValue(":toStadium",    otherStadiums[index]);
+        query.bindValue(":milesBetween", miles[index]);
 
-		//Output error message if query fails
-		if(!query.exec())
-			qDebug() << "ERROR ADDING DISTANCES " << query.lastError();
+        //Output error message if query fails
+        if(!query.exec())
+            qDebug() << "ERROR ADDING DISTANCES " << query.lastError();
 
-	}//end for
+    }//end for
 
-	//Add stadiums with the to city being San Diego
-	for(int index = 0; index < otherStadiums.size(); index++)
-	{//begin for
+    //Add stadiums with the to city being San Diego
+    for(int index = 0; index < otherStadiums.size(); index++)
+    {//begin for
 
-		teamID   = GetIDByStadiumName(otherStadiums[index]);
-		teamName = GetTeamNameByID(teamID);
+        teamID   = GetIDByStadiumName(otherStadiums[index]);
+        teamName = GetTeamNameByID(teamID);
 
-		query.prepare("INSERT INTO "
-					  "teamDistances(teamID, teamName, fromStadium, toStadium,"
-					  "milesBetween) "
-					  "VALUES       (:teamID, :teamName, :fromStadium, :toStadium,"
-					  ":milesBetween)");
+        query.prepare("INSERT INTO "
+                      "teamDistances(teamID, teamName, fromStadium, toStadium,"
+                      "milesBetween) "
+                      "VALUES       (:teamID, :teamName, :fromStadium, :toStadium,"
+                      ":milesBetween)");
 
-		query.bindValue(":teamID",       teamID);
-		query.bindValue(":teamName",     teamName);
-		query.bindValue(":fromStadium",  otherStadiums[index]);
-		query.bindValue(":toStadium",    stadiumName);
-		query.bindValue(":milesBetween", miles[index]);
+        query.bindValue(":teamID",       teamID);
+        query.bindValue(":teamName",     teamName);
+        query.bindValue(":fromStadium",  otherStadiums[index]);
+        query.bindValue(":toStadium",    stadiumName);
+        query.bindValue(":milesBetween", miles[index]);
 
-		//Output error message if query fails
-		if(!query.exec())
-			qDebug() << "Database::AddDistancesToDataBaseFromFile " << query.lastError();
+        //Output error message if query fails
+        if(!query.exec())
+            qDebug() << "Database::AddDistancesToDataBaseFromFile " << query.lastError();
 
-	}//end for
+    }//end for
 }
 
 // Get Info for one team (Requirement 2)
