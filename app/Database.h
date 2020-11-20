@@ -45,6 +45,7 @@ public:
     QVector<Stadium*> getStadiums();
     Stadium* getStadiumByID(const int& teamID);
     Stadium* getStadiumByName(const QString name);
+	int      GetIDByStadiumName(const QString& stadiumName);
 
     // STADIUM DISTANCE METHODS
     QVector<StadiumDistance*> getStadiumDistances();
@@ -53,6 +54,9 @@ public:
     // SOUVENIR METHODS
     QVector<Souvenir*> getSouvenirs();
     Souvenir* getSouvenierByID(int souvenirID);
+	void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
+											QStringList      souvenirs,
+											QVector <double> prices);
 
     // PURCHASES METHODS
     QVector<Purchases*> getPurchases();
@@ -60,6 +64,7 @@ public:
 
     // DISTANCE METHODS
     int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
+	void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
 
     /*!
      * @brief AddFood items to the database

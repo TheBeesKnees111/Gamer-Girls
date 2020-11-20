@@ -1,5 +1,5 @@
 San Diego Sailors
-Quallcomm Stadium
+Qualcomm Stadium
 71500
 San Diego, California
 American Football Conference
@@ -7,3 +7,9 @@ AFC West
 Bermuda Grass
 Open
 2022
+State Farm Stadium
+300
+SoFi Stadium
+121
+Empower Field at Mile High
+830
