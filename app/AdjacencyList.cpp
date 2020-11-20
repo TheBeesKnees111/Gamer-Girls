@@ -5,5 +5,3 @@ AdjacencyList::AdjacencyList()
 {
 
 }
-
-

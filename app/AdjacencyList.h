@@ -12,14 +12,12 @@ public:
     {
         QString destination;
         int distance;
-        bool visited;
     };
 
     struct Vertex
     {
         QString origin;
         QList<Edge> destinations;
-        bool visited;
     };
 
     QVector<Vertex> list;
