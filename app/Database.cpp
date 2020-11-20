@@ -19,7 +19,7 @@
 // properly, we can only have one object for a given stadium (ex: there should
 // only be one object with stadiumName "AT&T Field").  The caches help to ensure
 // this.
-// this gets rid of the terminal error messages:
+// ** this gets rid of the terminal error messages:
 // QSqlDatabasePrivate::removeDatabase: connection 'qt_sql_default_connection' is still in use, all queries will cease to work.
 // QSqlDatabasePrivate::addDatabase: duplicate connection name 'qt_sql_default_connection', old connection removed.
 Database *Database::instance = nullptr;
@@ -56,21 +56,22 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     }
 }
 
-int GetTeamIDByCityName(QString location)
-{
-    QSqlQuery query;
+// Returns teamID from a search for its location
+//int GetTeamIDByCityName(QString location)
+//{
+//    QSqlQuery query;
 
-    query.prepare("SELECT teamID FROM teamInfo WHERE location = :location");
-    query.bindValue(":location", location);
+//    query.prepare("SELECT teamID FROM teamInfo WHERE location = :location");
+//    query.bindValue(":location", location);
 
-    if(!query.exec())
-        qDebug() << query.lastError();
+//    if(!query.exec())
+//        qDebug() << query.lastError();
 
-    return query.value(0).toInt();
-}
+//    return query.value(0).toInt();
+//}
 
-// DIJKSTRA ALGO
-// Creates a vector of Stadiums if they don't already exist.
+// Creates stadiumDbCacheByID of Stadiums if they don't already exist.
+// Returns a vector of all Stadium*
 QVector<Stadium*> Database::getStadiums()
 {
     if (stadiumDbCacheByID.isEmpty())
@@ -78,8 +79,8 @@ QVector<Stadium*> Database::getStadiums()
     return stadiumDbCacheByID.values().toVector();
 }
 
-// Creates a StadiumDistance node and
-// adds it to a vector of all edges (the edgelist of StadiumDistance)
+// Checks to see if the stadiumDistanceCache is created.  If not, creates it.
+// Returns a vector edge list of (StadiumDistance*)
 QVector<StadiumDistance*> Database::getStadiumDistances()
 {
     if (stadiumDistanceCache.isEmpty())
@@ -88,7 +89,7 @@ QVector<StadiumDistance*> Database::getStadiumDistances()
 
 }
 
-
+// returns StadiumDistance found by distanceID
 StadiumDistance *Database::getStadiumDistanceByID(int distanceID)
 {
     if (!stadiumDistanceCache.contains(distanceID))
@@ -98,6 +99,7 @@ StadiumDistance *Database::getStadiumDistanceByID(int distanceID)
     return stadiumDistanceCache[distanceID];
 }
 
+// returns Team* object found by teamID
 Team* Database::GetTeamByID(const int &teamID)
 {
     if (!teamDbCache.contains(teamID))
@@ -115,7 +117,7 @@ QVector<Team*> Database::GetTeams()
     return teamDbCache.values().toVector();
 }
 
-//Return team name by ID
+//Return team name found by teamID
 QString Database::GetTeamNameByID(const int& teamID)
 {
 
@@ -129,7 +131,7 @@ QString Database::GetTeamNameByID(const int& teamID)
     return query.value(0).toString();
 }
 
-
+// return Stadium* found by teamID
 Stadium* Database::getStadiumByID(const int& teamID)
 {
     if (!stadiumDbCacheByID.contains(teamID))
@@ -137,6 +139,7 @@ Stadium* Database::getStadiumByID(const int& teamID)
     return stadiumDbCacheByID[teamID];
 }
 
+// return Stadium found by stadium name
 Stadium *Database::getStadiumByName(const QString stadiumName)
 {
     if (!stadiumDbCacheByName.contains(stadiumName))
@@ -155,7 +158,7 @@ QVector<Souvenir*> Database::getSouvenirs()
     return v;
 }
 
-//
+// For use in admin section
 Souvenir* Database::getSouvenierByID(int souvenirID)
 {
     return nullptr;
@@ -660,10 +663,12 @@ void Database::runGetAllTeamsAndStadiums()
 
             // TODO set object parents for these so they get cleaned up
             Stadium *stadium = nullptr;
+            // checks to see if the cache already has the name
             if (stadiumDbCacheByName.contains(stadiumName))
             {
                 stadium = stadiumDbCacheByName[stadiumName];
             }
+            // if not, it creates the stadium
             else
             {
                 stadium = new Stadium;
