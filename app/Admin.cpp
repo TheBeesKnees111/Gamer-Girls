@@ -180,7 +180,7 @@ void Admin::on_Read_In_From_File_Button_clicked()
 			miles.push_back(file.readLine().toInt());
 		}
 
-		if(!(ui -> Team_Name_ComboBox -> findText(stadiumName))
+		if(!(ui -> Team_Name_ComboBox -> findText(stadiumName)))
 		{
 			//Add team to table for teamInfo
 			query.prepare("INSERT OR IGNORE INTO"
