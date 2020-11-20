@@ -829,29 +829,19 @@ QVector<Team*>* Database::CreateShoppingList(const QStringList &stadiumNames)
     Stadium* stadium = nullptr;
     Souvenir* souvenir = nullptr;
 
-    qDebug() << "--SHOPPING CART CREATION START--";
+//    // DEBUG
+//    qDebug() << "--SHOPPING CART CREATION START--";
 
     // Populate stadium name for each team
     for(int index = 0; index < stadiumNames.size(); index++)
     {
-        // Create team and stadium
-        team = new Team;
+        // Create stadium
         stadium = new Stadium;
 
         // Name stadium from stadium names
         stadium->setStadiumName(stadiumNames.at(index));
 
-        // Add to team
-        team->setStadium(stadium);
-
-        team->setTeamName(stadiumNames.at(index));
-
-
-        // TODO  LEFT OFF HEREEEEEE
-        // DEBUG
-        qDebug() << "Stadium Name Added: " << team->getStadium()->getStadiumName();
-
-        // Prep query
+        // Prep query to pull team name
         query.prepare("SELECT teamName FROM teamInfo WHERE stadiumName = :stadiumName");
 
         // Bind value
@@ -860,57 +850,68 @@ QVector<Team*>* Database::CreateShoppingList(const QStringList &stadiumNames)
         // Execute
         if(query.exec())
         {
-            // Create new stadium object
-            stadium = new Stadium;
-
-            while(query.next())
-            {
-                // Populate stadium name
-                stadium->setStadiumName(query.value(0).toString());
-            }
+            // Create new team object
+            team = new Team;
 
             // Add stadium to team
-            shoppingList->at(index)->setStadium(stadium);
+            team->setStadium(stadium);
 
-            // DEBUG
-            qDebug() << "Team Name: " << shoppingList->at(index)->getTeamName()
-                     << "Stadium Name: " << shoppingList->at(index)->getStadium()->getStadiumName();
+//            // DEBUG
+//            qDebug() << "Stadium Name Added: " << team->getStadium()->getStadiumName();
+
+            // Populate team name
+            while(query.next())
+            {
+                team->setTeamName(query.value(0).toString());
+            }
+
+            // Add team to shopping list
+            shoppingList->push_back(team);
         }
         else
         {
             qDebug() << "CreateShoppingList() failed at creating teams from stadium names";
         }
 
-        // Add team to shopping list
-        shoppingList->push_back(team);
+//        // DEBUG
+//        qDebug() << "Team Name: " << shoppingList->at(index)->getTeamName()
+//                 << "Stadium Name: " << shoppingList->at(index)->getStadium()->getStadiumName();
     }
 
     // Populate souvnirs for each team
-    for(int index = 0; index < stadiumNames.size(); index++)
+    for(int index = 0; index < shoppingList->size(); index++)
     {
+        // Clear souvenirlist
+        souvenirList->clear();
+
         // Prep query
         query.prepare("SELECT itemName, itemPrice FROM souvenirs, teamInfo WHERE teamInfo.teamID = souvenirs.teamID AND teamInfo.teamName = :teamName");
 
         // Bind value
-        query.bindValue(":teamName", stadiumNames.at(index));
+        query.bindValue(":teamName", shoppingList->at(index)->getTeamName());
 
         // Execute
         if(query.exec())
         {
+//            // DEBUG
+//            qDebug() << "Team Name Receiving Souvenir: " << shoppingList->at(index)->getTeamName();
+
             // Populate team with souvenirs
             while(query.next())
             {
+
+
                 // Populate souvenir
                 souvenir = new Souvenir;
                 souvenir->setItemName(query.value(0).toString());
-                souvenir->setItemPrice(query.value(0).toFloat());
+                souvenir->setItemPrice(query.value(1).toFloat());
 
                 // Insert souvenir into list
                 souvenirList->push_back(souvenir);
 
-                // DEBUG
-                qDebug() << "Souvenir Name: " << souvenir->getItemName();
-                qDebug() << "Souvenir Price: " << souvenir->getItemPrice();
+//                // DEBUG
+//                qDebug() << "Souvenir Name: " << souvenir->getItemName();
+//                qDebug() << "Souvenir Price: " << souvenir->getItemPrice();
             }
 
             // Insert list into team
@@ -922,26 +923,28 @@ QVector<Team*>* Database::CreateShoppingList(const QStringList &stadiumNames)
         }
     }
 
-    qDebug() << "--SHOPPING CART CREATION END--";
-    qDebug() << "----";
-    qDebug() << "----";
-    qDebug() << "--PRINTING SHOPPING CART START --";
+//    // DEBUG
+//    qDebug() << "--SHOPPING CART CREATION END--";
+//    qDebug() << "----";
+//    qDebug() << "----";
+//    qDebug() << "--PRINTING SHOPPING CART START --";
 
-    for(int index = 0; index < shoppingList->size(); index++)
-    {
-        qDebug() << "Team #" << index+1;
-        qDebug() << "Name: ";
-        qDebug() << "Stadium: ";
-        qDebug() << "Souvenir List: ";
+//    for(int index = 0; index < shoppingList->size(); index++)
+//    {
+//        qDebug() << "Team #" << index+1;
+//        qDebug() << "Name: " << shoppingList->at(index)->getTeamName();
+//        qDebug() << "Stadium: " << shoppingList->at(index)->getStadium()->getStadiumName();
+//        qDebug() << "Souvenir List: ";
 
-        for(int sIndex = 0; sIndex < shoppingList->at(index)->getSouvenirList().size(); sIndex++)
-        {
-            qDebug() << "-Name: " << shoppingList->at(index)->getSouvenirList().at(sIndex)->getItemName();
-            qDebug() << "-Price: " << shoppingList->at(index)->getSouvenirList().at(sIndex)->getItemPrice();
-        }
-    }
+//        for(int sIndex = 0; sIndex < shoppingList->at(index)->getSouvenirList().size(); sIndex++)
+//        {
+//            qDebug() << "-Name: " << shoppingList->at(index)->getSouvenirList().at(sIndex)->getItemName();
+//            qDebug() << "-Price: " << shoppingList->at(index)->getSouvenirList().at(sIndex)->getItemPrice();
+//        }
+//    }
 
-    qDebug() << "--PRINTING SHOPPING CART END --";
+//    // DEBUG
+//    qDebug() << "--PRINTING SHOPPING CART END --";
 
     return shoppingList;
 

@@ -31,23 +31,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui -> Image_Label -> setPixmap(homePageBackground.scaled
                                   (ImageLabelW, ImageLabelH));
 
-
-
-
     // Create Database
     db = Database::getInstance();
 
-    // DEBUG: Populating Adjacency List
+    // Populating Adjacency List. This may belong in the souvenir and trip section
     AdjacencyList* aList = db->GetAdjacencyList();
 
-
-
-    // DEBUG: Testing BFS
-    BFS bfs(aList);
-
-    bfs.Traverse();
-
-    db->CreateShoppingList(bfs.GetTraversalList());
+//    // DEBUG: Testing BFS
+//    BFS bfs(aList);
+//    bfs.Traverse();
 
 }
 
