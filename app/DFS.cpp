@@ -2,71 +2,72 @@
 #include <iostream>
 #include <QStack>
 #include <QMap>
+using namespace std;
 
-
-//1  function DFS(Graph, start):
-QHash<QString, StadiumDistance*> DFS(const StadiumGraph& graph, Stadium *start)
+// DFS method
+// Returns the shortest path
+// Preconditions: Needs an AdjacencyList and starting city
+// Postconditions: Returns a path vector of CityNodes
+QVector<StadiumDistance*> DFS(const StadiumGraph& graph, Stadium *start)
+//QHash<QString, StadiumDistance*> DFS(const StadiumGraph& graph, Stadium *start)
 {
-    QHash<QString, int> dist;
-
-    // DFS ==> REPLACE PQ W/ STACK & REMOVE DIST
-    //3      create vertex set pending (container of nodes to process)
+    //pending (container of nodes to process)
     QStack<StadiumDistance*> pending;
 
     // list of visited cities
-    QHash<QString, StadiumDistance*> prev;        // parent map
+    QHash<QString, StadiumDistance*> visited;        // parent map
 
-    // list of discovery edges
+    // path for DFS
     QVector<StadiumDistance*> path;
 
-    //5      for each vertex v in Graph:
-    for (auto node : graph.Stadiums)
-    {
-        //6          dist[v] ← INFINITY
-        dist[node->getStadiumName()] = numeric_limits<int>::max(); // (largest positive 32 bit #)
-        //7          prev[v] ← UNDEFINED
-        prev[node->getStadiumName()] = nullptr;
-        //8          add v to pending
-//        pending.push(node);
-    }
-    //10      dist[start] ← 0
-    dist[start->getStadiumName()] = 0;
-    //11
+    // sort adjacencyList for the start stadium
+    vector<StadiumDistance*> neighbors = graph.adjacencyList[start].toStdVector();
+    sort(neighbors.begin(), neighbors.end(),
+         // lambda for sort
+         [] (StadiumDistance *lhs, StadiumDistance *rhs)
+        {return lhs->getDistance() > rhs->getDistance();} );
+
     // loop thru start's adjacent vertices & add them to the pending list
-    for (auto neighbor : graph.adjacencyList[start])
+    // fills the stack for while loop, biggest to smallest distance
+    // so that the first to be popped off will be the smallest distance
+    for (auto neighbor : neighbors)
     {
-        Stadium *toStadium = neighbor->getToStadium();
-        dist[toStadium->getStadiumName()] = neighbor->getDistance();
-        prev[toStadium->getStadiumName()] = neighbor;
-        pending.push(toStadium);
+        pending.push(neighbor);
     }
-    //12      while pending is not empty:
+
+    // initalizing root node
+    visited[start->getStadiumName()] = nullptr;
+
+    // while pending is not empty:
     while (!pending.empty())
     {
-        //13          u ← vertex in pending with min dist[u]
-        Stadium *currentStadium = pending.top();
-        //14
-        //15          remove u from pending
+        // vertex in pending with min dist[u]
+        StadiumDistance *currentEdge = pending.top();
+       //15          remove u from pending
         pending.pop();
-        //16
-        //17          for each neighbor v of u:
-        // only v that are still in pending
-        for (auto adjacent : graph.adjacencyList[currentStadium])
+        // retrieve next node to process
+        Stadium *currentStadium = currentEdge->getToStadium();
+//        Stadium *previousStadium = currentEdge->getFromStadium();
+
+        // if not already visited
+        if (!visited.contains(currentStadium->getStadiumName()))
         {
-            //18              alt ← dist[u] + length(u, v)
-            int alt = dist[currentStadium->getStadiumName()] + adjacent->getDistance();
-            //19              if alt < dist[v]:
-            if (alt < dist[adjacent->getToStadium()->getStadiumName()])
+            // add to visited list & path
+            visited[currentStadium->getStadiumName()] = currentEdge;
+            path.push_back(currentEdge);
+
+            // sort that stadium's adjacent edges
+            vector<StadiumDistance*> neighbors = graph.adjacencyList[currentStadium].toStdVector();
+            sort(neighbors.begin(), neighbors.end(),
+                 [] (StadiumDistance *lhs, StadiumDistance *rhs)
+                {return lhs->getDistance() > rhs->getDistance();} );
+
+            // add them to the list to process
+            for (auto adjacent : neighbors)
             {
-                //20                  dist[v] ← alt
-                dist[adjacent->getToStadium()->getStadiumName()] = alt;
-                //21                  prev[v] ← u
-                prev[adjacent->getToStadium()->getStadiumName()] = adjacent;
-                pending.push(adjacent->getToStadium());
+                    pending.push(adjacent);
             }
         }
-        //22
     }
-    //23      return dist[], prev[]
-    return prev;
+    return path;
 }

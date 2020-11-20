@@ -1,5 +1,5 @@
-#ifndef DIJKSTRA_H
-#define DIJKSTRA_H
+#ifndef DFS_H
+#define DFS_H
 
 #include "Database.h"
 #include "Stadium.h"
@@ -20,6 +20,7 @@ using namespace std;
 // to all other stadiums.
 // returns the complete spanning tree which can be used for multiple searches
 // for the shortest path.
-QHash<QString, StadiumDistance*> DFS(const StadiumGraph& graph, Stadium* start);
+//QHash<QString, StadiumDistance*> DFS(const StadiumGraph& graph, Stadium* start);
+QVector<StadiumDistance*> DFS(const StadiumGraph& graph, Stadium* start);
 
-#endif // DIJKSTRA_H
+#endif // DFS_H

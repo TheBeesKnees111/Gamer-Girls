@@ -5,6 +5,11 @@
 
 #include <QObject>
 
+// Edge class - creates an object with:
+// an  origin stadium
+// a destination stadium,
+// the distance between,
+// and the distanceID (might not be needed)
 class StadiumDistance : public QObject
 {
     Q_OBJECT
@@ -24,10 +29,10 @@ public:
     void setDistanceID(int value);
 
 private:
-    Stadium *fromStadium;
-    Stadium *toStadium;
-    int     distance;
-    int     distanceID;
+    Stadium *fromStadium;       // origin Stadium *
+    Stadium *toStadium;         // destination Stadium *
+    int     distance;           // milesBetween
+    int     distanceID;         // distanceID
 };
 
 #endif // STADIUMDISTANCE_H

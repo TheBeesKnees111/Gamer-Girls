@@ -4,19 +4,19 @@ using namespace std;
 
 
 // This creates a graph of Stadiums.  It is an adjacency list made
-// using a map of vectors.  The key for each entry is the Stadium,
+// using a map(hash) of vectors.  The key for each entry is the Stadium,
 // and the value is a vector of adjacent edges (StadiumDistances).
 StadiumGraph StadiumGraph::createStadiumGraph(Database *db)
 {
+    // create edgeList (adjacent nodes)
     QVector<StadiumDistance*> edgeList = db->getStadiumDistances();
+    // adjacencyList of key (Stadium) and Vector of adjacent edges(StadiumDistance)
     QHash<Stadium*, QVector<StadiumDistance*>> adjacencyList;
 
-    // Adjacency list from the edge list
+    // Creates adjacencyList from the edge list
     for(auto edge : edgeList)
     {
         Stadium* fromStadium = edge->getFromStadium();
-        //        Stadium* toStadium = edge->getToStadium();
-        //        int milesBetween = edge->getDistance();
 
         if (fromStadium != edge->getToStadium())
         {
@@ -44,12 +44,12 @@ void StadiumGraph::printAdjList()
 }
 
 
-// given a spanning tree and a given node,
+// given a spanning tree (Dijkstra, DFS) and a destination Stadium,
 // trace the path from the given node(destination) to the root(origin)
 QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stadium *destination)
 {
     //1  S ← empty sequence
-    QVector<StadiumDistance*> S;
+    QVector<StadiumDistance*> S; // TODO rename to path
     //2  u ← endLocation
     Stadium *currentStadium = destination;
     //3  if prev[u] is defined or u = start:
