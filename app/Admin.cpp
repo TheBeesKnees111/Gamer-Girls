@@ -23,10 +23,11 @@ Admin::Admin(QWidget *parent) :
 	PopulateStadiumTable(queryModel);
 
 	//Populate ComboBoxes with realted information
-	PopulateComboBoxes("SELECT conference FROM teamInfo" , ui -> Add_Conference_ComboBox);
-	PopulateComboBoxes("SELECT division FROM teamInfo"   , ui -> Add_Division_ComboBox);
-	PopulateComboBoxes("SELECT surfaceType FROM teamInfo", ui -> Add_Surface_Type_ComboBox);
-	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Add_Roof_Type_ComboBox);
+	PopulateComboBoxes("SELECT conference FROM teamInfo" , ui -> Conference_Combo_Box);
+	PopulateComboBoxes("SELECT division FROM teamInfo"   , ui -> Division_Combo_Box);
+	PopulateComboBoxes("SELECT surfaceType FROM teamInfo", ui -> Surface_Type_ComboBox);
+	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Roof_Type_ComboBox);
+	PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
 }
 
@@ -49,12 +50,9 @@ void Admin::PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox)
 		//If a value exists in the list do not add it again to prevent repeats
 		if(!list.contains(query.value(0).toString()))
 		{
-			list.push_front(query.value(0).toString());
+			list.push_back(query.value(0).toString());
 		}
 	}
-
-	//sort list
-	list.sort();
 
 	//Add values to the combobox
 	for(int index = 0; index < list.size(); index++)
@@ -143,59 +141,127 @@ void Admin::on_Home_PushButton_clicked()
 
 ///Will read in information about a team and add it to the datatable
 ///and place team in database
-void Admin::on_Add_Team_PushButton_clicked()
+void Admin::on_Read_In_From_File_Button_clicked()
 {
+	QFile           file(":/Input/Input.txt");
+	QTextStream     inFile(&file);
+	file.open(QIODevice::ReadOnly);
 
-	int teamID = 33;
-	QString   teamName    = ui -> Add_Team_Name_LineEdit    -> text();
-	QString   stadiumName = ui -> Add_Stadium_Name_LineEdit -> text();
-	QString   location    = ui -> Add_Location_LineEdit     -> text();
+	//Only run if the file is opened
+	if(file.isOpen())
+	{//begin if(file.isOpen())
 
-	bool      blankData   = //teamName == "" && stadiumName == "" || location     == "" ||
-							//ui -> Add_Seating_Capacity_SpinBox -> text()        ==  0 ||
-							ui -> Add_Conference_ComboBox      -> currentText() == "" ||
-							ui -> Add_Division_ComboBox        -> currentText() == "" ||
-							ui -> Add_Roof_Type_ComboBox       -> currentText() == "" ||
-							ui -> Add_Surface_Type_ComboBox    -> currentText() == "";
-
-	//Check that all information has been entered and selected
-	if(!blankData)
-	{//begin if
-		QSqlQueryModel *model = nullptr;
 		QSqlQuery       query;
+		QSqlQueryModel *model = nullptr;
+		int             teamID = 33;
+		int             souvenirID = (teamID - 1) * 5;
+		QStringList     otherStadiums;
+		QVector <int>   miles;
 
-		//Add team to table for teamInfo
-		query.prepare("INSERT OR IGNORE INTO "
-					  "teamInfo(teamName,    stadiumName, seatingCap, "
-					  "         location,    conference,  division, "
-					  "         surfaceType, roofType,    dateOpened) "
-					  "VALUES(:teamName,    :stadiumName, :seatingCap,"
-					  "       :location,    :conference,  :division, "
-					  "       :surfaceType, :roofType,    :dateOpened)");
+		qDebug() << "FILE OPENED";
 
-		query.bindValue(":teamID"   , teamID);
-		query.bindValue(":teamName"   , teamName);
-		query.bindValue(":stadiumName", stadiumName);
-		query.bindValue(":location"   , location);
-		query.bindValue(":seatingCap" , ui -> Add_Seating_Capacity_SpinBox -> text().toInt());
-		query.bindValue(":conference" , ui -> Add_Conference_ComboBox      -> currentText());
-		query.bindValue(":division"   , ui -> Add_Division_ComboBox        -> currentText());
-		query.bindValue(":surfaceType", ui -> Add_Surface_Type_ComboBox    -> currentText());
-		query.bindValue(":roofType"   , ui -> Add_Roof_Type_ComboBox       -> currentText());
-		query.bindValue(":dateOpened" , ui -> Add_Year_SpinBox             -> text().toInt());
+		/***********************************************************************
+		 * ADDING TO TEAM TABLE
+		 **********************************************************************/
+		//Read int each line as text
+		QString teamName        = file.readLine().trimmed();
+		QString stadiumName     = file.readLine().trimmed();
+		int     seatingCapacity = file.readLine().toInt();
+		QString location        = file.readLine().trimmed();
+		QString conference      = file.readLine().trimmed();
+		QString division        = file.readLine().trimmed();
+		QString surfaceType     = file.readLine().trimmed();
+		QString roofType        = file.readLine().trimmed();
+		int     dateOpened      = file.readLine().toInt();
 
-		if(!query.exec())
-			qDebug() << query.lastError();
+		while(!file.atEnd())
+		{
+			otherStadiums.push_back(file.readLine().trimmed());
+			miles.push_back(file.readLine().toInt());
+		}
 
-		//
-		PopulateStadiumTable(model);
+		qDebug() << "ui -> Team_Name_ComboBox -> findText(teamName) "
+				 << ui -> Team_Name_ComboBox -> findText(teamName);
 
+		if(ui -> Team_Name_ComboBox -> findText(teamName) == -1)
+		{
+			//Add team to table for teamInfo
+			query.prepare("INSERT OR IGNORE INTO"
+						  " teamInfo(teamID,     teamName,    stadiumName, "
+						  "         seatingCap,  location,    conference,  "
+						  "			division,    surfaceType, roofType,"
+						  "         dateOpened) "
+						  " VALUES(:teamID,    :teamName,   :stadiumName, "
+						  "        :seatingCap,:location,   :conference,  "
+						  "        :division,  :surfaceType,:roofType,    "
+						  "        :dateOpened)");
 
+			//Bind query values
+			query.bindValue(":teamID"     , teamID);
+			query.bindValue(":teamName"   , teamName);
+			query.bindValue(":stadiumName", stadiumName);
+			query.bindValue(":seatingCap" , seatingCapacity);
+			query.bindValue(":location"   , location);
+			query.bindValue(":conference" , conference);
+			query.bindValue(":division"   , division);
+			query.bindValue(":surfaceType", surfaceType);
+			query.bindValue(":roofType"   , roofType);
+			query.bindValue(":dateOpened" , dateOpened);
 
-	}//end if
+			if(!query.exec())
+				qDebug() << query.lastError();
+
+			//Populate datatable with new info
+			PopulateStadiumTable(model);
+			PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
+
+			/***********************************************************************
+		 * ADDING TO SOUVENIR TABLE
+		 **********************************************************************/
+			Database::getInstance() -> AddDefaultSouvenirsToDatabase
+					(souvenirID, teamID, defaultSouvenirs, souvenirPrices);
+
+			PopulateSouvenirTable(model);
+			/***********************************************************************
+		 * ADDING TO DISTANCES TABLE
+		 **********************************************************************/
+			Database::getInstance()->AddDistancesToDataBaseFromFile(stadiumName, otherStadiums, miles);
+		}
+
+	}//end if(file.isOpen())
+
+}
+
+//Add souvenir to database and datatable
+void Admin::on_Add_Souvenir_PushButton_clicked()
+{
+	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
+	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
+	int       teamID       = ui -> Team_Name_ComboBox -> currentIndex() + 1;
+	QSqlQuery query;
+
+	qDebug() << souvenirName;
+	qDebug() << price;
+	qDebug() << teamID;
+
+	//Set definition of blank data
+	bool    blankData    = (souvenirName == "" || price == 0.00 ||
+							teamID       == 0);
+
+	if(blankData)
+		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
+
 	else
 	{
-		QMessageBox::information(this, "ERROR Adding Team",
-								 "***** Data left blank! *****");
+		//Pull teamId from team name selected by the user
+		query.prepare("INSERT INTO "
+					  "souvenirs(teamID,  itemName,  itemrice) "
+					  "VALUES   (:teamID, :itemName, :itemPrice) "
+					  "WHERE teamID = :teamID");
+
+		query.bindValue(":teamID",    teamID);
+		query.bindValue(":itemName",  souvenirName);
+		query.bindValue(":itemPrice", price);
+
 	}
 }
