@@ -235,10 +235,11 @@ void Admin::on_Read_In_From_File_Button_clicked()
 //Add souvenir to database and datatable
 void Admin::on_Add_Souvenir_PushButton_clicked()
 {
-	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
-	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
-	int       teamID       = ui -> Team_Name_ComboBox -> currentIndex() + 1;
-	QSqlQuery query;
+	QString        souvenirName = ui -> Souvenir_Name_LineEdit -> text();
+	double         price        = ui -> Price_Double_SpinBox   -> text().toDouble();
+	int			   teamID       = ui -> Team_Name_ComboBox     -> currentIndex() + 1;
+	QSqlQuery      query;
+	QSqlQueryModel *model = nullptr;
 
 	qDebug() << souvenirName;
 	qDebug() << price;
@@ -248,20 +249,27 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 	bool    blankData    = (souvenirName == "" || price == 0.00 ||
 							teamID       == 0);
 
+	qDebug() << "souvenirName " << souvenirName;
+	qDebug() << "price        " << price;
+	qDebug() << "teamID       " << teamID;
+
 	if(blankData)
 		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
 
 	else
 	{
 		//Pull teamId from team name selected by the user
-		query.prepare("INSERT INTO "
-					  "souvenirs(teamID,  itemName,  itemrice) "
-					  "VALUES   (:teamID, :itemName, :itemPrice) "
-					  "WHERE teamID = :teamID");
+		query.prepare("INSERT OR IGNORE INTO "
+					  "souvenirs(teamID,  itemName,  itemPrice) "
+					  "VALUES   (:teamID, :itemName, :itemPrice)");
 
 		query.bindValue(":teamID",    teamID);
 		query.bindValue(":itemName",  souvenirName);
 		query.bindValue(":itemPrice", price);
 
+		if(!query.exec())
+			qDebug() << query.lastError();
+
+		PopulateSouvenirTable(model);
 	}
 }
