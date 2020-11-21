@@ -12,16 +12,18 @@ class RouteDisplayer;
 
 class RouteDisplayer : public QDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit RouteDisplayer(QWidget *parent, QStringList cities, QList <int> distances);
-	~RouteDisplayer();
+
+    // Displays the route for a trip from origin stadium to the end of the path
+    // list, and the total distance for the trip.
+    explicit RouteDisplayer(QWidget *parent, QVector<StadiumDistance*> path, QString teamName);
+
+    ~RouteDisplayer();
 
 private:
-	Ui::RouteDisplayer *ui;
-	QList<int> route;
-	int totalDistance;
+    Ui::RouteDisplayer *ui;
 };
 
 #endif // ROUTEDISPLAYER_H

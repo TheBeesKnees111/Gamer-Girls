@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -136,7 +136,7 @@
       <string>Select Your Destination Stadium</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="Confirmation_PushButton">
+    <widget class="QPushButton" name="Green_Bay_Confirmation_PushButton">
      <property name="geometry">
       <rect>
        <x>20</x>

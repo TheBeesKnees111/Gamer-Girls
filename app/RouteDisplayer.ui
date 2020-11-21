@@ -61,7 +61,7 @@
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>330</y>
+     <y>440</y>
      <width>141</width>
      <height>20</height>
     </rect>
@@ -107,17 +107,12 @@
    </property>
    <column>
     <property name="text">
-     <string>City Name</string>
+     <string>Team Name</string>
     </property>
    </column>
    <column>
     <property name="text">
      <string>Stadium Name</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Miles To Next City</string>
     </property>
    </column>
   </widget>

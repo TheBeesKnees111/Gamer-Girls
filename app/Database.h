@@ -32,6 +32,8 @@ public:
 //    };
 
     // TEAM METHODS
+    Team *GetTeamByName(const QString name);
+
     // returns Team* object found by teamID
     Team* GetTeamByID(const int &teamID);
 
@@ -40,6 +42,7 @@ public:
 
     // TODO Need to methods to update and create teams
     // They need to update the caches as well as the database
+
 
     //Return team name found by teamID
     QString GetTeamNameByID(const int& teamID);
@@ -58,7 +61,7 @@ public:
 
     // return Stadium found by stadium name
     Stadium* getStadiumByName(const QString name);
-	int      GetIDByStadiumName(const QString& stadiumName);
+    int      GetIDByStadiumName(const QString& stadiumName);
 
     // STADIUM DISTANCE METHODS
     // Checks to see if the stadiumDistanceCache is created.  If not, creates it.
@@ -74,9 +77,9 @@ public:
 
     // For use in admin section
     Souvenir* getSouvenierByID(int souvenirID);
-	void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
-											QStringList      souvenirs,
-											QVector <double> prices);
+    void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
+                                            QStringList      souvenirs,
+                                            QVector <double> prices);
 
     // PURCHASES METHODS
     // For use in admin section
@@ -86,7 +89,7 @@ public:
     Purchases* getPurchasesByID(int purchaseID);
     // DISTANCE METHODS
     int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
-	void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
+    void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
 
     /*!
      * @brief AddFood items to the database
@@ -175,12 +178,13 @@ private:
     QSqlQuery query;
 
     // these maps cache the values of these queries so we only have to run them once
-    QMap<int, Team*>            teamDbCache;            // cache of Team*
-    QMap<QString, Stadium*>     stadiumDbCacheByName;   // cache of Stadium* by name
-    QMap<int, Stadium*>         stadiumDbCacheByID;     // cache of Stadium* by ID
-    QMap<int, StadiumDistance*> stadiumDistanceCache;   // cache of StadiumDistance*
-    QMap<int, Souvenir*>        souvenirDbCache;        // cache of Souvenir*
-    QMap<int, Purchases*>       purchasesDbCache;       // cache of Purchaces*
+    QMap<int, Team*>            teamDbCache;
+    QMap<QString, Team*>        teamDbCacheByName;
+    QMap<QString, Stadium*>     stadiumDbCacheByName;
+    QMap<int, Stadium*>         stadiumDbCacheByID;
+    QMap<int, StadiumDistance*> stadiumDistanceCache;
+    QMap<int, Souvenir*>        souvenirDbCache;
+    QMap<int, Purchases*>       purchasesDbCache;
 
     // This will run whenever a team or stadium is requested to ensure the
     // caches are populated.  Once created, they don't need to be created again.
