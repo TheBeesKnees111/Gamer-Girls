@@ -5,7 +5,7 @@
 #include "SouvenirAndTrip.h"
 #include "Database.h"
 #include "Team.h"
-#include "Dijkstra.h"
+#include "TestAlgos.h"
 
 #include "BFS.h"
 
@@ -14,9 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    //INSTANTIATE DATABASE
-    Database::getInstance();
 
     //PROCESSING - Setting Main Window Title
     this -> setWindowTitle("Let's Play Football");
@@ -33,6 +30,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui -> Image_Label -> setAlignment(Qt::AlignCenter);
     ui -> Image_Label -> setPixmap(homePageBackground.scaled
                                   (ImageLabelW, ImageLabelH));
+
+    //TEST DIJKSTRA & DFS
+//    testDijkstra();
+    testDFS();
 
     // Create Database
     db = Database::getInstance();

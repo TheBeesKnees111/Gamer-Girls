@@ -12,14 +12,19 @@
 #include <algorithm>
 #include <string>
 #include <QHash>
+#include <iostream>
 
 using namespace std;
 
+/*!
+ * @brief Dijkstra finds shortest paths from start stadium
+ * @param graph; Graph of all stadiums
+ * @param start; Beginning stadium
+ */
 // single source shortest path from a given start.
 // building whole spanning tree of the shortest paths from the start stadium
-// to all other stadiums.
-// returns the complete spanning tree which can be used for multiple searches
-// for the shortest path.
+// to all other stadiums. Returns the complete spanning tree which can be used
+// for multiple searches for the shortest path from the start location.
 QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium* start);
 
 void runDijkstra(const StadiumGraph& graph, QString start, QString end);

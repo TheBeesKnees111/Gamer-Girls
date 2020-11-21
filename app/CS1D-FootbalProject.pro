@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     AdjacencyList.cpp \
     Admin.cpp \
+    DFS.cpp \
     BFS.cpp \
     Database.cpp \
     Dijkstra.cpp \
@@ -23,12 +24,14 @@ SOURCES += \
     StadiumDistance.cpp \
     StadiumGraph.cpp \
     Team.cpp \
+    TestAlgos.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     AdjacencyList.h \
     Admin.h \
+    DFS.h \
     BFS.h \
     Database.h \
     Dijkstra.h \
@@ -41,6 +44,7 @@ HEADERS += \
     StadiumDistance.h \
     StadiumGraph.h \
     Team.h \
+    TestAlgos.h \
     mainwindow.h
 
 FORMS += \
