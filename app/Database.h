@@ -15,6 +15,7 @@ class Team;
 class Souvenir;
 class Stadium;
 class Purchases;
+class AdjacencyList;
 
 class Database : public QSqlDatabase
 {
@@ -138,6 +139,13 @@ public:
 
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);
+
+    // Get adjacency list for algorithms
+    AdjacencyList* GetAdjacencyList();
+
+    // Populate Shopping Cart List
+    QVector<Team*>* CreateShoppingList(const QStringList &teamNames);
+
 
 private:
     // Moved so that outside code can't call the constructor & must call getInstance

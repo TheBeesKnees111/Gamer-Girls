@@ -7,6 +7,8 @@
 #include "Team.h"
 #include "Dijkstra.h"
 
+#include "BFS.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -32,9 +34,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui -> Image_Label -> setPixmap(homePageBackground.scaled
                                   (ImageLabelW, ImageLabelH));
 
+    // Create Database
+    db = Database::getInstance();
+
+    // Populating Adjacency List. This may belong in the souvenir and trip section
+    AdjacencyList* aList = db->GetAdjacencyList();
+
+//    // DEBUG: Testing BFS
+//    BFS bfs(aList);
+//    bfs.Traverse();
+
     // TEST DIJKSTRA
     testDijkstra();
-
 }
 
 MainWindow::~MainWindow()
