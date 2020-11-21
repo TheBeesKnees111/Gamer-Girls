@@ -8,4 +8,7 @@
         <file>FootballPic6.jpg</file>
         <file>FootballPic7.jpg</file>
     </qresource>
+    <qresource prefix="/Input">
+        <file>Input.txt</file>
+    </qresource>
 </RCC>
