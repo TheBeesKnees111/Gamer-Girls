@@ -40,7 +40,6 @@ void StadiumGraph::printAdjList()
                  << " (" << neighbor->getDistance() << ")"
                  << endl;
        }
-
     }
 }
 
