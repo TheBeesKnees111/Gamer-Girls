@@ -15,6 +15,7 @@ class Team;
 class Souvenir;
 class Stadium;
 class Purchases;
+class AdjacencyList;
 
 class Database : public QSqlDatabase
 {
@@ -46,6 +47,7 @@ public:
     // not created in .cpp
     void    AddTeamToDatabase();
 
+
     // STADIUM METHODS
     // Creates stadiumDbCacheByID of Stadiums if they don't already exist.
     // Returns a vector of all Stadium*
@@ -56,6 +58,7 @@ public:
 
     // return Stadium found by stadium name
     Stadium* getStadiumByName(const QString name);
+	int      GetIDByStadiumName(const QString& stadiumName);
 
     // STADIUM DISTANCE METHODS
     // Checks to see if the stadiumDistanceCache is created.  If not, creates it.
@@ -71,6 +74,9 @@ public:
 
     // For use in admin section
     Souvenir* getSouvenierByID(int souvenirID);
+	void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
+											QStringList      souvenirs,
+											QVector <double> prices);
 
     // PURCHASES METHODS
     // For use in admin section
@@ -78,6 +84,9 @@ public:
 
     // For use in admin section
     Purchases* getPurchasesByID(int purchaseID);
+    // DISTANCE METHODS
+    int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
+	void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
 
     /*!
      * @brief AddFood items to the database
@@ -151,6 +160,13 @@ public:
 
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);
+
+    // Get adjacency list for algorithms
+    AdjacencyList* GetAdjacencyList();
+
+    // Populate Shopping Cart List
+    QVector<Team*>* CreateShoppingList(const QStringList &teamNames);
+
 
 private:
     // Moved so that outside code can't call the constructor & must call getInstance

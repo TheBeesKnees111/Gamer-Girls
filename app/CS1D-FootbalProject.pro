@@ -9,8 +9,10 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    AdjacencyList.cpp \
     Admin.cpp \
     DFS.cpp \
+    BFS.cpp \
     Database.cpp \
     Dijkstra.cpp \
     DisplayInfo.cpp \
@@ -27,8 +29,10 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    AdjacencyList.h \
     Admin.h \
     DFS.h \
+    BFS.h \
     Database.h \
     Dijkstra.h \
     DisplayInfo.h \
@@ -58,3 +62,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     BackgroundImages.qrc
+
+DISTFILES +=

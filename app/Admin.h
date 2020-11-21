@@ -32,58 +32,67 @@ public:
     // Names of column headers: e.x. { "Team Name", "" } "add souvenir" and "edit souvenir" tab in admin
     QStringList souvenirTableColNames { "Team Name", "Souvenir Name" , "Souvenir Price" };
 
+	//Default souvenirs for new teams
+	QStringList defaultSouvenirs = {"Signed Helmets",
+									"Autographed Football",
+									"Team Pennant",
+									"Team Picture",
+									"Team Jersey"};
+	//Prices for default souvenirs
+	QVector <double> souvenirPrices = {77.99, 99.89, 17.99, 29.99, 199.99};
+
     // Positions of columns by name "add souvenir" and "edit souvenir" tab in admin
     enum SouvenirTableColPositions { I_TEAM, I_NAME, I_PRICE };
 
-    // List of all team names
-    QStringList teamNameComboBoxLabels;
+//    // List of all team names
+//    QStringList teamNameComboBoxLabels;
 
-    // minimum value for price of souvenir in add & edit sections
-    const int SOUVENIR_PRICE_SPINBOX_MIN = 0;
+//    // minimum value for price of souvenir in add & edit sections
+//    const int SOUVENIR_PRICE_SPINBOX_MIN = 0;
 
-    // maximum value for price of souvenir in add & edit sections
-    const int SOUVENIR_PRICE_SPINBOX_MAX = 9999;
+//    // maximum value for price of souvenir in add & edit sections
+//    const int SOUVENIR_PRICE_SPINBOX_MAX = 9999;
 
 
-    /*
-     * Admin - Edit Stadium Info
-     */
+//    /*
+//     * Admin - Edit Stadium Info
+//     */
 
-    // Number of columns in "edit stadium" tab of admin
-    const int STADIUM_TABLE_COL_COUNT = 7;
+//    // Number of columns in "edit stadium" tab of admin
+//    const int STADIUM_TABLE_COL_COUNT = 7;
 
-    // List of stadium table column names in "edit stadium" tab of admin
-    QStringList stadiumTableColNames { "Stadium Name", "Team Name", "Seating Capacity", "Location", "Surface Type", "Roof Type", "Date Opened" };
+//    // List of stadium table column names in "edit stadium" tab of admin
+//    QStringList stadiumTableColNames { "Stadium Name", "Team Name", "Seating Capacity", "Location", "Surface Type", "Roof Type", "Date Opened" };
 
     // Positions of columns by name in "edit stadium" tab of admin
     enum stadiumTableColPositions { S_NAME, S_TEAM, S_CAPACITY, S_LOCATION, S_SURFACE_TYPE, S_ROOF_TYPE, S_DATE_OPENED };
 
-    // Combobox labels for conference type
-    QStringList conferenceComboBoxLabels { "National Football Conference", "American Football Conference" };
+//    // Combobox labels for conference type
+//    QStringList conferenceComboBoxLabels { "National Football Conference", "American Football Conference" };
 
-    // Combobox labels for division type
-    QStringList divisionComboBoxLabels { "NFC West", "NFC South", "NFC North", "NFC East", "AFC North", "AFC West", "AFC South", "AFC East" };
+//    // Combobox labels for division type
+//    QStringList divisionComboBoxLabels { "NFC West", "NFC South", "NFC North", "NFC East", "AFC North", "AFC West", "AFC South", "AFC East" };
 
-    // Combobox labels for surface type
-    QStringList surfaceTypeComboBoxLabels
-    {
-        "Bermuda Grass", "FieldTurf Classic HD", "A-Turf Titan 50", "Kentucky Bluegrass",
-        "Hellas Matrix Turf", "Desso GrassMaster", "Platinum TE Paspalum",
-        "UBU Speed Series S5-M Synthetic Turf", "FieldTurf Revolution" };
+//    // Combobox labels for surface type
+//    QStringList surfaceTypeComboBoxLabels
+//    {
+//        "Bermuda Grass", "FieldTurf Classic HD", "A-Turf Titan 50", "Kentucky Bluegrass",
+//        "Hellas Matrix Turf", "Desso GrassMaster", "Platinum TE Paspalum",
+//        "UBU Speed Series S5-M Synthetic Turf", "FieldTurf Revolution" };
 
-    // Combobox labels for roof type
-    QStringList roofTypeComboBoxLabels { "Retractable", "Fixed", "Open" };
+//    // Combobox labels for roof type
+//    QStringList roofTypeComboBoxLabels { "Retractable", "Fixed", "Open" };
 
-    // Minimum for seating capacity spinbox
-    const int SEATING_CAP_SPINBOX_MIN = 0;
-    // maximum for seating capacity spinbox
-    const int SEATING_CAP_SPINBOX_MAX = 120000;
+//    // Minimum for seating capacity spinbox
+//    const int SEATING_CAP_SPINBOX_MIN = 0;
+//    // maximum for seating capacity spinbox
+//    const int SEATING_CAP_SPINBOX_MAX = 120000;
 
-    // Minimum for date opened spinbox
-    const int DATE_OPENED_SPINBOX_MIN = 1900;
+//    // Minimum for date opened spinbox
+//    const int DATE_OPENED_SPINBOX_MIN = 1900;
 
-    // Maximum for date opened spinbox
-    const int DATE_OPENED_SPINBOX_MAX = 2100;
+//    // Maximum for date opened spinbox
+//    const int DATE_OPENED_SPINBOX_MAX = 2100;
 
     /*
      * Methods
@@ -116,11 +125,11 @@ private slots:
     /// hidden before showing the Main Window
 	void on_Home_PushButton_clicked();
 
-	///This will check that all data for a team has been selected
 	///When the button is pushed the database will be queried to add the team
-	///with all information selected
-	///If any field is left blank then it will display an error message
-	void on_Add_Team_PushButton_clicked();
+	///with all information entered in a file
+	void on_Read_In_From_File_Button_clicked();
+
+	void on_Add_Souvenir_PushButton_clicked();
 
 	private:
     Ui::Admin *ui;

@@ -7,6 +7,7 @@
 #include <QSqlError>
 #include <QFileDialog>
 #include <QVector>
+#include "AdjacencyList.h"
 
 // singleton design pattern
 // ensures that there's only ever 1 instance of this class
@@ -37,13 +38,13 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-//		QString windowsPathFile =  "/db/NFLdb.db";
-//		setDatabaseName(QDir::currentPath() + windowsPathFile);
-//    qDebug() << QDir::currentPath() + windowsPathFile;
-    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
-    setDatabaseName(rebecca);
-    QString macPathFile = "/db";
-    qDebug() << QDir::currentPath() + macPathFile;
+        QString windowsPathFile =  "/db/NFLdb.db";
+        setDatabaseName(QDir::currentPath() + windowsPathFile);
+        qDebug() << QDir::currentPath() + windowsPathFile;
+//    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
+//    setDatabaseName(rebecca);
+//    QString macPathFile = "/db";
+//    qDebug() << QDir::currentPath() + macPathFile;
 
     // Print error if database does not open
     if (!open())
@@ -69,6 +70,7 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 
 //    return query.value(0).toInt();
 //}
+
 
 // Creates stadiumDbCacheByID of Stadiums if they don't already exist.
 // Returns a vector of all Stadium*
@@ -122,16 +124,18 @@ QString Database::GetTeamNameByID(const int& teamID)
 {
 
     query.prepare("SELECT teamName FROM teamInfo "
-                  "WHERE teamID = (:teamID)");
+                  "WHERE teamID = :teamID");
     query.bindValue(":teamID", teamID);
 
     if(!query.exec())
         qDebug() << "ERROR - Database::GetTeamNameByID " << query.lastError();
 
+
+// return Stadium* found by teamID
+    query.next();
     return query.value(0).toString();
 }
 
-// return Stadium* found by teamID
 Stadium* Database::getStadiumByID(const int& teamID)
 {
     if (!stadiumDbCacheByID.contains(teamID))
@@ -146,6 +150,19 @@ Stadium *Database::getStadiumByName(const QString stadiumName)
         runGetAllTeamsAndStadiums();
 
     return stadiumDbCacheByName[stadiumName];
+}
+
+int Database::GetIDByStadiumName(const QString& stadiumName)
+{
+    query.prepare("select teamID from teamInfo WHERE stadiumName = :stadiumName");
+
+    query.bindValue(":stadiumName", stadiumName);
+
+    if(!query.exec())
+        qDebug() << "Database::GetIDByStadiumName " << query.lastError();
+
+    query.next();
+    return query.value(0).toInt();
 }
 
 // For use in admin section
@@ -194,6 +211,31 @@ void Database::DeleteSouvenir(const QString &SouvenirName, const QString &teamNa
 
 }
 
+void Database::AddDefaultSouvenirsToDatabase(int souvenirID, int teamID, QStringList souvenirs, QVector<double> prices)
+{
+
+    for(int index = 0; index < souvenirs.size(); index++)
+    {//begin for
+
+        query.prepare("INSERT OR IGNORE INTO "
+                      "souvenirs(souvenirID, teamID, itemName, itemPrice) "
+                      "VALUES   (:souvenirID, :teamID, :itemName, :itemPrice)");
+
+        //Bind query values
+        query.bindValue(":souvenirID", ++souvenirID);
+        query.bindValue(":teamID",     teamID);
+        query.bindValue(":itemName",   souvenirs[index]);
+        query.bindValue(":itemPrice",  prices   [index]);
+
+        //Output error message if query fails
+        if(!query.exec())
+            qDebug() << query.lastError();
+
+    }//end for
+
+}
+
+
 // Get all team names (for use in comboboxes)
 QStringList Database::GetTeamNames()
 {
@@ -215,6 +257,64 @@ QStringList Database::GetTeamNames()
     }
 
     return teamNames;
+}
+
+void Database::AddDistancesToDataBaseFromFile(QString& stadiumName, QStringList& otherStadiums, QVector <int>& miles)
+{
+    int     teamID;
+    QString teamName;
+
+    qDebug() << "stadiumName: " << stadiumName;
+
+    //Add stadiums with from stadium being Qualcomm
+    for(int index = 0; index < otherStadiums.size(); index++)
+    {//begin for
+
+        teamID   = GetIDByStadiumName(stadiumName);
+        teamName = GetTeamNameByID   (teamID);
+
+        query.prepare("INSERT INTO "
+                      "teamDistances(teamID, teamName, fromStadium, toStadium,"
+                      "milesBetween) "
+                      "VALUES       (:teamID, :teamName, :fromStadium, :toStadium,"
+                      ":milesBetween)");
+
+        query.bindValue(":teamID",       teamID);
+        query.bindValue(":teamName",     teamName);
+        query.bindValue(":fromStadium",  stadiumName);
+        query.bindValue(":toStadium",    otherStadiums[index]);
+        query.bindValue(":milesBetween", miles[index]);
+
+        //Output error message if query fails
+        if(!query.exec())
+            qDebug() << "ERROR ADDING DISTANCES " << query.lastError();
+
+    }//end for
+
+    //Add stadiums with the to city being San Diego
+    for(int index = 0; index < otherStadiums.size(); index++)
+    {//begin for
+
+        teamID   = GetIDByStadiumName(otherStadiums[index]);
+        teamName = GetTeamNameByID(teamID);
+
+        query.prepare("INSERT INTO "
+                      "teamDistances(teamID, teamName, fromStadium, toStadium,"
+                      "milesBetween) "
+                      "VALUES       (:teamID, :teamName, :fromStadium, :toStadium,"
+                      ":milesBetween)");
+
+        query.bindValue(":teamID",       teamID);
+        query.bindValue(":teamName",     teamName);
+        query.bindValue(":fromStadium",  otherStadiums[index]);
+        query.bindValue(":toStadium",    stadiumName);
+        query.bindValue(":milesBetween", miles[index]);
+
+        //Output error message if query fails
+        if(!query.exec())
+            qDebug() << "Database::AddDistancesToDataBaseFromFile " << query.lastError();
+
+    }//end for
 }
 
 // Get Info for one team (Requirement 2)
@@ -722,4 +822,236 @@ void Database::runGetAllStadiumDistances()
         qDebug() << "Error " << query.lastError().text()
                  << " while executing query " << query.executedQuery();
     }
+}
+
+// Get adjacency list for algorithms
+AdjacencyList* Database::GetAdjacencyList()
+{
+    QSqlQuery vertexQuery;
+    QSqlQuery edgeQuery;
+    AdjacencyList* list = nullptr;
+
+    vertexQuery.prepare("SELECT DISTINCT stadiumName from teamInfo");
+
+    // If query executes
+    if(vertexQuery.exec())
+    {
+//        // DEBUG
+//        qDebug() << "---- POPULATE ADJACENCY LIST START -----";
+
+        // Create adjacencylist pointer
+        list = new AdjacencyList;
+
+        // Create Edge pointer
+        AdjacencyList::Edge* destination = nullptr;
+
+        // Create Vertex pointer
+        AdjacencyList::Vertex* origin = nullptr;
+
+
+        // While query has stadium names left on list
+        while(vertexQuery.next())
+        {
+            // Create new Vertex Item
+            origin = new AdjacencyList::Vertex;
+
+            // Populate Vertex Item with origin stadium
+            origin->origin = vertexQuery.value(0).toString();
+
+            // Run query to pull that stadium's destination stadiums and their distances
+            edgeQuery.prepare("SELECT DISTINCT toStadium, milesBetween FROM teamDistances, teamInfo "
+                              "WHERE teamdistances.fromStadium = teamInfo.stadiumName "
+                              "AND teamInfo.stadiumName = :origin order by milesBetween");
+
+            // Bind origin stadium name to query
+            edgeQuery.bindValue(":origin", origin->origin);
+
+            // If query executes,
+            if(edgeQuery.exec())
+            {
+                // While query has destination stadiums left on list
+                while(edgeQuery.next())
+                {
+                    // Create new Edge item
+                    destination = new AdjacencyList::Edge;
+
+                    // Populate edge item with destination stadium
+                    destination->destination = edgeQuery.value(0).toString();
+
+                    // Populate edge item with destination stadium's distance
+                    destination->distance = edgeQuery.value(1).toInt();
+
+//                    // DEBUG
+//                    qDebug() << "Destination City Name: " << destination->endCity;
+//                    qDebug() << "Destination City Distance: " << destination->distance;
+
+                    // Insert Edge into Vertex
+                    origin->destinations.push_back(*destination);
+
+                }// End While Edge
+            }
+            else
+            {
+                qDebug() << "GetAdjacencyList failed at Edge Query";
+            }
+
+            // Insert completed vertex into adjacency list
+            list->list.push_back(*origin);
+
+        } // End While Vertex
+
+//        // DEBUG: PRINT ENTIRE LIST
+//        qDebug() << "Starting final print!";
+//        for(int originsIndex = 0; originsIndex < list->list.size(); originsIndex++)
+//        {
+//            qDebug() << "Arriving at: " << list->list.at(originsIndex).origin;
+//            for(int destinationsIndex = 0; destinationsIndex < list->list.at(originsIndex).destinations.size(); destinationsIndex ++)
+//            {
+//                qDebug() << "-Destination #" << destinationsIndex+1;
+//                qDebug() << "--Name: " << list->list.at(originsIndex).destinations.at(destinationsIndex).destination;
+//                qDebug() << "--Distance: " << list->list.at(originsIndex).destinations.at(destinationsIndex).distance;
+//            }
+
+//            qDebug() << "-------";
+//        }
+
+    }
+    else
+    {
+        qDebug() << "GetAdjacencyList failed at Vertex Query";
+    }
+
+    return list;
+}
+
+
+
+// Populate Shopping Cart List
+QVector<Team*>* Database::CreateShoppingList(const QStringList &stadiumNames)
+{
+    QVector<Team*>* shoppingList = new QVector<Team*>;
+    QVector<Souvenir*>* souvenirList = new QVector<Souvenir*>;
+    Team* team = nullptr;
+    Stadium* stadium = nullptr;
+    Souvenir* souvenir = nullptr;
+
+//    // DEBUG
+//    qDebug() << "--SHOPPING CART CREATION START--";
+
+    // Populate stadium name for each team
+    for(int index = 0; index < stadiumNames.size(); index++)
+    {
+        // Create stadium
+        stadium = new Stadium;
+
+        // Name stadium from stadium names
+        stadium->setStadiumName(stadiumNames.at(index));
+
+        // Prep query to pull team name
+        query.prepare("SELECT teamName FROM teamInfo WHERE stadiumName = :stadiumName");
+
+        // Bind value
+        query.bindValue(":stadiumName", stadiumNames.at(index));
+
+        // Execute
+        if(query.exec())
+        {
+            // Create new team object
+            team = new Team;
+
+            // Add stadium to team
+            team->setStadium(stadium);
+
+//            // DEBUG
+//            qDebug() << "Stadium Name Added: " << team->getStadium()->getStadiumName();
+
+            // Populate team name
+            while(query.next())
+            {
+                team->setTeamName(query.value(0).toString());
+            }
+
+            // Add team to shopping list
+            shoppingList->push_back(team);
+        }
+        else
+        {
+            qDebug() << "CreateShoppingList() failed at creating teams from stadium names";
+        }
+
+//        // DEBUG
+//        qDebug() << "Team Name: " << shoppingList->at(index)->getTeamName()
+//                 << "Stadium Name: " << shoppingList->at(index)->getStadium()->getStadiumName();
+    }
+
+    // Populate souvnirs for each team
+    for(int index = 0; index < shoppingList->size(); index++)
+    {
+        // Clear souvenirlist
+        souvenirList->clear();
+
+        // Prep query
+        query.prepare("SELECT itemName, itemPrice FROM souvenirs, teamInfo WHERE teamInfo.teamID = souvenirs.teamID AND teamInfo.teamName = :teamName");
+
+        // Bind value
+        query.bindValue(":teamName", shoppingList->at(index)->getTeamName());
+
+        // Execute
+        if(query.exec())
+        {
+//            // DEBUG
+//            qDebug() << "Team Name Receiving Souvenir: " << shoppingList->at(index)->getTeamName();
+
+            // Populate team with souvenirs
+            while(query.next())
+            {
+
+
+                // Populate souvenir
+                souvenir = new Souvenir;
+                souvenir->setItemName(query.value(0).toString());
+                souvenir->setItemPrice(query.value(1).toFloat());
+
+                // Insert souvenir into list
+                souvenirList->push_back(souvenir);
+
+//                // DEBUG
+//                qDebug() << "Souvenir Name: " << souvenir->getItemName();
+//                qDebug() << "Souvenir Price: " << souvenir->getItemPrice();
+            }
+
+            // Insert list into team
+            shoppingList->at(index)->setSouvenirList(*souvenirList);
+        }
+        else
+        {
+            qDebug() << "CreateShoppingList() failed at adding souvenirs to team";
+        }
+    }
+
+//    // DEBUG
+//    qDebug() << "--SHOPPING CART CREATION END--";
+//    qDebug() << "----";
+//    qDebug() << "----";
+//    qDebug() << "--PRINTING SHOPPING CART START --";
+
+//    for(int index = 0; index < shoppingList->size(); index++)
+//    {
+//        qDebug() << "Team #" << index+1;
+//        qDebug() << "Name: " << shoppingList->at(index)->getTeamName();
+//        qDebug() << "Stadium: " << shoppingList->at(index)->getStadium()->getStadiumName();
+//        qDebug() << "Souvenir List: ";
+
+//        for(int sIndex = 0; sIndex < shoppingList->at(index)->getSouvenirList().size(); sIndex++)
+//        {
+//            qDebug() << "-Name: " << shoppingList->at(index)->getSouvenirList().at(sIndex)->getItemName();
+//            qDebug() << "-Price: " << shoppingList->at(index)->getSouvenirList().at(sIndex)->getItemPrice();
+//        }
+//    }
+
+//    // DEBUG
+//    qDebug() << "--PRINTING SHOPPING CART END --";
+
+    return shoppingList;
+
 }

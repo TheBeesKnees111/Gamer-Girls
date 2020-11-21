@@ -59,3 +59,4 @@ QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium *st
     }
     return visited;
 }
+
