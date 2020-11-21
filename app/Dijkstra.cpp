@@ -44,6 +44,7 @@ while (!pending.empty())
     //17          for each neighbor v of u:
     // only v that are still in pending
     for (auto adjacent : graph.adjacencyList[currentStadium])
+	{
           //18              alt ← dist[u] + length(u, v)
           int alt = dist[currentStadium->getStadiumName()] + adjacent->getDistance();
           //19              if alt < dist[v]:
@@ -52,28 +53,12 @@ while (!pending.empty())
               //20                  dist[v] ← alt
               dist[adjacent->getToStadium()->getStadiumName()] = alt;
               //21                  prev[v] ← u
-              visited[adjacent->getToStadium()->getStadiumName()] = adjacent;
+			  prev[adjacent->getToStadium()->getStadiumName()] = adjacent;
               pending.push(adjacent->getToStadium());
           }
       }
   }
 //23      return dist[], prev[]
 return prev;
-}
-
-void runDijkstra(const StadiumGraph& graph, QString start, QString end)
-{
-    Database* db = Database::getInstance();
-
-    Stadium* startLocation{db->getStadiumByName(start)};
-    Stadium* endLocation{db->getStadiumByName(end)};
-
-    QHash<QString, StadiumDistance*> spanningTree = Dijkstra(graph, startLocation);
-    QVector<StadiumDistance*> path = buildPath(spanningTree, endLocation);
-    cout << "===================================================================" << endl;
-    cout << "PATH FROM " << start.toStdString() << " to " << end.toStdString() << endl;
-    cout << "===================================================================" << endl;
-    printPath(path);
-
 }
 

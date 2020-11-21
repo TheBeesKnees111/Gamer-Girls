@@ -12,7 +12,7 @@
 struct StadiumGraph
 {
     // vector of Stadiums* in graph
-    QVector<Stadium*> Stadiums;
+	QVector<Stadium*> cities;
 
     // map of key = Stadium*, value = vector of Edges(StadiumDistance*)
     QHash<Stadium*, QVector<StadiumDistance*>> adjacencyList;
