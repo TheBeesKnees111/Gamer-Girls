@@ -90,7 +90,7 @@
     <attribute name="title">
      <string>Edit Souvenirs</string>
     </attribute>
-    <widget class="QTableView" name="Update_Souvenir_Datatable">
+    <widget class="QTableWidget" name="Update_Souvenir_Datatable">
      <property name="geometry">
       <rect>
        <x>500</x>

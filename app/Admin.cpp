@@ -17,7 +17,7 @@ Admin::Admin(QWidget *parent) :
 
 	//Populate Souvenir table with related data and increase column width
 	//so team name is not cut off
-	PopulateSouvenirTable(queryModel);
+	InitializeSouvenirTable();
 
 	//Populate Stadium table with related data
 	PopulateStadiumTable(queryModel);
@@ -64,24 +64,79 @@ void Admin::PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox)
 }
 
 // Initializes souvenir table to blank
-void InitializeSouvenirTable (QTableView* table)
+void Admin::InitializeSouvenirTable ()
 {
+	QSqlQuery query;
+	int       row = 0;
 
+	ui -> Update_Souvenir_Datatable -> setColumnCount(3);
+	ui -> Update_Souvenir_Datatable -> setHorizontalHeaderLabels({"Team Name", "Souvenir Name", "Souvenir Price"});
+
+	//Select all souvenir data from database and display it
+	//on the datatable (Will Print team names instead of teamID)
+	query.exec("SELECT teamName, itemName, itemPrice FROM teamInfo, souvenirs WHERE teamInfo.teamID = souvenirs.teamID");
+
+	//Add items while there are more rows in the database
+	while(query.next())
+	{//begin while
+
+		ui -> Update_Souvenir_Datatable -> insertRow(ui -> Update_Souvenir_Datatable -> rowCount());
+
+		for(int col = 0; col < ui -> Update_Souvenir_Datatable -> model() -> columnCount(); col++)
+		{
+
+			switch(col)
+			{   case 0:
+				case 1: ui -> Update_Souvenir_Datatable -> setItem  (row, col, new QTableWidgetItem(query.value(col).toString()));
+						qDebug()<< "col " << col << "query.value(col).toString() " << query.value(col).toString();
+				break;
+				case 2: ui -> Update_Souvenir_Datatable -> setItem  (row, col, new QTableWidgetItem(query.value(col).toString()));
+					qDebug()<< "col " << col << "query.value(col).toDouble() " << query.value(col).toDouble();
+
+				break;
+			}
+
+		}
+
+		row++;
+
+	}//end while
 }
 
 /// Populates souvenir table in the admin section with all data
 /// related to souvenirs
-void Admin::PopulateSouvenirTable (QSqlQueryModel* model)
+void Admin::PopulateSouvenirTable()
 {
+	int       row = 0;
 	QSqlQuery query;
-
-	model = new QSqlQueryModel;
 
 	//Select all souvenir data from database and display it
 	//on the datatable (Will Print team names instead of teamID)
-	model -> setQuery("SELECT teamName, itemName, itemPrice FROM teamInfo, souvenirs WHERE teamInfo.teamID = souvenirs.teamID");
-	ui    -> Update_Souvenir_Datatable -> setModel(model);
+	query.exec("SELECT teamName, itemName, itemPrice FROM teamInfo, souvenirs WHERE teamInfo.teamID = souvenirs.teamID");
 
+	//Add items while there are more rows in the database
+	while(query.next())
+	{//begin while
+
+		for(int col = 0; col < ui -> Update_Souvenir_Datatable -> model() -> columnCount(); col++)
+		{
+
+			switch(col)
+			{   case 0:
+				case 1: ui -> Update_Souvenir_Datatable -> setItem  (row, col, new QTableWidgetItem(query.value(col).toString()));
+						qDebug()<< "col " << col << "query.value(col).toString() " << query.value(col).toString();
+				break;
+				case 2: ui -> Update_Souvenir_Datatable -> setItem  (row, col, new QTableWidgetItem(query.value(col).toString()));
+					qDebug()<< "col " << col << "query.value(col).toDouble() " << query.value(col).toDouble();
+
+				break;
+			}
+
+		}
+
+		row++;
+
+	}//end while
 	//Resize rows and columns
 	ui -> Update_Souvenir_Datatable -> setColumnWidth(0, 200);
 	ui -> Update_Souvenir_Datatable -> setColumnWidth(1, 200);
@@ -215,14 +270,14 @@ void Admin::on_Read_In_From_File_Button_clicked()
 			PopulateStadiumTable(model);
 			PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
-			/***********************************************************************
+		/***********************************************************************
 		 * ADDING TO SOUVENIR TABLE
 		 **********************************************************************/
 			Database::getInstance() -> AddDefaultSouvenirsToDatabase
 					(souvenirID, teamID, defaultSouvenirs, souvenirPrices);
 
-			PopulateSouvenirTable(model);
-			/***********************************************************************
+			PopulateSouvenirTable();
+		/***********************************************************************
 		 * ADDING TO DISTANCES TABLE
 		 **********************************************************************/
 			Database::getInstance()->AddDistancesToDataBaseFromFile(stadiumName, otherStadiums, miles);
@@ -239,25 +294,18 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 	double         price        = ui -> Price_Double_SpinBox   -> text().toDouble();
 	int			   teamID       = ui -> Team_Name_ComboBox     -> currentIndex() + 1;
 	QSqlQuery      query;
-	QSqlQueryModel *model = nullptr;
-
-	qDebug() << souvenirName;
-	qDebug() << price;
-	qDebug() << teamID;
 
 	//Set definition of blank data
 	bool    blankData    = (souvenirName == "" || price == 0.00 ||
 							teamID       == 0);
-
-	qDebug() << "souvenirName " << souvenirName;
-	qDebug() << "price        " << price;
-	qDebug() << "teamID       " << teamID;
 
 	if(blankData)
 		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
 
 	else
 	{
+		ui -> Update_Souvenir_Datatable -> insertRow(ui -> Update_Souvenir_Datatable -> rowCount());
+
 		//Pull teamId from team name selected by the user
 		query.prepare("INSERT OR IGNORE INTO "
 					  "souvenirs(teamID,  itemName,  itemPrice) "
@@ -270,6 +318,45 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 		if(!query.exec())
 			qDebug() << query.lastError();
 
-		PopulateSouvenirTable(model);
+		//Repopulate the souvenir table
+		PopulateSouvenirTable();
+
+		ui -> Souvenir_Name_LineEdit -> clear();
+		ui -> Price_Double_SpinBox   -> clear();
+		ui -> Team_Name_ComboBox     -> setCurrentIndex(-1);
+	}
+}
+
+///This will delete an item from the database with the name and team selected
+///by the user
+void Admin::on_Delete_Souvenir_PushButton_clicked()
+{
+
+}
+
+void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
+{
+	if(index.isValid())
+	{
+		qDebug() << "index.row() " << index.row();
+		qDebug() << "index.col() " << index.column();
+		qDebug() << " ";
+
+		int rowIndex = ui -> Update_Souvenir_Datatable -> selectionModel() -> currentIndex().row();
+
+		ui -> Souvenir_Name_LineEdit -> text()        = index.data(0).toString();
+		ui -> Price_Double_SpinBox   -> text()        = index.data(1).toDouble();
+		ui -> Team_Name_ComboBox     -> currentText() = index.data(2).toString();
+
+		qDebug() << "rowIndex " << rowIndex;
+		qDebug() << " ";
+
+//		ui -> Souvenir_Name_LineEdit -> setText (model -> index(rowIndex , 0).data().toString());
+		QItemSelectionModel *select = ui -> Update_Souvenir_Datatable->selectionModel();
+		qDebug()<<select->selectedRows(0).value(0).data().toString();
+		qDebug()<<select->selectedRows(1).value(0).data().toString();
+		qDebug()<<select->selectedRows(2).value(0).data().toString();
+		qDebug()<<select->selectedRows(3).value(0).data().toString();
+
 	}
 }

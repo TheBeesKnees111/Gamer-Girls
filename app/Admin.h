@@ -102,10 +102,10 @@ public:
 	void PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox);
 
     // Initializes souvenir table to blank
-    void InitializeSouvenirTable (QTableView* table);
+	void InitializeSouvenirTable ();
 
     // Populates souvenir table with relevant information
-	void PopulateSouvenirTable (QSqlQueryModel* model);
+	void PopulateSouvenirTable ();
 
     // Intializes stadium table to blank
     void InitializeStadiumTable (QTableView* table);
@@ -130,6 +130,10 @@ private slots:
 	void on_Read_In_From_File_Button_clicked();
 
 	void on_Add_Souvenir_PushButton_clicked();
+
+	void on_Delete_Souvenir_PushButton_clicked();
+
+	void on_Update_Souvenir_Datatable_clicked(const QModelIndex &index);
 
 	private:
     Ui::Admin *ui;
