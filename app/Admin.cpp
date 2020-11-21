@@ -239,6 +239,7 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
 	int       teamID       = ui -> Team_Name_ComboBox -> currentIndex() + 1;
 	QSqlQuery query;
+	QSqlTableModel *model = nullptr;
 
 	qDebug() << souvenirName;
 	qDebug() << price;
@@ -253,15 +254,18 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 
 	else
 	{
-		//Pull teamId from team name selected by the user
 		query.prepare("INSERT INTO "
-					  "souvenirs(teamID,  itemName,  itemrice) "
-					  "VALUES   (:teamID, :itemName, :itemPrice) "
-					  "WHERE teamID = :teamID");
+					  "souvenirs(teamID,  itemName,  itemPrice) "
+					  "VALUES   (:teamID, :itemName, :itemPrice)");
 
 		query.bindValue(":teamID",    teamID);
 		query.bindValue(":itemName",  souvenirName);
 		query.bindValue(":itemPrice", price);
 
+		if(!query.exec())
+			qDebug() << query.lastError();
+
+		PopulateSouvenirTable(model);
 	}
+
 }
