@@ -31,7 +31,7 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
      * -------------------------------------------------------------------------
      * Initialize comboboxes to hold stadium names and team names
      **************************************************************************/
-    query.exec("SELECT teamName FROM teamInfo");
+    query.exec("SELECT teamName, stadiumName FROM teamInfo");
 
     if(!query.exec())
         qDebug() << "Error: TRIPS PAGE -> Adding Team Name to ComboBox ";
@@ -41,6 +41,7 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
         while (query.next())
         {
             QString teamName    = query.value(0).toString();
+            QString stadiumName = query.value(1).toString();
 
             ui -> Souvenir_Select_Team_ComboBox       -> addItem(teamName);
             ui -> Green_Bay_Select_Stadium_ComboBox   -> addItem(teamName);
@@ -118,14 +119,18 @@ void SouvenirAndTrip::on_Home_PushButton_clicked()
     mainWindow -> show();
 }
 
-//FIXME
 /*********************************************
  ************** GREEN BAY TRIP **************
  *********************************************/
 ///For GREEN BAY TRIP push button clicked
-/// Will call rout displayer and show cities the user has selected to travel to
-void SouvenirAndTrip::on_Confirm_Green_Bay_Trip_PushButton_clicked()
+/// Will call rout displayer and show the dijkstra path to the city
+/// the traveler has selected to travel to
+void SouvenirAndTrip::on_Green_Bay_Confirmation_PushButton_clicked()
 {
+    QString teamName = ui->Green_Bay_Select_Stadium_ComboBox->currentText();
+
+    qDebug() << "Building Path: " << teamName;
+
     // Create Database
     Database* db = Database::getInstance();
 
@@ -133,7 +138,8 @@ void SouvenirAndTrip::on_Confirm_Green_Bay_Trip_PushButton_clicked()
     // get stadium origin
     Stadium* origin {db->getStadiumByName("Lambeau Field")};
     // get city selected
-    Stadium* destination{db->getStadiumByName(ui->GreenBaySelect->value())};
+    Stadium *destination = db->GetTeamByName(teamName)->getStadium();
+//    Stadium* destination{db->getStadiumByName(stadiumName)};
 
     // create graph
     StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
@@ -145,9 +151,9 @@ void SouvenirAndTrip::on_Confirm_Green_Bay_Trip_PushButton_clicked()
     QVector<StadiumDistance*> path = buildPath(spanningTree, destination);
 
     // send to route displayer
-    QDialog * routeDisplay = new RouteDisplayer(this, path);
+    QDialog * routeDisplay = new RouteDisplayer(this, path, teamName);
     // set window title
-    routeDisplay->setWindowTitle(origin->getStadiumName());
+    routeDisplay->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
     // open window
     routeDisplay->show();
 }

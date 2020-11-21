@@ -24,6 +24,10 @@ QString Stadium::getRoofType() const
 int Stadium::getDateOpened() const
 {    return dateOpened; }
 
+QVector<Team *> Stadium::getTeams() const
+{   return teams;   }
+
+
 /****************************************************
  * - SETTERS -                                      *
  ****************************************************/
@@ -80,3 +84,10 @@ void Stadium::setDateOpened(int value)
         emit dateOpenedChanged(value);
     }
 }
+
+void Stadium::addTeam(Team * newTeam)
+{
+    if (!teams.contains(newTeam))
+            teams.append(newTeam);
+}
+

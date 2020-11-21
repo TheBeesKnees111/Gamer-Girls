@@ -32,20 +32,21 @@ public:
 
 
     // TEAM METHODS
+    Team *GetTeamByName(const QString name);
     Team* GetTeamByID(const int &teamID);
     QVector<Team*> GetTeams();  // TODO call in main window for initial setup
     // TODO Need to methods to update and create teams
     // They need to update the caches as well as the database
 
-	QString GetTeamNameByID(const int& teamID);
-	void    AddTeamToDatabase();
+    QString GetTeamNameByID(const int& teamID);
+    void    AddTeamToDatabase();
 
 
     // STADIUM METHODS
     QVector<Stadium*> getStadiums();
     Stadium* getStadiumByID(const int& teamID);
     Stadium* getStadiumByName(const QString name);
-	int      GetIDByStadiumName(const QString& stadiumName);
+    int      GetIDByStadiumName(const QString& stadiumName);
 
     // STADIUM DISTANCE METHODS
     QVector<StadiumDistance*> getStadiumDistances();
@@ -54,9 +55,9 @@ public:
     // SOUVENIR METHODS
     QVector<Souvenir*> getSouvenirs();
     Souvenir* getSouvenierByID(int souvenirID);
-	void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
-											QStringList      souvenirs,
-											QVector <double> prices);
+    void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
+                                            QStringList      souvenirs,
+                                            QVector <double> prices);
 
     // PURCHASES METHODS
     QVector<Purchases*> getPurchases();
@@ -64,7 +65,7 @@ public:
 
     // DISTANCE METHODS
     int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
-	void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
+    void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
 
     /*!
      * @brief AddFood items to the database
@@ -143,10 +144,11 @@ private:
     // Moved so that outside code can't call the constructor & must call getInstance
     Database();
     static Database *instance;  // this is the singleton pattern
-	QSqlQuery query;
+    QSqlQuery query;
 
     // these maps cache the values of these queries so we only have to run them once
     QMap<int, Team*>            teamDbCache;
+    QMap<QString, Team*>        teamDbCacheByName;
     QMap<QString, Stadium*>     stadiumDbCacheByName;
     QMap<int, Stadium*>         stadiumDbCacheByID;
     QMap<int, StadiumDistance*> stadiumDistanceCache;

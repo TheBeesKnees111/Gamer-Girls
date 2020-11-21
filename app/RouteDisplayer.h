@@ -15,17 +15,15 @@ class RouteDisplayer : public QDialog
     Q_OBJECT
 
 public:
-    // TODO - CAN WE CALL DIFFERENT CONSTRUCTORS W/ DIFF PARAMETERS?
-    explicit RouteDisplayer(QWidget *parent, QVector<StadiumDistance*> path );
 
-//	explicit RouteDisplayer(QWidget *parent, QStringList cities, QList <int> distances);
+    // Displays the route for a trip from origin stadium to the end of the path
+    // list, and the total distance for the trip.
+    explicit RouteDisplayer(QWidget *parent, QVector<StadiumDistance*> path, QString teamName);
+
     ~RouteDisplayer();
 
 private:
     Ui::RouteDisplayer *ui;
-    static QVector<StadiumDistance*> path;
-//    QList<int> route;
-//    int totalDistance;
 };
 
 #endif // ROUTEDISPLAYER_H

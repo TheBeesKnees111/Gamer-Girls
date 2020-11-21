@@ -159,6 +159,13 @@ int Database::GetIDByStadiumName(const QString& stadiumName)
     return query.value(0).toInt();
 }
 
+Team *Database::GetTeamByName(const QString name)
+{
+      if (!teamDbCacheByName.contains(name))
+          runGetAllTeamsAndStadiums();
+      return teamDbCacheByName[name];
+}
+
 // For use in admin section
 QVector<Souvenir*> Database::getSouvenirs()
 {
@@ -335,6 +342,7 @@ Team* Database::GetSingleTeam(const QString &teamName)
             stadium->setRoofType(query.value(8).toString());
             stadium->setDateOpened(query.value(9).toInt());
             team->setStadium(stadium);
+            stadium->addTeam(team);
         }
     }
     else
@@ -373,6 +381,7 @@ QVector<Team*>* Database::GetTeamsOrderByStadium()
             stadium->setStadiumName(query.value(0).toString());
             team->setTeamName(query.value(1).toString());
             team->setStadium(stadium);
+            stadium->addTeam(team);
             teams->push_back(team);
         }
     }
@@ -481,6 +490,7 @@ QVector<Team*>* Database::GetStadiumsOrderByDateOpened()
             team->setTeamName(query.value(1).toString());
             stadium->setDateOpened(query.value(2).toInt());
             team->setStadium(stadium);
+            stadium->addTeam(team);
             teams->push_back(team);
         }
     }
@@ -511,6 +521,7 @@ QVector<Team*>* Database::GetOpenRoofStadiums()
             team->setTeamName(query.value(1).toString());
             stadium->setRoofType(query.value(2).toString());
             team->setStadium(stadium);
+            stadium->addTeam(team);
             teams->push_back(team);
         }
     }
@@ -563,6 +574,7 @@ QVector<Team*>* Database::GetStadiumsOrderBySeatingCap()
             team->setTeamName(query.value(1).toString());
             stadium->setSeatingCapacity(query.value(2).toInt());
             team->setStadium(stadium);
+            stadium->addTeam(team);
             teams->push_back(team);
         }
     }
@@ -617,6 +629,7 @@ QVector<Team*>* Database::GetTeamsOrderByConference()
             team->setConference(query.value(2).toString());
             stadium->setLocation(query.value(3).toString());
             team->setStadium(stadium);
+            stadium->addTeam(team);
             teams->push_back(team);
         }
     }
@@ -646,6 +659,7 @@ QVector<Team*>* Database::GetBermudaGrassTeams()
             team->setTeamName(query.value(0).toString());
             stadium->setSurfaceType(query.value(1).toString());
             team->setStadium(stadium);
+            stadium->addTeam(team);
             teams->push_back(team);
         }
     }
@@ -775,8 +789,10 @@ void Database::runGetAllTeamsAndStadiums()
             }
 
             team->setStadium(stadium);
+            stadium->addTeam(team);
 
             teamDbCache[teamID] = team;
+            teamDbCacheByName[teamName] = team;
         }
     }
     else
