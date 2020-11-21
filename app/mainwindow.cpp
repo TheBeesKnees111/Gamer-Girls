@@ -5,8 +5,7 @@
 #include "SouvenirAndTrip.h"
 #include "Database.h"
 #include "Team.h"
-#include "Dijkstra.h"
-#include "DFS.h"
+#include "TestAlgos.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
                                   (ImageLabelW, ImageLabelH));
 
     //TEST DIJKSTRA & DFS
-    testDijkstra();
+//    testDijkstra();
     testDFS();
 }
 

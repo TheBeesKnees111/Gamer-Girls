@@ -28,6 +28,7 @@ StadiumGraph StadiumGraph::createStadiumGraph(Database *db)
     return {db->getStadiums(), adjacencyList};
 }
 
+// prints adjacency list
 void StadiumGraph::printAdjList()
 {
     for (auto stadium : adjacencyList.keys())
@@ -42,7 +43,6 @@ void StadiumGraph::printAdjList()
        }
     }
 }
-
 
 // given a spanning tree (Dijkstra, DFS) and a destination Stadium,
 // trace the path from the given node(destination) to the root(origin)
@@ -62,8 +62,6 @@ QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stad
         {
             //5          insert u at the beginning of S
             // Push the vertex onto the stack
-//            S.push_back(currentStadium->getStadiumName());
-
             //6          u ← prev[u]
             // Traverse from endLocation to start
             StadiumDistance *parent = prev[currentStadium->getStadiumName()];
@@ -81,6 +79,7 @@ QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stad
     return S;
 }
 
+// prints the selected path
 void printPath(QVector<StadiumDistance*> path)
 {
     int totalMiles = 0;

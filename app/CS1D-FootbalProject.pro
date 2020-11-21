@@ -22,6 +22,7 @@ SOURCES += \
     StadiumDistance.cpp \
     StadiumGraph.cpp \
     Team.cpp \
+    TestAlgos.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -39,6 +40,7 @@ HEADERS += \
     StadiumDistance.h \
     StadiumGraph.h \
     Team.h \
+    TestAlgos.h \
     mainwindow.h
 
 FORMS += \
