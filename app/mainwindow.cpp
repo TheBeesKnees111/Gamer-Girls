@@ -5,16 +5,15 @@
 #include "SouvenirAndTrip.h"
 #include "Database.h"
 #include "Team.h"
-#include "Dijkstra.h"
+#include "TestAlgos.h"
+
+#include "BFS.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    //INSTANTIATE DATABASE
-    Database::getInstance();
 
     //PROCESSING - Setting Main Window Title
     this -> setWindowTitle("Let's Play Football");
@@ -32,9 +31,22 @@ MainWindow::MainWindow(QWidget *parent)
     ui -> Image_Label -> setPixmap(homePageBackground.scaled
                                   (ImageLabelW, ImageLabelH));
 
+    //TEST DIJKSTRA & DFS
+//    testDijkstra();
+    testDFS();
+
+    // Create Database
+    db = Database::getInstance();
+
+    // Populating Adjacency List. This may belong in the souvenir and trip section
+    AdjacencyList* aList = db->GetAdjacencyList();
+
+//    // DEBUG: Testing BFS
+//    BFS bfs(aList);
+//    bfs.Traverse();
+
     // TEST DIJKSTRA
     testDijkstra();
-
 }
 
 MainWindow::~MainWindow()

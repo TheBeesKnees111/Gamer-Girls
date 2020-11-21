@@ -12,7 +12,7 @@
 #include <algorithm>
 #include <string>
 #include <QHash>
-//#include <iostream>
+#include <iostream>
 
 using namespace std;
 

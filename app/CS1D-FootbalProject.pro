@@ -9,7 +9,10 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    AdjacencyList.cpp \
     Admin.cpp \
+    DFS.cpp \
+    BFS.cpp \
     Database.cpp \
     Dijkstra.cpp \
     DisplayInfo.cpp \
@@ -21,11 +24,15 @@ SOURCES += \
     StadiumDistance.cpp \
     StadiumGraph.cpp \
     Team.cpp \
+    TestAlgos.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    AdjacencyList.h \
     Admin.h \
+    DFS.h \
+    BFS.h \
     Database.h \
     Dijkstra.h \
     DisplayInfo.h \
@@ -37,6 +44,7 @@ HEADERS += \
     StadiumDistance.h \
     StadiumGraph.h \
     Team.h \
+    TestAlgos.h \
     mainwindow.h
 
 FORMS += \

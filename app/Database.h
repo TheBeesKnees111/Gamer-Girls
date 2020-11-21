@@ -15,6 +15,7 @@ class Team;
 class Souvenir;
 class Stadium;
 class Purchases;
+class AdjacencyList;
 
 class Database : public QSqlDatabase
 {
@@ -30,39 +31,62 @@ public:
 //        T_CONFERENCE, T_DIVISION, T_SURFACE_TYPE, T_ROOF_TYPE, T_DATE_OPENED
 //    };
 
-
     // TEAM METHODS
     Team *GetTeamByName(const QString name);
+
+    // returns Team* object found by teamID
     Team* GetTeamByID(const int &teamID);
+
+    // Uber object for use in all display sections. Will overwrite upon return to homepage
     QVector<Team*> GetTeams();  // TODO call in main window for initial setup
+
     // TODO Need to methods to update and create teams
     // They need to update the caches as well as the database
 
+
+    //Return team name found by teamID
     QString GetTeamNameByID(const int& teamID);
+
+    // not created in .cpp
     void    AddTeamToDatabase();
 
 
     // STADIUM METHODS
+    // Creates stadiumDbCacheByID of Stadiums if they don't already exist.
+    // Returns a vector of all Stadium*
     QVector<Stadium*> getStadiums();
+
+    // return Stadium* found by teamID
     Stadium* getStadiumByID(const int& teamID);
+
+    // return Stadium found by stadium name
     Stadium* getStadiumByName(const QString name);
     int      GetIDByStadiumName(const QString& stadiumName);
 
     // STADIUM DISTANCE METHODS
+    // Checks to see if the stadiumDistanceCache is created.  If not, creates it.
+    // Returns a vector edge list of (StadiumDistance*)
     QVector<StadiumDistance*> getStadiumDistances();
+
+    // returns StadiumDistance found by distanceID
     StadiumDistance* getStadiumDistanceByID(int id);
 
     // SOUVENIR METHODS
+    // For use in admin section
     QVector<Souvenir*> getSouvenirs();
+
+    // For use in admin section
     Souvenir* getSouvenierByID(int souvenirID);
     void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
                                             QStringList      souvenirs,
                                             QVector <double> prices);
 
     // PURCHASES METHODS
+    // For use in admin section
     QVector<Purchases*> getPurchases();
-    Purchases* getPurchasesByID(int purchaseID);
 
+    // For use in admin section
+    Purchases* getPurchasesByID(int purchaseID);
     // DISTANCE METHODS
     int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
     void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
@@ -140,6 +164,13 @@ public:
     // Get all souvenirs for one team (Requirement 13)
     Team* GetSingleTeamSouvenirs(const QString &teamName);
 
+    // Get adjacency list for algorithms
+    AdjacencyList* GetAdjacencyList();
+
+    // Populate Shopping Cart List
+    QVector<Team*>* CreateShoppingList(const QStringList &teamNames);
+
+
 private:
     // Moved so that outside code can't call the constructor & must call getInstance
     Database();
@@ -157,9 +188,13 @@ private:
 
     // This will run whenever a team or stadium is requested to ensure the
     // caches are populated.  Once created, they don't need to be created again.
+    // Creates QMap caches of team and stadium objects.
+    // These can then be used thruout the application whenever needed.
+    // Creates teamDbCache, stadiumDbCacheByName, & stadiumDbCacheByID
     void runGetAllTeamsAndStadiums();
-    void runGetAllStadiumDistances();
 
+    // creates stadiumDistanceCache for all StadiumDistances if it doesn't already exist
+    void runGetAllStadiumDistances();
 };
 
 #endif // DATABASE_H

@@ -7,6 +7,7 @@ class DisplayInfo;
 class SouvenirAndTrip;
 class Team;
 class Database;
+class BFS;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

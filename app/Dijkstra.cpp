@@ -44,20 +44,19 @@ while (!pending.empty())
     //17          for each neighbor v of u:
     // only v that are still in pending
     for (auto adjacent : graph.adjacencyList[currentStadium])
-    {
-        //18              alt ← dist[u] + length(u, v)
-        int alt = dist[currentStadium->getStadiumName()] + adjacent->getDistance();
-        //19              if alt < dist[v]:
-        if (alt < dist[adjacent->getToStadium()->getStadiumName()])
-        {
-            //20                  dist[v] ← alt
-            dist[adjacent->getToStadium()->getStadiumName()] = alt;
-            //21                  prev[v] ← u
-            prev[adjacent->getToStadium()->getStadiumName()] = adjacent;
-            pending.push(adjacent->getToStadium());
-        }
-    }
-}
+          //18              alt ← dist[u] + length(u, v)
+          int alt = dist[currentStadium->getStadiumName()] + adjacent->getDistance();
+          //19              if alt < dist[v]:
+          if (alt < dist[adjacent->getToStadium()->getStadiumName()])
+          {
+              //20                  dist[v] ← alt
+              dist[adjacent->getToStadium()->getStadiumName()] = alt;
+              //21                  prev[v] ← u
+              visited[adjacent->getToStadium()->getStadiumName()] = adjacent;
+              pending.push(adjacent->getToStadium());
+          }
+      }
+  }
 //23      return dist[], prev[]
 return prev;
 }
@@ -78,23 +77,3 @@ void runDijkstra(const StadiumGraph& graph, QString start, QString end)
 
 }
 
-void testDijkstra()
-{
-    // Create Database
-    Database* db = Database::getInstance();
-
-    StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
-    graph.printAdjList();
-
-    runDijkstra(graph, "Soldier Field", "Ford Field");
-    runDijkstra(graph, "SoFi Stadium", "Bills Stadium");
-    runDijkstra(graph, "SoFi Stadium", "Gillette Stadium");
-
-    runDijkstra(graph, "Gillette Stadium", "Lincoln Financial Field");
-    runDijkstra(graph, "Lincoln Financial Field", "Gillette Stadium");
-
-    runDijkstra(graph, "Bank of America Stadium", "Gillette Stadium");
-    runDijkstra(graph, "Allegiant Stadium", "Bills Stadium");
-    runDijkstra(graph, "Allegiant Stadium", "CenturyLink Field");
-
-}
