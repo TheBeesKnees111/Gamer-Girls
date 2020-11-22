@@ -5,16 +5,18 @@
 #include "SouvenirAndTrip.h"
 #include "Database.h"
 #include "Team.h"
-#include "Dijkstra.h"
+#include "TestAlgos.h"
+
+#include "BFS.h"
 
 MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent)
-	, ui(new Ui::MainWindow)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
 {
-	ui->setupUi(this);
+    ui->setupUi(this);
 
     //PROCESSING - Setting Main Window Title
-	this -> setWindowTitle("Let's Play Football");
+    this -> setWindowTitle("Let's Play Football");
 
     /************************************************************
     * PROCESSING - Assign an image into new QPixmap variable
@@ -29,11 +31,27 @@ MainWindow::MainWindow(QWidget *parent)
     ui -> Image_Label -> setPixmap(homePageBackground.scaled
                                   (ImageLabelW, ImageLabelH));
 
+    //TEST DIJKSTRA & DFS
+//    testDijkstra();
+    testDFS();
+
+    // Create Database
+    db = Database::getInstance();
+
+    // Populating Adjacency List. This may belong in the souvenir and trip section
+    AdjacencyList* aList = db->GetAdjacencyList();
+
+//    // DEBUG: Testing BFS
+//    BFS bfs(aList);
+//    bfs.Traverse();
+
+    // TEST DIJKSTRA
+    testDijkstra();
 }
 
 MainWindow::~MainWindow()
 {
-	delete ui;
+    delete ui;
 }
 
 
@@ -44,7 +62,7 @@ void MainWindow::on_Admin_Page_PushButton_clicked()
     Login *loginUi;
     loginUi = new Login(this);
 
-	hide();
+    hide();
 
     loginUi -> show();
 }
@@ -56,7 +74,7 @@ void MainWindow::on_Display_Team_Stadium_Info_clicked()
     DisplayInfo *displayUI;
     displayUI = new DisplayInfo(this);
 
-	hide();
+    hide();
 
     displayUI -> show();
 }
@@ -65,10 +83,10 @@ void MainWindow::on_Display_Team_Stadium_Info_clicked()
 /// hidden before showing the Travel page
 void MainWindow::on_Souvenir_And_Trip_PushButton_clicked()
 {
-	SouvenirAndTrip *ui;
-	ui = new SouvenirAndTrip(this);
+    SouvenirAndTrip *ui;
+    ui = new SouvenirAndTrip(this);
 
-	hide();
+    hide();
 
-	ui -> show();
+    ui -> show();
 }

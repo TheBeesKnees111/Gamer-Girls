@@ -15,6 +15,7 @@ class Stadium : public QObject
     QString surfaceType;
     QString roofType;
     int     dateOpened;
+    QVector<Team*> teams;
 
 public:
     explicit Stadium(QObject *parent = nullptr);
@@ -25,6 +26,7 @@ public:
     QString getSurfaceType() const;
     QString getRoofType() const;
     int     getDateOpened() const;
+    QVector<Team*> getTeams() const;
 
 public slots:
     void setStadiumName(const QString &value);
@@ -33,6 +35,7 @@ public slots:
     void setSurfaceType(const QString &value);
     void setRoofType(const QString &value);
     void setDateOpened(int value);
+    void addTeam(Team* newTeam);
 
 signals:
     void stadiumNameChanged(QString value);

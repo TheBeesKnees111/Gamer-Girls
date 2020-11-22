@@ -6,9 +6,15 @@
 #include "StadiumDistance.h"
 
 // Graph of cities and their connections
+// The QHash (map) will have a vector of all the Stadiums,
+// as well as an adjacencyList with a key = Stadium
+// and value = vecor of adjacent Edges (StadiumDistances)
 struct StadiumGraph
 {
-    QVector<Stadium*> cities;
+    // vector of Stadiums* in graph
+	QVector<Stadium*> cities;
+
+    // map of key = Stadium*, value = vector of Edges(StadiumDistance*)
     QHash<Stadium*, QVector<StadiumDistance*>> adjacencyList;
 
     // Utility function for the graph.  This doesn't run any queries
@@ -27,6 +33,7 @@ struct StadiumGraph
 // trace the path from the given node to the root(origin)
 QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stadium *destination);
 
+// print that path
 void printPath(QVector<StadiumDistance*> path);
 
 #endif // STADIUMGRAPH_H

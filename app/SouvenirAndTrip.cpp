@@ -5,11 +5,14 @@
 #include "Team.h"
 #include "Souvenir.h"
 #include "Stadium.h"
+#include "RouteDisplayer.h"
+#include "StadiumGraph.h"
+#include "Dijkstra.h"
 
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),
-	ui(new Ui::SouvenirAndTrip)
+    ui(new Ui::SouvenirAndTrip)
 {
     ui->setupUi(this);
 
@@ -21,8 +24,6 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     ui->Souvenir_Select_Team_ComboBox->addItems(souvenirComboBoxLabels);
 
 
-
-
     QSqlQuery query;
 
     /***************************************************************************
@@ -30,7 +31,7 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
      * -------------------------------------------------------------------------
      * Initialize comboboxes to hold stadium names and team names
      **************************************************************************/
-    query.exec("SELECT teamName FROM teamInfo");
+    query.exec("SELECT teamName, stadiumName FROM teamInfo");
 
     if(!query.exec())
         qDebug() << "Error: TRIPS PAGE -> Adding Team Name to ComboBox ";
@@ -40,6 +41,7 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
         while (query.next())
         {
             QString teamName    = query.value(0).toString();
+            QString stadiumName = query.value(1).toString();
 
             ui -> Souvenir_Select_Team_ComboBox       -> addItem(teamName);
             ui -> Green_Bay_Select_Stadium_ComboBox   -> addItem(teamName);
@@ -115,6 +117,45 @@ void SouvenirAndTrip::on_Home_PushButton_clicked()
     hide();
 
     mainWindow -> show();
+}
+
+/*********************************************
+ ************** GREEN BAY TRIP **************
+ *********************************************/
+///For GREEN BAY TRIP push button clicked
+/// Will call rout displayer and show the dijkstra path to the city
+/// the traveler has selected to travel to
+void SouvenirAndTrip::on_Green_Bay_Confirmation_PushButton_clicked()
+{
+    QString teamName = ui->Green_Bay_Select_Stadium_ComboBox->currentText();
+
+    qDebug() << "Building Path: " << teamName;
+
+    // Create Database
+    Database* db = Database::getInstance();
+
+    // TODO - CALL SHORTEST PATH HERE?
+    // get stadium origin
+    Stadium* origin {db->getStadiumByName("Lambeau Field")};
+    // get city selected
+    Stadium *destination = db->GetTeamByName(teamName)->getStadium();
+//    Stadium* destination{db->getStadiumByName(stadiumName)};
+
+    // create graph
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
+
+    // create spanning tree for all destinations
+    QHash<QString, StadiumDistance*> spanningTree = Dijkstra(graph, origin);
+
+    // get path for destination location
+    QVector<StadiumDistance*> path = buildPath(spanningTree, destination);
+
+    // send to route displayer
+    QDialog * routeDisplay = new RouteDisplayer(this, path, teamName);
+    // set window title
+    routeDisplay->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
+    // open window
+    routeDisplay->show();
 }
 
             /*********************************************

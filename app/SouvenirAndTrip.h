@@ -42,17 +42,22 @@ private slots:
 
     ///This function will create a pointer to the main window. It will then hide the
     ///travel page before showing the main window
-	void on_Home_PushButton_clicked();
+    void on_Home_PushButton_clicked();
 
-	void on_Confirm_Custom_Trip_PushButton_clicked();
+    void on_Confirm_Custom_Trip_PushButton_clicked();
 
     void on_Souvenir_Select_Team_ComboBox_activated(const QString &arg1);
 
+    ///For GREEN BAY TRIP push button clicked
+    /// Will call rout displayer and show the dijkstra path to the city
+    /// the traveler has selected to travel to
+    void on_Green_Bay_Confirmation_PushButton_clicked();
+
 private:
-	Database            *database;
-	QSqlQueryModel      *queryModel;
+    Database            *database;
+    QSqlQueryModel      *queryModel;
     Ui::SouvenirAndTrip *ui;
-	QListWidgetItem     *listItem;
+    QListWidgetItem     *listItem;
 };
 
 #endif // SOUVENIRANDTRIP_H
