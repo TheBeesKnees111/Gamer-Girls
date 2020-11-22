@@ -21,6 +21,7 @@ SOURCES += \
     StadiumDistance.cpp \
     StadiumGraph.cpp \
     Team.cpp \
+    kruskals.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -37,6 +38,7 @@ HEADERS += \
     StadiumDistance.h \
     StadiumGraph.h \
     Team.h \
+    kruskals.h \
     mainwindow.h
 
 FORMS += \
