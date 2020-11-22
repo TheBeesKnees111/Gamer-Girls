@@ -24,6 +24,7 @@ SOURCES += \
     StadiumDistance.cpp \
     StadiumGraph.cpp \
     Team.cpp \
+    kruskals.cpp \
     TestAlgos.cpp \
     main.cpp \
     mainwindow.cpp
@@ -44,6 +45,7 @@ HEADERS += \
     StadiumDistance.h \
     StadiumGraph.h \
     Team.h \
+    kruskals.h \
     TestAlgos.h \
     mainwindow.h
 
