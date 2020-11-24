@@ -8,6 +8,8 @@
 #include "RouteDisplayer.h"
 #include "StadiumGraph.h"
 #include "Dijkstra.h"
+#include "BFS.h"
+#include "AdjacencyList.h"
 
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
@@ -281,3 +283,46 @@ void SouvenirAndTrip::PopulateTripTable(const QVector<Team*>* teams)
 }
 
 // END HELPER METHODS
+
+void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
+{
+    QVector<Team*>* teamList = nullptr;
+    QStringList stadiumNames;
+    QString distanceOutput = "Total Distance Traveled: ";
+    BFS bfs(adjList);
+
+    // Perform BFS
+    bfs.Traverse();
+    stadiumNames = bfs.GetTraversalList();
+
+    // DEBUG output teamNames
+    qDebug() << "Printing stadiumNames from BFS";
+    qDebug() << stadiumNames;
+    qDebug() << "---";
+    distanceTraveled = bfs.GetDistanceTraveled();
+
+    // Get BFS team objects
+    teamList = database->CreateShoppingList(stadiumNames);
+
+    // DEBUG
+    qDebug() << "Printing teams and stadium names from CreateShoppingList";
+    for(int index = 0; index < teamList->size(); index++)
+    {
+        qDebug() << "Team Name: " << teamList->at(index)->getTeamName();
+        qDebug() << "Stadium Name: " << teamList->at(index)->getStadium()->getStadiumName();
+    }
+
+    // Enable cart button
+    ui->losAngeles_cart_button->setEnabled(true);
+
+    // Populate label
+    distanceOutput = distanceOutput + QVariant(distanceTraveled).toString();
+    ui->losAngeles_distance_label->setText(distanceOutput);
+
+    // Initialize Table
+    InitializeTripTable(ui->losAngeles_tableWidget, TRIP_TABLE_COL_COUNT, tripTableHeaders);
+
+    // Populate Table
+    PopulateTripTable(teamList);
+
+}

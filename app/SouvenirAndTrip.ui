@@ -172,6 +172,19 @@
       <string>Go to Cart</string>
      </property>
     </widget>
+    <widget class="QLabel" name="greenBay_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>600</y>
+       <width>321</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -277,6 +290,19 @@
       <string>Go to Cart</string>
      </property>
     </widget>
+    <widget class="QLabel" name="customTrip_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>590</y>
+       <width>311</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_4">
     <attribute name="title">
@@ -368,7 +394,7 @@
       <string>Go to Cart</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="QTableWidget" name="newEngland_tableWidget">
      <property name="geometry">
       <rect>
        <x>440</x>
@@ -376,6 +402,19 @@
        <width>451</width>
        <height>501</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="newEngland_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>670</y>
+       <width>261</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -461,13 +500,26 @@
       <string>Go to Cart</string>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView">
+    <widget class="QLabel" name="shortestCustomTrip_distance_label">
      <property name="geometry">
       <rect>
-       <x>500</x>
-       <y>150</y>
-       <width>371</width>
-       <height>451</height>
+       <x>20</x>
+       <y>630</y>
+       <width>341</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="shortestCustomTrip_tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>170</y>
+       <width>441</width>
+       <height>421</height>
       </rect>
      </property>
     </widget>
@@ -526,7 +578,7 @@
       <string>Go to Cart</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="tableWidget_2">
+    <widget class="QTableWidget" name="mst_tableWidget">
      <property name="geometry">
       <rect>
        <x>410</x>
@@ -534,6 +586,19 @@
        <width>421</width>
        <height>531</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mst_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>660</y>
+       <width>261</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -627,7 +692,7 @@
       <string>Go to Cart</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="minnesotaTrip_tableWidget">
+    <widget class="QTableWidget" name="minnesota_tableWidget">
      <property name="geometry">
       <rect>
        <x>460</x>
@@ -635,6 +700,19 @@
        <width>461</width>
        <height>491</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="minnesota_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>670</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -741,6 +819,19 @@
        <width>451</width>
        <height>491</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="losAngeles_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>590</y>
+       <width>321</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

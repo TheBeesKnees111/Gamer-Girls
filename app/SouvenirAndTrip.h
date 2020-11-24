@@ -11,6 +11,7 @@
 class Team;
 class Stadium;
 class Souvenir;
+class AdjacencyList;
 
 namespace Ui {
 class SouvenirAndTrip;
@@ -69,11 +70,15 @@ private slots:
     /// the traveler has selected to travel to
     void on_Green_Bay_Confirmation_PushButton_clicked();
 
+    void on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked();
+
 private:
     Database            *database;
     QSqlQueryModel      *queryModel;
     Ui::SouvenirAndTrip *ui;
     QListWidgetItem     *listItem;
+    AdjacencyList       *adjList;
+
 };
 
 #endif // SOUVENIRANDTRIP_H
