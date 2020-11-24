@@ -83,7 +83,7 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
         while(query.next())
         {
             itemLabels.push_back(query.value(0).toString());
-            qDebug() << "query.value(0).toString()" << query.value(0).toString();
+            //qDebug() << "query.value(0).toString()" << query.value(0).toString();
         }
     }
 
@@ -99,6 +99,17 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
 
     ui -> Select_Cities_ListWidget -> sortItems();
 
+    // Disable "Go to Cart" buttons (Enabled by pressing "Confirm Trip" on each page)
+    ui->greenBay_cart_button->setDisabled(true);
+    ui->customTrip_cart_button->setDisabled(true);
+    ui->newEngland_cart_button->setDisabled(true);
+    ui->shortestCustomTrip_cart_button->setDisabled(true);
+    ui->mst_cart_button->setDisabled(true);
+    ui->minnesota_cart_button->setDisabled(true);
+    ui->losAngeles_cart_button->setDisabled(true);
+
+    // Set distance travelled to 0
+    distanceTraveled = 0;
 
 }
 
@@ -224,9 +235,9 @@ void SouvenirAndTrip::PopulateSouvenirTable(Team* team)
         priceItem = new QTableWidgetItem(QString::number(team->getSouvenirList().at(index)->getItemPrice(), 'f', 2));
         // Create Row
         ui->Souvenir_TableWidget->insertRow(ui->Souvenir_TableWidget->rowCount());
-        // Populate Stadium Name Column
-        ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, TEAM_NAME, new QTableWidgetItem(team->getTeamName()));
         // Populate Team Name Column
+        ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, TEAM_NAME, new QTableWidgetItem(team->getTeamName()));
+        // Populate Stadium Name Column
         ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, SOUVENIR_NAME, new QTableWidgetItem(team->getSouvenirList().at(index)->getItemName()));
         // Populate Date Opened Column
         ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, SOUVENIR_PRICE, priceItem);
@@ -241,6 +252,31 @@ void SouvenirAndTrip::DeleteAllTableRows(QTableWidget *table)
     for(int index = 0; index < ROW_COUNT; index++)
     {
         table->removeRow(0);
+    }
+}
+
+void SouvenirAndTrip::InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers)
+{
+    table->clearContents();
+    table->setColumnCount(cols);
+    table->setHorizontalHeaderLabels(headers);
+    table->setEditTriggers(QTableView::NoEditTriggers);
+    table->verticalHeader()->hide();
+
+    DeleteAllTableRows(table);
+}
+
+void SouvenirAndTrip::PopulateTripTable(const QVector<Team*>* teams)
+{
+    // Date opened item
+    for(int index = 0; index < teams->size(); index++)
+    {
+        // Create Row
+        ui->Souvenir_TableWidget->insertRow(ui->Souvenir_TableWidget->rowCount());
+        // Populate Team Name Column
+        ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, T_TEAM, new QTableWidgetItem(teams->at(index)->getTeamName()));
+        // Populate Stadium Name Column
+        ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, T_STADIUM, new QTableWidgetItem(teams->at(index)->getStadium()->getStadiumName()));
     }
 }
 

@@ -821,7 +821,7 @@ void Database::runGetAllStadiumDistances()
     query.prepare("SELECT distanceID, fromStadium, toStadium, milesBetween "
                   "FROM teamDistances ");
     //    query.bindValue(":distanceID", distanceID);
-    qDebug() << "runGetAllStadiumDistances ";
+    //qDebug() << "runGetAllStadiumDistances ";
     if(query.exec())
     {
         while(query.next())

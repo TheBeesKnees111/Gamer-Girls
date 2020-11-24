@@ -21,18 +21,34 @@ class SouvenirAndTrip : public QDialog
     Q_OBJECT
 
 public:
-
-
+    // Souvenir table column count
     const int SOUVENIR_COL_COUNT = 3;
+    // Souvenir column positions
     enum SouvenirColPositions { TEAM_NAME, SOUVENIR_NAME, SOUVENIR_PRICE };
+    // Souvenir combobox labels
     QStringList souvenirComboBoxLabels;
+    // Souvenir column headers
     QStringList souvenirHeaders { "Team Name", "Souvenir Name", "Souvenir Price" };
+
+    // Trip table column count
+    const int TRIP_TABLE_COL_COUNT = 2;
+    // Trip table column positions
+    enum TripTableColPositions { T_TEAM, T_STADIUM };
+    // Trip table column headers
+    QStringList tripTableHeaders { "Team Name", "Stadium Names"};
+
+    // Total Distance traveled
+    int distanceTraveled;
 
     void InitializeSouvenirTable(QTableWidget* table, const int &cols, const QStringList &headers);
 
     void PopulateSouvenirTable(Team* team);
 
     void DeleteAllTableRows(QTableWidget *table);
+
+    void InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers);
+
+    void PopulateTripTable(const QVector<Team*>* teams);
 
 
     explicit SouvenirAndTrip(QWidget *parent = nullptr);

@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //TEST DIJKSTRA & DFS
 //    testDijkstra();
-    testDFS();
+    //testDFS();
 
     // Create Database
     db = Database::getInstance();
@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
 //    bfs.Traverse();
 
     // TEST DIJKSTRA
-    testDijkstra();
+    //testDijkstra();
 }
 
 MainWindow::~MainWindow()
