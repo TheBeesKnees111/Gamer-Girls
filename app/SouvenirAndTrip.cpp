@@ -21,6 +21,8 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     // TODO DEBUG This database is opened here because I can't find it opened anywhere else
     database = Database::getInstance();
 
+    adjList = database->GetAdjacencyList();
+
     // Retrieving combobox labels for 'display souvenirs for one team'
     souvenirComboBoxLabels = database->GetTeamNames();
     ui->Souvenir_Select_Team_ComboBox->addItems(souvenirComboBoxLabels);
@@ -268,17 +270,17 @@ void SouvenirAndTrip::InitializeTripTable(QTableWidget* table, const int &cols, 
     DeleteAllTableRows(table);
 }
 
-void SouvenirAndTrip::PopulateTripTable(const QVector<Team*>* teams)
+void SouvenirAndTrip::PopulateTripTable(QTableWidget* table, const QVector<Team*>* teams)
 {
     // Date opened item
     for(int index = 0; index < teams->size(); index++)
     {
         // Create Row
-        ui->Souvenir_TableWidget->insertRow(ui->Souvenir_TableWidget->rowCount());
+        table->insertRow(table->rowCount());
         // Populate Team Name Column
-        ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, T_TEAM, new QTableWidgetItem(teams->at(index)->getTeamName()));
+        table->setItem(table->rowCount() -1, T_TEAM, new QTableWidgetItem(teams->at(index)->getTeamName()));
         // Populate Stadium Name Column
-        ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, T_STADIUM, new QTableWidgetItem(teams->at(index)->getStadium()->getStadiumName()));
+        table->setItem(table->rowCount() -1, T_STADIUM, new QTableWidgetItem(teams->at(index)->getStadium()->getStadiumName()));
     }
 }
 
@@ -323,6 +325,6 @@ void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
     InitializeTripTable(ui->losAngeles_tableWidget, TRIP_TABLE_COL_COUNT, tripTableHeaders);
 
     // Populate Table
-    PopulateTripTable(teamList);
+    PopulateTripTable(ui->losAngeles_tableWidget, teamList);
 
 }

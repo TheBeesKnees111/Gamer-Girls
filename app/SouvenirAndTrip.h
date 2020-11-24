@@ -49,7 +49,7 @@ public:
 
     void InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers);
 
-    void PopulateTripTable(const QVector<Team*>* teams);
+    void PopulateTripTable(QTableWidget* table, const QVector<Team*>* teams);
 
 
     explicit SouvenirAndTrip(QWidget *parent = nullptr);
