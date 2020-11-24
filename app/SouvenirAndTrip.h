@@ -72,12 +72,15 @@ private slots:
 
     void on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked();
 
+    void on_losAngeles_cart_button_clicked();
+
 private:
     Database            *database;
     QSqlQueryModel      *queryModel;
     Ui::SouvenirAndTrip *ui;
     QListWidgetItem     *listItem;
     AdjacencyList       *adjList;
+    QVector<Team*>      *teamList;
 
 };
 

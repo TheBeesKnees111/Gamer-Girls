@@ -286,9 +286,9 @@ void SouvenirAndTrip::PopulateTripTable(QTableWidget* table, const QVector<Team*
 
 // END HELPER METHODS
 
+// Los Angeles BFS Trip
 void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
 {
-    QVector<Team*>* teamList = nullptr;
     QStringList stadiumNames;
     QString distanceOutput = "Total Distance Traveled: ";
     BFS bfs(adjList);
@@ -326,5 +326,11 @@ void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
 
     // Populate Table
     PopulateTripTable(ui->losAngeles_tableWidget, teamList);
+}
 
+void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
+{
+    RouteDisplayer *routeDisplayer = new RouteDisplayer(this, teamList);
+
+    routeDisplayer->show();
 }

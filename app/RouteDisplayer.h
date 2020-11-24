@@ -16,9 +16,8 @@ class RouteDisplayer : public QDialog
 
 public:
 
-    // Displays the route for a trip from origin stadium to the end of the path
-    // list, and the total distance for the trip.
-    explicit RouteDisplayer(QWidget *parent, QVector<StadiumDistance*> path, QString teamName);
+    // Imports Team data from any trip. Populates purchase table
+    explicit RouteDisplayer(QWidget *parent, QVector<Team*>* teamList);
 
     ~RouteDisplayer();
 
