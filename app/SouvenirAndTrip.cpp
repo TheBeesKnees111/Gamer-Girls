@@ -5,9 +5,11 @@
 #include "Team.h"
 #include "Souvenir.h"
 #include "Stadium.h"
-#include "RouteDisplayer.h"
+#include "PurchaseTable.h"
 #include "StadiumGraph.h"
 #include "Dijkstra.h"
+#include "BFS.h"
+#include "AdjacencyList.h"
 
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
@@ -18,6 +20,8 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
 
     // TODO DEBUG This database is opened here because I can't find it opened anywhere else
     database = Database::getInstance();
+
+    adjList = database->GetAdjacencyList();
 
     // Retrieving combobox labels for 'display souvenirs for one team'
     souvenirComboBoxLabels = database->GetTeamNames();
@@ -83,7 +87,7 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
         while(query.next())
         {
             itemLabels.push_back(query.value(0).toString());
-            qDebug() << "query.value(0).toString()" << query.value(0).toString();
+            //qDebug() << "query.value(0).toString()" << query.value(0).toString();
         }
     }
 
@@ -99,6 +103,17 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
 
     ui -> Select_Cities_ListWidget -> sortItems();
 
+    // Disable "Go to Cart" buttons (Enabled by pressing "Confirm Trip" on each page)
+    ui->greenBay_cart_button->setDisabled(true);
+    ui->customTrip_cart_button->setDisabled(true);
+    ui->newEngland_cart_button->setDisabled(true);
+    ui->shortestCustomTrip_cart_button->setDisabled(true);
+    ui->mst_cart_button->setDisabled(true);
+    ui->minnesota_cart_button->setDisabled(true);
+    ui->losAngeles_cart_button->setDisabled(true);
+
+    // Set distance travelled to 0
+    distanceTraveled = 0;
 
 }
 
@@ -150,12 +165,15 @@ void SouvenirAndTrip::on_Green_Bay_Confirmation_PushButton_clicked()
     // get path for destination location
     QVector<StadiumDistance*> path = buildPath(spanningTree, destination);
 
-    // send to route displayer
-    QDialog * routeDisplay = new RouteDisplayer(this, path, teamName);
-    // set window title
-    routeDisplay->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
-    // open window
-    routeDisplay->show();
+    // TODO: HOOK UP TO CREATESHOPPING CART AND PASS QVECTOR<TEAM*>* teamList (already an attribute of sourveniandtrip)
+    // into the route displayer constructor here
+
+//    // send to route displayer
+//    //QDialog * routeDisplay = new RouteDisplayer(this, teamName);
+//    // set window title
+//    routeDisplay->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
+//    // open window
+//    routeDisplay->show();
 }
 
             /*********************************************
@@ -224,9 +242,9 @@ void SouvenirAndTrip::PopulateSouvenirTable(Team* team)
         priceItem = new QTableWidgetItem(QString::number(team->getSouvenirList().at(index)->getItemPrice(), 'f', 2));
         // Create Row
         ui->Souvenir_TableWidget->insertRow(ui->Souvenir_TableWidget->rowCount());
-        // Populate Stadium Name Column
-        ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, TEAM_NAME, new QTableWidgetItem(team->getTeamName()));
         // Populate Team Name Column
+        ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, TEAM_NAME, new QTableWidgetItem(team->getTeamName()));
+        // Populate Stadium Name Column
         ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, SOUVENIR_NAME, new QTableWidgetItem(team->getSouvenirList().at(index)->getItemName()));
         // Populate Date Opened Column
         ui->Souvenir_TableWidget->setItem(ui->Souvenir_TableWidget->rowCount() -1, SOUVENIR_PRICE, priceItem);
@@ -244,4 +262,80 @@ void SouvenirAndTrip::DeleteAllTableRows(QTableWidget *table)
     }
 }
 
+void SouvenirAndTrip::InitializeTripTable(QTableWidget* table, const int &cols, const QStringList &headers)
+{
+    table->clearContents();
+    table->setColumnCount(cols);
+    table->setHorizontalHeaderLabels(headers);
+    table->setEditTriggers(QTableView::NoEditTriggers);
+    table->verticalHeader()->hide();
+
+    DeleteAllTableRows(table);
+}
+
+void SouvenirAndTrip::PopulateTripTable(QTableWidget* table, const QVector<Team*>* teams)
+{
+    // Date opened item
+    for(int index = 0; index < teams->size(); index++)
+    {
+        // Create Row
+        table->insertRow(table->rowCount());
+        // Populate Team Name Column
+        table->setItem(table->rowCount() -1, T_TEAM, new QTableWidgetItem(teams->at(index)->getTeamName()));
+        // Populate Stadium Name Column
+        table->setItem(table->rowCount() -1, T_STADIUM, new QTableWidgetItem(teams->at(index)->getStadium()->getStadiumName()));
+    }
+}
+
 // END HELPER METHODS
+
+// Los Angeles BFS Trip
+void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
+{
+    QStringList stadiumNames;
+    QString distanceOutput = "Total Distance Traveled: ";
+    BFS bfs(adjList);
+
+    // Perform BFS
+    bfs.Traverse();
+    stadiumNames = bfs.GetTraversalList();
+
+//    // DEBUG output teamNames
+//    qDebug() << "Printing stadiumNames from BFS";
+//    qDebug() << stadiumNames;
+//    qDebug() << "---";
+
+    // Store distance traveled
+    distanceTraveled = bfs.GetDistanceTraveled();
+
+    // Get BFS team objects
+    teamList = database->CreateShoppingList(stadiumNames);
+
+//    // DEBUG
+//    qDebug() << "Printing teams and stadium names from CreateShoppingList";
+//    for(int index = 0; index < teamList->size(); index++)
+//    {
+//        qDebug() << "Team Name: " << teamList->at(index)->getTeamName();
+//        qDebug() << "Stadium Name: " << teamList->at(index)->getStadium()->getStadiumName();
+//    }
+
+    // Enable cart button
+    ui->losAngeles_cart_button->setEnabled(true);
+
+    // Populate label
+    distanceOutput = distanceOutput + QVariant(distanceTraveled).toString();
+    ui->losAngeles_distance_label->setText(distanceOutput);
+
+    // Initialize Table
+    InitializeTripTable(ui->losAngeles_tableWidget, TRIP_TABLE_COL_COUNT, tripTableHeaders);
+
+    // Populate Table
+    PopulateTripTable(ui->losAngeles_tableWidget, teamList);
+}
+
+void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
+{
+    PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
+
+    purchaseTable->show();
+}

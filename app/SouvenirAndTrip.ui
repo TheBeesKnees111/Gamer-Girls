@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>7</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -149,6 +149,42 @@
       <string>Confirm</string>
      </property>
     </widget>
+    <widget class="QTableWidget" name="greenBay_tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>90</y>
+       <width>471</width>
+       <height>601</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="greenBay_cart_button">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>350</y>
+       <width>151</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Go to Cart</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="greenBay_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>600</y>
+       <width>321</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -241,6 +277,32 @@
       </rect>
      </property>
     </widget>
+    <widget class="QPushButton" name="customTrip_cart_button">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>440</y>
+       <width>141</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Go to Cart</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="customTrip_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>590</y>
+       <width>311</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_4">
     <attribute name="title">
@@ -261,7 +323,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Visit all other teams from New England (stadium not the actual country). All cities are prechosen so that you travel the shortest distance!</string>
+      <string>Visit all other teams from New England Stadium. All cities are prechosen so that you travel the shortest distance!</string>
      </property>
      <property name="textFormat">
       <enum>Qt::PlainText</enum>
@@ -317,6 +379,42 @@
      </property>
      <property name="text">
       <string>New England!</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="newEngland_cart_button">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>540</y>
+       <width>121</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Go to Cart</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="newEngland_tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>100</y>
+       <width>451</width>
+       <height>501</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="newEngland_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>670</y>
+       <width>261</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -389,6 +487,42 @@
       <string>Confirm Trip</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="shortestCustomTrip_cart_button">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>460</y>
+       <width>151</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Go to Cart</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="shortestCustomTrip_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>630</y>
+       <width>341</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="shortestCustomTrip_tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>170</y>
+       <width>441</width>
+       <height>421</height>
+      </rect>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_15">
     <attribute name="title">
@@ -429,6 +563,42 @@
      </property>
      <property name="wordWrap">
       <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="mst_cart_button">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>410</y>
+       <width>131</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Go to Cart</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="mst_tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>90</y>
+       <width>421</width>
+       <height>531</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="mst_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>660</y>
+       <width>261</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -507,6 +677,42 @@
      </property>
      <property name="text">
       <string>Minnesota Vikings</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="minnesota_cart_button">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>410</y>
+       <width>141</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Go to Cart</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="minnesota_tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>130</y>
+       <width>461</width>
+       <height>491</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="minnesota_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>670</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -590,6 +796,42 @@
      </property>
      <property name="text">
       <string>Los Angeles Rams</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="losAngeles_cart_button">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>410</y>
+       <width>141</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Go to Cart</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="losAngeles_tableWidget">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>120</y>
+       <width>451</width>
+       <height>491</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="losAngeles_distance_label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>590</y>
+       <width>321</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
