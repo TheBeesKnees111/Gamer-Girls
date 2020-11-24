@@ -5,7 +5,7 @@
 #include "Team.h"
 #include "Souvenir.h"
 #include "Stadium.h"
-#include "RouteDisplayer.h"
+#include "PurchaseTable.h"
 #include "StadiumGraph.h"
 #include "Dijkstra.h"
 #include "BFS.h"
@@ -165,12 +165,15 @@ void SouvenirAndTrip::on_Green_Bay_Confirmation_PushButton_clicked()
     // get path for destination location
     QVector<StadiumDistance*> path = buildPath(spanningTree, destination);
 
-    // send to route displayer
-    QDialog * routeDisplay = new RouteDisplayer(this, path, teamName);
-    // set window title
-    routeDisplay->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
-    // open window
-    routeDisplay->show();
+    // TODO: HOOK UP TO CREATESHOPPING CART AND PASS QVECTOR<TEAM*>* teamList (already an attribute of sourveniandtrip)
+    // into the route displayer constructor here
+
+//    // send to route displayer
+//    //QDialog * routeDisplay = new RouteDisplayer(this, teamName);
+//    // set window title
+//    routeDisplay->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
+//    // open window
+//    routeDisplay->show();
 }
 
             /*********************************************
@@ -297,22 +300,24 @@ void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
     bfs.Traverse();
     stadiumNames = bfs.GetTraversalList();
 
-    // DEBUG output teamNames
-    qDebug() << "Printing stadiumNames from BFS";
-    qDebug() << stadiumNames;
-    qDebug() << "---";
+//    // DEBUG output teamNames
+//    qDebug() << "Printing stadiumNames from BFS";
+//    qDebug() << stadiumNames;
+//    qDebug() << "---";
+
+    // Store distance traveled
     distanceTraveled = bfs.GetDistanceTraveled();
 
     // Get BFS team objects
     teamList = database->CreateShoppingList(stadiumNames);
 
-    // DEBUG
-    qDebug() << "Printing teams and stadium names from CreateShoppingList";
-    for(int index = 0; index < teamList->size(); index++)
-    {
-        qDebug() << "Team Name: " << teamList->at(index)->getTeamName();
-        qDebug() << "Stadium Name: " << teamList->at(index)->getStadium()->getStadiumName();
-    }
+//    // DEBUG
+//    qDebug() << "Printing teams and stadium names from CreateShoppingList";
+//    for(int index = 0; index < teamList->size(); index++)
+//    {
+//        qDebug() << "Team Name: " << teamList->at(index)->getTeamName();
+//        qDebug() << "Stadium Name: " << teamList->at(index)->getStadium()->getStadiumName();
+//    }
 
     // Enable cart button
     ui->losAngeles_cart_button->setEnabled(true);
@@ -330,7 +335,7 @@ void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
 
 void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
 {
-    RouteDisplayer *routeDisplayer = new RouteDisplayer(this, teamList);
+    PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
 
-    routeDisplayer->show();
+    purchaseTable->show();
 }

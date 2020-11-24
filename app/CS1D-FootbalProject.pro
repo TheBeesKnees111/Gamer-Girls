@@ -17,7 +17,7 @@ SOURCES += \
     Dijkstra.cpp \
     DisplayInfo.cpp \
     Login.cpp \
-    RouteDisplayer.cpp \
+    PurchaseTable.cpp \
     Souvenir.cpp \
     SouvenirAndTrip.cpp \
     Stadium.cpp \
@@ -38,7 +38,7 @@ HEADERS += \
     Dijkstra.h \
     DisplayInfo.h \
     Login.h \
-    RouteDisplayer.h \
+    PurchaseTable.h \
     Souvenir.h \
     SouvenirAndTrip.h \
     Stadium.h \
@@ -53,7 +53,7 @@ FORMS += \
     Admin.ui \
     DisplayInfo.ui \
     Login.ui \
-    RouteDisplayer.ui \
+    PurchaseTable.ui \
     SouvenirAndTrip.ui \
     mainwindow.ui
 
