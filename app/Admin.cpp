@@ -351,19 +351,33 @@ void Admin::on_Delete_Souvenir_PushButton_clicked()
 
 	else
 	{
-		query.prepare("DELETE FROM souvenirs WHERE souvenirID = :souvenirID");
+		if(souvenirCount >=1)
+		{
+			//prepare query
+			query.prepare("DELETE FROM souvenirs WHERE souvenirID = :souvenirID");
 
-		query.bindValue(":souvenirID", souvenirID);
+			query.bindValue(":souvenirID", souvenirID);
 
-		if(!query.exec())
-			qDebug() << query.lastError();
+			//Output error message if query fails
+			if(!query.exec())
+				qDebug() << query.lastError();
 
-		PopulateSouvenirTable(model);
+			//Update souvenir table so that information will appear
+			PopulateSouvenirTable(model);
+
+			//Change souvenir Count
+			SetSouvenirCountMax(-1);
+
+			//Reset souvenir ID to zero
+			ui -> Souvenir_ID_SpinBox -> setValue(0);
+		}
+
 	}
 }
 
 ///Change the maximum souvenir ID that user can select
 void Admin::SetSouvenirCountMax(int souvenirIncrease)
 {
-	ui -> Souvenir_ID_SpinBox -> setMaximum(souvenirCount + souvenirIncrease);
+	souvenirCount += souvenirIncrease;
+	ui -> Souvenir_ID_SpinBox -> setMaximum(souvenirCount);
 }
