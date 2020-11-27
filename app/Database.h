@@ -170,6 +170,9 @@ public:
     // Populate Shopping Cart List
     QVector<Team*>* CreateShoppingList(const QStringList &teamNames);
 
+    // Write purchase info to db
+    void SavePurchase(QVector<Team*>* teamList);
+
 
 private:
     // Moved so that outside code can't call the constructor & must call getInstance
