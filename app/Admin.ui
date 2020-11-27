@@ -229,6 +229,29 @@
       <string>Delete Souvenir</string>
      </property>
     </widget>
+    <widget class="QSpinBox" name="Souvenir_ID_SpinBox">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>20</y>
+       <width>71</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Souvenir ID</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="Edit_Stadium_Info">
     <attribute name="title">

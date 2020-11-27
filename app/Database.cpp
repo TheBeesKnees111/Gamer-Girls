@@ -242,7 +242,6 @@ void Database::AddDefaultSouvenirsToDatabase(int souvenirID, int teamID, QString
 
 }
 
-
 // Get all team names (for use in comboboxes)
 QStringList Database::GetTeamNames()
 {

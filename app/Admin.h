@@ -131,8 +131,17 @@ private slots:
 
 	void on_Add_Souvenir_PushButton_clicked();
 
+	void on_Update_Souvenir_PushButton_clicked();
+
+	void on_Update_Souvenir_Datatable_clicked(const QModelIndex &index);
+
+	void on_Delete_Souvenir_PushButton_clicked();
+
+	void SetSouvenirCountMax(int souvenirIncrease);
+
 	private:
     Ui::Admin *ui;
+	int        souvenirCount;
 };
 
 #endif // ADMIN_H
