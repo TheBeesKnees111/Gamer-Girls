@@ -570,9 +570,14 @@
       <rect>
        <x>410</x>
        <y>90</y>
-       <width>421</width>
+       <width>601</width>
        <height>531</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
      </property>
     </widget>
     <widget class="QLabel" name="mst_distance_label">

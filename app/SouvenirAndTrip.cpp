@@ -342,10 +342,15 @@ void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
     purchaseTable->show();
 }
 
+			/*********************************************
+			 **************     MST TRIP    **************
+			 *********************************************/
+
 void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
 {
     //a qstringlist to hold the stadium naes
     QStringList stadiumNames;
+	QStringList verticalHeader;
     QString distanceOutput = "Total Cost: ";
     //instantiate our kruskals graph
     kruskals g(10000);
@@ -361,6 +366,7 @@ void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
     distanceOutput = distanceOutput + QVariant(totalCost).toString();
     ui->mst_distance_label->setText(distanceOutput);
     //inintialize the table
+
     InitializeTripTable(ui->mst_tableWidget, TRIP_TABLE_COL_COUNT, tripTableHeaders);
     //get the list of traversal
    stadiumNames = g.getList();
@@ -368,4 +374,32 @@ void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
     teamList = database->CreateShoppingList(stadiumNames);
     //print to the db
    PopulateTripTable(ui->mst_tableWidget, teamList);
+
+   for(int index = ui -> mst_tableWidget -> rowCount(); index > -1 ; index--)
+   {
+	   if(index%2 ==1)
+		   ui -> mst_tableWidget -> insertRow(index + 1);
+   }
+
+   //Set vertical Header
+   for(int index = 0; index < ui -> mst_tableWidget -> rowCount(); index++)
+   {
+	   switch(index % 3 + 1)
+	   {
+		   case 1: verticalHeader.push_back("From City");
+		   break;
+
+		   case 2: verticalHeader.push_back("To City");
+		   break;
+
+		   default: verticalHeader.push_back("");
+	   }
+   }
+
+   ui -> mst_tableWidget -> setVerticalHeaderLabels(verticalHeader);
+   ui -> mst_tableWidget -> verticalHeader() -> show();
+   ui -> mst_tableWidget -> setColumnWidth(0,200);
+   ui -> mst_tableWidget -> setColumnWidth(1,200);
+
+
 }
