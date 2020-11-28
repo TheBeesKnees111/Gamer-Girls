@@ -74,6 +74,8 @@ private slots:
 
     void on_losAngeles_cart_button_clicked();
 
+    void on_Confirm_MST_Trip_clicked();
+
 private:
     Database            *database;
     QSqlQueryModel      *queryModel;

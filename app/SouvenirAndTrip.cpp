@@ -10,6 +10,7 @@
 #include "Dijkstra.h"
 #include "BFS.h"
 #include "AdjacencyList.h"
+#include "kruskals.h"
 
 
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
@@ -108,7 +109,8 @@ SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     ui->customTrip_cart_button->setDisabled(true);
     ui->newEngland_cart_button->setDisabled(true);
     ui->shortestCustomTrip_cart_button->setDisabled(true);
-    ui->mst_cart_button->setDisabled(true);
+    //Took this line out because the mst does not need to access the shopping cart per Jerry's requirements
+    //ui->mst_cart_button->setDisabled(true);
     ui->minnesota_cart_button->setDisabled(true);
     ui->losAngeles_cart_button->setDisabled(true);
 
@@ -338,4 +340,32 @@ void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
     PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
 
     purchaseTable->show();
+}
+
+void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
+{
+    //a qstringlist to hold the stadium naes
+    QStringList stadiumNames;
+    QString distanceOutput = "Total Cost: ";
+    //instantiate our kruskals graph
+    kruskals g(10000);
+    //read from db from prechosen starting spot
+    g.readDb("Sofi Stadium");
+    //solve kruskals algorithm
+    g.solve();
+    //get the cost of the trip
+    g.calcCost();
+    //set the cost to the distance traveled
+    int totalCost = g.getDistanceTraveled();
+    //print the distance traveled
+    distanceOutput = distanceOutput + QVariant(totalCost).toString();
+    ui->mst_distance_label->setText(distanceOutput);
+    //inintialize the table
+    InitializeTripTable(ui->mst_tableWidget, TRIP_TABLE_COL_COUNT, tripTableHeaders);
+    //get the list of traversal
+   stadiumNames = g.getList();
+   //create the list needed to populate the db
+    teamList = database->CreateShoppingList(stadiumNames);
+    //print to the db
+   PopulateTripTable(ui->mst_tableWidget, teamList);
 }
