@@ -149,10 +149,8 @@ void PurchaseTable::PopulatePurchaseTable()
             ui->purchase_tableWidget->setItem(ui->purchase_tableWidget->rowCount() - 1, S_NAME, new QTableWidgetItem(teamCart->at(teamIndex)->getSouvenirList().at(souvIndex)->getItemName()));
             // Add souvenir price
             ui->purchase_tableWidget->setItem(ui->purchase_tableWidget->rowCount() - 1, S_PRICE, priceItem);
-
         } // END for iterate through souvenir list
     } // END for iterate through team list
-
 }
 
 // Delete table rows
@@ -239,6 +237,46 @@ void PurchaseTable::GetSouvenirQtys()
 PurchaseTable::~PurchaseTable()
 {
     delete ui;
+}
+
+void PurchaseTable::qtyChanged()
+{
+//    float totalPrice = 0;
+
+//    // resets tables
+//    for (auto cityItem: cityTable)
+//    {
+//        cityItem->setQty(0);
+//        cityItem->setPrice(0);
+//    }
+
+//    // updates the food list for all cities
+//    for (auto shoppingItem: shoppingCart)
+//    {
+//        float subtotal = shoppingItem->getPrice() * shoppingItem->getQty();
+//        totalPrice += subtotal;
+
+//        CityShoppingCartItem* city = cityTable[shoppingItem->getCityName()];
+//        city->setQty(city->getQty() + shoppingItem->getQty());
+//        city->setPrice(city->getTotalPrice() + subtotal);
+//    }
+
+//    // updates the food list PER city
+//    for (int i = 0; i < cityShoppingCart.size(); i++)
+//    {
+//        CityShoppingCartItem* cityItem = cityShoppingCart[i];
+
+//        ui->routeList->setItem(i, 1, new QTableWidgetItem(
+//                                   tr("%1").arg(cityItem->getQty())));
+//        ui->routeList->setItem(i, 2, new QTableWidgetItem(
+//                                   tr("$%1").arg(cityItem->getTotalPrice(), 0, 'f', 2)));
+//    }
+
+//    // displays total prices
+//    ui->Subtotal->setText(tr("$%1").arg(totalPrice, 0, 'f', 2));
+//    ui->SalesTax->setText(tr("$%1").arg(totalPrice * 0.0775, 0, 'f', 2));
+//    ui->TotalFoodPrice->setText(tr("$%1").arg(totalPrice * 1.0775, 0, 'f', 2));
+
 }
 
 

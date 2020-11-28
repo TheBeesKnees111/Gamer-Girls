@@ -404,6 +404,11 @@ void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
     purchaseTable->show();
 }
 
+void SouvenirAndTrip::on_Confirm_Minnesota_Trip_PushButton_clicked()
+{
+
+}
+
 			/*********************************************
 			 **************     MST TRIP    **************
 			 *********************************************/

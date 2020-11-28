@@ -55,6 +55,9 @@ public:
 
     ~PurchaseTable();
 
+public slots:
+    void qtyChanged();
+
 private slots:
 
     void on_okay_pushButton_clicked();
