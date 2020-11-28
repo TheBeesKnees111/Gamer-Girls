@@ -105,13 +105,13 @@ public:
     void InitializeSouvenirTable (QTableView* table);
 
 	/// Populates souvenir table with relevant information
-	void PopulateSouvenirTable (QSqlQueryModel* model);
+	void PopulateSouvenirTable ();
 
 	/// Intializes stadium table to blank
     void InitializeStadiumTable (QTableView* table);
 
 	/// Populates stadium table with relevant information
-	void PopulateStadiumTable (QSqlQueryModel* model);
+	void PopulateStadiumTable ();
 
 	///Check if line edit is only composed of spaces
 	bool IsOnlySpaces(QString& value);
@@ -152,6 +152,7 @@ private slots:
 	private:
     Ui::Admin *ui;
 	int		   souvenirID;
+	int        selectedTeamID = 0;
 };
 
 #endif // ADMIN_H
