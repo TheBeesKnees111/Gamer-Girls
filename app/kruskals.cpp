@@ -107,3 +107,11 @@ bool kruskals::compareWeights(StadiumDistance *uno, StadiumDistance *dos)
     //return the smaller distance so we can sort
     return uno->getDistance() < dos->getDistance();
 }
+
+void kruskals::print()
+{
+	for(int index = 0; index < traversalList.size(); index++)
+	{
+		qDebug() << index+1 << ": " << traversalList[index];
+	}
+}
