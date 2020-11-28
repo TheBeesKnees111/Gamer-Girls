@@ -146,7 +146,6 @@ private slots:
 
 	private:
     Ui::Admin *ui;
-	int        souvenirCount;
 	int		   souvenirID;
 };
 

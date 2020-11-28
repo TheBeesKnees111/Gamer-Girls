@@ -82,7 +82,7 @@ void Admin::PopulateSouvenirTable (QSqlQueryModel* model)
 
 	//Select all souvenir data from database and display it
 	//on the datatable (Will Print team names instead of teamID)
-	model -> setQuery("SELECT teamName, itemName, itemPrice FROM teamInfo, souvenirs WHERE teamInfo.teamID = souvenirs.teamID");
+	model -> setQuery("SELECT teamName, itemName, itemPrice, souvenirID FROM teamInfo, souvenirs WHERE teamInfo.teamID = souvenirs.teamID");
 	ui    -> Update_Souvenir_Datatable -> setModel(model);
 
 	//Resize rows and columns
@@ -289,11 +289,13 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 							teamID       == 0    ||
 							!IsOnlySpaces(souvenirName));
 
+	//Output error message if data is blank
 	if(blankData)
 		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
 
 	else
 	{
+		//Prepare table for update
 		query.prepare("REPLACE INTO "
 					  "souvenirs( souvenirID,  teamID,  itemName,  itemPrice) "
 					  "VALUES   (:souvenirID, :teamID, :itemName, :itemPrice)");
@@ -303,9 +305,11 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 		query.bindValue(":itemName",   souvenirName);
 		query.bindValue(":itemPrice",  price);
 
+		//Output error message if query fails
 		if(!query.exec())
 			qDebug() << query.lastError();
 
+		//Update souvenir table
 		PopulateSouvenirTable(model);
 	}
 }
@@ -313,36 +317,11 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 ///Pull data from datatable when a cell is selected
 void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
 {
-	QSqlQuery query;
-	QSqlTableModel *model = nullptr;
-
-	model -> primaryKey();
-
+	//Set values of clicked cells
+	souvenirID = index.siblingAtColumn(3).data().toInt();
 	ui -> Souvenir_Name_LineEdit -> setText (index.siblingAtColumn(1).data().toString());
 	ui -> Price_Double_SpinBox   -> setValue(index.siblingAtColumn(2).data().toDouble());
 	ui -> Team_Name_ComboBox     -> setCurrentText(index.siblingAtColumn(0).data().toString());
-
-
-	query.prepare("SELECT souvenirID FROM souvenirs "
-				  "WHERE teamID = :teamID AND itemName = :itemName AND itemPrice = :itemPrice");
-
-	query.bindValue(":teamID"   , ui -> Team_Name_ComboBox     -> currentIndex() + 1);
-	query.bindValue(":itemName" , ui -> Souvenir_Name_LineEdit -> text());
-	query.bindValue(":ItemPrice", ui -> Price_Double_SpinBox   -> value());
-
-	qDebug() << "ui -> Team_Name_ComboBox     -> currentIndex() " << ui -> Team_Name_ComboBox     -> currentIndex() + 1;
-	qDebug() << "ui -> Souvenir_Name_LineEdit -> text()         " << ui -> Souvenir_Name_LineEdit -> text();
-	qDebug() << "ui -> Price_Double_SpinBox   -> value()        " << ui -> Price_Double_SpinBox   -> value();
-
-	//Output error message if query fails
-	if(!query.exec())
-		qDebug() << query.lastError();
-
-	query.next();
-
-	souvenirID = query.value(0).toInt();
-	qDebug() << "souvenirID " << souvenirID;
-
 }
 
 ///DELETE item from datatable and from database
@@ -359,24 +338,20 @@ void Admin::on_Delete_Souvenir_PushButton_clicked()
 
 	else
 	{
-		if(souvenirCount >=1)
-		{
-			//prepare query
-			query.prepare("DELETE FROM souvenirs WHERE souvenirID = :souvenirID");
+		//prepare query
+		query.prepare("DELETE FROM souvenirs WHERE souvenirID = :souvenirID");
 
-			query.bindValue(":souvenirID", souvenirID);
+		query.bindValue(":souvenirID", souvenirID);
 
-			//Output error message if query fails
-			if(!query.exec())
-				qDebug() << query.lastError();
+		//Output error message if query fails
+		if(!query.exec())
+			qDebug() << query.lastError();
 
-			//Update souvenir table so that information will appear
-			PopulateSouvenirTable(model);
+		//Update souvenir table so that information will appear
+		PopulateSouvenirTable(model);
 
-			//Reset souvenir ID to zero
-			souvenirID = 0;
-		}
-
+		//Reset souvenir ID to zero
+		souvenirID = 0;
 	}
 }
 
