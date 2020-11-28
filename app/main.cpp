@@ -12,10 +12,14 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
    // testDijkstra();
-//    kruskals g(100);
-//    g.readDb("SoFi Stadium");
-//    g.solve();
-//    g.print();
+	kruskals g(100);
+	g.readDb("SoFi Stadium");
+
+//	qDebug() << "***************pre solve*****************\n";
+//	g.solve();
+//	g.print();
+//	qDebug() << "***************Print*****************\n";
+
 
     w.show();
     return a.exec();
