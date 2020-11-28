@@ -32,7 +32,6 @@ public:
     // Vector of pointers to spinbox pointers. Needed for dynamically creating spinboxes on purchase page
     QVector<QSpinBox*>* spinBoxes;
 
-
     // Initialize Purchase Table
     void InitializePurchaseTable();
 
