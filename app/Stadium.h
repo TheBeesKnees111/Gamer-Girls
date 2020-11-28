@@ -10,32 +10,29 @@ class Stadium : public QObject
 
     QString stadiumName;
     int     stadiumID;
-    int seatingCapacity;
+    int     seatingCapacity;
     QString location;
     QString surfaceType;
     QString roofType;
     int     dateOpened;
-    QVector<Team*> teams;
 
 public:
     explicit Stadium(QObject *parent = nullptr);
 
     QString getStadiumName() const;
-    int getSeatingCapacity() const;
+    int     getSeatingCapacity() const;
     QString getLocation() const;
     QString getSurfaceType() const;
     QString getRoofType() const;
     int     getDateOpened() const;
-    QVector<Team*> getTeams() const;
 
 public slots:
     void setStadiumName(const QString &value);
-    void setSeatingCapacity(const int value);
+    void setSeatingCapacity(int value);
     void setLocation(const QString &value);
     void setSurfaceType(const QString &value);
     void setRoofType(const QString &value);
     void setDateOpened(int value);
-    void addTeam(Team* newTeam);
 
 signals:
     void stadiumNameChanged(QString value);

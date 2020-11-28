@@ -55,9 +55,3 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
-
-app/CS1D-FootbalProject.app/
-
-*.stash
-
-.DS_Store
