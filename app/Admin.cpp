@@ -29,9 +29,6 @@ Admin::Admin(QWidget *parent) :
 	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Roof_Type_ComboBox);
 	PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
-	//Set souvenirCount so add/delete/update does not go out of bounds
-	souvenirCount = ui -> Update_Souvenir_Datatable -> model() -> rowCount();
-	ui -> Souvenir_ID_SpinBox -> setMaximum(souvenirCount);
 }
 
 //Populates all combo boxes with relaed information
@@ -157,7 +154,7 @@ void Admin::on_Read_In_From_File_Button_clicked()
 		QSqlQueryModel *model = nullptr;
 		QSqlQuery       query;
 		int             teamID = 33;
-		int             souvenirID = (teamID - 1) * 5;
+		int             newSouvenirID = (teamID - 1) * 5;
 		QStringList     otherStadiums;
 		QVector <int>   miles;
 
@@ -222,8 +219,7 @@ void Admin::on_Read_In_From_File_Button_clicked()
 		 * ADDING TO SOUVENIR TABLE
 		 **********************************************************************/
 			Database::getInstance() -> AddDefaultSouvenirsToDatabase
-					(souvenirID, teamID, defaultSouvenirs, souvenirPrices);
-			SetSouvenirCountMax(5);
+					(newSouvenirID, teamID, defaultSouvenirs, souvenirPrices);
 
 			PopulateSouvenirTable(model);
 		/***********************************************************************
@@ -251,14 +247,13 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 
 	//Set definition of blank data
 	bool    blankData    = (souvenirName == "" || price == 0.00 ||
-							teamID       == 0);
+							teamID       == 0  || !IsOnlySpaces(souvenirName));
 
 	if(blankData)
 		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
 
 	else
 	{
-		SetSouvenirCountMax(1);
 		query.prepare("INSERT INTO "
 					  "souvenirs(teamID,  itemName,  itemPrice) "
 					  "VALUES   (:teamID, :itemName, :itemPrice)");
@@ -278,7 +273,6 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 ///Update inormation of item in database
 void Admin::on_Update_Souvenir_PushButton_clicked()
 {
-	int       souvenirID   = ui -> Souvenir_ID_SpinBox    -> text().toInt();
 	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
 	int       teamID       = ui -> Team_Name_ComboBox     -> currentIndex() + 1;
@@ -289,7 +283,8 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 	//Set definition of blank data
 	bool    blankData    = (souvenirName == ""   ||
 							price        == 0.00 ||
-							teamID       == 0);
+							teamID       == 0    ||
+							!IsOnlySpaces(souvenirName));
 
 	if(blankData)
 		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
@@ -319,7 +314,7 @@ void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
 
 	//Create query to select data from clicked row
 	query.prepare("SELECT teamID, itemName, itemPrice FROM souvenirs WHERE souvenirID = :souvenirID");
-	query.bindValue(":souvenirID", (index.row() + 1));
+	query.bindValue(":souvenirID", souvenirID);
 
 	//Outut error message if query does not execute
 	if(!query.exec())
@@ -329,7 +324,9 @@ void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
 	query.next();
 
 	//Assign values into value inputs
-	ui -> Souvenir_ID_SpinBox    -> setValue(index.row() + 1);
+	souvenirID = index.row() + 1;
+	qDebug() << "souvenirID: " << souvenirID;
+
 	ui -> Team_Name_ComboBox     -> setCurrentIndex(query.value(0).toInt() - 1);
 	ui -> Souvenir_Name_LineEdit -> setText (query.value(1).toString());
 	ui -> Price_Double_SpinBox   -> setValue(query.value(2).toDouble());
@@ -338,8 +335,6 @@ void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
 ///DELETE item from datatable and from database
 void Admin::on_Delete_Souvenir_PushButton_clicked()
 {
-	int       souvenirID   = ui -> Souvenir_ID_SpinBox    -> text().toInt();
-
 	QSqlQuery query;
 	QSqlTableModel *model = nullptr;
 
@@ -365,19 +360,26 @@ void Admin::on_Delete_Souvenir_PushButton_clicked()
 			//Update souvenir table so that information will appear
 			PopulateSouvenirTable(model);
 
-			//Change souvenir Count
-			SetSouvenirCountMax(-1);
-
 			//Reset souvenir ID to zero
-			ui -> Souvenir_ID_SpinBox -> setValue(0);
+			souvenirID = 0;
 		}
 
 	}
 }
 
-///Change the maximum souvenir ID that user can select
-void Admin::SetSouvenirCountMax(int souvenirIncrease)
+///Check if line edit is only composed of spaces
+bool Admin::IsOnlySpaces(QString& value)
 {
-	souvenirCount += souvenirIncrease;
-	ui -> Souvenir_ID_SpinBox -> setMaximum(souvenirCount);
+	int  index = 0;
+
+	while(index < value.length())
+	{
+		if(value[index] != ' ')
+		{
+			return true;
+		}
+		index++;
+	}
+
+	return false;
 }

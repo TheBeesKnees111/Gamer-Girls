@@ -98,25 +98,28 @@ public:
      * Methods
      */
 
-	// Populates combo boxes with relevant information
+	/// Populates combo boxes with relevant information
 	void PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox);
 
-    // Initializes souvenir table to blank
+	/// Initializes souvenir table to blank
     void InitializeSouvenirTable (QTableView* table);
 
-    // Populates souvenir table with relevant information
+	/// Populates souvenir table with relevant information
 	void PopulateSouvenirTable (QSqlQueryModel* model);
 
-    // Intializes stadium table to blank
+	/// Intializes stadium table to blank
     void InitializeStadiumTable (QTableView* table);
 
-    // Populates stadium table with relevant information
+	/// Populates stadium table with relevant information
 	void PopulateStadiumTable (QSqlQueryModel* model);
 
-    // Constructor
+	///Check if line edit is only composed of spaces
+	bool IsOnlySpaces(QString& value);
+
+	/// Constructor
     explicit Admin(QWidget *parent = nullptr);
 
-    // Destructor
+	/// Destructor
     ~Admin();
 
 private slots:
@@ -129,19 +132,22 @@ private slots:
 	///with all information entered in a file
 	void on_Read_In_From_File_Button_clicked();
 
+	///Add souvenir to database and datatable
 	void on_Add_Souvenir_PushButton_clicked();
 
+	///Update inormation of item in database
 	void on_Update_Souvenir_PushButton_clicked();
 
+	///Pull data from datatable when a cell is selected
 	void on_Update_Souvenir_Datatable_clicked(const QModelIndex &index);
 
+	///DELETE item from datatable and from database
 	void on_Delete_Souvenir_PushButton_clicked();
-
-	void SetSouvenirCountMax(int souvenirIncrease);
 
 	private:
     Ui::Admin *ui;
 	int        souvenirCount;
+	int		   souvenirID;
 };
 
 #endif // ADMIN_H

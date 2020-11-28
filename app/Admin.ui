@@ -127,6 +127,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="maxLength">
+      <number>30</number>
+     </property>
     </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -227,29 +230,6 @@
      </property>
      <property name="text">
       <string>Delete Souvenir</string>
-     </property>
-    </widget>
-    <widget class="QSpinBox" name="Souvenir_ID_SpinBox">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>20</y>
-       <width>71</width>
-       <height>31</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_13">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>30</y>
-       <width>131</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Souvenir ID</string>
      </property>
     </widget>
    </widget>
@@ -393,6 +373,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="maxLength">
+      <number>30</number>
+     </property>
     </widget>
     <widget class="QLineEdit" name="Stadium_Name_LineEdit">
      <property name="geometry">
@@ -402,6 +385,9 @@
        <width>271</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="maxLength">
+      <number>30</number>
      </property>
     </widget>
     <widget class="QSpinBox" name="Seating_Capacity_SpinBox">
@@ -425,6 +411,9 @@
        <width>271</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="maxLength">
+      <number>30</number>
      </property>
     </widget>
     <widget class="QComboBox" name="Conference_Combo_Box">
