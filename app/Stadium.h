@@ -2,6 +2,7 @@
 #define STADIUM_H
 
 #include <QObject>
+#include <QVector>
 
 class Team;
 class Stadium : public QObject

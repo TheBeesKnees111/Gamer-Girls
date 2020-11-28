@@ -144,6 +144,11 @@ private slots:
 	///DELETE item from datatable and from database
 	void on_Delete_Souvenir_PushButton_clicked();
 
+	///Updating stadium info
+	void on_Update_Stadium_PushButton_clicked();
+
+	void on_Edit_Stadium_TableView_clicked(const QModelIndex &index);
+
 	private:
     Ui::Admin *ui;
 	int		   souvenirID;

@@ -371,3 +371,14 @@ bool Admin::IsOnlySpaces(QString& value)
 
 	return false;
 }
+
+///Updating stadium info
+void Admin::on_Update_Stadium_PushButton_clicked()
+{
+
+}
+
+void Admin::on_Edit_Stadium_TableView_clicked(const QModelIndex &index)
+{
+	ui -> Team_Name_LineEdit -> setText(index.siblingAtColumn(0).data().toString());
+}
