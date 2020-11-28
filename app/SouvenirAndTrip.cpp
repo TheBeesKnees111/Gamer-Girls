@@ -209,26 +209,22 @@ void SouvenirAndTrip::on_Green_Bay_Confirmation_PushButton_clicked()
     /***********************************************
     // SETUP FOR PURCHASE TABLE
     ***********************************************/
-    // TODO: HOOK UP TO CREATESHOPPING CART AND PASS QVECTOR<TEAM*>* teamList
-    // (already an attribute of sourveniandtrip)
-    // into the route displayer constructor here
-    // Get destination team name
 //    qDebug() << "Calling Purchase Table from Green Bay to: " << teamName;
 
     // Create QStringList for Shopping List
     QStringList stadiumNames;
-    stadiumNames.append("Green Bay Packers");
-    stadiumNames.append(teamName);
-    qDebug() << "stadiumNames list: " << stadiumNames;
+    stadiumNames.append("Lambeau Field");
+    stadiumNames.append(destination->getStadiumName());
+//    qDebug() << "stadiumNames list: " << stadiumNames;
 
     // Create Shopping List
     teamList = db->CreateShoppingList(stadiumNames);
-    qDebug() << "QVector teamList size: " << teamList->size();
-    qDebug() << "CreateShoppingList info: ";
-    for(int i = 0; i < teamList->size(); i++)
-    {
-        qDebug() << teamList->at(i)->getTeamName();
-    }
+//    qDebug() << "QVector teamList size: " << teamList->size();
+//    qDebug() << "CreateShoppingList info: ";
+//    for(int i = 0; i < teamList->size(); i++)
+//    {
+//        qDebug() << teamList->at(i)->getTeamName();
+//    }
 
     ui->greenBay_cart_button->setEnabled(true);
 }
