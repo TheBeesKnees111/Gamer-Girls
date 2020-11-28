@@ -28,7 +28,7 @@ public:
     // Spinbox minimum
     const int SPIN_MIN = 0;
     // Spinbox maximum
-    const int SPIN_MAX = 420;
+    const int SPIN_MAX = 419;
     // Vector of pointers to spinbox pointers. Needed for dynamically creating spinboxes on purchase page
     QVector<QSpinBox*>* spinBoxes;
 
@@ -54,6 +54,9 @@ public:
     explicit PurchaseTable(QWidget *parent, QVector<Team*>* teamList);
 
     ~PurchaseTable();
+
+public slots:
+    void qtyChanged(int value);
 
 private slots:
 

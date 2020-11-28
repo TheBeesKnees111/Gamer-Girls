@@ -110,11 +110,11 @@ bool kruskals::compareWeights(StadiumDistance *uno, StadiumDistance *dos)
 
 void kruskals::print()
 {
-	for(int index = 0; index < traversalList.size(); index++)
-	{
-		if(((index + 1) % 2) == 1)
-			qDebug() << index+1 << " From: " << traversalList[index];
-		else
-			qDebug() << index+1 << " To  : " << traversalList[index] << Qt::endl;
-	}
+    for(int index = 0; index < traversalList.size(); index++)
+    {
+        if(((index + 1) % 2) == 1)
+            qDebug() << index+1 << " From: " << traversalList[index];
+        else
+            qDebug() << index+1 << " To  : " << traversalList[index];
+    }
 }
