@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
 	kruskals g(100);
 	g.readDb("SoFi Stadium");
 
-	qDebug() << "***************pre solve*****************\n";
-	g.solve();
-	g.print();
-	qDebug() << "***************Print*****************\n";
+//	qDebug() << "***************pre solve*****************\n";
+//	g.solve();
+//	g.print();
+//	qDebug() << "***************Print*****************\n";
 
 
     w.show();
