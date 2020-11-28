@@ -10,12 +10,14 @@
 #include <vector>
 #include "StadiumDistance.h"
 using namespace std;
+#include <QVector>
 
 class Team;
 class Souvenir;
 class Stadium;
 class Purchases;
 class AdjacencyList;
+
 
 class Database : public QSqlDatabase
 {
@@ -86,6 +88,7 @@ public:
 
     // For use in admin section
     Purchases* getPurchasesByID(int purchaseID);
+
     // DISTANCE METHODS
     int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
     void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
@@ -178,6 +181,7 @@ private:
     Database();
     static Database *instance;  // this is the singleton pattern
     QSqlQuery query;
+
 
     // these maps cache the values of these queries so we only have to run them once
     QMap<int, Team*>            teamDbCache;

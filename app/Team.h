@@ -26,6 +26,7 @@ public:
     QString     getConference() const;
     QString     getDivision() const;
     QVector<Souvenir*> getSouvenirList() const;
+
     Stadium*    getStadium() const;
 
 public slots:

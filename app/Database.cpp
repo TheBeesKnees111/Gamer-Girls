@@ -678,6 +678,7 @@ QVector<Team*>* Database::GetBermudaGrassTeams()
     }
 
     return teams;
+
 }
 
 // Get total bermuda grass stadiums (Requirement 12)

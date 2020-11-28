@@ -66,3 +66,4 @@ RESOURCES += \
     BackgroundImages.qrc
 
 DISTFILES +=
+
