@@ -143,7 +143,7 @@ void SouvenirAndTrip::on_Green_Bay_Confirmation_PushButton_clicked()
 {
     QString teamName = ui->Green_Bay_Select_Stadium_ComboBox->currentText();
 
-    qDebug() << "Building path from Green Bay to: " << teamName;
+//    qDebug() << "Building path from Green Bay to: " << teamName;
 
     // Create Database
     Database* db = Database::getInstance();
