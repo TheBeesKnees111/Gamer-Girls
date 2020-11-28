@@ -71,6 +71,10 @@ PurchaseTable::PurchaseTable(QWidget *parent, QVector<Team*>* teamList):
 
     // Insert Spinboxes
     InsertSpinBoxCol();
+
+    // Sets horizontal header to resize for values in stadium totals table
+    ui->stadium_totals_tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
 }
 
 // Initialize Purchase Table
@@ -174,6 +178,8 @@ void PurchaseTable::InsertSpinBoxCol()
     for(int row = 0; row < ui->purchase_tableWidget->rowCount(); row++)
     {
         sBox = new QSpinBox(ui->purchase_tableWidget);
+        // connects the change in spinbox values to dynamic display
+        connect (sBox, QOverload<int>::of(&QSpinBox::valueChanged), this, &PurchaseTable::qtyChanged);
         sBox->setRange(SPIN_MIN, SPIN_MAX);
         ui->purchase_tableWidget->setCellWidget(row, QTY, sBox);
         spinBoxes->append(sBox);
@@ -239,44 +245,50 @@ PurchaseTable::~PurchaseTable()
     delete ui;
 }
 
-void PurchaseTable::qtyChanged()
+// When any quantities are changed, this will update the price & qty totals dynamically
+void PurchaseTable::qtyChanged(int value)
 {
-//    float totalPrice = 0;
+    // initialization
+    float totalPrice = 0;
+    float stadiumPrice = 0;
+    int   stadiumQty = 0;
+    int j = 0;
 
-//    // resets tables
-//    for (auto cityItem: cityTable)
-//    {
-//        cityItem->setQty(0);
-//        cityItem->setPrice(0);
-//    }
+    // loop through purchase table & setup for updating all tables
+        for (int i = 0; i < ui->purchase_tableWidget->rowCount(); i++)
+    {
+        // get stadium name
+        QString stadium;
+        if (ui->purchase_tableWidget->item(i, 1) != nullptr)
+            stadium = ui->purchase_tableWidget->item(i, 1)->text();
+        // get price for specific souvenir
+        QString priceText = ui->purchase_tableWidget->item(i, 4)->text();
+        float price = priceText.toFloat();
+        // get qty
+        // cellWidget gives us a QWidget* in this cell.  typecast it to a QSpinBox* to get the value.
+        QWidget *cellWidget = ui->purchase_tableWidget->cellWidget(i, 5);
+        int qty = ((QSpinBox*)cellWidget)->value();
 
-//    // updates the food list for all cities
-//    for (auto shoppingItem: shoppingCart)
-//    {
-//        float subtotal = shoppingItem->getPrice() * shoppingItem->getQty();
-//        totalPrice += subtotal;
+        // calculate totalPrice
+        totalPrice += price * qty;
 
-//        CityShoppingCartItem* city = cityTable[shoppingItem->getCityName()];
-//        city->setQty(city->getQty() + shoppingItem->getQty());
-//        city->setPrice(city->getTotalPrice() + subtotal);
-//    }
+        // when the name changes, reset to update next stadium row
+        if (stadium != "")
+        {
+            stadiumPrice = 0;
+            stadiumQty = 0;
+            j++;
+            ui->stadium_totals_tableWidget->setRowCount(j);
+            ui->stadium_totals_tableWidget->setItem(j-1, 0, new QTableWidgetItem(stadium));
+        }
+        // get current stadium values
+        stadiumPrice += price * qty;
+        stadiumQty += qty;
 
-//    // updates the food list PER city
-//    for (int i = 0; i < cityShoppingCart.size(); i++)
-//    {
-//        CityShoppingCartItem* cityItem = cityShoppingCart[i];
-
-//        ui->routeList->setItem(i, 1, new QTableWidgetItem(
-//                                   tr("%1").arg(cityItem->getQty())));
-//        ui->routeList->setItem(i, 2, new QTableWidgetItem(
-//                                   tr("$%1").arg(cityItem->getTotalPrice(), 0, 'f', 2)));
-//    }
-
-//    // displays total prices
-//    ui->Subtotal->setText(tr("$%1").arg(totalPrice, 0, 'f', 2));
-//    ui->SalesTax->setText(tr("$%1").arg(totalPrice * 0.0775, 0, 'f', 2));
-//    ui->TotalFoodPrice->setText(tr("$%1").arg(totalPrice * 1.0775, 0, 'f', 2));
-
+        // update stadium totals table
+        ui->stadium_totals_tableWidget->setItem(j-1, 1, new QTableWidgetItem(tr("%1").arg(stadiumQty)));
+        ui->stadium_totals_tableWidget->setItem(j-1, 2, new QTableWidgetItem(tr("$%1").arg(stadiumPrice, 0, 'f', 2)));
+    }
+    // update totalPurchase field
+    ui->total_cost_Label->setText(tr("$%1").arg(totalPrice, 0, 'f', 2));
 }
-
-

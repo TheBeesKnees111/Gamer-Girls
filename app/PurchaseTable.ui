@@ -72,6 +72,31 @@
     <string>OKAY!</string>
    </property>
   </widget>
+  <widget class="QTableWidget" name="stadium_totals_tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>440</y>
+     <width>431</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Stadium</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Quantity</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Total</string>
+    </property>
+   </column>
+  </widget>
  </widget>
  <resources/>
  <connections/>
