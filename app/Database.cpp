@@ -49,6 +49,7 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 //    QString macPathFile = "/db";
 //    qDebug() << QDir::currentPath() + macPathFile;
 
+
     // Print error if database does not open
     if (!open())
     {
@@ -244,7 +245,6 @@ void Database::AddDefaultSouvenirsToDatabase(int souvenirID, int teamID, QString
     }//end for
 
 }
-
 
 // Get all team names (for use in comboboxes)
 QStringList Database::GetTeamNames()
@@ -1072,5 +1072,117 @@ QVector<Team*>* Database::CreateShoppingList(const QStringList &stadiumNames)
 //    qDebug() << "--PRINTING SHOPPING CART END --";
 
     return shoppingList;
+}
 
+// Write purchase info to db
+void Database::SavePurchase(QVector<Team*>* teamList)
+{
+    // write a query that will save all the info in the db.
+    int teamID = 0;
+    int souvenirID = 0;
+    int purchaseID = 0;
+    int qtyPurchased = 0;
+
+    // get valid purchaseID value for this purchase
+    query.prepare("SELECT * FROM purchases ORDER BY purchaseID DESC");
+
+    // if query executes
+    if(query.exec())
+    {
+        // query is not empty
+        if(query.next())
+        {
+            // collect last known purchaseID. Store new purchaseID as last + 1
+            purchaseID = query.value(0).toInt() + 1;
+
+//            // DEBUG
+//            qDebug() << "First result: " << query.value(0).toInt();
+        }
+        else // If query is empty, this is the first purchase
+        {
+            purchaseID = 1;
+
+//            // DEBUG
+//            qDebug() << "Empty table (no .next())";
+        }
+
+//        // DEBUG
+//        qDebug() << "PurchaseID to add: " << purchaseID;
+    }// End collecting appropriate purchaseID
+    else
+    {
+        qDebug() << "SavePurchase() failed at selecting purchaseID";
+    }
+
+    // Outer loop runs through teams
+    for(int teamIndex = 0; teamIndex < teamList->size(); teamIndex++)
+    {
+        // Get teamID from teamName
+        query.prepare("SELECT teamID FROM teamInfo WHERE teamName = :teamname");
+        query.bindValue(":teamname", teamList->at(teamIndex)->getTeamName());
+
+        // If query executes,
+        if(query.exec())
+        {
+            query.next();
+            // Store teamID
+            teamID = query.value(0).toInt();
+
+//            // DEBUG
+//            qDebug() << "Team ID selected: " << teamID;
+        }
+        else
+        {
+            // If query fails,
+            qDebug() << "SavePurchase failed at retrieving teamID";
+        }
+
+        // Inner loop to run through each team's souvenirs list
+        for(int souvIndex = 0; souvIndex < teamList->at(teamIndex)->getSouvenirList().size(); souvIndex++)
+        {
+            // If qtyPurchased > 0, add to db
+            if(teamList->at(teamIndex)->getSouvenirList().at(souvIndex)->getQtyPurchased() > 0)
+            {
+                // Get souvenirID from souvenirName
+                query.prepare("SELECT souvenirID FROM souvenirs WHERE itemName = :souvenirName AND teamID = :teamID");
+                query.bindValue(":souvenirName", teamList->at(teamIndex)->getSouvenirList().at(souvIndex)->getItemName());
+                query.bindValue(":teamID", teamID);
+
+                // If query executes,
+                if(query.exec())
+                {
+                    query.next();
+                    // Store teamID
+                    souvenirID = query.value(0).toInt();
+                }
+                else // If query fails,
+                {
+                    // Output error
+                    qDebug() << "SavePurchase failed at retrieving souvenirID";
+                }
+
+                // Store qtyPurchased
+                qtyPurchased = teamList->at(teamIndex)->getSouvenirList().at(souvIndex)->getQtyPurchased();
+
+                // Write one line of purchase into db
+                query.prepare("INSERT INTO purchases VALUES(:purchaseID,:teamID,:souvenirID,:qtyPurchased)");
+
+                // Bind purchaseID to query
+                query.bindValue(":purchaseID", purchaseID);
+                // Bind teamID to query
+                query.bindValue(":teamID", teamID);
+                // Bind souvenirID to query
+                query.bindValue(":souvenirID", souvenirID);
+                // Bind qtyPurchased to query
+                query.bindValue(":qtyPurchased", qtyPurchased);
+
+                // If query fails,
+                if(!query.exec())
+                {
+                    // Output error message
+                    qDebug() << "SavePurchase failed at writing purchase info to db";
+                }
+            }// End if qtyPurchased > 0
+        } // End looping through one team's souvenirs
+    } // End looping through teams
 }

@@ -32,7 +32,6 @@ public:
     // Vector of pointers to spinbox pointers. Needed for dynamically creating spinboxes on purchase page
     QVector<QSpinBox*>* spinBoxes;
 
-
     // Initialize Purchase Table
     void InitializePurchaseTable();
 
@@ -42,16 +41,28 @@ public:
     // Insert dynamic spinboxes
     void InsertSpinBoxCol();
 
+    // Clear table
     void DeleteAllTableRows();
+
+    // Destroy team object for future use
+    void DestroyTeams();
+
+    // Collect quantity of each souvenir purchased and add to team object
+    void GetSouvenirQtys();
 
     // Imports Team data from any trip. Populates purchase table
     explicit PurchaseTable(QWidget *parent, QVector<Team*>* teamList);
 
     ~PurchaseTable();
 
+private slots:
+
+    void on_okay_pushButton_clicked();
+
 private:
     Ui::PurchaseTable *ui;
     QVector<Team*>* teamCart;
+    Database* db;
 };
 
 #endif // PurchaseTable_H

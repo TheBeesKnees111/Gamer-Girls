@@ -1,6 +1,6 @@
 #include "mainwindow.h"
-#include "Dijkstra.h"
-#include "kruskals.h"
+#include "Dijkstra.h" // this should be removed
+#include "kruskals.h" // this should be removed
 #include <QApplication>
 #include <iostream>
 using namespace std;

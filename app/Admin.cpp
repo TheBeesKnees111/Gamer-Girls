@@ -29,6 +29,9 @@ Admin::Admin(QWidget *parent) :
 	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Roof_Type_ComboBox);
 	PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
+	//Connect mouse event to data table
+	//connect(ui -> Update_Souvenir_Datatable, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onTableClicked(const QModelIndex &)));
+
 }
 
 //Populates all combo boxes with relaed information
@@ -79,7 +82,7 @@ void Admin::PopulateSouvenirTable (QSqlQueryModel* model)
 
 	//Select all souvenir data from database and display it
 	//on the datatable (Will Print team names instead of teamID)
-	model -> setQuery("SELECT teamName, itemName, itemPrice FROM teamInfo, souvenirs WHERE teamInfo.teamID = souvenirs.teamID");
+	model -> setQuery("SELECT teamName, itemName, itemPrice, souvenirID FROM teamInfo, souvenirs WHERE teamInfo.teamID = souvenirs.teamID");
 	ui    -> Update_Souvenir_Datatable -> setModel(model);
 
 	//Resize rows and columns
@@ -151,10 +154,10 @@ void Admin::on_Read_In_From_File_Button_clicked()
 	if(file.isOpen())
 	{//begin if(file.isOpen())
 
-		QSqlQuery       query;
 		QSqlQueryModel *model = nullptr;
+		QSqlQuery       query;
 		int             teamID = 33;
-		int             souvenirID = (teamID - 1) * 5;
+		int             newSouvenirID = (teamID - 1) * 5;
 		QStringList     otherStadiums;
 		QVector <int>   miles;
 
@@ -215,14 +218,14 @@ void Admin::on_Read_In_From_File_Button_clicked()
 			PopulateStadiumTable(model);
 			PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
-			/***********************************************************************
+		/***********************************************************************
 		 * ADDING TO SOUVENIR TABLE
 		 **********************************************************************/
 			Database::getInstance() -> AddDefaultSouvenirsToDatabase
-					(souvenirID, teamID, defaultSouvenirs, souvenirPrices);
+					(newSouvenirID, teamID, defaultSouvenirs, souvenirPrices);
 
 			PopulateSouvenirTable(model);
-			/***********************************************************************
+		/***********************************************************************
 		 * ADDING TO DISTANCES TABLE
 		 **********************************************************************/
 			Database::getInstance()->AddDistancesToDataBaseFromFile(stadiumName, otherStadiums, miles);
@@ -232,13 +235,14 @@ void Admin::on_Read_In_From_File_Button_clicked()
 
 }
 
-//Add souvenir to database and datatable
+///Add souvenir to database and datatable
 void Admin::on_Add_Souvenir_PushButton_clicked()
 {
 	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
 	int       teamID       = ui -> Team_Name_ComboBox -> currentIndex() + 1;
 	QSqlQuery query;
+	QSqlTableModel *model = nullptr;
 
 	qDebug() << souvenirName;
 	qDebug() << price;
@@ -246,22 +250,124 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 
 	//Set definition of blank data
 	bool    blankData    = (souvenirName == "" || price == 0.00 ||
-							teamID       == 0);
+							teamID       == 0  || !IsOnlySpaces(souvenirName));
 
 	if(blankData)
 		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
 
 	else
 	{
-		//Pull teamId from team name selected by the user
 		query.prepare("INSERT INTO "
-					  "souvenirs(teamID,  itemName,  itemrice) "
-					  "VALUES   (:teamID, :itemName, :itemPrice) "
-					  "WHERE teamID = :teamID");
+					  "souvenirs(teamID,  itemName,  itemPrice) "
+					  "VALUES   (:teamID, :itemName, :itemPrice)");
 
 		query.bindValue(":teamID",    teamID);
 		query.bindValue(":itemName",  souvenirName);
 		query.bindValue(":itemPrice", price);
 
+		if(!query.exec())
+			qDebug() << query.lastError();
+
+		PopulateSouvenirTable(model);
 	}
+
+}
+
+///Update inormation of item in database
+void Admin::on_Update_Souvenir_PushButton_clicked()
+{
+	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
+	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
+	int       teamID       = ui -> Team_Name_ComboBox     -> currentIndex() + 1;
+
+	QSqlQuery query;
+	QSqlTableModel *model = nullptr;
+
+	//Set definition of blank data
+	bool    blankData    = (souvenirName == ""   ||
+							price        == 0.00 ||
+							teamID       == 0    ||
+							!IsOnlySpaces(souvenirName));
+
+	//Output error message if data is blank
+	if(blankData)
+		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
+
+	else
+	{
+		//Prepare table for update
+		query.prepare("REPLACE INTO "
+					  "souvenirs( souvenirID,  teamID,  itemName,  itemPrice) "
+					  "VALUES   (:souvenirID, :teamID, :itemName, :itemPrice)");
+
+		query.bindValue(":souvenirID", souvenirID);
+		query.bindValue(":teamID",     teamID);
+		query.bindValue(":itemName",   souvenirName);
+		query.bindValue(":itemPrice",  price);
+
+		//Output error message if query fails
+		if(!query.exec())
+			qDebug() << query.lastError();
+
+		//Update souvenir table
+		PopulateSouvenirTable(model);
+	}
+}
+
+///Pull data from datatable when a cell is selected
+void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
+{
+	//Set values of clicked cells
+	souvenirID = index.siblingAtColumn(3).data().toInt();
+	ui -> Souvenir_Name_LineEdit -> setText (index.siblingAtColumn(1).data().toString());
+	ui -> Price_Double_SpinBox   -> setValue(index.siblingAtColumn(2).data().toDouble());
+	ui -> Team_Name_ComboBox     -> setCurrentText(index.siblingAtColumn(0).data().toString());
+}
+
+///DELETE item from datatable and from database
+void Admin::on_Delete_Souvenir_PushButton_clicked()
+{
+	QSqlQuery query;
+	QSqlTableModel *model = nullptr;
+
+	//Set definition of blank data
+	bool    blankData    = (souvenirID == 0);
+
+	if(blankData)
+		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
+
+	else
+	{
+		//prepare query
+		query.prepare("DELETE FROM souvenirs WHERE souvenirID = :souvenirID");
+
+		query.bindValue(":souvenirID", souvenirID);
+
+		//Output error message if query fails
+		if(!query.exec())
+			qDebug() << query.lastError();
+
+		//Update souvenir table so that information will appear
+		PopulateSouvenirTable(model);
+
+		//Reset souvenir ID to zero
+		souvenirID = 0;
+	}
+}
+
+///Check if line edit is only composed of spaces
+bool Admin::IsOnlySpaces(QString& value)
+{
+	int  index = 0;
+
+	while(index < value.length())
+	{
+		if(value[index] != ' ')
+		{
+			return true;
+		}
+		index++;
+	}
+
+	return false;
 }

@@ -80,8 +80,7 @@ public:
     void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
                                             QStringList      souvenirs,
                                             QVector <double> prices);
-
-    // PURCHASES METHODS
+	// PURCHASES METHODS
     // For use in admin section
     QVector<Purchases*> getPurchases();
 
@@ -169,6 +168,9 @@ public:
 
     // Populate Shopping Cart List
     QVector<Team*>* CreateShoppingList(const QStringList &teamNames);
+
+    // Write purchase info to db
+    void SavePurchase(QVector<Team*>* teamList);
 
 
 private:

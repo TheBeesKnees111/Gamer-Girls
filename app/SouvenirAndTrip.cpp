@@ -12,7 +12,6 @@
 #include "AdjacencyList.h"
 #include "kruskals.h"
 
-
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SouvenirAndTrip)
@@ -146,12 +145,12 @@ void SouvenirAndTrip::on_Green_Bay_Confirmation_PushButton_clicked()
 {
     QString teamName = ui->Green_Bay_Select_Stadium_ComboBox->currentText();
 
-    qDebug() << "Building Path: " << teamName;
+//    qDebug() << "Building path from Green Bay to: " << teamName;
 
     // Create Database
     Database* db = Database::getInstance();
 
-    // TODO - CALL SHORTEST PATH HERE?
+    // CALL SHORTEST PATH HERE?
     // get stadium origin
     Stadium* origin {db->getStadiumByName("Lambeau Field")};
     // get city selected
@@ -167,15 +166,81 @@ void SouvenirAndTrip::on_Green_Bay_Confirmation_PushButton_clicked()
     // get path for destination location
     QVector<StadiumDistance*> path = buildPath(spanningTree, destination);
 
-    // TODO: HOOK UP TO CREATESHOPPING CART AND PASS QVECTOR<TEAM*>* teamList (already an attribute of sourveniandtrip)
-    // into the route displayer constructor here
+    /***********************************************
+    // PRINTING TO DISPLAY ON SOUVENIRANDTRIP PAGE
+    ***********************************************/
+    // create the row size for setup
+    int rowSize = path.size();
+    // setup row & column sizes
+    QTableWidget* tableWidget = ui->greenBay_tableWidget;
+    tableWidget->setRowCount(rowSize + 1);
+    tableWidget->setColumnCount(2);
 
-//    // send to route displayer
-//    //QDialog * routeDisplay = new RouteDisplayer(this, teamName);
-//    // set window title
-//    routeDisplay->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
-//    // open window
-//    routeDisplay->show();
+    int totalDistance = 0;
+
+    // loops thru the vector of StadiumDistances and displays the team name
+    // as well as the stadium
+    for (int row = 0; row < path.size(); row++)
+    {
+        // get & display team name
+        QString teamName = path[row]->getFromStadium()->getTeams().first()->getTeamName();
+        //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+        QTableWidgetItem *newItem = new QTableWidgetItem(teamName);
+        tableWidget->setItem(row, 0, newItem);
+        // get & display stadium name
+        //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+        newItem = new QTableWidgetItem(path[row]->getFromStadium()->getStadiumName());
+        tableWidget->setItem(row, 1, newItem);
+        // calculate total distance
+        totalDistance += path[row]->getDistance();
+    }
+
+    // calculate last team & stadium name
+    QTableWidgetItem *newItem = new QTableWidgetItem(teamName);
+    tableWidget->setItem(rowSize, 0, newItem);
+    newItem = new QTableWidgetItem(path[rowSize - 1]->getToStadium()->getStadiumName());
+    tableWidget->setItem(rowSize, 1, newItem);
+
+    // output distance
+    ui->Total_Distance_Label->setText(QString("%1").arg(totalDistance));
+
+    // resize based on table contents
+    tableWidget->horizontalHeader()->setSectionResizeMode
+            (QHeaderView::ResizeToContents);
+
+    /***********************************************
+    // SETUP FOR PURCHASE TABLE
+    ***********************************************/
+//    qDebug() << "Calling Purchase Table from Green Bay to: " << teamName;
+
+    // Create QStringList for Shopping List
+    QStringList stadiumNames;
+    stadiumNames.append("Lambeau Field");
+    stadiumNames.append(destination->getStadiumName());
+//    qDebug() << "stadiumNames list: " << stadiumNames;
+
+    // Create Shopping List
+    teamList = db->CreateShoppingList(stadiumNames);
+//    qDebug() << "QVector teamList size: " << teamList->size();
+//    qDebug() << "CreateShoppingList info: ";
+//    for(int i = 0; i < teamList->size(); i++)
+//    {
+//        qDebug() << teamList->at(i)->getTeamName();
+//    }
+
+    ui->greenBay_cart_button->setEnabled(true);
+}
+
+void SouvenirAndTrip::on_greenBay_cart_button_clicked()
+{
+    // FIXME: Needs to re-grey if we close the window without clicking on "Okay!"
+
+    // Create new PurchaseTable
+    PurchaseTable * purchaseTable = new PurchaseTable(this, teamList);
+    // set window title
+//    purchaseTable->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
+    // open window
+    purchaseTable->show();
 }
 
             /*********************************************
@@ -218,10 +283,7 @@ void SouvenirAndTrip::on_Souvenir_Select_Team_ComboBox_activated(const QString &
 
 //---------- END NAVIGATION
 
-
-
 // ------- START HELPER METHODS
-
 
 void SouvenirAndTrip::InitializeSouvenirTable(QTableWidget* table, const int &cols, const QStringList &headers)
 {

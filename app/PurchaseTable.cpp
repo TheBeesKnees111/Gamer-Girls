@@ -1,5 +1,6 @@
 #include "PurchaseTable.h"
 #include "ui_PurchaseTable.h"
+#include "Database.h"
 
 PurchaseTable::PurchaseTable(QWidget *parent, QVector<Team*>* teamList):
     QDialog(parent),
@@ -52,6 +53,9 @@ PurchaseTable::PurchaseTable(QWidget *parent, QVector<Team*>* teamList):
 
 
     // --------- START NEW DESIGN CODE ------------ //
+
+    // Instantiate database (for saving purchases)
+    db = Database::getInstance();
 
     // Store object
     teamCart = teamList;
@@ -178,8 +182,63 @@ void PurchaseTable::InsertSpinBoxCol()
     }
 }
 
+// Write purchase info to db
+void PurchaseTable::on_okay_pushButton_clicked()
+{
+    // Get qtyPurchased from spinboxes
+    GetSouvenirQtys();
+
+    // Write purchase information to db
+    db->SavePurchase(teamCart);
+
+    // Delete team data for use in next trip
+    DestroyTeams();
+
+    // Disable button
+    ui->okay_pushButton->setDisabled(true);
+}
+
+// Destroy cities list used in purchasing and receipt page
+void PurchaseTable::DestroyTeams()
+{
+    int size = teamCart->size();
+
+    for(int index = 0; index < size; index++)
+    {
+        teamCart->pop_front();
+    }
+}
+
+// Helper function retrieves qtyPurchased from spinboxes and loads them into team cart
+void PurchaseTable::GetSouvenirQtys()
+{
+    int tableRow = 0;
+
+    // Outer loop to move through team objects
+    for(int teamIndex = 0; teamIndex < teamCart->size(); teamIndex++)
+    {
+        // Inner loop to move through each team's souvenir list
+        for(int souvIndex = 0; souvIndex < teamCart->at(teamIndex)->getSouvenirList().size(); souvIndex++)
+        {
+            // Add food to item
+            teamCart->operator[](teamIndex)->getSouvenirList().at(souvIndex)->setQtyPurchased(spinBoxes->at(tableRow)->value());
+            tableRow++;
+
+//            // DEBUG: Output items
+//            if(teamCart->at(teamIndex)->getSouvenirList().at(souvIndex)->getQtyPurchased() > 0)
+//            {
+//                qDebug() << "Item Name: " << teamCart->at(teamIndex)->getTeamName();
+//                qDebug() << "Item Name: " << teamCart->at(teamIndex)->getSouvenirList().at(souvIndex)->getItemName();
+//                qDebug() << "Qty Purchased: " << teamCart->at(teamIndex)->getSouvenirList().at(souvIndex)->getQtyPurchased();
+//            }
+        }// End inner loop
+    }// End outer loop
+}
+
+// Destructor
 PurchaseTable::~PurchaseTable()
 {
     delete ui;
 }
+
 

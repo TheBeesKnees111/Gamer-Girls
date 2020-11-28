@@ -127,6 +127,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="maxLength">
+      <number>30</number>
+     </property>
     </widget>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -370,6 +373,9 @@
        <height>31</height>
       </rect>
      </property>
+     <property name="maxLength">
+      <number>30</number>
+     </property>
     </widget>
     <widget class="QLineEdit" name="Stadium_Name_LineEdit">
      <property name="geometry">
@@ -379,6 +385,9 @@
        <width>271</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="maxLength">
+      <number>30</number>
      </property>
     </widget>
     <widget class="QSpinBox" name="Seating_Capacity_SpinBox">
@@ -402,6 +411,9 @@
        <width>271</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="maxLength">
+      <number>30</number>
      </property>
     </widget>
     <widget class="QComboBox" name="Conference_Combo_Box">
