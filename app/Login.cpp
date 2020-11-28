@@ -4,7 +4,7 @@
 #include <QMessageBox>
 
 Login::Login(QWidget *parent) :
-    QDialog(parent),
+	QDialog(parent),
     ui(new Ui::Login)
 {
     ui->setupUi(this);
@@ -19,12 +19,12 @@ Login::~Login()
 /// page will be hidden before showing the Main Window
 void Login::on_Home_PushButton_clicked()
 {
-    MainWindow *mainWindow;
-    mainWindow = new MainWindow(this);
+	MainWindow *mainWindow;
+	mainWindow = new MainWindow(this);
 
-    hide();
+	hide();
 
-    mainWindow -> show();
+	mainWindow -> show();
 }
 
 

@@ -5,6 +5,9 @@
 #include "SouvenirAndTrip.h"
 #include "Database.h"
 #include "Team.h"
+#include "TestAlgos.h"
+
+#include "BFS.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,18 +21,29 @@ MainWindow::MainWindow(QWidget *parent)
     /************************************************************
     * PROCESSING - Assign an image into new QPixmap variable
     ************************************************************/
-	QPixmap homePageBackground (":/new/Images/FootballPic4.jpg");
-	int ImageLabelW = ui -> Image_Label -> width();
-	int ImageLabelH = ui -> Image_Label -> height();
+    QPixmap homePageBackground (":/new/Images/FootballPic4.jpg");
+    int ImageLabelW = ui -> Image_Label -> width();
+    int ImageLabelH = ui -> Image_Label -> height();
 
 
     ///PROCESSING - Set the label to hold the image specified and align center
-	ui -> Image_Label -> setAlignment(Qt::AlignCenter);
-	ui -> Image_Label -> setPixmap(homePageBackground.scaled
-								  (ImageLabelW, ImageLabelH));
+    ui -> Image_Label -> setAlignment(Qt::AlignCenter);
+    ui -> Image_Label -> setPixmap(homePageBackground.scaled
+                                  (ImageLabelW, ImageLabelH));
+
+    //TEST DIJKSTRA & DFS
+//    testDijkstra();
+    //testDFS();
 
     // Create Database
-    db = new Database;
+    db = Database::getInstance();
+
+//    // DEBUG: Testing BFS
+//    BFS bfs(aList);
+//    bfs.Traverse();
+
+    // TEST DIJKSTRA
+    //testDijkstra();
 }
 
 MainWindow::~MainWindow()

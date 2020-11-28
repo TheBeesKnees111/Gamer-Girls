@@ -7,6 +7,7 @@ class DisplayInfo;
 class SouvenirAndTrip;
 class Team;
 class Database;
+class BFS;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,7 +18,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+	MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -34,8 +35,8 @@ private slots:
 	void on_Souvenir_And_Trip_PushButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
-    Database* db;
+	Ui::MainWindow *ui;
+	Database*       db;
 
 };
 #endif // MAINWINDOW_H

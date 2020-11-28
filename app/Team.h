@@ -25,7 +25,8 @@ public:
     QString     getTeamName() const;
     QString     getConference() const;
     QString     getDivision() const;
-    QVector<Souvenir *> getSouvenirList() const;
+    QVector<Souvenir*> getSouvenirList() const;
+
     Stadium*    getStadium() const;
 
 public slots:
@@ -41,7 +42,7 @@ signals:
     void teamNameChanged(QString value);
     void conferenceChanged(QString value);
     void divisionChanged(QString value);
-    void souvenirListChanged(const QVector<Souvenir *> value);
+    void souvenirListChanged(const QVector<Souvenir *> &value);
     void stadiumChanged(Stadium *value);
 
 };
