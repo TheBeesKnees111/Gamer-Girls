@@ -2,6 +2,7 @@
 #define SOUVENIRS_H
 
 #include <QObject>
+#include <QVector>
 
 class Souvenir : public QObject
 {
