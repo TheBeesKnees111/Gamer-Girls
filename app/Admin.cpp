@@ -29,6 +29,9 @@ Admin::Admin(QWidget *parent) :
 	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Roof_Type_ComboBox);
 	PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
+	//Connect mouse event to data table
+	//connect(ui -> Update_Souvenir_Datatable, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onTableClicked(const QModelIndex &)));
+
 }
 
 //Populates all combo boxes with relaed information
@@ -311,25 +314,35 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
 {
 	QSqlQuery query;
+	QSqlTableModel *model = nullptr;
 
-	//Create query to select data from clicked row
-	query.prepare("SELECT teamID, itemName, itemPrice FROM souvenirs WHERE souvenirID = :souvenirID");
-	query.bindValue(":souvenirID", souvenirID);
+	model -> primaryKey();
 
-	//Outut error message if query does not execute
+	ui -> Souvenir_Name_LineEdit -> setText (index.siblingAtColumn(1).data().toString());
+	ui -> Price_Double_SpinBox   -> setValue(index.siblingAtColumn(2).data().toDouble());
+	ui -> Team_Name_ComboBox     -> setCurrentText(index.siblingAtColumn(0).data().toString());
+
+
+	query.prepare("SELECT souvenirID FROM souvenirs "
+				  "WHERE teamID = :teamID AND itemName = :itemName AND itemPrice = :itemPrice");
+
+	query.bindValue(":teamID"   , ui -> Team_Name_ComboBox     -> currentIndex() + 1);
+	query.bindValue(":itemName" , ui -> Souvenir_Name_LineEdit -> text());
+	query.bindValue(":ItemPrice", ui -> Price_Double_SpinBox   -> value());
+
+	qDebug() << "ui -> Team_Name_ComboBox     -> currentIndex() " << ui -> Team_Name_ComboBox     -> currentIndex() + 1;
+	qDebug() << "ui -> Souvenir_Name_LineEdit -> text()         " << ui -> Souvenir_Name_LineEdit -> text();
+	qDebug() << "ui -> Price_Double_SpinBox   -> value()        " << ui -> Price_Double_SpinBox   -> value();
+
+	//Output error message if query fails
 	if(!query.exec())
 		qDebug() << query.lastError();
 
-	//Get information from query
 	query.next();
 
-	//Assign values into value inputs
-	souvenirID = index.row() + 1;
-	qDebug() << "souvenirID: " << souvenirID;
+	souvenirID = query.value(0).toInt();
+	qDebug() << "souvenirID " << souvenirID;
 
-	ui -> Team_Name_ComboBox     -> setCurrentIndex(query.value(0).toInt() - 1);
-	ui -> Souvenir_Name_LineEdit -> setText (query.value(1).toString());
-	ui -> Price_Double_SpinBox   -> setValue(query.value(2).toDouble());
 }
 
 ///DELETE item from datatable and from database
