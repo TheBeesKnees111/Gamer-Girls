@@ -115,6 +115,6 @@ void kruskals::print()
 		if(((index + 1) % 2) == 1)
 			qDebug() << index+1 << " From: " << traversalList[index];
 		else
-			qDebug() << index+1 << " To  : " << traversalList[index] << Qt::endl;
+			qDebug() << index+1 << " To  : " << traversalList[index];
 	}
 }
