@@ -25,8 +25,6 @@ private:
     QVector<QString> originNames;
     int distanceTraveled;
     QStringList traversalList;
-
-
 };
 
 #endif // BFS_H

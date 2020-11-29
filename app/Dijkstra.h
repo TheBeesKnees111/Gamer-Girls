@@ -27,4 +27,8 @@ using namespace std;
 // for multiple searches for the shortest path from the start location.
 QHash<QString, StadiumDistance*> Dijkstra(const StadiumGraph& graph, Stadium* start);
 
+QStringList RecursiveDijkstras(QStringList stadiumNames, const StadiumGraph& graph, Stadium *start);
+
+void Helper(const StadiumGraph& graph, Stadium *start, QHash<QString, bool> &visited, QStringList &tripList);
+
 #endif // DIJKSTRA_H

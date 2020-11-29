@@ -462,6 +462,41 @@ void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
    ui -> mst_tableWidget -> verticalHeader() -> show();
    ui -> mst_tableWidget -> setColumnWidth(0,200);
    ui -> mst_tableWidget -> setColumnWidth(1,200);
+}
 
+// Custom start trip
+void SouvenirAndTrip::on_Confirm_Custom_Shortest_Trip_PushButton_clicked()
+{
+    QStringList defaultNames; // Stadium Names
+    QStringList tripList; // Final Trip List
+    Stadium* origin = new Stadium; // Origin Stadium
 
+    // Get origin stadium
+    origin = database->getStadiumByID(ui->Shortest_Distance_Select_Stadium_ComboBox->currentIndex()+1);
+
+    // Get default stadium names
+    for(int index = 0; index < adjList->list.size(); index++)
+    {
+        defaultNames.push_back(adjList->list.at(index).origin);
+    }
+
+    // DEBUG
+    qDebug() << "Starting stadium: " << origin->getStadiumName();
+
+    // Create graph
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(database);
+
+    // Perform trip, return names
+    tripList = RecursiveDijkstras(defaultNames, graph, origin);
+
+    teamList = database->CreateShoppingList(tripList);
+
+    // Initialize Table
+    InitializeTripTable(ui->shortestCustomTrip_tableWidget, TRIP_TABLE_COL_COUNT, tripTableHeaders);
+
+    // Populate Table
+    PopulateTripTable(ui->shortestCustomTrip_tableWidget, teamList);
+
+    // Enable cart button
+    ui->shortestCustomTrip_cart_button->setEnabled(true);
 }
