@@ -222,7 +222,7 @@ void Database::DeleteSouvenir(const QString &SouvenirName, const QString &teamNa
 
 }
 
-void Database::AddDefaultSouvenirsToDatabase(int souvenirID, int teamID, QStringList souvenirs, QVector<double> prices)
+void Database::AddDefaultSouvenirsToDatabase(int teamID, QStringList souvenirs, QVector<double> prices)
 {
 
     for(int index = 0; index < souvenirs.size(); index++)
@@ -233,7 +233,6 @@ void Database::AddDefaultSouvenirsToDatabase(int souvenirID, int teamID, QString
                       "VALUES   (:souvenirID, :teamID, :itemName, :itemPrice)");
 
         //Bind query values
-        query.bindValue(":souvenirID", ++souvenirID);
         query.bindValue(":teamID",     teamID);
         query.bindValue(":itemName",   souvenirs[index]);
         query.bindValue(":itemPrice",  prices   [index]);

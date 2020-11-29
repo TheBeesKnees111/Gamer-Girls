@@ -77,9 +77,9 @@ public:
 
     // For use in admin section
     Souvenir* getSouvenierByID(int souvenirID);
-    void      AddDefaultSouvenirsToDatabase(int souvenirID, int teamID,
-                                            QStringList      souvenirs,
-                                            QVector <double> prices);
+	void      AddDefaultSouvenirsToDatabase(int teamID,
+											QStringList      souvenirs,
+											QVector <double> prices);
 	// PURCHASES METHODS
     // For use in admin section
     QVector<Purchases*> getPurchases();

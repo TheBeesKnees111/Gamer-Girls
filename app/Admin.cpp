@@ -25,16 +25,17 @@ Admin::Admin(QWidget *parent) :
 	PopulateComboBoxes("SELECT division FROM teamInfo"   , ui -> Division_Combo_Box);
 	PopulateComboBoxes("SELECT surfaceType FROM teamInfo", ui -> Surface_Type_ComboBox);
 	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Roof_Type_ComboBox);
-	PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
+	PopulateComboBoxesItems("SELECT teamName, teamID FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
 }
 
-//Populates all combo boxes with relaed information
 void Admin::PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox)
 {
 	//list to hold different string values
+	QSqlQuery   query;
 	QStringList list;
-	QSqlQuery query;
+
+	comboBox -> clear();
 
 	query.exec(sqlQuery);
 
@@ -45,19 +46,47 @@ void Admin::PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox)
 	//Continue through list while there is still information in the database
 	while(query.next())
 	{
-		//If a value exists in the list do not add it again to prevent repeats
 		if(!list.contains(query.value(0).toString()))
-		{
 			list.push_back(query.value(0).toString());
-		}
 	}
 
-	//Add values to the combobox
-	for(int index = 0; index < list.size(); index++)
+	list.sort();
+
+	comboBox -> addItems(list);
+
+	//set item data to
+	//ui -> Team_Name_ComboBox -> setItemData();
+	comboBox -> setCurrentIndex(-1);
+}
+
+
+///Populates all combo boxes with relaed information
+void Admin::PopulateComboBoxesItems(QString sqlQuery, QComboBox* comboBox)
+{
+	//list to hold different string values
+	QSqlQuery query;
+	int       index = 0;
+
+	comboBox -> clear();
+	comboBox -> setDuplicatesEnabled(false);
+
+	query.exec(sqlQuery);
+
+	//Output error if query does not work
+	if(!query.exec())
+		qDebug() << "ERROR reading ADMIN COMBOBOXES";
+
+	//Continue through list while there is still information in the database
+	while(query.next())
 	{
-		comboBox -> addItem(list[index]);
+		comboBox -> addItem(query.value(0).toString());
+		comboBox -> setItemData(index, QVariant::fromValue(query.value(1).toInt()));
+
+		index++;
 	}
 
+	//set item data to
+	//ui -> Team_Name_ComboBox -> setItemData();
 	comboBox -> setCurrentIndex(-1);
 }
 
@@ -153,8 +182,7 @@ void Admin::on_Read_In_From_File_Button_clicked()
 	{//begin if(file.isOpen())
 
 		QSqlQuery       query;
-		int             teamID = ui -> Admin_Datatable -> model() -> rowCount() + 1;
-		int             newSouvenirID = (teamID - 1) * 5;
+		int             teamID = 33;
 		QStringList     otherStadiums;
 		QVector <int>   miles;
 
@@ -194,7 +222,6 @@ void Admin::on_Read_In_From_File_Button_clicked()
 						  "        :dateOpened)");
 
 			//Bind query values
-			query.bindValue(":teamID"     , teamID);
 			query.bindValue(":teamName"   , teamName);
 			query.bindValue(":stadiumName", stadiumName);
 			query.bindValue(":seatingCap" , seatingCapacity);
@@ -210,13 +237,13 @@ void Admin::on_Read_In_From_File_Button_clicked()
 
 			//Populate datatable with new info
 			PopulateStadiumTable();
-			PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
+			PopulateComboBoxesItems("SELECT teamName, teamID FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
 		/***********************************************************************
 		 * ADDING TO SOUVENIR TABLE
 		 **********************************************************************/
 			Database::getInstance() -> AddDefaultSouvenirsToDatabase
-					(newSouvenirID, teamID, defaultSouvenirs, souvenirPrices);
+					(teamID, defaultSouvenirs, souvenirPrices);
 
 			PopulateSouvenirTable();
 		/***********************************************************************
@@ -234,7 +261,7 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 {
 	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
-	int       teamID       = ui -> Team_Name_ComboBox -> currentIndex() + 1;
+	int       teamID       = ui -> Team_Name_ComboBox     -> currentData().toInt();
 	QSqlQuery query;
 
 	//Set definition of blank data
@@ -258,6 +285,10 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 			qDebug() << query.lastError();
 
 		PopulateSouvenirTable();
+		PopulateComboBoxes("SELECT teamName, teamID FROM teamInfo", ui -> Team_Name_ComboBox);
+
+		ui -> Souvenir_Name_LineEdit -> clear();
+		ui -> Price_Double_SpinBox   -> clear();
 	}
 
 }
@@ -267,7 +298,7 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 {
 	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
-	int       teamID       = ui -> Team_Name_ComboBox     -> currentIndex() + 1;
+	int       teamID       = ui -> Team_Name_ComboBox     -> currentData().toInt();
 
 	qDebug() << souvenirName;
 	qDebug() << price;
@@ -305,6 +336,7 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 
 		//Update souvenir table
 		PopulateSouvenirTable();
+
 	}
 }
 
@@ -316,6 +348,8 @@ void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
 	ui -> Souvenir_Name_LineEdit -> setText (index.siblingAtColumn(1).data().toString());
 	ui -> Price_Double_SpinBox   -> setValue(index.siblingAtColumn(2).data().toDouble());
 	ui -> Team_Name_ComboBox     -> setCurrentText(index.siblingAtColumn(0).data().toString());
+
+	qDebug() << "Team Name Combobox item int   : " << ui -> Team_Name_ComboBox -> currentData().toInt();
 }
 
 ///DELETE item from datatable and from database

@@ -98,8 +98,10 @@ public:
      * Methods
      */
 
-	/// Populates combo boxes with relevant information
 	void PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox);
+
+	/// Populates combo boxes with team objects
+	void PopulateComboBoxesItems(QString sqlQuery, QComboBox* comboBox);
 
 	/// Initializes souvenir table to blank
     void InitializeSouvenirTable (QTableView* table);
