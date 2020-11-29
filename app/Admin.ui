@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="View_Table">
     <attribute name="title">
@@ -486,6 +486,21 @@
      </property>
      <property name="text">
       <string>Update Stadium Info</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Purchases</string>
+    </attribute>
+    <widget class="QTableView" name="Display_Purchases_TableView">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>90</y>
+       <width>881</width>
+       <height>511</height>
+      </rect>
      </property>
     </widget>
    </widget>

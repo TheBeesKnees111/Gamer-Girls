@@ -20,6 +20,9 @@ Admin::Admin(QWidget *parent) :
 	//Populate Stadium table with related data
 	PopulateStadiumTable();
 
+	//Populate purchase table with data
+	PopulatePurchasesTable();
+
 	//Populate ComboBoxes with realted information
 	PopulateComboBoxes("SELECT conference FROM teamInfo" , ui -> Conference_Combo_Box);
 	PopulateComboBoxes("SELECT division FROM teamInfo"   , ui -> Division_Combo_Box);
@@ -150,6 +153,37 @@ void Admin::PopulateStadiumTable ()
 
 	//Hide teamID column
 	ui -> Admin_Datatable        -> hideColumn(0);
+}
+
+///Populate table of purchases
+void Admin::PopulatePurchasesTable()
+{
+	QSqlQueryModel *model = new QSqlQueryModel;
+	QStringList     headers = {"ID", "Team Name", "Souvenir Name", "Quantity"};
+
+	//Set query for model
+	model -> setQuery("SELECT purchases.purchaseID, teamInfo.teamName, souvenirs.itemName, "
+					  "purchases.qtyPurchased "
+					  "FROM purchases, teamInfo, souvenirs "
+					  "WHERE teamInfo.teamID = purchases.teamID AND "
+					  "souvenirs.souvenirID = purchases.souvenirID");
+
+	//Set model for table
+	ui -> Display_Purchases_TableView -> setModel(model);
+
+	//Set horizontal headers
+	for(int index = 0; index < headers.size(); index ++)
+	{
+		ui -> Display_Purchases_TableView -> model() -> setHeaderData(index, Qt::Horizontal, headers[index]);
+	}
+
+	ui -> Display_Purchases_TableView -> verticalHeader() -> hide();
+	ui -> Display_Purchases_TableView -> setColumnWidth(0, 50);
+	ui -> Display_Purchases_TableView -> setColumnWidth(1, 200);
+	ui -> Display_Purchases_TableView -> setColumnWidth(2, 200);
+	ui -> Display_Purchases_TableView -> setColumnWidth(3, 100);
+
+
 }
 
 Admin::~Admin()
