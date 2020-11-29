@@ -170,7 +170,7 @@ public:
     AdjacencyList* GetAdjacencyList();
 
     // Populate Shopping Cart List
-    QVector<Team*>* CreateShoppingList(const QStringList &teamNames);
+    QVector<Team*>* CreateShoppingList(const QStringList &stadiumNames);
 
     // Write purchase info to db
     void SavePurchase(QVector<Team*>* teamList);
