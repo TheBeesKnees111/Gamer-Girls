@@ -83,6 +83,8 @@ void Admin::PopulateSouvenirTable ()
 	//Resize rows and columns
 	ui -> Update_Souvenir_Datatable -> setColumnWidth(0, 200);
 	ui -> Update_Souvenir_Datatable -> setColumnWidth(1, 200);
+
+	ui -> Update_Souvenir_Datatable -> verticalHeader() -> hide();
 }
 
 // Intializes stadium table to blank
@@ -151,7 +153,7 @@ void Admin::on_Read_In_From_File_Button_clicked()
 	{//begin if(file.isOpen())
 
 		QSqlQuery       query;
-		int             teamID = 33;
+		int             teamID = ui -> Admin_Datatable -> model() -> rowCount() + 1;
 		int             newSouvenirID = (teamID - 1) * 5;
 		QStringList     otherStadiums;
 		QVector <int>   miles;
@@ -304,8 +306,8 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 		//Update souvenir table
 		PopulateSouvenirTable();
 
-		//Set ID to 0
-		souvenirID = 0;
+//		//Set ID to 0
+//		souvenirID = 0;
 	}
 }
 
