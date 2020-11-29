@@ -305,9 +305,6 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 
 		//Update souvenir table
 		PopulateSouvenirTable();
-
-//		//Set ID to 0
-//		souvenirID = 0;
 	}
 }
 
