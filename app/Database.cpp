@@ -89,9 +89,11 @@ QVector<Stadium*> Database::getStadiums()
 // Returns a vector edge list of (StadiumDistance*)
 QVector<StadiumDistance*> Database::getStadiumDistances()
 {
-    if (stadiumDistanceCache.isEmpty())
-        runGetAllStadiumDistances();
-    return stadiumDistanceCache.values().toVector();
+	stadiumDistanceCache.clear();
+
+	runGetAllStadiumDistances();
+
+	return stadiumDistanceCache.values().toVector();
 
 }
 
