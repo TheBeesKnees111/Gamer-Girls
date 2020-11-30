@@ -374,6 +374,8 @@ void SouvenirAndTrip::on_minnesota_cart_button_clicked()
 //    purchaseTable->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
     // open window
     purchaseTable->show();
+}
+
 void SouvenirAndTrip::on_Confirm_New_England_Trip_PushButton_clicked()
 {
     QString nextName; // next stadium's name
