@@ -12,6 +12,8 @@
 #include "AdjacencyList.h"
 #include "kruskals.h"
 
+#include <DFS.h>
+
 SouvenirAndTrip::SouvenirAndTrip(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SouvenirAndTrip)
@@ -243,6 +245,119 @@ void SouvenirAndTrip::on_greenBay_cart_button_clicked()
     purchaseTable->show();
 }
 
+/*********************************************
+ ************** MINNESOTA TRIP ***************
+ *********************************************/
+///For MINNESOTA TRIP push button clicked
+/// Will call rout displayer and show the DFS path to all cities
+void SouvenirAndTrip::on_Confirm_Minnesota_Trip_PushButton_clicked()
+{
+//    QString teamName = ui->Green_Bay_Select_Stadium_ComboBox->currentText();
+
+//    qDebug() << "Building path from Green Bay to: " << teamName;
+
+    // Create Database
+    Database* db = Database::getInstance();
+
+    // CALL SHORTEST PATH HERE
+    // get stadium origin
+    Stadium* origin {db->getStadiumByName("U.S. Bank Stadium")};
+
+    // create graph
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(db);
+
+    // get path for destination location
+    QVector<StadiumDistance*> path = DFS(graph, origin);
+
+    /***********************************************
+    // PRINTING TO DISPLAY ON SOUVENIRANDTRIP PAGE
+    ***********************************************/
+    // create the row size for setup
+    int rowSize = path.size();
+    // setup row & column sizes
+    QTableWidget* tableWidget = ui->minnesota_tableWidget;
+    tableWidget->setRowCount(rowSize + 1);
+    tableWidget->setColumnCount(2);
+
+    int totalDistance = 0;
+
+    // loops thru the vector of StadiumDistances, displays team name & stadium
+    for (int row = 0; row < path.size(); row++)
+    {
+        qDebug() << row;
+        if (row == 0)
+        {
+            // get first team & display team name
+            QString teamName = path[row]->getFromStadium()->getTeams().first()->getTeamName();
+        //    qDebug() << teamName;
+            //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+            QTableWidgetItem *newItem = new QTableWidgetItem(teamName);
+            tableWidget->setItem(row, 0, newItem);
+            // get & display stadium name
+            //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+            newItem = new QTableWidgetItem(path[row]->getFromStadium()->getStadiumName());
+            tableWidget->setItem(row, 1, newItem);
+            // calculate total distance
+            totalDistance += path[row]->getDistance();
+        }
+        // get & display team name
+        QString teamName = path[row]->getToStadium()->getTeams().first()->getTeamName();
+//    qDebug() << teamName;
+
+        //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+        QTableWidgetItem *newItem = new QTableWidgetItem(teamName);
+        tableWidget->setItem(row, 0, newItem);
+        // get & display stadium name
+        //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+        newItem = new QTableWidgetItem(path[row]->getToStadium()->getStadiumName());
+//            QString stadiumName = path[row]->getToStadium()->getStadiumName();
+//            qDebug() << stadiumName;
+        tableWidget->setItem(row, 1, newItem);
+        // calculate total distance
+        totalDistance += path[row]->getDistance();
+    }
+
+    // output distance
+    ui->MN_total_dist->setText(QString("%1").arg(totalDistance));
+
+    // resize based on table contents
+    tableWidget->horizontalHeader()->setSectionResizeMode
+            (QHeaderView::ResizeToContents);
+
+    /***********************************************
+    // SETUP FOR PURCHASE TABLE
+    ***********************************************/
+//    qDebug() << "Calling Purchase Table from Green Bay to: " << teamName;
+
+    // Create QStringList for Shopping List
+    // FIXME: Need to get stadium names somehow for purchaseTable
+    QStringList stadiumNames;
+    stadiumNames.append("Lambeau Field");
+//    stadiumNames.append(destination->getStadiumName());
+//    qDebug() << "stadiumNames list: " << stadiumNames;
+
+    // Create Shopping List
+    teamList = db->CreateShoppingList(stadiumNames);
+//    qDebug() << "QVector teamList size: " << teamList->size();
+//    qDebug() << "CreateShoppingList info: ";
+//    for(int i = 0; i < teamList->size(); i++)
+//    {
+//        qDebug() << teamList->at(i)->getTeamName();
+//    }
+
+    ui->minnesota_cart_button->setEnabled(true);
+}
+
+void SouvenirAndTrip::on_minnesota_cart_button_clicked()
+{
+    // Create new PurchaseTable
+    PurchaseTable * purchaseTable = new PurchaseTable(this, teamList);
+    // set window title
+//    purchaseTable->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
+    // open window
+    purchaseTable->show();
+}
+
             /*********************************************
              ************** CUSTOM TRIP TAB **************
              *********************************************/
@@ -404,20 +519,15 @@ void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
     purchaseTable->show();
 }
 
-void SouvenirAndTrip::on_Confirm_Minnesota_Trip_PushButton_clicked()
-{
-
-}
-
-			/*********************************************
-			 **************     MST TRIP    **************
-			 *********************************************/
+            /*********************************************
+             **************     MST TRIP    **************
+             *********************************************/
 
 void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
 {
     //a qstringlist to hold the stadium naes
     QStringList stadiumNames;
-	QStringList verticalHeader;
+    QStringList verticalHeader;
     QString distanceOutput = "Total Cost: ";
     //instantiate our kruskals graph
     kruskals g(10000);
@@ -444,23 +554,23 @@ void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
 
    for(int index = ui -> mst_tableWidget -> rowCount(); index > -1 ; index--)
    {
-	   if(index%2 ==1)
-		   ui -> mst_tableWidget -> insertRow(index + 1);
+       if(index%2 ==1)
+           ui -> mst_tableWidget -> insertRow(index + 1);
    }
 
    //Set vertical Header
    for(int index = 0; index < ui -> mst_tableWidget -> rowCount(); index++)
    {
-	   switch(index % 3 + 1)
-	   {
-		   case 1: verticalHeader.push_back("From City");
-		   break;
+       switch(index % 3 + 1)
+       {
+           case 1: verticalHeader.push_back("From City");
+           break;
 
-		   case 2: verticalHeader.push_back("To City");
-		   break;
+           case 2: verticalHeader.push_back("To City");
+           break;
 
-		   default: verticalHeader.push_back("");
-	   }
+           default: verticalHeader.push_back("");
+       }
    }
 
    ui -> mst_tableWidget -> setVerticalHeaderLabels(verticalHeader);
