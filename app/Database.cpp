@@ -38,16 +38,16 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-//        QString windowsPathFile =  "/db/NFLdb.db";
-//        setDatabaseName(QDir::currentPath() + windowsPathFile);
+        QString windowsPathFile =  "/db/NFLdb.db";
+        setDatabaseName(QDir::currentPath() + windowsPathFile);
        // QString BLAKESPATH = "/Users/blakedickerson/Downloads/nfldb.db";
        //setDatabaseName(BLAKESPATH);
-    //	setDatabaseName(QDir::currentPath() + windowsPathFile);
+        setDatabaseName(QDir::currentPath() + windowsPathFile);
 //        qDebug() << QDir::currentPath() + windowsPathFile;
-    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
-    setDatabaseName(rebecca);
-    QString macPathFile = "/db";
-    qDebug() << QDir::currentPath() + macPathFile;
+//    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
+//    setDatabaseName(rebecca);
+//    QString macPathFile = "/db";
+//    qDebug() << QDir::currentPath() + macPathFile;
 
 
     // Print error if database does not open
@@ -970,23 +970,23 @@ QVector<Team*>* Database::CreateShoppingList(const QStringList &stadiumNames)
         // Execute
         if(query.exec())
         {
-            // Create new team object
-            team = new Team;
-
-            // Add stadium to team
-            team->setStadium(stadium);
-
 //            // DEBUG
 //            qDebug() << "Stadium Name Added: " << team->getStadium()->getStadiumName();
 
             // Populate team name
             while(query.next())
             {
-                team->setTeamName(query.value(0).toString());
-            }
+                // Create new team object
+                team = new Team;
 
-            // Add team to shopping list
-            shoppingList->push_back(team);
+                // Add stadium to team
+                team->setStadium(stadium);
+
+                team->setTeamName(query.value(0).toString());
+
+                // Add team to shopping list
+                shoppingList->push_back(team);
+            }
         }
         else
         {
