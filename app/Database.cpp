@@ -38,16 +38,16 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-//        QString windowsPathFile =  "/db/NFLdb.db";
-//        setDatabaseName(QDir::currentPath() + windowsPathFile);
+        QString windowsPathFile =  "/db/NFLdb.db";
+        setDatabaseName(QDir::currentPath() + windowsPathFile);
        // QString BLAKESPATH = "/Users/blakedickerson/Downloads/nfldb.db";
        //setDatabaseName(BLAKESPATH);
     //	setDatabaseName(QDir::currentPath() + windowsPathFile);
 //        qDebug() << QDir::currentPath() + windowsPathFile;
-    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
-    setDatabaseName(rebecca);
-    QString macPathFile = "/db";
-    qDebug() << QDir::currentPath() + macPathFile;
+//    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
+//    setDatabaseName(rebecca);
+//    QString macPathFile = "/db";
+//    qDebug() << QDir::currentPath() + macPathFile;
 
 
     // Print error if database does not open
@@ -60,20 +60,6 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
         qDebug() << "Connection to database succeeded";
     }
 }
-
-// Returns teamID from a search for its location
-//int GetTeamIDByCityName(QString location)
-//{
-//    QSqlQuery query;
-
-//    query.prepare("SELECT teamID FROM teamInfo WHERE location = :location");
-//    query.bindValue(":location", location);
-
-//    if(!query.exec())
-//        qDebug() << query.lastError();
-
-//    return query.value(0).toInt();
-//}
 
 // Creates stadiumDbCacheByID of Stadiums if they don't already exist.
 // Returns a vector of all Stadium*
@@ -173,52 +159,6 @@ Team *Database::GetTeamByName(const QString name)
       if (!teamDbCacheByName.contains(name))
           runGetAllTeamsAndStadiums();
       return teamDbCacheByName[name];
-}
-
-// For use in admin section
-QVector<Souvenir*> Database::getSouvenirs()
-{
-    // look at the teams & stadiums setup if you want to cache your
-    // data for easier reference & better integration w/ the QMap & QHash
-    QVector<Souvenir*> v(NULL);
-
-    return v;
-}
-
-// For use in admin section
-Souvenir* Database::getSouvenierByID(int souvenirID)
-{
-    return nullptr;
-}
-
-QVector<Purchases*> Database::getPurchases()
-{
-    QVector<Purchases*> v(NULL);
-
-    return v;
-}
-
-Purchases* Database::getPurchasesByID(int purchaseID)
-{
-    return nullptr;
-}
-
-// Add souvenir to database
-void Database::AddSouvenir(const QString &team, const QString &souvenirName, const QString &price)
-{
-
-}
-
-// Change price of souvenir in database
-void Database::UpdateSouvenirPrice(const QString &SouvenirName, const QString teamName, const QString &price)
-{
-
-}
-
-// Remove souvenir from database
-void Database::DeleteSouvenir(const QString &SouvenirName, const QString &teamName)
-{
-
 }
 
 void Database::AddDefaultSouvenirsToDatabase(int teamID, QStringList souvenirs, QVector<double> prices)

@@ -18,101 +18,92 @@ class Stadium;
 class Purchases;
 class AdjacencyList;
 
-
+/*!
+ * @class DBManager
+ * @brief The DBManager class manages core methods used to access the data stored in the database
+ */
 class Database : public QSqlDatabase
 {
 
 public:
-    // Database() constructor moved to private
+    /*!
+     * @brief Creates one instance of the database
+     * @return Pointer the the instance of the database class
+     */
     static Database *getInstance();
 
-    // Enum for team statistics
-//    enum TeamStats
-//    {
-//        T_ID, T_TEAM_NAME, T_STADIUM_NAME, T_SEATING_CAP, T_LOCATION,
-//        T_CONFERENCE, T_DIVISION, T_SURFACE_TYPE, T_ROOF_TYPE, T_DATE_OPENED
-//    };
+    /*!
+     * @brief Will return team based on name
+     * @param name; Name of team desired
+     * @return Team*; Team object
+     */
+    Team* GetTeamByName(const QString name);
 
-    // TEAM METHODS
-    Team *GetTeamByName(const QString name);
-
-    // returns Team* object found by teamID
+    /*!
+     * @brief Will return team based on ID
+     * @param teamID; ID of team desired
+     * @return Team*; Team object
+     */
     Team* GetTeamByID(const int &teamID);
 
-    // Uber object for use in all display sections. Will overwrite upon return to homepage
-    QVector<Team*> GetTeams();  // TODO call in main window for initial setup
+    /*!
+     * @brief Will return all teams
+     * @return; QVector<Team*>; Container of team objects
+     */
+    QVector<Team*> GetTeams();
 
-    // TODO Need to methods to update and create teams
-    // They need to update the caches as well as the database
-
-
-    //Return team name found by teamID
+    /*!
+     * @brief Will return team name by teamID
+     * @param teamID; ID of team desired
+     * @return QString; Team name
+     */
     QString GetTeamNameByID(const int& teamID);
 
-    // not created in .cpp
-    void    AddTeamToDatabase();
-
-
-    // STADIUM METHODS
-    // Creates stadiumDbCacheByID of Stadiums if they don't already exist.
-    // Returns a vector of all Stadium*
+    /*!
+     * @brief Will return container of all stadium objects
+     * @return QVector<Stadium*>; Container of all stadium objects
+     */
     QVector<Stadium*> getStadiums();
 
-    // return Stadium* found by teamID
+    /*!
+     * @brief Will return stadium object based on team ID
+     * @param teamID; ID of team belonging to stadium desired
+     * @return Stadium*; Stadium object
+     */
     Stadium* getStadiumByID(const int& teamID);
 
-    // return Stadium found by stadium name
+    /*!
+     * @brief Will return stadium object based on stadium name
+     * @param name; Name of stadium desired
+     * @return Stadium*; Stadium object
+     */
     Stadium* getStadiumByName(const QString name);
+
+    /*!
+     * @brief Will return ID of stadium based on stadium name
+     * @param stadiumName; Name of stadium desired
+     * @return int; Stadium ID
+     */
     int      GetIDByStadiumName(const QString& stadiumName);
 
     // STADIUM DISTANCE METHODS
     // Checks to see if the stadiumDistanceCache is created.  If not, creates it.
     // Returns a vector edge list of (StadiumDistance*)
+
+
     QVector<StadiumDistance*> getStadiumDistances();
 
     // returns StadiumDistance found by distanceID
     StadiumDistance* getStadiumDistanceByID(int id);
 
-    // SOUVENIR METHODS
-    // For use in admin section
-    QVector<Souvenir*> getSouvenirs();
-
-    // For use in admin section
-    Souvenir* getSouvenierByID(int souvenirID);
 	void      AddDefaultSouvenirsToDatabase(int teamID,
 											QStringList      souvenirs,
 											QVector <double> prices);
-	// PURCHASES METHODS
-    // For use in admin section
-    QVector<Purchases*> getPurchases();
 
-    // For use in admin section
-    Purchases* getPurchasesByID(int purchaseID);
 
     // DISTANCE METHODS
     int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
     void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
-
-    /*!
-     * @brief AddFood items to the database
-     * @param city; Name of City in which Food will be added
-     * @param food; Name of the Food item to be added
-     * @param price; Price of Food item to be added
-     */
-    void AddSouvenir(const QString &team, const QString &souvenirName, const QString &price);
-
-    /*!
-     * @brief Updates food price in database
-     * @param foodName; Name of food to be updated
-     * @param price; New price of food item
-     */
-    void UpdateSouvenirPrice(const QString &SouvenirName, const QString teamName, const QString &price);
-
-    /*!
-     * @brief Deletes food listing from database
-     * @param foodName; Name of food to be deleted
-     */
-    void DeleteSouvenir(const QString &SouvenirName, const QString &teamName);
 
     /*
      * DisplayInfo.ui Information Retrieval Methods
