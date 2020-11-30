@@ -528,6 +528,11 @@ void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
 
     // Populate Table
     PopulateTripTable(ui->losAngeles_tableWidget, teamList);
+
+	ui -> losAngeles_tableWidget -> verticalHeader() -> show();
+	ui -> losAngeles_tableWidget -> setColumnWidth(0,200);
+	ui -> losAngeles_tableWidget -> setColumnWidth(1,200);
+
 }
 
 void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
