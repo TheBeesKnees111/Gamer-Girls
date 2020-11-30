@@ -38,16 +38,16 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-		QString windowsPathFile =  "/db/NFLdb.db";
-		setDatabaseName(QDir::currentPath() + windowsPathFile);
-	   // QString BLAKESPATH = "/Users/blakedickerson/Downloads/nfldb.db";
-	   //setDatabaseName(BLAKESPATH);
+//        QString windowsPathFile =  "/db/NFLdb.db";
+//        setDatabaseName(QDir::currentPath() + windowsPathFile);
+       // QString BLAKESPATH = "/Users/blakedickerson/Downloads/nfldb.db";
+       //setDatabaseName(BLAKESPATH);
     //	setDatabaseName(QDir::currentPath() + windowsPathFile);
-		qDebug() << QDir::currentPath() + windowsPathFile;
-//    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
-//    setDatabaseName(rebecca);
-//    QString macPathFile = "/db";
-//    qDebug() << QDir::currentPath() + macPathFile;
+//        qDebug() << QDir::currentPath() + windowsPathFile;
+    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
+    setDatabaseName(rebecca);
+    QString macPathFile = "/db";
+    qDebug() << QDir::currentPath() + macPathFile;
 
 
     // Print error if database does not open
@@ -74,7 +74,6 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 
 //    return query.value(0).toInt();
 //}
-
 
 // Creates stadiumDbCacheByID of Stadiums if they don't already exist.
 // Returns a vector of all Stadium*
@@ -222,7 +221,7 @@ void Database::DeleteSouvenir(const QString &SouvenirName, const QString &teamNa
 
 }
 
-void Database::AddDefaultSouvenirsToDatabase(int souvenirID, int teamID, QStringList souvenirs, QVector<double> prices)
+void Database::AddDefaultSouvenirsToDatabase(int teamID, QStringList souvenirs, QVector<double> prices)
 {
 
     for(int index = 0; index < souvenirs.size(); index++)
@@ -233,7 +232,6 @@ void Database::AddDefaultSouvenirsToDatabase(int souvenirID, int teamID, QString
                       "VALUES   (:souvenirID, :teamID, :itemName, :itemPrice)");
 
         //Bind query values
-        query.bindValue(":souvenirID", ++souvenirID);
         query.bindValue(":teamID",     teamID);
         query.bindValue(":itemName",   souvenirs[index]);
         query.bindValue(":itemPrice",  prices   [index]);
@@ -617,7 +615,6 @@ int Database::GetTotalSeatingCapacity()
     return count;
 }
 
-
 // Get teams ordered by conference (Requirement 11)
 QVector<Team*>* Database::GetTeamsOrderByConference()
 {
@@ -739,7 +736,6 @@ Team* Database::GetSingleTeamSouvenirs(const QString &teamName)
 
     return team;
 }
-
 
 // Creates QMap caches of team and stadium objects.
 // These can then be used thruout the application whenever needed.
@@ -943,8 +939,6 @@ AdjacencyList* Database::GetAdjacencyList()
 
     return list;
 }
-
-
 
 // Populate Shopping Cart List
 QVector<Team*>* Database::CreateShoppingList(const QStringList &stadiumNames)

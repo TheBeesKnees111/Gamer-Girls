@@ -11,35 +11,34 @@ Admin::Admin(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Admin)
 {
-	QSqlQueryModel *queryModel = nullptr;
-
     ui->setupUi(this);
 
 	//Populate Souvenir table with related data and increase column width
 	//so team name is not cut off
-	PopulateSouvenirTable(queryModel);
+	PopulateSouvenirTable();
 
 	//Populate Stadium table with related data
-	PopulateStadiumTable(queryModel);
+	PopulateStadiumTable();
+
+	//Populate purchase table with data
+	PopulatePurchasesTable();
 
 	//Populate ComboBoxes with realted information
 	PopulateComboBoxes("SELECT conference FROM teamInfo" , ui -> Conference_Combo_Box);
 	PopulateComboBoxes("SELECT division FROM teamInfo"   , ui -> Division_Combo_Box);
 	PopulateComboBoxes("SELECT surfaceType FROM teamInfo", ui -> Surface_Type_ComboBox);
 	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Roof_Type_ComboBox);
-	PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
-
-	//Connect mouse event to data table
-	//connect(ui -> Update_Souvenir_Datatable, SIGNAL(clicked(const QModelIndex &)), this, SLOT(onTableClicked(const QModelIndex &)));
+	PopulateComboBoxesItems("SELECT teamName, teamID FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
 }
 
-//Populates all combo boxes with relaed information
 void Admin::PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox)
 {
 	//list to hold different string values
+	QSqlQuery   query;
 	QStringList list;
-	QSqlQuery query;
+
+	comboBox -> clear();
 
 	query.exec(sqlQuery);
 
@@ -50,19 +49,47 @@ void Admin::PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox)
 	//Continue through list while there is still information in the database
 	while(query.next())
 	{
-		//If a value exists in the list do not add it again to prevent repeats
 		if(!list.contains(query.value(0).toString()))
-		{
 			list.push_back(query.value(0).toString());
-		}
 	}
 
-	//Add values to the combobox
-	for(int index = 0; index < list.size(); index++)
+	list.sort();
+
+	comboBox -> addItems(list);
+
+	//set item data to
+	//ui -> Team_Name_ComboBox -> setItemData();
+	comboBox -> setCurrentIndex(-1);
+}
+
+
+///Populates all combo boxes with relaed information
+void Admin::PopulateComboBoxesItems(QString sqlQuery, QComboBox* comboBox)
+{
+	//list to hold different string values
+	QSqlQuery query;
+	int       index = 0;
+
+	comboBox -> clear();
+	comboBox -> setDuplicatesEnabled(false);
+
+	query.exec(sqlQuery);
+
+	//Output error if query does not work
+	if(!query.exec())
+		qDebug() << "ERROR reading ADMIN COMBOBOXES";
+
+	//Continue through list while there is still information in the database
+	while(query.next())
 	{
-		comboBox -> addItem(list[index]);
+		comboBox -> addItem(query.value(0).toString());
+		comboBox -> setItemData(index, QVariant::fromValue(query.value(1).toInt()));
+
+		index++;
 	}
 
+	//set item data to
+	//ui -> Team_Name_ComboBox -> setItemData();
 	comboBox -> setCurrentIndex(-1);
 }
 
@@ -74,11 +101,11 @@ void InitializeSouvenirTable (QTableView* table)
 
 /// Populates souvenir table in the admin section with all data
 /// related to souvenirs
-void Admin::PopulateSouvenirTable (QSqlQueryModel* model)
+void Admin::PopulateSouvenirTable ()
 {
 	QSqlQuery query;
 
-	model = new QSqlQueryModel;
+	QSqlQueryModel* model = new QSqlQueryModel;
 
 	//Select all souvenir data from database and display it
 	//on the datatable (Will Print team names instead of teamID)
@@ -88,6 +115,8 @@ void Admin::PopulateSouvenirTable (QSqlQueryModel* model)
 	//Resize rows and columns
 	ui -> Update_Souvenir_Datatable -> setColumnWidth(0, 200);
 	ui -> Update_Souvenir_Datatable -> setColumnWidth(1, 200);
+
+	ui -> Update_Souvenir_Datatable -> verticalHeader() -> hide();
 }
 
 // Intializes stadium table to blank
@@ -97,9 +126,9 @@ void InitializeStadiumTable (QTableView* table)
 }
 
 // Populates stadium table with relevant information
-void Admin::PopulateStadiumTable (QSqlQueryModel* model)
+void Admin::PopulateStadiumTable ()
 {
-	model = new QSqlQueryModel;
+	QSqlQueryModel* model = new QSqlQueryModel;
 
 	//Set query to display all data related to the teams
 	model -> setQuery("SELECT * FROM teamInfo");
@@ -114,6 +143,8 @@ void Admin::PopulateStadiumTable (QSqlQueryModel* model)
 	ui -> Admin_Datatable -> setColumnWidth(5, 180);
 	ui -> Admin_Datatable -> setColumnWidth(7, 200);
 
+	ui -> Edit_Stadium_TableView -> verticalHeader() -> hide();
+	ui -> Edit_Stadium_TableView -> setColumnWidth(0, 50);
 	ui -> Edit_Stadium_TableView -> setColumnWidth(1, 170);
 	ui -> Edit_Stadium_TableView -> setColumnWidth(2, 200);
 	ui -> Edit_Stadium_TableView -> setColumnWidth(4, 200);
@@ -122,7 +153,37 @@ void Admin::PopulateStadiumTable (QSqlQueryModel* model)
 
 	//Hide teamID column
 	ui -> Admin_Datatable        -> hideColumn(0);
-	ui -> Edit_Stadium_TableView -> hideColumn(0);
+}
+
+///Populate table of purchases
+void Admin::PopulatePurchasesTable()
+{
+	QSqlQueryModel *model = new QSqlQueryModel;
+	QStringList     headers = {"ID", "Team Name", "Souvenir Name", "Quantity"};
+
+	//Set query for model
+	model -> setQuery("SELECT purchases.purchaseID, teamInfo.teamName, souvenirs.itemName, "
+					  "purchases.qtyPurchased "
+					  "FROM purchases, teamInfo, souvenirs "
+					  "WHERE teamInfo.teamID = purchases.teamID AND "
+					  "souvenirs.souvenirID = purchases.souvenirID");
+
+	//Set model for table
+	ui -> Display_Purchases_TableView -> setModel(model);
+
+	//Set horizontal headers
+	for(int index = 0; index < headers.size(); index ++)
+	{
+		ui -> Display_Purchases_TableView -> model() -> setHeaderData(index, Qt::Horizontal, headers[index]);
+	}
+
+	ui -> Display_Purchases_TableView -> verticalHeader() -> hide();
+	ui -> Display_Purchases_TableView -> setColumnWidth(0, 50);
+	ui -> Display_Purchases_TableView -> setColumnWidth(1, 200);
+	ui -> Display_Purchases_TableView -> setColumnWidth(2, 200);
+	ui -> Display_Purchases_TableView -> setColumnWidth(3, 100);
+
+
 }
 
 Admin::~Admin()
@@ -154,10 +215,8 @@ void Admin::on_Read_In_From_File_Button_clicked()
 	if(file.isOpen())
 	{//begin if(file.isOpen())
 
-		QSqlQueryModel *model = nullptr;
 		QSqlQuery       query;
 		int             teamID = 33;
-		int             newSouvenirID = (teamID - 1) * 5;
 		QStringList     otherStadiums;
 		QVector <int>   miles;
 
@@ -183,9 +242,6 @@ void Admin::on_Read_In_From_File_Button_clicked()
 			miles.push_back(file.readLine().toInt());
 		}
 
-		qDebug() << "ui -> Team_Name_ComboBox -> findText(teamName) "
-				 << ui -> Team_Name_ComboBox -> findText(teamName);
-
 		if(ui -> Team_Name_ComboBox -> findText(teamName) == -1)
 		{
 			//Add team to table for teamInfo
@@ -200,7 +256,6 @@ void Admin::on_Read_In_From_File_Button_clicked()
 						  "        :dateOpened)");
 
 			//Bind query values
-			query.bindValue(":teamID"     , teamID);
 			query.bindValue(":teamName"   , teamName);
 			query.bindValue(":stadiumName", stadiumName);
 			query.bindValue(":seatingCap" , seatingCapacity);
@@ -215,16 +270,16 @@ void Admin::on_Read_In_From_File_Button_clicked()
 				qDebug() << query.lastError();
 
 			//Populate datatable with new info
-			PopulateStadiumTable(model);
-			PopulateComboBoxes("SELECT teamName FROM teamInfo"   , ui -> Team_Name_ComboBox);
+			PopulateStadiumTable();
+			PopulateComboBoxesItems("SELECT teamName, teamID FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
 		/***********************************************************************
 		 * ADDING TO SOUVENIR TABLE
 		 **********************************************************************/
 			Database::getInstance() -> AddDefaultSouvenirsToDatabase
-					(newSouvenirID, teamID, defaultSouvenirs, souvenirPrices);
+					(teamID, defaultSouvenirs, souvenirPrices);
 
-			PopulateSouvenirTable(model);
+			PopulateSouvenirTable();
 		/***********************************************************************
 		 * ADDING TO DISTANCES TABLE
 		 **********************************************************************/
@@ -240,13 +295,8 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 {
 	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
-	int       teamID       = ui -> Team_Name_ComboBox -> currentIndex() + 1;
+	int       teamID       = ui -> Team_Name_ComboBox     -> currentData().toInt();
 	QSqlQuery query;
-	QSqlTableModel *model = nullptr;
-
-	qDebug() << souvenirName;
-	qDebug() << price;
-	qDebug() << teamID;
 
 	//Set definition of blank data
 	bool    blankData    = (souvenirName == "" || price == 0.00 ||
@@ -268,7 +318,11 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 		if(!query.exec())
 			qDebug() << query.lastError();
 
-		PopulateSouvenirTable(model);
+		PopulateSouvenirTable();
+		PopulateComboBoxes("SELECT teamName, teamID FROM teamInfo", ui -> Team_Name_ComboBox);
+
+		ui -> Souvenir_Name_LineEdit -> clear();
+		ui -> Price_Double_SpinBox   -> clear();
 	}
 
 }
@@ -278,16 +332,21 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 {
 	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
-	int       teamID       = ui -> Team_Name_ComboBox     -> currentIndex() + 1;
+	int       teamID       = ui -> Team_Name_ComboBox     -> currentData().toInt();
+
+	qDebug() << souvenirName;
+	qDebug() << price;
+	qDebug() << teamID;
+
 
 	QSqlQuery query;
-	QSqlTableModel *model = nullptr;
 
 	//Set definition of blank data
 	bool    blankData    = (souvenirName == ""   ||
 							price        == 0.00 ||
 							teamID       == 0    ||
-							!IsOnlySpaces(souvenirName));
+							!IsOnlySpaces(souvenirName) ||
+							souvenirID == 0);
 
 	//Output error message if data is blank
 	if(blankData)
@@ -310,7 +369,8 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 			qDebug() << query.lastError();
 
 		//Update souvenir table
-		PopulateSouvenirTable(model);
+		PopulateSouvenirTable();
+
 	}
 }
 
@@ -322,13 +382,14 @@ void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
 	ui -> Souvenir_Name_LineEdit -> setText (index.siblingAtColumn(1).data().toString());
 	ui -> Price_Double_SpinBox   -> setValue(index.siblingAtColumn(2).data().toDouble());
 	ui -> Team_Name_ComboBox     -> setCurrentText(index.siblingAtColumn(0).data().toString());
+
+	qDebug() << "Team Name Combobox item int   : " << ui -> Team_Name_ComboBox -> currentData().toInt();
 }
 
 ///DELETE item from datatable and from database
 void Admin::on_Delete_Souvenir_PushButton_clicked()
 {
 	QSqlQuery query;
-	QSqlTableModel *model = nullptr;
 
 	//Set definition of blank data
 	bool    blankData    = (souvenirID == 0);
@@ -348,7 +409,7 @@ void Admin::on_Delete_Souvenir_PushButton_clicked()
 			qDebug() << query.lastError();
 
 		//Update souvenir table so that information will appear
-		PopulateSouvenirTable(model);
+		PopulateSouvenirTable();
 
 		//Reset souvenir ID to zero
 		souvenirID = 0;
@@ -370,4 +431,66 @@ bool Admin::IsOnlySpaces(QString& value)
 	}
 
 	return false;
+}
+
+///Updating stadium info
+void Admin::on_Update_Stadium_PushButton_clicked()
+{
+	QString teamName        = ui -> Team_Name_LineEdit       -> text();
+	QString stadiumName     = ui -> Stadium_Name_LineEdit    -> text();
+	int     seatingCapacity = ui -> Seating_Capacity_SpinBox -> value();
+	QString location        = ui -> Location_LineEdit        -> text();
+	QString conference      = ui -> Conference_Combo_Box     -> currentText();
+	QString division        = ui -> Division_Combo_Box       -> currentText();
+	QString surfaceType     = ui -> Surface_Type_ComboBox    -> currentText();
+	QString roofType        = ui -> Roof_Type_ComboBox       -> currentText();
+	int     dateOpened      = ui -> Year_SpinBox             -> value();
+	QSqlQuery query;
+
+	if(selectedTeamID == 0)
+		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
+	else
+	{
+		query.prepare("REPLACE INTO"
+					  " teamInfo(teamID,     teamName,    stadiumName, "
+					  "         seatingCap,  location,    conference,  "
+					  "			division,    surfaceType, roofType,"
+					  "         dateOpened) "
+					  " VALUES(:teamID,    :teamName,   :stadiumName, "
+					  "        :seatingCap,:location,   :conference,  "
+					  "        :division,  :surfaceType,:roofType,    "
+					  "        :dateOpened)");
+
+		//Bind query values
+		query.bindValue(":teamID"     , selectedTeamID);
+		query.bindValue(":teamName"   , teamName);
+		query.bindValue(":stadiumName", stadiumName);
+		query.bindValue(":seatingCap" , seatingCapacity);
+		query.bindValue(":location"   , location);
+		query.bindValue(":conference" , conference);
+		query.bindValue(":division"   , division);
+		query.bindValue(":surfaceType", surfaceType);
+		query.bindValue(":roofType"   , roofType);
+		query.bindValue(":dateOpened" , dateOpened);
+
+		if(!query.exec())
+			qDebug() << query.lastError();
+
+		PopulateStadiumTable();
+	}
+}
+
+///Pull data from table when clicked
+void Admin::on_Edit_Stadium_TableView_clicked(const QModelIndex &index)
+{
+	selectedTeamID = index.siblingAtColumn(0).data().toInt();
+	ui -> Team_Name_LineEdit	   -> setText(index.siblingAtColumn(1).data().toString());
+	ui -> Stadium_Name_LineEdit    -> setText(index.siblingAtColumn(2).data().toString());
+	ui -> Seating_Capacity_SpinBox -> setValue(index.siblingAtColumn(3).data().toInt());
+	ui -> Location_LineEdit        -> setText(index.siblingAtColumn(4).data().toString());
+	ui -> Conference_Combo_Box	   -> setCurrentText(index.siblingAtColumn(5).data().toString());
+	ui -> Division_Combo_Box	   -> setCurrentText(index.siblingAtColumn(6).data().toString());
+	ui -> Surface_Type_ComboBox	   -> setCurrentText(index.siblingAtColumn(7).data().toString());
+	ui -> Roof_Type_ComboBox	   -> setCurrentText(index.siblingAtColumn(8).data().toString());
+	ui -> Year_SpinBox			   -> setValue(index.siblingAtColumn(9).data().toInt());
 }
