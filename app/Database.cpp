@@ -50,6 +50,7 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 //    qDebug() << QDir::currentPath() + macPathFile;
 
 
+
     // Print error if database does not open
     if (!open())
     {

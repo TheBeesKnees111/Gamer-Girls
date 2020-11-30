@@ -83,6 +83,10 @@ private slots:
     void on_Confirm_Minnesota_Trip_PushButton_clicked();
 
 
+    void on_Confirm_Custom_Shortest_Trip_PushButton_clicked();
+
+    void on_shortestCustomTrip_cart_button_clicked();
+
 private:
     Database            *database;
     QSqlQueryModel      *queryModel;
