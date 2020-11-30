@@ -33,164 +33,245 @@ public:
     static Database *getInstance();
 
     /*!
-     * @brief Will return team based on name
+     * @brief Accessor returns team based on name
      * @param name; Name of team desired
      * @return Team*; Team object
      */
     Team* GetTeamByName(const QString name);
 
     /*!
-     * @brief Will return team based on ID
+     * @brief Accessor returns team based on ID
      * @param teamID; ID of team desired
      * @return Team*; Team object
      */
     Team* GetTeamByID(const int &teamID);
 
     /*!
-     * @brief Will return all teams
+     * @brief Accessor returns all team objects
      * @return; QVector<Team*>; Container of team objects
      */
     QVector<Team*> GetTeams();
 
     /*!
-     * @brief Will return team name by teamID
+     * @brief Accessor returns team name by teamID
      * @param teamID; ID of team desired
      * @return QString; Team name
      */
     QString GetTeamNameByID(const int& teamID);
 
     /*!
-     * @brief Will return container of all stadium objects
+     * @brief Accessor returns container of all stadium objects
      * @return QVector<Stadium*>; Container of all stadium objects
      */
     QVector<Stadium*> getStadiums();
 
     /*!
-     * @brief Will return stadium object based on team ID
+     * @brief Accessor returns stadium object based on team ID
      * @param teamID; ID of team belonging to stadium desired
      * @return Stadium*; Stadium object
      */
     Stadium* getStadiumByID(const int& teamID);
 
     /*!
-     * @brief Will return stadium object based on stadium name
+     * @brief Accessor returns stadium object based on stadium name
      * @param name; Name of stadium desired
      * @return Stadium*; Stadium object
      */
     Stadium* getStadiumByName(const QString name);
 
     /*!
-     * @brief Will return ID of stadium based on stadium name
+     * @brief Accessor returns ID of stadium based on stadium name
      * @param stadiumName; Name of stadium desired
      * @return int; Stadium ID
      */
     int      GetIDByStadiumName(const QString& stadiumName);
 
-    // STADIUM DISTANCE METHODS
-    // Checks to see if the stadiumDistanceCache is created.  If not, creates it.
-    // Returns a vector edge list of (StadiumDistance*)
-
-
+    /*!
+     * @brief Accessor returns distances from each stadium to each other
+     * @return QVector<StadiumDistance*>; Container of stadium distances
+     */
     QVector<StadiumDistance*> getStadiumDistances();
 
-    // returns StadiumDistance found by distanceID
+    /*!
+     * @brief Accessor returns distances contained at desired vertex based on ID
+     * @param id; Desired stadium's ID
+     * @return StadiumDistance*; Distances from desired vertex's ID
+     */
     StadiumDistance* getStadiumDistanceByID(int id);
 
+    /*!
+     * @brief Adds desired team's default souvenirs to database
+     * @param id; Desired team's ID
+     * @param souvenirs; List of souvenirs
+     * @param prices; Prices of souvenirs
+     */
 	void      AddDefaultSouvenirsToDatabase(int teamID,
 											QStringList      souvenirs,
 											QVector <double> prices);
-
-
-    // DISTANCE METHODS
+    /*!
+     * @brief Accessor to retrieve distance between stadiums
+     * @param origin; Origin vertex
+     * @param destination; Destination vertex
+     * @return int; Distance between vertices
+     */
     int GetMilesBetweenStadiums(const QString &origin, const QString &destination);
+
+    /*!
+     * @brief Adds distances between new stadiums and old stadiums from file
+     * @param stadiumName; Name of new stadium
+     * @param otherStadiums; List of other stadiums' names
+     * @param miles; Container of other stadiums' distances
+     */
     void AddDistancesToDataBaseFromFile(QString& stadiumName , QStringList& otherStadiums, QVector<int>& miles);
 
-    /*
-     * DisplayInfo.ui Information Retrieval Methods
+    /*!
+     * @brief Accessor to retrieve names of teams in database
+     * @return QStringList; Names of teams in database
      */
-
-    // Get team names
     QStringList GetTeamNames();
 
-    // Get Info for one team (Requirement 2)
+    /*!
+     * @brief Accessor to retrieve all statistics of single team (Requirement 2)
+     * @param teamName; Name of team desired
+     * @return Team*; Team object desired
+     */
     Team* GetSingleTeam(const QString &teamName);
 
-    // Get all teams ordered by team name (Requirement 3)
+    /*!
+     * @brief Accessor to retrieve all teams ordered by team name (Requirement 3)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetTeamsOrderByName();
 
-    // Get all teams and stadiums ordered by stadium name (Requirement 4)
+    /*!
+     * @brief Accessor to retrieve all teams and stadiums ordered by stadium name (Requirement 4)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetTeamsOrderByStadium();
 
-    // Get all AFC Teams sorted by team name (Requirement 5)
+    /*!
+     * @brief Accessor to retrieve all AFC Teams sorted by team name (Requirement 5)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetAFCTeamsOrderByTeamName();
 
-    // Get all NFC teams sorted by team name (Requirement 6)
+    /*!
+     * @brief Accessor to retrieve all NFC teams sorted by team name (Requirement 6)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetNFCTeamsOrderByTeamName();
 
-    // Get all NFC North teams ordered by team name (Requirement 7)
+    /*!
+     * @brief Accessor to retrieve all NFC North teams sorted by team name (Requirement 7)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetNorthNFCTeamsOrderByTeamName();
 
-    // Get all stadiums sorted by date opened (Requirement 8)
+    /*!
+     * @brief Accessor to retrieve all stadiums sorted by date opened (Requirement 8)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetStadiumsOrderByDateOpened();
 
-    // Get all open roof stadiums (Requirement 9)
+    /*!
+     * @brief Accessor to retrieve all open roof stadiums (Requirement 9)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetOpenRoofStadiums();
 
-    // Get number of open roof stadiums (Requirement 9)
+    /*!
+     * @brief Accessor to retrieve number of open roof stadiums (Requirement 9)
+     * @return int; Number of open roof stadiums
+     */
     int GetOpenStadiumCount();
 
-    // Get stadiums ordered by seating capacity (Requirement 10)
+    /*!
+     * @brief Accessor to retrieve all stadiums ordered by seating capacity (Requirement 10)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetStadiumsOrderBySeatingCap();
 
-    // Get total seating capacity of entire NFL (Requirement 10)
+    /*!
+     * @brief Accessor to retrieve total seating capacity of entire NFL (Requirement 10)
+     * @return int; Total seating capacity of all stadiums combined
+     */
     int GetTotalSeatingCapacity();
 
-    // Get teams ordered by conference (Requirement 11)
+    /*!
+     * @brief Accessor to retrieve all teams ordered by conference (Requirement 11)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetTeamsOrderByConference();
 
-    // Get teams with bermuda grass surface type (Requirement 12)
+    /*!
+     * @brief Accessor to retrieve all teams with bermuda grass surface type (Requirement 12)
+     * @return QVector<Team*>*; Team objects desired
+     */
     QVector<Team*>* GetBermudaGrassTeams();
 
-    // Get total bermuda grass stadiums (Requirement 12)
+    /*!
+     * @brief Accessor to retrieve total total bermuda grass stadiums (Requirement 12)
+     * @return int; Total stadiums with Bermuda Grass turf
+     */
     int GetBermudaGrassTeamCount();
 
-    // Get all souvenirs for one team (Requirement 13)
+    /*!
+     * @brief Accessor to retrieve all souvenirs for one team (Requirement 13)
+     * @param teamName; Name of team whose souvenirs are desired
+     * @return Team*; Team objects desired
+     */
     Team* GetSingleTeamSouvenirs(const QString &teamName);
 
-    // Get adjacency list for algorithms
+    /*!
+     * @brief Creates and returns adjacency list used for algorithms
+     * @return AdjacencyList*; Adjacency list used for algorithms
+     */
     AdjacencyList* GetAdjacencyList();
 
-    // Populate Shopping Cart List
+    /*!
+     * @brief Creates and returns traversal list and shopping cart for stadiums on trip
+     * @param stadiumNames; Stadiums on trip
+     * @return QVector<Team*>*; Populated team list used for shopping cart
+     */
     QVector<Team*>* CreateShoppingList(const QStringList &stadiumNames);
 
     // Write purchase info to db
+
+    /*!
+     * @brief Saves customer's purchase to database
+     * @param teamList; Details of customer purchase
+     */
     void SavePurchase(QVector<Team*>* teamList);
 
 
 private:
-    // Moved so that outside code can't call the constructor & must call getInstance
-    Database();
-    static Database *instance;  // this is the singleton pattern
-    QSqlQuery query;
+    Database(); /// Default constructor. Private because singleton pattern
+    static Database *instance;  /// Pointer to static pointer used for singleton
+    QSqlQuery query; /// Default query to use in database
 
 
-    // these maps cache the values of these queries so we only have to run them once
-    QMap<int, Team*>            teamDbCache;
-    QMap<QString, Team*>        teamDbCacheByName;
-    QMap<QString, Stadium*>     stadiumDbCacheByName;
-    QMap<int, Stadium*>         stadiumDbCacheByID;
-    QMap<int, StadiumDistance*> stadiumDistanceCache;
-    QMap<int, Souvenir*>        souvenirDbCache;
-    QMap<int, Purchases*>       purchasesDbCache;
+    QMap<int, Team*>            teamDbCache; /// Team sorted by ID
+    QMap<QString, Team*>        teamDbCacheByName; /// Team cache sorted by name
+    QMap<QString, Stadium*>     stadiumDbCacheByName; /// Stadium cache sorted by name
+    QMap<int, Stadium*>         stadiumDbCacheByID; /// Stadium cache sorted by ID
+    QMap<int, StadiumDistance*> stadiumDistanceCache; /// Stadium distances sorted by ID
+    QMap<int, Souvenir*>        souvenirDbCache;  /// Souvenir cache sorted by ID
+    QMap<int, Purchases*>       purchasesDbCache; /// Purchase cache sorted by ID
 
     // This will run whenever a team or stadium is requested to ensure the
     // caches are populated.  Once created, they don't need to be created again.
     // Creates QMap caches of team and stadium objects.
     // These can then be used thruout the application whenever needed.
     // Creates teamDbCache, stadiumDbCacheByName, & stadiumDbCacheByID
+
+    /*!
+     * @brief Creates new memory caches of teams and stadiums each time team or stadium is requested
+     */
     void runGetAllTeamsAndStadiums();
 
-    // creates stadiumDistanceCache for all StadiumDistances if it doesn't already exist
+    /*!
+     * @brief Creates new memory caches of stadiums and their distances
+     */
     void runGetAllStadiumDistances();
 };
 
