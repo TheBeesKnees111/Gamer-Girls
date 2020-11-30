@@ -21,17 +21,10 @@ class Admin : public QDialog
     Q_OBJECT
 
 public:
-// Attributes
-
     /*!
      * @brief Enum represents ui pages of administrator section
      */
     enum AdminPages { };
-
-    /*
-     * Admin - Add/Delete/Import Section
-     */
-
 
     /// Number of columns in "add souvenir" and "edit souvenir" tab in admin (name, team, price)
     const int SOUVENIR_TABLE_COL_COUNT = 3;
@@ -53,11 +46,6 @@ public:
 
     /// Positions of columns by name in "edit stadium" tab of admin
     enum stadiumTableColPositions { S_NAME, S_TEAM, S_CAPACITY, S_LOCATION, S_SURFACE_TYPE, S_ROOF_TYPE, S_DATE_OPENED };
-
-
-    /*
-     * Methods
-     */
 
     /*!
      * @brief Populates values in combobox
@@ -109,6 +97,7 @@ public:
 
     /*!
      * @brief Constructor
+     * @param parent; Pointer to parent object
      */
     explicit Admin(QWidget *parent = nullptr);
 
