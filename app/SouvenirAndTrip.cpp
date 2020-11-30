@@ -269,6 +269,10 @@ void SouvenirAndTrip::on_Confirm_Minnesota_Trip_PushButton_clicked()
     // get path for destination location
     QVector<StadiumDistance*> path = DFS(graph, origin);
 
+    // Create QStringList for Shopping List
+    QStringList stadiumNames;
+//    stadiumNames.append(destination->getStadiumName());
+
     /***********************************************
     // PRINTING TO DISPLAY ON SOUVENIRANDTRIP PAGE
     ***********************************************/
@@ -284,10 +288,10 @@ void SouvenirAndTrip::on_Confirm_Minnesota_Trip_PushButton_clicked()
     // loops thru the vector of StadiumDistances, displays team name & stadium
     for (int row = 0; row < path.size(); row++)
     {
-        qDebug() << row;
+//        qDebug() << row;
         if (row == 0)
         {
-            // get first team & display team name
+            // GET FIRST TEAM, DISPLAY TEAM NAME
             QString teamName = path[row]->getFromStadium()->getTeams().first()->getTeamName();
         //    qDebug() << teamName;
             //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
@@ -295,26 +299,45 @@ void SouvenirAndTrip::on_Confirm_Minnesota_Trip_PushButton_clicked()
             tableWidget->setItem(row, 0, newItem);
             // get & display stadium name
             //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
-            newItem = new QTableWidgetItem(path[row]->getFromStadium()->getStadiumName());
+            QString teamStadium = path[row]->getFromStadium()->getStadiumName();
+            stadiumNames.append(teamStadium);
+            newItem = new QTableWidgetItem(teamStadium);
             tableWidget->setItem(row, 1, newItem);
             // calculate total distance
             totalDistance += path[row]->getDistance();
-        }
-        // get & display team name
-        QString teamName = path[row]->getToStadium()->getTeams().first()->getTeamName();
-//    qDebug() << teamName;
 
-        //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
-        QTableWidgetItem *newItem = new QTableWidgetItem(teamName);
-        tableWidget->setItem(row, 0, newItem);
-        // get & display stadium name
-        //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
-        newItem = new QTableWidgetItem(path[row]->getToStadium()->getStadiumName());
-//            QString stadiumName = path[row]->getToStadium()->getStadiumName();
-//            qDebug() << stadiumName;
-        tableWidget->setItem(row, 1, newItem);
-        // calculate total distance
-        totalDistance += path[row]->getDistance();
+            // GET SECOND TEAM, DISPLAY TEAM NAME
+            teamName = path[row]->getToStadium()->getTeams().first()->getTeamName();
+        //    qDebug() << teamName;
+            //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+            newItem = new QTableWidgetItem(teamName);
+            tableWidget->setItem(row + 1, 0, newItem);
+            // get & display stadium name
+            //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+            teamStadium = path[row]->getToStadium()->getStadiumName();
+            stadiumNames.append(teamStadium);
+            newItem = new QTableWidgetItem(teamStadium);
+             tableWidget->setItem(row + 1, 1, newItem);
+        }
+        else
+        {
+          // GET NEXT TEAM, DISPLAY TEAM NAME
+            QString teamName = path[row]->getToStadium()->getTeams().first()->getTeamName();
+    //    qDebug() << teamName;
+            //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+            QTableWidgetItem *newItem = new QTableWidgetItem(teamName);
+            tableWidget->setItem(row + 1, 0, newItem);
+            // get & display stadium name
+            //    Items are created outside the table (with no parent widget) and inserted into the table with setItem():
+            QString teamStadium = path[row]->getToStadium()->getStadiumName();
+            stadiumNames.append(teamStadium);
+            newItem = new QTableWidgetItem(teamStadium);
+    //            QString stadiumName = path[row]->getToStadium()->getStadiumName();
+    //            qDebug() << stadiumName;
+            tableWidget->setItem(row + 1, 1, newItem);
+            // calculate total distance
+            totalDistance += path[row]->getDistance();
+        }
     }
 
     // output distance
@@ -327,13 +350,8 @@ void SouvenirAndTrip::on_Confirm_Minnesota_Trip_PushButton_clicked()
     /***********************************************
     // SETUP FOR PURCHASE TABLE
     ***********************************************/
-//    qDebug() << "Calling Purchase Table from Green Bay to: " << teamName;
+//    qDebug() << "Calling Purchase Table from Minnesota to: " << teamName;
 
-    // Create QStringList for Shopping List
-    // FIXME: Need to get stadium names somehow for purchaseTable
-    QStringList stadiumNames;
-    stadiumNames.append("Lambeau Field");
-//    stadiumNames.append(destination->getStadiumName());
 //    qDebug() << "stadiumNames list: " << stadiumNames;
 
     // Create Shopping List
