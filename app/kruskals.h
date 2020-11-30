@@ -10,51 +10,86 @@
 #include "StadiumDistance.h"
 #include "StadiumGraph.h"
 
-
-
+/*!
+ * @class Kruskals
+ * @brief The Kruskals class contains all objects necessary to kruskals algorithm to create minimum spanning tree
+ */
 class kruskals
 {
 private:
-    /*
-     *      Private member functions
-     */
-    //creates graph of stadiums
-    QVector<StadiumDistance*> graph;
-    //creates the mst of stadiums
-    QVector<StadiumDistance*> mst;
-    //holds the parent values of each to and from stadium
-    QMap<Stadium*, Stadium*> parent;
-    //total number of vertices in the graph
-    int TOTAL_VERTICES;
-    //total cost of the mst->total distance traveled
-    int cost;
-    //holds the team names->used for output when printing the mst trip
-    QVector<Team*> teamNames;
-    //a qstring  list to populate the data to the display trip class
-    QStringList traversalList;
+    QVector<StadiumDistance*> graph; /// Graph to reference during traversal
+    QVector<StadiumDistance*> mst; /// Minimum spanning tree created during traversal
+    QMap<Stadium*, Stadium*> parent; /// Parent values of each 'to' and 'from' stadium
+    int TOTAL_VERTICES; /// Total number of vertices in the graph
+    int cost; /// Total distance traveled during traversal
+    QVector<Team*> teamNames; /// List of teamnames to output during traversal
+    QStringList traversalList; /// Final list of stadiums visited in traversal order
 public:
-    /*
-     *      Public member functions
+
+    /*!
+     * @brief Parameterized Constructor
+     * @param vertex; Number of vertices used in traversal
      */
-    //constructor-> is instantiated by a number of vertices, I used a default value of 10,000 in the souvenir and trip class
     kruskals(int vertex);
-    //Grab data from db
+
+    /*!
+     * @brief Read necessary data from database
+     * @param start; Starting vertex
+     */
     void readDb(QString start);
-    //print the mst
+
+    /*!
+     * @brief Print minimum spanning tree
+     */
     void print();
-    //calc cost of the mst
+
+    /*!
+     * @brief Calculates and returns total cost of MST
+     * @return int; Total cost of MST
+     */
     int calcCost();
+
     //find the parent values of the to and from stadiums
+    /*!
+     * @brief Returns parent of child stadium
+     * @param i; Child in need of parent information
+     * @return Stadium*; Pointer to parent of stadium input
+     */
     Stadium* find_parent(Stadium *i);
-    //check for loops/cycles in mst
+
+    /*!
+     * @brief Checks for loops during traversal
+     * @param i; Origin vertex
+     * @param v; Destination vertex
+     * @return Stadium*; Stadium detected in loop
+     */
     Stadium* union_set(Stadium* i, Stadium* v);
-    //solve kruskals algorithm
+
+    /*!
+     * @brief Perform traversal
+     */
     void solve();
+
     //comparator to sort the distances for the "greedy method"
+
+    /*!
+     * @brief Comparator to compare weights between stadiums
+     * @param uno; First stadium to compare
+     * @param dos; Second stadium to compare
+     * @return bool; Returns whether or not stadium contains shorter cost
+     */
     static bool compareWeights(StadiumDistance *uno, StadiumDistance *dos);
-    //return total distance traveled
+
+    /*!
+     * @brief Accessor returns distance traveled during traversal
+     * @return int; Distance traveled during traversal
+     */
     int getDistanceTraveled() const;
-    //return the list of team names as  a qstringlist
+
+    /*!
+     * @brief Returns list of stadium names in order of traversal
+     * @return QStringList; Stadium names in order of traversal
+     */
     QStringList getList() const;
 };
 
