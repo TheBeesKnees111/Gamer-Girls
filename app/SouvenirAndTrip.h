@@ -77,7 +77,11 @@ private slots:
     void on_Confirm_MST_Trip_clicked();
     void on_greenBay_cart_button_clicked();
 
+    void on_Confirm_New_England_Trip_PushButton_clicked();
+
+    void on_newEngland_cart_button_clicked();
     void on_Confirm_Minnesota_Trip_PushButton_clicked();
+
 
 private:
     Database            *database;

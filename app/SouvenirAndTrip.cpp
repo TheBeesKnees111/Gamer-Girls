@@ -243,6 +243,75 @@ void SouvenirAndTrip::on_greenBay_cart_button_clicked()
     purchaseTable->show();
 }
 
+void SouvenirAndTrip::on_Confirm_New_England_Trip_PushButton_clicked()
+{
+    QString nextName; // next stadium's name
+    QStringList visited; // list of visited stadiums
+    QStringList tripList; // list of stadiums returned from dijkstras
+    QQueue<QString> pending; // ongoing list of stadiums to visit
+    Stadium* nextStadium = new Stadium; // next stadium to check
+    int distance = 0;
+    QString distanceOutput = "Total Distance Traveled: ";
+
+    // Get New England Stadium
+    nextStadium = database->getStadiumByName("Gillette Stadium");
+    nextName = nextStadium->getStadiumName();
+
+    // Create graph
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(database);
+
+    // Store New England
+    tripList.push_back(nextName);
+
+    // Place new england on pending list
+    pending.push_back(nextName);
+
+    // Place new england on visited list
+    visited.push_back(nextName);
+
+    // Loop through Dijkstras while stadiums remain
+        // NOTE: TRICKY LOGIC. THIS IS UNSTABLE
+    while(!pending.isEmpty() && pending.front() != "")
+    {
+        // Run dijkstras on next stadium
+        nextName = NewTrips(graph, nextStadium, visited, distance);
+
+        // Place stadium on pending list
+        pending.push_back(nextName);
+
+        // Record new stadium's name
+        tripList.push_back(nextName);
+
+        // Get next stadium's info
+        nextStadium = database->getStadiumByName(nextName);
+
+        // Mark stadium as visited
+        visited.push_back(nextName);
+
+        // Pop next stadium from pending
+        pending.pop_front();
+    }
+
+    // NOTE: TRICKY LOGIC
+    tripList.pop_back();
+
+    // Populate shopping list
+    teamList = database->CreateShoppingList(tripList);
+
+    // Initialize table
+    InitializeTripTable(ui->newEngland_tableWidget,TRIP_TABLE_COL_COUNT,tripTableHeaders);
+
+    // Populate table
+    PopulateTripTable(ui->newEngland_tableWidget,teamList);
+
+    // Populate distance label
+    distanceOutput = distanceOutput + QVariant(distance).toString();
+    ui->newEngland_distance_label->setText(distanceOutput);
+
+    // Enable cart button
+    ui->newEngland_cart_button->setEnabled(true);
+}
+
             /*********************************************
              ************** CUSTOM TRIP TAB **************
              *********************************************/
@@ -469,4 +538,13 @@ void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
    ui -> mst_tableWidget -> setColumnWidth(1,200);
 
 
+}
+
+
+
+void SouvenirAndTrip::on_newEngland_cart_button_clicked()
+{
+    PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
+
+    purchaseTable->show();
 }
