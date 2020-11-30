@@ -81,7 +81,7 @@ private slots:
 
     void on_minnesota_cart_button_clicked();
 
-private:
+	private:
     Database            *database;
     QSqlQueryModel      *queryModel;
     Ui::SouvenirAndTrip *ui;

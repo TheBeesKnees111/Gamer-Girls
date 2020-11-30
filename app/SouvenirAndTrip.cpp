@@ -426,6 +426,10 @@ void SouvenirAndTrip::InitializeSouvenirTable(QTableWidget* table, const int &co
     table->setEditTriggers(QTableView::NoEditTriggers);
     table->verticalHeader()->hide();
 
+	table -> setColumnWidth(0, 200);
+	table -> setColumnWidth(1, 150);
+	table -> setColumnWidth(2, 150);
+
     DeleteAllTableRows(table);
 }
 
