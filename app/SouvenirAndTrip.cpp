@@ -374,6 +374,73 @@ void SouvenirAndTrip::on_minnesota_cart_button_clicked()
 //    purchaseTable->setWindowTitle(QString("Trip from Green Bay Packers in %1").arg(origin->getStadiumName()));
     // open window
     purchaseTable->show();
+void SouvenirAndTrip::on_Confirm_New_England_Trip_PushButton_clicked()
+{
+    QString nextName; // next stadium's name
+    QStringList visited; // list of visited stadiums
+    QStringList tripList; // list of stadiums returned from dijkstras
+    QQueue<QString> pending; // ongoing list of stadiums to visit
+    Stadium* nextStadium = new Stadium; // next stadium to check
+    int distance = 0;
+    QString distanceOutput = "Total Distance Traveled: ";
+
+    // Get New England Stadium
+    nextStadium = database->getStadiumByName("Gillette Stadium");
+    nextName = nextStadium->getStadiumName();
+
+    // Create graph
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(database);
+
+    // Store New England
+    tripList.push_back(nextName);
+
+    // Place new england on pending list
+    pending.push_back(nextName);
+
+    // Place new england on visited list
+    visited.push_back(nextName);
+
+    // Loop through Dijkstras while stadiums remain
+        // NOTE: TRICKY LOGIC. THIS IS UNSTABLE
+    while(!pending.isEmpty() && pending.front() != "")
+    {
+        // Run dijkstras on next stadium
+        nextName = NewTrips(graph, nextStadium, visited, distance);
+
+        // Place stadium on pending list
+        pending.push_back(nextName);
+
+        // Record new stadium's name
+        tripList.push_back(nextName);
+
+        // Get next stadium's info
+        nextStadium = database->getStadiumByName(nextName);
+
+        // Mark stadium as visited
+        visited.push_back(nextName);
+
+        // Pop next stadium from pending
+        pending.pop_front();
+    }
+
+    // NOTE: TRICKY LOGIC
+    tripList.pop_back();
+
+    // Populate shopping list
+    teamList = database->CreateShoppingList(tripList);
+
+    // Initialize table
+    InitializeTripTable(ui->newEngland_tableWidget,TRIP_TABLE_COL_COUNT,tripTableHeaders);
+
+    // Populate table
+    PopulateTripTable(ui->newEngland_tableWidget,teamList);
+
+    // Populate distance label
+    distanceOutput = distanceOutput + QVariant(distance).toString();
+    ui->newEngland_distance_label->setText(distanceOutput);
+
+    // Enable cart button
+    ui->newEngland_cart_button->setEnabled(true);
 }
 
             /*********************************************
@@ -606,4 +673,84 @@ void SouvenirAndTrip::on_Confirm_MST_Trip_clicked()
    ui -> mst_tableWidget -> setColumnWidth(1,200);
 
 
+}
+
+
+
+void SouvenirAndTrip::on_newEngland_cart_button_clicked()
+{
+    PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
+
+    purchaseTable->show();
+}
+
+void SouvenirAndTrip::on_Confirm_Custom_Shortest_Trip_PushButton_clicked()
+{
+    QString nextName; // next stadium's name
+    QStringList visited; // list of visited stadiums
+    QStringList tripList; // list of stadiums returned from dijkstras
+    QQueue<QString> pending; // ongoing list of stadiums to visit
+    Stadium* nextStadium = new Stadium; // next stadium to check
+    int distance = 0;
+    QString distanceOutput = "Total Distance Traveled: ";
+
+
+    //grab index of selected stadium/team from user-> add one in order to access correct team otherwise it will be an index behind
+    int index = ui->Shortest_Distance_Select_Stadium_ComboBox->currentIndex() + 1;
+
+    //set the next name value
+    nextName = ui->Shortest_Distance_Select_Stadium_ComboBox->currentText();
+
+   //set the next stadium to the index
+    nextStadium = database->getStadiumByID(index);
+    //set nextName to grab stadium name
+    nextName = nextStadium->getStadiumName();
+
+    // Create graph
+    StadiumGraph graph = StadiumGraph::createStadiumGraph(database);
+
+    //push back values
+    tripList.push_back(nextName);
+    pending.push_back(nextName);
+    visited.push_back(nextName);
+
+    //create the next value and add to structures
+    while(!pending.empty() && pending.front() != "")
+    {
+        nextName = NewTrips(graph, nextStadium, visited, distance);
+        pending.push_back(nextName);
+        tripList.push_back(nextName);
+        nextStadium = database->getStadiumByName(nextName);
+        visited.push_back(nextName);
+        pending.pop_front();
+    }
+
+    // NOTE: TRICKY LOGIC
+    tripList.pop_back();
+
+    // Populate shopping list
+    teamList = database->CreateShoppingList(tripList);
+
+    // Initialize table
+   // InitializeTripTable(ui->newEngland_tableWidget,TRIP_TABLE_COL_COUNT,tripTableHeaders);
+    InitializeTripTable(ui->shortestCustomTrip_tableWidget, TRIP_TABLE_COL_COUNT, tripTableHeaders);
+
+    // Populate table
+    PopulateTripTable(ui->shortestCustomTrip_tableWidget,teamList);
+
+    // Populate distance label
+    distanceOutput = distanceOutput + QVariant(distance).toString();
+    ui->shortestCustomTrip_distance_label->setText(distanceOutput);
+
+    // Enable cart button
+    ui->shortestCustomTrip_cart_button->setEnabled(true);
+
+
+}
+
+void SouvenirAndTrip::on_shortestCustomTrip_cart_button_clicked()
+{
+    PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
+
+    purchaseTable->show();
 }
