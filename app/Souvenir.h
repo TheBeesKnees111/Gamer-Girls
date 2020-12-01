@@ -20,7 +20,7 @@ class Souvenir : public QObject
 
 public:
     /*!
-     * @class Constructor
+     * @brief Constructor
      * @param *parent; Pointer to parent object
      */
     explicit Souvenir(QObject *parent = nullptr);

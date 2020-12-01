@@ -1,0 +1,384 @@
+\hypertarget{class_stadium}{}\doxysection{Stadium Class Reference}
+\label{class_stadium}\index{Stadium@{Stadium}}
+
+
+The \mbox{\hyperlink{class_stadium}{Stadium}} class represents stadiums available to travel to and from.  
+
+
+
+
+{\ttfamily \#include $<$Stadium.\+h$>$}
+
+Inheritance diagram for Stadium\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_stadium}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_stadium_ac1a07cb79e4ffe9ab069179f1b654c67}{set\+Stadium\+Name}} (const Q\+String \&value)
+\begin{DoxyCompactList}\small\item\em Mutator alters stadium\textquotesingle{}s name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_a72f56b324edd1e1ed67bb1f0f037de61}{set\+Seating\+Capacity}} (const int value)
+\begin{DoxyCompactList}\small\item\em Mutator alters stadium\textquotesingle{}s seating capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_a1089fad47c0fb01b602139f88c552e4b}{set\+Location}} (const Q\+String \&value)
+\begin{DoxyCompactList}\small\item\em Mutator alters stadium\textquotesingle{}s location (city) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_a2cb76c651c8aaa234a650b8c43339c9b}{set\+Surface\+Type}} (const Q\+String \&value)
+\begin{DoxyCompactList}\small\item\em Mutator alters stadium\textquotesingle{}s surface type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_aa53aad0ff8e51b0acb44e99719530f26}{set\+Roof\+Type}} (const Q\+String \&value)
+\begin{DoxyCompactList}\small\item\em Mutator alters stadium\textquotesingle{}s roof type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_aa2719b1fec1a818f15964e34db60a600}{set\+Date\+Opened}} (int value)
+\begin{DoxyCompactList}\small\item\em Mutator alters stadium\textquotesingle{}s opening date. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_aa33b53d4fc644a278e4de26026b59c39}{add\+Team}} (\mbox{\hyperlink{class_team}{Team}} $\ast$new\+Team)
+\begin{DoxyCompactList}\small\item\em Mutator adds team that plays out of this stadium. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_stadium_ae8a245c0620a0b54ecda962fd1ff56b2}{stadium\+Name\+Changed}} (Q\+String value)
+\begin{DoxyCompactList}\small\item\em Takes action when stadium\textquotesingle{}s name is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_a6377199baee3cc30856b511ff3533b1a}{seating\+Capacity\+Changed}} (int value)
+\begin{DoxyCompactList}\small\item\em Takes action when stadium\textquotesingle{}s seating capacity is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_a7663cd0f0be1d106b3748065059b87bd}{location\+Changed}} (Q\+String value)
+\begin{DoxyCompactList}\small\item\em Takes action when stadium\textquotesingle{}s location is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_a09a9101a766304ee5f479203d36832ff}{surface\+Type\+Changed}} (Q\+String value)
+\begin{DoxyCompactList}\small\item\em Takes action when stadium\textquotesingle{}s surface type is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_a2df8d5df14739ac7cd0be743b1eeab4b}{roof\+Type\+Changed}} (Q\+String value)
+\begin{DoxyCompactList}\small\item\em Takes action when stadium\textquotesingle{}s roof type is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_a9cc6b1e3eab3dc32d2cc93ab11268819}{date\+Opened\+Changed}} (int value)
+\begin{DoxyCompactList}\small\item\em Takes action when stadium\textquotesingle{}s opening date is changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_stadium_a4f2ba14eb674a698621d711b2ec06359}{Stadium}} (Q\+Object $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em List of teams that play from this stadium. \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_stadium_a374744a3b216c64a17e81f2269a2a3dc}{get\+Stadium\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns stadium\textquotesingle{}s name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_stadium_af10118abac9c8ce34074453a75af867d}{get\+Seating\+Capacity}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns stadium\textquotesingle{}s seating capacity. \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_stadium_a106c4d57308246a76ca8c0add858d38b}{get\+Location}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns stadium\textquotesingle{}s location (city) \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_stadium_a0f0b33b8aedd0b23e7dff04935564fb5}{get\+Surface\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns stadium\textquotesingle{}s surface type. \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_stadium_ad14c72b52bc9bebed47ddba82d30c4ff}{get\+Roof\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns stadium\textquotesingle{}s roof type. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_stadium_a54659ad44822c2bee1fef951507ff9da}{get\+Date\+Opened}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns stadium\textquotesingle{}s opening date. \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ \mbox{\hyperlink{class_stadium_aa9e91d9a720b806c7a973323b6a2669a}{get\+Teams}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns teams that play out of this stadium. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_stadium}{Stadium}} class represents stadiums available to travel to and from. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_stadium_a4f2ba14eb674a698621d711b2ec06359}\label{class_stadium_a4f2ba14eb674a698621d711b2ec06359}} 
+\index{Stadium@{Stadium}!Stadium@{Stadium}}
+\index{Stadium@{Stadium}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{Stadium()}{Stadium()}}
+{\footnotesize\ttfamily Stadium\+::\+Stadium (\begin{DoxyParamCaption}\item[{Q\+Object $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+List of teams that play from this stadium. 
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$parent;} & Pointer to parent object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_stadium_aa33b53d4fc644a278e4de26026b59c39}\label{class_stadium_aa33b53d4fc644a278e4de26026b59c39}} 
+\index{Stadium@{Stadium}!addTeam@{addTeam}}
+\index{addTeam@{addTeam}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{addTeam}{addTeam}}
+{\footnotesize\ttfamily void Stadium\+::add\+Team (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_team}{Team}} $\ast$}]{new\+Team }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator adds team that plays out of this stadium. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}} that plays out of this stadium \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_a9cc6b1e3eab3dc32d2cc93ab11268819}\label{class_stadium_a9cc6b1e3eab3dc32d2cc93ab11268819}} 
+\index{Stadium@{Stadium}!dateOpenedChanged@{dateOpenedChanged}}
+\index{dateOpenedChanged@{dateOpenedChanged}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{dateOpenedChanged}{dateOpenedChanged}}
+{\footnotesize\ttfamily void Stadium\+::date\+Opened\+Changed (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when stadium\textquotesingle{}s opening date is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s opening date \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_a54659ad44822c2bee1fef951507ff9da}\label{class_stadium_a54659ad44822c2bee1fef951507ff9da}} 
+\index{Stadium@{Stadium}!getDateOpened@{getDateOpened}}
+\index{getDateOpened@{getDateOpened}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{getDateOpened()}{getDateOpened()}}
+{\footnotesize\ttfamily int Stadium\+::get\+Date\+Opened (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns stadium\textquotesingle{}s opening date. 
+
+\begin{DoxyReturn}{Returns}
+int; \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s opening date 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_a106c4d57308246a76ca8c0add858d38b}\label{class_stadium_a106c4d57308246a76ca8c0add858d38b}} 
+\index{Stadium@{Stadium}!getLocation@{getLocation}}
+\index{getLocation@{getLocation}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{getLocation()}{getLocation()}}
+{\footnotesize\ttfamily Q\+String Stadium\+::get\+Location (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns stadium\textquotesingle{}s location (city) 
+
+\begin{DoxyReturn}{Returns}
+Q\+String; \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s location (city) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_ad14c72b52bc9bebed47ddba82d30c4ff}\label{class_stadium_ad14c72b52bc9bebed47ddba82d30c4ff}} 
+\index{Stadium@{Stadium}!getRoofType@{getRoofType}}
+\index{getRoofType@{getRoofType}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{getRoofType()}{getRoofType()}}
+{\footnotesize\ttfamily Q\+String Stadium\+::get\+Roof\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns stadium\textquotesingle{}s roof type. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String; \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s roof type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_af10118abac9c8ce34074453a75af867d}\label{class_stadium_af10118abac9c8ce34074453a75af867d}} 
+\index{Stadium@{Stadium}!getSeatingCapacity@{getSeatingCapacity}}
+\index{getSeatingCapacity@{getSeatingCapacity}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{getSeatingCapacity()}{getSeatingCapacity()}}
+{\footnotesize\ttfamily int Stadium\+::get\+Seating\+Capacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns stadium\textquotesingle{}s seating capacity. 
+
+\begin{DoxyReturn}{Returns}
+int; \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s seating capacity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_a374744a3b216c64a17e81f2269a2a3dc}\label{class_stadium_a374744a3b216c64a17e81f2269a2a3dc}} 
+\index{Stadium@{Stadium}!getStadiumName@{getStadiumName}}
+\index{getStadiumName@{getStadiumName}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{getStadiumName()}{getStadiumName()}}
+{\footnotesize\ttfamily Q\+String Stadium\+::get\+Stadium\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns stadium\textquotesingle{}s name. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String; \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_a0f0b33b8aedd0b23e7dff04935564fb5}\label{class_stadium_a0f0b33b8aedd0b23e7dff04935564fb5}} 
+\index{Stadium@{Stadium}!getSurfaceType@{getSurfaceType}}
+\index{getSurfaceType@{getSurfaceType}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{getSurfaceType()}{getSurfaceType()}}
+{\footnotesize\ttfamily Q\+String Stadium\+::get\+Surface\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns stadium\textquotesingle{}s surface type. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String; \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s surface type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_aa9e91d9a720b806c7a973323b6a2669a}\label{class_stadium_aa9e91d9a720b806c7a973323b6a2669a}} 
+\index{Stadium@{Stadium}!getTeams@{getTeams}}
+\index{getTeams@{getTeams}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{getTeams()}{getTeams()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ Stadium\+::get\+Teams (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns teams that play out of this stadium. 
+
+\begin{DoxyReturn}{Returns}
+Qvector$<$\+Team$\ast$$>$; Teams that play out of this stadium 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_a7663cd0f0be1d106b3748065059b87bd}\label{class_stadium_a7663cd0f0be1d106b3748065059b87bd}} 
+\index{Stadium@{Stadium}!locationChanged@{locationChanged}}
+\index{locationChanged@{locationChanged}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{locationChanged}{locationChanged}}
+{\footnotesize\ttfamily void Stadium\+::location\+Changed (\begin{DoxyParamCaption}\item[{Q\+String}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when stadium\textquotesingle{}s location is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s location \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_a2df8d5df14739ac7cd0be743b1eeab4b}\label{class_stadium_a2df8d5df14739ac7cd0be743b1eeab4b}} 
+\index{Stadium@{Stadium}!roofTypeChanged@{roofTypeChanged}}
+\index{roofTypeChanged@{roofTypeChanged}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{roofTypeChanged}{roofTypeChanged}}
+{\footnotesize\ttfamily void Stadium\+::roof\+Type\+Changed (\begin{DoxyParamCaption}\item[{Q\+String}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when stadium\textquotesingle{}s roof type is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s roof type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_a6377199baee3cc30856b511ff3533b1a}\label{class_stadium_a6377199baee3cc30856b511ff3533b1a}} 
+\index{Stadium@{Stadium}!seatingCapacityChanged@{seatingCapacityChanged}}
+\index{seatingCapacityChanged@{seatingCapacityChanged}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{seatingCapacityChanged}{seatingCapacityChanged}}
+{\footnotesize\ttfamily void Stadium\+::seating\+Capacity\+Changed (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when stadium\textquotesingle{}s seating capacity is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s seating capacity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_aa2719b1fec1a818f15964e34db60a600}\label{class_stadium_aa2719b1fec1a818f15964e34db60a600}} 
+\index{Stadium@{Stadium}!setDateOpened@{setDateOpened}}
+\index{setDateOpened@{setDateOpened}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{setDateOpened}{setDateOpened}}
+{\footnotesize\ttfamily void Stadium\+::set\+Date\+Opened (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters stadium\textquotesingle{}s opening date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s opening date \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_a1089fad47c0fb01b602139f88c552e4b}\label{class_stadium_a1089fad47c0fb01b602139f88c552e4b}} 
+\index{Stadium@{Stadium}!setLocation@{setLocation}}
+\index{setLocation@{setLocation}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{setLocation}{setLocation}}
+{\footnotesize\ttfamily void Stadium\+::set\+Location (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters stadium\textquotesingle{}s location (city) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s location (city) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_aa53aad0ff8e51b0acb44e99719530f26}\label{class_stadium_aa53aad0ff8e51b0acb44e99719530f26}} 
+\index{Stadium@{Stadium}!setRoofType@{setRoofType}}
+\index{setRoofType@{setRoofType}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{setRoofType}{setRoofType}}
+{\footnotesize\ttfamily void Stadium\+::set\+Roof\+Type (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters stadium\textquotesingle{}s roof type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s roof type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_a72f56b324edd1e1ed67bb1f0f037de61}\label{class_stadium_a72f56b324edd1e1ed67bb1f0f037de61}} 
+\index{Stadium@{Stadium}!setSeatingCapacity@{setSeatingCapacity}}
+\index{setSeatingCapacity@{setSeatingCapacity}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{setSeatingCapacity}{setSeatingCapacity}}
+{\footnotesize\ttfamily void Stadium\+::set\+Seating\+Capacity (\begin{DoxyParamCaption}\item[{const int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters stadium\textquotesingle{}s seating capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s seating capacity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_ac1a07cb79e4ffe9ab069179f1b654c67}\label{class_stadium_ac1a07cb79e4ffe9ab069179f1b654c67}} 
+\index{Stadium@{Stadium}!setStadiumName@{setStadiumName}}
+\index{setStadiumName@{setStadiumName}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{setStadiumName}{setStadiumName}}
+{\footnotesize\ttfamily void Stadium\+::set\+Stadium\+Name (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters stadium\textquotesingle{}s name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_a2cb76c651c8aaa234a650b8c43339c9b}\label{class_stadium_a2cb76c651c8aaa234a650b8c43339c9b}} 
+\index{Stadium@{Stadium}!setSurfaceType@{setSurfaceType}}
+\index{setSurfaceType@{setSurfaceType}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{setSurfaceType}{setSurfaceType}}
+{\footnotesize\ttfamily void Stadium\+::set\+Surface\+Type (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters stadium\textquotesingle{}s surface type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s surface type \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_ae8a245c0620a0b54ecda962fd1ff56b2}\label{class_stadium_ae8a245c0620a0b54ecda962fd1ff56b2}} 
+\index{Stadium@{Stadium}!stadiumNameChanged@{stadiumNameChanged}}
+\index{stadiumNameChanged@{stadiumNameChanged}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{stadiumNameChanged}{stadiumNameChanged}}
+{\footnotesize\ttfamily void Stadium\+::stadium\+Name\+Changed (\begin{DoxyParamCaption}\item[{Q\+String}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when stadium\textquotesingle{}s name is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s name \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_a09a9101a766304ee5f479203d36832ff}\label{class_stadium_a09a9101a766304ee5f479203d36832ff}} 
+\index{Stadium@{Stadium}!surfaceTypeChanged@{surfaceTypeChanged}}
+\index{surfaceTypeChanged@{surfaceTypeChanged}!Stadium@{Stadium}}
+\doxysubsubsection{\texorpdfstring{surfaceTypeChanged}{surfaceTypeChanged}}
+{\footnotesize\ttfamily void Stadium\+::surface\+Type\+Changed (\begin{DoxyParamCaption}\item[{Q\+String}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when stadium\textquotesingle{}s surface type is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_stadium}{Stadium}}\textquotesingle{}s surface type \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Stadium.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Stadium.\+cpp\end{DoxyCompactItemize}

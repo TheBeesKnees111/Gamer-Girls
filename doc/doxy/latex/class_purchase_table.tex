@@ -1,0 +1,127 @@
+\hypertarget{class_purchase_table}{}\doxysection{Purchase\+Table Class Reference}
+\label{class_purchase_table}\index{PurchaseTable@{PurchaseTable}}
+
+
+The \mbox{\hyperlink{class_purchase_table}{Purchase\+Table}} class contains all objects necessary to manage customer purchases.  
+
+
+
+
+{\ttfamily \#include $<$Purchase\+Table.\+h$>$}
+
+Inheritance diagram for Purchase\+Table\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_purchase_table}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_purchase_table_a86a24452bb1e1f7fd1ca83e379748fc9}\label{class_purchase_table_a86a24452bb1e1f7fd1ca83e379748fc9}} 
+enum \mbox{\hyperlink{class_purchase_table_a86a24452bb1e1f7fd1ca83e379748fc9}{table\+Col\+Positions}} \{ \newline
+{\bfseries K\+EY}, 
+{\bfseries S\+T\+A\+D\+I\+UM}, 
+{\bfseries T\+E\+AM}, 
+{\bfseries S\+\_\+\+N\+A\+ME}, 
+\newline
+{\bfseries S\+\_\+\+P\+R\+I\+CE}, 
+{\bfseries Q\+TY}
+ \}
+\begin{DoxyCompactList}\small\item\em Column Positions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_purchase_table_a6feb0dd0abd36f163860907bd1f3b96f}{qty\+Changed}} (int value)
+\begin{DoxyCompactList}\small\item\em Slot to take action when quantity of spinboxes is changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_purchase_table_ac5ac7bdff0c9bdb2a8988b726186b368}\label{class_purchase_table_ac5ac7bdff0c9bdb2a8988b726186b368}} 
+void \mbox{\hyperlink{class_purchase_table_ac5ac7bdff0c9bdb2a8988b726186b368}{Initialize\+Purchase\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Initializes Purchase Table to blank. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_a847381a3a6c60e4d43104a8b9c519a43}\label{class_purchase_table_a847381a3a6c60e4d43104a8b9c519a43}} 
+void \mbox{\hyperlink{class_purchase_table_a847381a3a6c60e4d43104a8b9c519a43}{Populate\+Purchase\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Populates Purchase Table with necessary data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_a6cc7fccb48ca6b53de3a8e0809fd58e4}\label{class_purchase_table_a6cc7fccb48ca6b53de3a8e0809fd58e4}} 
+void \mbox{\hyperlink{class_purchase_table_a6cc7fccb48ca6b53de3a8e0809fd58e4}{Insert\+Spin\+Box\+Col}} ()
+\begin{DoxyCompactList}\small\item\em Inserts dynamic spinboxes into rightmost column of purchase table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_a44a8502762a6c25f3dae5afa2518cc86}\label{class_purchase_table_a44a8502762a6c25f3dae5afa2518cc86}} 
+void \mbox{\hyperlink{class_purchase_table_a44a8502762a6c25f3dae5afa2518cc86}{Delete\+All\+Table\+Rows}} ()
+\begin{DoxyCompactList}\small\item\em Helper function deletes all table rows to initialize table to blank. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_aeb7f403185717545038d332fff2f9ddb}\label{class_purchase_table_aeb7f403185717545038d332fff2f9ddb}} 
+void \mbox{\hyperlink{class_purchase_table_aeb7f403185717545038d332fff2f9ddb}{Destroy\+Teams}} ()
+\begin{DoxyCompactList}\small\item\em Destroys shopping cart so that it can be repopulated in future purchases. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_a0ca4a84669d2bc411264fda29040999f}\label{class_purchase_table_a0ca4a84669d2bc411264fda29040999f}} 
+void \mbox{\hyperlink{class_purchase_table_a0ca4a84669d2bc411264fda29040999f}{Get\+Souvenir\+Qtys}} ()
+\begin{DoxyCompactList}\small\item\em Collects quantity of each souvenir that customer wishes to purchase for use in creating receipt and record. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_purchase_table_a54142416520eb2865b1e0c6dbe6d9af2}{Purchase\+Table}} (Q\+Widget $\ast$parent, Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Parameterized construct takes in list of visited stadium to populate shopping cart. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_aba995ee927f1d7f08a37673dc11c645d}\label{class_purchase_table_aba995ee927f1d7f08a37673dc11c645d}} 
+\mbox{\hyperlink{class_purchase_table_aba995ee927f1d7f08a37673dc11c645d}{$\sim$\+Purchase\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_purchase_table_a7af7449e64d43e73596900387cd98b6b}\label{class_purchase_table_a7af7449e64d43e73596900387cd98b6b}} 
+const int \mbox{\hyperlink{class_purchase_table_a7af7449e64d43e73596900387cd98b6b}{T\+A\+B\+L\+E\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 6
+\begin{DoxyCompactList}\small\item\em Column Count. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_a95608d18e592318c96f9c2f0dee8434c}\label{class_purchase_table_a95608d18e592318c96f9c2f0dee8434c}} 
+Q\+String\+List \mbox{\hyperlink{class_purchase_table_a95608d18e592318c96f9c2f0dee8434c}{table\+Headers}} \{ \char`\"{}K\+EY\char`\"{}, \char`\"{}\mbox{\hyperlink{class_stadium}{Stadium}}\char`\"{}, \char`\"{}\mbox{\hyperlink{class_team}{Team}} Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_souvenir}{Souvenir}} Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_souvenir}{Souvenir}} Price\char`\"{}, \char`\"{}Quantity\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column Header names. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_ae2fed402126ea104128dfd85d9c20db4}\label{class_purchase_table_ae2fed402126ea104128dfd85d9c20db4}} 
+const int \mbox{\hyperlink{class_purchase_table_ae2fed402126ea104128dfd85d9c20db4}{S\+P\+I\+N\+\_\+\+M\+IN}} = 0
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_souvenir}{Souvenir}} Spinbox minimum. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_a458447ca6db2b6b2b7576745c03e8615}\label{class_purchase_table_a458447ca6db2b6b2b7576745c03e8615}} 
+const int \mbox{\hyperlink{class_purchase_table_a458447ca6db2b6b2b7576745c03e8615}{S\+P\+I\+N\+\_\+\+M\+AX}} = 419
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_souvenir}{Souvenir}} Spinbox maximum. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_purchase_table_a3fd70fe561c09872bd7c8124852cfad8}\label{class_purchase_table_a3fd70fe561c09872bd7c8124852cfad8}} 
+Q\+Vector$<$ Q\+Spin\+Box $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_purchase_table_a3fd70fe561c09872bd7c8124852cfad8}{spin\+Boxes}}
+\begin{DoxyCompactList}\small\item\em Vector of pointers to spinbox pointers. Needed for dynamically creating spinboxes on purchase page. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_purchase_table}{Purchase\+Table}} class contains all objects necessary to manage customer purchases. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_purchase_table_a54142416520eb2865b1e0c6dbe6d9af2}\label{class_purchase_table_a54142416520eb2865b1e0c6dbe6d9af2}} 
+\index{PurchaseTable@{PurchaseTable}!PurchaseTable@{PurchaseTable}}
+\index{PurchaseTable@{PurchaseTable}!PurchaseTable@{PurchaseTable}}
+\doxysubsubsection{\texorpdfstring{PurchaseTable()}{PurchaseTable()}}
+{\footnotesize\ttfamily Purchase\+Table\+::\+Purchase\+Table (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent,  }\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Parameterized construct takes in list of visited stadium to populate shopping cart. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$parent;} & Pointer to parent object \\
+\hline
+{\em $\ast$team\+List;} & Pointer to trip list used to populate shopping cart \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_purchase_table_a6feb0dd0abd36f163860907bd1f3b96f}\label{class_purchase_table_a6feb0dd0abd36f163860907bd1f3b96f}} 
+\index{PurchaseTable@{PurchaseTable}!qtyChanged@{qtyChanged}}
+\index{qtyChanged@{qtyChanged}!PurchaseTable@{PurchaseTable}}
+\doxysubsubsection{\texorpdfstring{qtyChanged}{qtyChanged}}
+{\footnotesize\ttfamily void Purchase\+Table\+::qty\+Changed (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slot to take action when quantity of spinboxes is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & New value selected by user \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Purchase\+Table.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Purchase\+Table.\+cpp\end{DoxyCompactItemize}

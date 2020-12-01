@@ -77,7 +77,6 @@ QVector<StadiumDistance*> Database::getStadiumDistances()
     if (stadiumDistanceCache.isEmpty())
         runGetAllStadiumDistances();
     return stadiumDistanceCache.values().toVector();
-
 }
 
 // returns StadiumDistance found by distanceID
