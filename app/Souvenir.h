@@ -24,7 +24,6 @@ class Souvenir : public QObject
     int     qtyPurchased;
 
 public:
-	explicit Souvenir(QObject *parent = nullptr);
 	Souvenir(int sID, int tID, QString iName, float iPrice);
 
     /*!

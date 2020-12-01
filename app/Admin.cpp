@@ -55,11 +55,6 @@ void Admin::InitializeMapSouvenirData()
 			newSouvenir.SetTeamID    (query.value(TEAM_ID)    .toInt());
 			newSouvenir.SetItemName  (query.value(ITEM_NAME)  .toString());
 			newSouvenir.SetItemPrice (query.value(ITEM_PRICE) .toDouble());
-//Delete
-//			qDebug() << "SouvenirID: " << newSouvenir.souvenirID;
-//			qDebug() << "TeamID    : " << newSouvenir.teamID    ;
-//			qDebug() << "ItemName  : " << newSouvenir.itemName  ;
-//			qDebug() << "ItemPrice : " << newSouvenir.price   << Qt::endl;
 
 			souvenirs.Insert(query.value(SOUVENIR_ID).toInt(), newSouvenir);
 		}
@@ -356,12 +351,6 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 		newSouvenir.SetSouvenirID(Database::getInstance() -> GetMaxSouvenirID() + 1);
 		newSouvenir.SetTeamID    (teamID);
 
-		//Delete
-		qDebug() << "SouvenirID: " << newSouvenir.souvenirID;
-		qDebug() << "TeamID    : " << newSouvenir.teamID    ;
-		qDebug() << "ItemName  : " << newSouvenir.itemName  ;
-		qDebug() << "ItemPrice : " << newSouvenir.price   << Qt::endl;
-
 		souvenirs.Insert(teamID, newSouvenir);
 
 	}
@@ -374,11 +363,6 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
 	int       teamID       = ui -> Team_Name_ComboBox     -> currentData().toInt();
-
-	qDebug() << souvenirName;
-	qDebug() << price;
-	qDebug() << teamID;
-
 
 	QSqlQuery query;
 
