@@ -149,13 +149,12 @@ bool MapADT<K, Type>::SearchItem(const Type searchItem) const
 
         while(!found && index < items.size())
         {
-                if(items[index] == searchItem)
-                {
-                        found = true;
-                }
+			if(items[index] == searchItem)
+			{
+					found = true;
+			}
 
-                index++;
-
+			index++;
         }
 
         /***************************************************************************

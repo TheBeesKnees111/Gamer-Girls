@@ -224,6 +224,17 @@ void Database::DeleteSouvenir(const QString &SouvenirName, const QString &teamNa
 
 }
 
+///get maximum existing souvenir ID
+int Database::GetMaxSouvenirID()
+{
+	QSqlQuery query;
+
+	query.exec("SELECT MAX(souvenirID) FROM souvenirs");
+	query.next();
+
+	return query.value(0).toInt();
+}
+
 void Database::AddDefaultSouvenirsToDatabase(int teamID, QStringList souvenirs, QVector<double> prices)
 {
 

@@ -2,6 +2,14 @@
 
 Souvenir::Souvenir(QObject *parent) : QObject(parent){}
 
+Souvenir::Souvenir(int sID, int tID, QString iName, float iPrice)
+{
+	souvenirID = sID;
+	teamID     = tID;
+	itemName   = iName;
+	itemPrice  = iPrice;
+}
+
 /****************************************************
  * - GETTERS -                                      *
  ****************************************************/

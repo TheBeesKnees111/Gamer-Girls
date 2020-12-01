@@ -75,10 +75,10 @@ public:
 
     // SOUVENIR METHODS
     // For use in admin section
-    QVector<Souvenir*> getSouvenirs();
+	QVector<Souvenir*> getSouvenirs();
 
     // For use in admin section
-    Souvenir* getSouvenierByID(int souvenirID);
+	Souvenir* getSouvenierByID(int souvenirID);
 	void      AddDefaultSouvenirsToDatabase(int teamID,
 											QStringList      souvenirs,
 											QVector <double> prices);
@@ -113,6 +113,9 @@ public:
      * @param foodName; Name of food to be deleted
      */
     void DeleteSouvenir(const QString &SouvenirName, const QString &teamName);
+
+	///Get maximum souvenir ID
+	int GetMaxSouvenirID();
 
     /*
      * DisplayInfo.ui Information Retrieval Methods
@@ -189,7 +192,7 @@ private:
     QMap<QString, Stadium*>     stadiumDbCacheByName;
     QMap<int, Stadium*>         stadiumDbCacheByID;
     QMap<int, StadiumDistance*> stadiumDistanceCache;
-    QMap<int, Souvenir*>        souvenirDbCache;
+	QMap<int, Souvenir*>        souvenirDbCache;
     QMap<int, Purchases*>       purchasesDbCache;
 
     // This will run whenever a team or stadium is requested to ensure the
