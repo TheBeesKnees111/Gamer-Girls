@@ -828,3 +828,10 @@ void SouvenirAndTrip::on_Select_Cities_ListWidget_itemClicked(QListWidgetItem *i
               qDebug() << customTripList.at(i);
         }
 }
+
+void SouvenirAndTrip::on_customTrip_cart_button_clicked()
+{
+    PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
+
+    purchaseTable->show();
+}

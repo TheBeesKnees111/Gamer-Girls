@@ -156,6 +156,8 @@ private slots:
      */
     void on_Select_Cities_ListWidget_itemClicked(QListWidgetItem *item);
 
+    void on_customTrip_cart_button_clicked();
+
 private:
 
     /*!
