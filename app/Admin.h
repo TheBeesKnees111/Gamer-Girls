@@ -102,9 +102,7 @@ class Admin : public QDialog
     Q_OBJECT
 
 public:
-    /*!
-     * @brief Enum represents ui pages of administrator section
-     */
+    /// Enum represents admin pages
     enum AdminPages { };
 
     /// Number of columns in "add souvenir" and "edit souvenir" tab in admin (name, team, price)
@@ -122,7 +120,7 @@ public:
     /// Prices for default souvenirs
 	QVector <double> souvenirPrices = {77.99, 99.89, 17.99, 29.99, 199.99};
 
-	//Position of data in souvenir column
+    /// Position of data in souvenir column
 	enum SouvenirTableColumns
 	{
 		SOUVENIR_ID,
@@ -131,7 +129,7 @@ public:
 		ITEM_PRICE
 	};
 
-    // Positions of columns by name "add souvenir" and "edit souvenir" tab in admin
+    /// Positions of columns by name "add souvenir" and "edit souvenir" tab in admin
     enum SouvenirTableColPositions { I_TEAM, I_NAME, I_PRICE };
 
     /// Positions of columns by name in "edit stadium" tab of admin

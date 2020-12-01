@@ -101,7 +101,7 @@ public:
 
     /*!
      * @brief Adds desired team's default souvenirs to database
-     * @param teamId; Desired team's ID
+     * @param teamID; Desired team's ID
      * @param souvenirs; List of souvenirs
      * @param prices; Prices of souvenirs
      */
@@ -130,15 +130,16 @@ public:
      */
     void DeleteSouvenir(const QString &SouvenirName, const QString &teamName);
 
-	///Get maximum souvenir ID
+    /*!
+    * @brief Accessor to retrieve largest souvenir ID in database
+    * @return int; Largest souvenir ID in database
+    */
 	int GetMaxSouvenirID();
 
-    /*
-     * DisplayInfo.ui Information Retrieval Methods
-     */
-
-    // Get team names
-
+    /*!
+    * @brief Accessor to retrieve all team names in database
+    * @return QStringList; All team names in database
+    */
     QStringList GetTeamNames();
 
     /*!
