@@ -73,6 +73,9 @@ public:
      */
     explicit PurchaseTable(QWidget *parent, QVector<Team*>* teamList);
 
+    /*!
+     * @brief Destructor
+     */
     ~PurchaseTable();
 
 public slots:

@@ -14,7 +14,7 @@ class AdjacencyList
 public:
 
     /*!
-     * @brief Edge struct represents edge on a graph
+     * @struct Edge struct represents edge on a graph
      */
     struct Edge
     {
@@ -23,7 +23,7 @@ public:
     };
 
     /*!
-     * @brief Vertex struct represents a vertex on a graph
+     * @struct Vertex struct represents a vertex on a graph
      */
     struct Vertex
     {

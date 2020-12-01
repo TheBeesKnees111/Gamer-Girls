@@ -245,11 +245,12 @@ public:
 
 
 private:
-    Database(); /// Default constructor. Private because singleton pattern
+    /*!
+     * @brief Constructor private because singleton pattern
+     */
+    Database();
     static Database *instance;  /// Pointer to static pointer used for singleton
     QSqlQuery query; /// Default query to use in database
-
-
     QMap<int, Team*>            teamDbCache; /// Team sorted by ID
     QMap<QString, Team*>        teamDbCacheByName; /// Team cache sorted by name
     QMap<QString, Stadium*>     stadiumDbCacheByName; /// Stadium cache sorted by name
@@ -257,12 +258,6 @@ private:
     QMap<int, StadiumDistance*> stadiumDistanceCache; /// Stadium distances sorted by ID
     QMap<int, Souvenir*>        souvenirDbCache;  /// Souvenir cache sorted by ID
     QMap<int, Purchases*>       purchasesDbCache; /// Purchase cache sorted by ID
-
-    // This will run whenever a team or stadium is requested to ensure the
-    // caches are populated.  Once created, they don't need to be created again.
-    // Creates QMap caches of team and stadium objects.
-    // These can then be used thruout the application whenever needed.
-    // Creates teamDbCache, stadiumDbCacheByName, & stadiumDbCacheByID
 
     /*!
      * @brief Creates new memory caches of teams and stadiums each time team or stadium is requested
