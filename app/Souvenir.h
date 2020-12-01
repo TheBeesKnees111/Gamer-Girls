@@ -12,11 +12,16 @@ class Souvenir : public QObject
 {
     Q_OBJECT
 
-    int     souvenirID; /// Souvenir ID
-    int     teamID; /// Team ID
-    QString itemName; /// Souvenir name
-    float   itemPrice; /// Souvenir price
-    int     qtyPurchased; /// Quantity of souvenir purchased
+    /// Souvenir ID
+    int     souvenirID;
+    /// Team ID
+    int     teamID;
+    /// Souvenir name
+    QString itemName;
+    /// Souvenir price
+    float   itemPrice;
+    /// Quantity of souvenir purchased
+    int     qtyPurchased;
 
 public:
     /*!

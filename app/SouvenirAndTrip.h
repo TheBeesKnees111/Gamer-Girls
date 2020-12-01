@@ -147,12 +147,18 @@ private slots:
     void on_Confirm_Minnesota_Trip_PushButton_clicked();
 
 private:
-    Database            *database; /// Pointer to database object
-    QSqlQueryModel      *queryModel; /// Pointer to querymodel used to configure table
-    Ui::SouvenirAndTrip *ui; /// Pointer to ui object
-    QListWidgetItem     *listItem; /// Pointer to list widget item used to configure table
-    AdjacencyList       *adjList; /// Pointer to adjacency list used for traversal algorithms
-    QVector<Team*>      *teamList; /// Pointer to list of teams to visit. Used for shopping cart construction
+    /// Pointer to database object
+    Database            *database;
+    /// Pointer to querymodel used to configure table
+    QSqlQueryModel      *queryModel;
+    /// Pointer to ui object
+    Ui::SouvenirAndTrip *ui;
+    /// Pointer to list widget item used to configure table
+    QListWidgetItem     *listItem;
+    /// Pointer to adjacency list used for traversal algorithms
+    AdjacencyList       *adjList;
+    /// Pointer to list of teams to visit. Used for shopping cart construction
+    QVector<Team*>      *teamList;
 };
 
 #endif // SOUVENIRANDTRIP_H

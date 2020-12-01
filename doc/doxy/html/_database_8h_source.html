@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Jerry&#39;s NFL Journey: School/CS1D_Jerry/Project_2_Football/Gamer-Girls/app/Database.h Source File</title>
+<title>Jerry&#39;s NFL Journey: D:/Users/Verly/Desktop/School/CS1D_Jerry/Project_2_Football/Gamer-Girls/app/Database.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -103,7 +103,7 @@ $(document).ready(function(){initNavTree('_database_8h_source.html',''); initRes
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="class_souvenir.html">Souvenir</a>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_stadium.html">Stadium</a>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">class </span>Purchases;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_d_b_manager.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_adjacency_list.html">AdjacencyList</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="class_adjacency_list.html">AdjacencyList</a>;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="class_database.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_database.html">Database</a> : <span class="keyword">public</span> QSqlDatabase</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
@@ -181,34 +181,35 @@ $(document).ready(function(){initNavTree('_database_8h_source.html',''); initRes
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <a class="code" href="class_database.html">Database</a>();</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_database.html">Database</a> *instance;  </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    QSqlQuery query; </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    QMap&lt;int, Team*&gt;            teamDbCache; </div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    QMap&lt;QString, Team*&gt;        teamDbCacheByName; </div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    QMap&lt;QString, Stadium*&gt;     stadiumDbCacheByName; </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    QMap&lt;int, Stadium*&gt;         stadiumDbCacheByID; </div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    QMap&lt;int, StadiumDistance*&gt; stadiumDistanceCache; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    QMap&lt;int, Souvenir*&gt;        souvenirDbCache;  </div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    QMap&lt;int, Purchases*&gt;       purchasesDbCache; </div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160; </div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keywordtype">void</span> runGetAllTeamsAndStadiums();</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordtype">void</span> runGetAllStadiumDistances();</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;};</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">#endif // DATABASE_H</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_database.html">Database</a> *instance;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    QSqlQuery query;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    QMap&lt;int, Team*&gt;            teamDbCache;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    QMap&lt;QString, Team*&gt;        teamDbCacheByName;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    QMap&lt;QString, Stadium*&gt;     stadiumDbCacheByName;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    QMap&lt;int, Stadium*&gt;         stadiumDbCacheByID;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    QMap&lt;int, StadiumDistance*&gt; stadiumDistanceCache;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    QMap&lt;int, Souvenir*&gt;        souvenirDbCache;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    QMap&lt;int, Purchases*&gt;       purchasesDbCache;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160; </div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    <span class="keywordtype">void</span> runGetAllTeamsAndStadiums();</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="keywordtype">void</span> runGetAllStadiumDistances();</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;};</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor">#endif // DATABASE_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aclass_adjacency_list_html"><div class="ttname"><a href="class_adjacency_list.html">AdjacencyList</a></div><div class="ttdoc">The AdjacencyList class is an object that contains an adjacency list used in breadth first search.</div><div class="ttdef"><b>Definition:</b> AdjacencyList.h:12</div></div>
 <div class="ttc" id="aclass_team_html"><div class="ttname"><a href="class_team.html">Team</a></div><div class="ttdoc">The Team class an individual NFL team.</div><div class="ttdef"><b>Definition:</b> Team.h:14</div></div>
-<div class="ttc" id="aclass_database_html"><div class="ttname"><a href="class_database.html">Database</a></div><div class="ttdef"><b>Definition:</b> Database.h:25</div></div>
+<div class="ttc" id="aclass_database_html"><div class="ttname"><a href="class_database.html">Database</a></div><div class="ttdoc">The Database class manages core methods used to access the data stored in the database.</div><div class="ttdef"><b>Definition:</b> Database.h:25</div></div>
 <div class="ttc" id="aclass_stadium_distance_html"><div class="ttname"><a href="class_stadium_distance.html">StadiumDistance</a></div><div class="ttdoc">The StadiumDistance class serves as an Edge class for use in graph traversals.</div><div class="ttdef"><b>Definition:</b> StadiumDistance.h:18</div></div>
 <div class="ttc" id="aclass_stadium_html"><div class="ttname"><a href="class_stadium.html">Stadium</a></div><div class="ttdoc">The Stadium class represents stadiums available to travel to and from.</div><div class="ttdef"><b>Definition:</b> Stadium.h:13</div></div>
 <div class="ttc" id="aclass_souvenir_html"><div class="ttname"><a href="class_souvenir.html">Souvenir</a></div><div class="ttdoc">The Souvenir class represents souvenirs available for purchase at stadiums.</div><div class="ttdef"><b>Definition:</b> Souvenir.h:11</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_6eeac6bf64843b05eec82e52bde33a83.html">School</a></li><li class="navelem"><a class="el" href="dir_f77a008e811331ed2496a1f3c3963ffc.html">CS1D_Jerry</a></li><li class="navelem"><a class="el" href="dir_0201f479dd86f9c8a520d81795411d1f.html">Project_2_Football</a></li><li class="navelem"><a class="el" href="dir_509ae7cbbff5676bf5324426612971e9.html">Gamer-Girls</a></li><li class="navelem"><a class="el" href="dir_6fe83438b966b9484aad420c848cb85f.html">app</a></li><li class="navelem"><b>Database.h</b></li>
+    <li class="navelem"><a class="el" href="dir_d522931ffa1371640980b621734a4381.html">Users</a></li><li class="navelem"><a class="el" href="dir_b470564d3f23cc6fb212c37c7e1a19fb.html">Verly</a></li><li class="navelem"><a class="el" href="dir_e68b4fb15ac132cdf620d8e68466472f.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_52f709503f8f52b2112ef11e6bdef3c0.html">School</a></li><li class="navelem"><a class="el" href="dir_2470ad8ffca195a98262cb7294107b5b.html">CS1D_Jerry</a></li><li class="navelem"><a class="el" href="dir_349bf08fd92e54a1ebd1220a77448e12.html">Project_2_Football</a></li><li class="navelem"><a class="el" href="dir_c4de1f8ce8bbcf9c203fa68701236fb0.html">Gamer-Girls</a></li><li class="navelem"><a class="el" href="dir_9551dd868cbe30ef4fcf8fc91eb01bf8.html">app</a></li><li class="navelem"><b>Database.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

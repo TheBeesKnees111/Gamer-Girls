@@ -2,10 +2,8 @@ var hierarchy =
 [
     [ "AdjacencyList", "class_adjacency_list.html", null ],
     [ "BFS", "class_b_f_s.html", null ],
-    [ "DBManager", "class_d_b_manager.html", null ],
     [ "AdjacencyList::Edge", "struct_adjacency_list_1_1_edge.html", null ],
     [ "kruskals", "classkruskals.html", null ],
-    [ "Kruskals", "class_kruskals.html", null ],
     [ "QDialog", null, [
       [ "Admin", "class_admin.html", null ],
       [ "DisplayInfo", "class_display_info.html", null ],

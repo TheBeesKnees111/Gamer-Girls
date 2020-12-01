@@ -14,14 +14,22 @@ class Stadium : public QObject
 {
     Q_OBJECT
 
-    QString stadiumName; /// Name of stadium
-    int     stadiumID; /// Stadium's ID in database
-    int seatingCapacity; /// Seating capacity of stadium
-    QString location; /// Location (city) of stadium
-    QString surfaceType; /// Surface type of stadium
-    QString roofType; /// Roof type of stadium
-    int     dateOpened; /// Date stadium opened
-    QVector<Team*> teams; /// List of teams that play from this stadium
+    /// Name of stadium
+    QString stadiumName;
+    /// Stadium's ID in database
+    int     stadiumID;
+    /// Seating capacity of stadium
+    int seatingCapacity;
+    /// Location (city) of stadium
+    QString location;
+    /// Surface type of stadium
+    QString surfaceType;
+    /// Roof type of stadium
+    QString roofType;
+    /// Date stadium opened
+    int     dateOpened;
+    /// List of teams that play from this stadium
+    QVector<Team*> teams;
 
 public:
     /*!
@@ -112,7 +120,7 @@ public slots:
 
     /*!
      * @brief Mutator adds team that plays out of this stadium
-     * @param value; Team that plays out of this stadium
+     * @param newTeam; Team that plays out of this stadium
      */
     void addTeam(Team* newTeam);
 

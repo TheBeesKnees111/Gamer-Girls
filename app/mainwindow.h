@@ -53,8 +53,10 @@ private slots:
     void on_Souvenir_And_Trip_PushButton_clicked();
 
 private:
-    Ui::MainWindow *ui; /// Pointer to ui object
-    Database*       db; /// Pointer to database object
+    /// Pointer to ui object
+    Ui::MainWindow *ui;
+    /// Pointer to database object
+    Database*       db;
 
 };
 #endif // MAINWINDOW_H

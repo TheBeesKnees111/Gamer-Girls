@@ -93,12 +93,6 @@ void Admin::PopulateComboBoxesItems(QString sqlQuery, QComboBox* comboBox)
 	comboBox -> setCurrentIndex(-1);
 }
 
-// Initializes souvenir table to blank
-void InitializeSouvenirTable (QTableView* table)
-{
-
-}
-
 /// Populates souvenir table in the admin section with all data
 /// related to souvenirs
 void Admin::PopulateSouvenirTable ()
@@ -117,12 +111,6 @@ void Admin::PopulateSouvenirTable ()
 	ui -> Update_Souvenir_Datatable -> setColumnWidth(1, 200);
 
 	ui -> Update_Souvenir_Datatable -> verticalHeader() -> hide();
-}
-
-// Intializes stadium table to blank
-void InitializeStadiumTable (QTableView* table)
-{
-
 }
 
 // Populates stadium table with relevant information

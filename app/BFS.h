@@ -36,10 +36,14 @@ public:
     int GetDistanceTraveled() const;
 
 private:
-    AdjacencyList* aList; /// Adjacency list object referenced in traversal
-    QVector<QString> originNames; /// Names associated with vertices to traverse
-    int distanceTraveled; /// Total weight of edges traversed
-    QStringList traversalList; /// Final list of vertices traversed in order of traversal
+    /// Adjacency list object referenced in traversal
+    AdjacencyList* aList;
+    /// Names associated with vertices to traverse
+    QVector<QString> originNames;
+    /// Total weight of edges traversed
+    int distanceTraveled;
+    /// Final list of vertices traversed in order of traversal
+    QStringList traversalList;
 };
 
 #endif // BFS_H

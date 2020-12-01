@@ -14,24 +14,29 @@ class AdjacencyList
 public:
 
     /*!
-     * @struct Edge struct represents edge on a graph
+     * @brief Edge struct represents edge on a graph
      */
     struct Edge
     {
-        QString destination; /// Name of destination vertex
-        int distance; /// Weight of connection between vertices
+        /// Name of destination vertex
+        QString destination;
+        /// Weight of connection between vertices
+        int distance;
     };
 
     /*!
-     * @struct Vertex struct represents a vertex on a graph
+     * @brief Vertex struct represents a vertex on a graph
      */
     struct Vertex
     {
-        QString origin; /// Name of origin vertex
-        QList<Edge> destinations; /// List of connections from this vertex
+        /// Name of origin vertex
+        QString origin;
+        /// List of connections from this vertex
+        QList<Edge> destinations;
     };
 
-    QVector<Vertex> list; /// Internal list to contain adjacency list
+    /// Internal list to contain adjacency list
+    QVector<Vertex> list;
 
     /*!
      * @brief Default constructor

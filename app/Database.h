@@ -19,8 +19,8 @@ class Purchases;
 class AdjacencyList;
 
 /*!
- * @class DBManager
- * @brief The DBManager class manages core methods used to access the data stored in the database
+ * @class Database
+ * @brief The Database class manages core methods used to access the data stored in the database
  */
 class Database : public QSqlDatabase
 {
@@ -101,7 +101,7 @@ public:
 
     /*!
      * @brief Adds desired team's default souvenirs to database
-     * @param id; Desired team's ID
+     * @param teamId; Desired team's ID
      * @param souvenirs; List of souvenirs
      * @param prices; Prices of souvenirs
      */
@@ -249,15 +249,25 @@ private:
      * @brief Constructor private because singleton pattern
      */
     Database();
-    static Database *instance;  /// Pointer to static pointer used for singleton
-    QSqlQuery query; /// Default query to use in database
-    QMap<int, Team*>            teamDbCache; /// Team sorted by ID
-    QMap<QString, Team*>        teamDbCacheByName; /// Team cache sorted by name
-    QMap<QString, Stadium*>     stadiumDbCacheByName; /// Stadium cache sorted by name
-    QMap<int, Stadium*>         stadiumDbCacheByID; /// Stadium cache sorted by ID
-    QMap<int, StadiumDistance*> stadiumDistanceCache; /// Stadium distances sorted by ID
-    QMap<int, Souvenir*>        souvenirDbCache;  /// Souvenir cache sorted by ID
-    QMap<int, Purchases*>       purchasesDbCache; /// Purchase cache sorted by ID
+
+    /// Pointer to static pointer used for singleton
+    static Database *instance;
+    /// Default query to use in database
+    QSqlQuery query;
+    /// Team sorted by ID
+    QMap<int, Team*>            teamDbCache;
+    /// Team cache sorted by name
+    QMap<QString, Team*>        teamDbCacheByName;
+    /// Stadium cache sorted by name
+    QMap<QString, Stadium*>     stadiumDbCacheByName;
+    /// Stadium cache sorted by ID
+    QMap<int, Stadium*>         stadiumDbCacheByID;
+    /// Stadium distances sorted by ID
+    QMap<int, StadiumDistance*> stadiumDistanceCache;
+    /// Souvenir cache sorted by ID
+    QMap<int, Souvenir*>        souvenirDbCache;
+    /// Purchase cache sorted by ID
+    QMap<int, Purchases*>       purchasesDbCache;
 
     /*!
      * @brief Creates new memory caches of teams and stadiums each time team or stadium is requested

@@ -11,19 +11,26 @@
 #include "StadiumGraph.h"
 
 /*!
- * @class Kruskals
+ * @class kruskals
  * @brief The Kruskals class contains all objects necessary to kruskals algorithm to create minimum spanning tree
  */
 class kruskals
 {
 private:
-    QVector<StadiumDistance*> graph; /// Graph to reference during traversal
-    QVector<StadiumDistance*> mst; /// Minimum spanning tree created during traversal
-    QMap<Stadium*, Stadium*> parent; /// Parent values of each 'to' and 'from' stadium
-    int TOTAL_VERTICES; /// Total number of vertices in the graph
-    int cost; /// Total distance traveled during traversal
-    QVector<Team*> teamNames; /// List of teamnames to output during traversal
-    QStringList traversalList; /// Final list of stadiums visited in traversal order
+    /// Graph to reference during traversal
+    QVector<StadiumDistance*> graph;
+    /// Minimum spanning tree created during traversal
+    QVector<StadiumDistance*> mst;
+    /// Parent values of each 'to' and 'from' stadium
+    QMap<Stadium*, Stadium*> parent;
+    /// Total number of vertices in the graph
+    int TOTAL_VERTICES;
+    /// Total distance traveled during traversal
+    int cost;
+    /// List of teamnames to output during traversal
+    QVector<Team*> teamNames;
+    /// Final list of stadiums visited in traversal order
+    QStringList traversalList;
 public:
 
     /*!

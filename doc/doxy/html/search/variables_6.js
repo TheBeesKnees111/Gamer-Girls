@@ -1,15 +1,10 @@
 var searchData=
 [
-  ['seatingcapstadiumscolnames_424',['SeatingCapStadiumsColNames',['../class_display_info.html#a09baf9329c47c08ec677a204f2671e5c',1,'DisplayInfo']]],
-  ['souvenir_5fcol_5fcount_425',['SOUVENIR_COL_COUNT',['../class_souvenir_and_trip.html#a592f5c33a775a105ee7642b404bb24e9',1,'SouvenirAndTrip']]],
-  ['souvenir_5ftable_5fcol_5fcount_426',['SOUVENIR_TABLE_COL_COUNT',['../class_admin.html#a6724ca4810764ce79e88388c725b74b8',1,'Admin']]],
-  ['souvenircomboboxlabels_427',['souvenirComboBoxLabels',['../class_souvenir_and_trip.html#a802c26b828225ba47e6c6150cc0bf77a',1,'SouvenirAndTrip']]],
-  ['souvenirheaders_428',['souvenirHeaders',['../class_souvenir_and_trip.html#acf1f0b6e0308b12ff9e3d4120feb0cf7',1,'SouvenirAndTrip']]],
-  ['souvenirprices_429',['souvenirPrices',['../class_admin.html#acbb28d3dccc4812fceb9f92330a9fb55',1,'Admin']]],
-  ['souvenirtablecolnames_430',['souvenirTableColNames',['../class_admin.html#ab04fe7785d272b986bb93ca582edfe4e',1,'Admin']]],
-  ['spin_5fmax_431',['SPIN_MAX',['../class_purchase_table.html#a458447ca6db2b6b2b7576745c03e8615',1,'PurchaseTable']]],
-  ['spin_5fmin_432',['SPIN_MIN',['../class_purchase_table.html#ae2fed402126ea104128dfd85d9c20db4',1,'PurchaseTable']]],
-  ['spinboxes_433',['spinBoxes',['../class_purchase_table.html#a3fd70fe561c09872bd7c8124852cfad8',1,'PurchaseTable']]],
-  ['stadiums_5fseating_5fcap_434',['STADIUMS_SEATING_CAP',['../class_display_info.html#a5739be2cfd3f0d1caaa9e4778975ccc8',1,'DisplayInfo']]],
-  ['stadiumsbydatecolnames_435',['StadiumsByDateColNames',['../class_display_info.html#a1e3e565bad858e4792d252e9ea5b754a',1,'DisplayInfo']]]
+  ['one_5fteam_5fcol_5fcount_421',['ONE_TEAM_COL_COUNT',['../class_display_info.html#a6300033f6c5c3590a29a1c23e3a23127',1,'DisplayInfo']]],
+  ['one_5fteam_5fsouvenir_5fcol_5fcount_422',['ONE_TEAM_SOUVENIR_COL_COUNT',['../class_display_info.html#a356987fdb1003df01c45fb8f50be331e',1,'DisplayInfo']]],
+  ['oneteamsouvenircolnames_423',['OneTeamSouvenirColNames',['../class_display_info.html#aa3ce3f8b282148865b854b4129dce08c',1,'DisplayInfo']]],
+  ['oneteamtablecolnames_424',['oneTeamTableColNames',['../class_display_info.html#a96e1b08037ba940b8798ef0e9fa152f1',1,'DisplayInfo']]],
+  ['open_5froof_5fcol_5fcount_425',['OPEN_ROOF_COL_COUNT',['../class_display_info.html#a8380d380a2a871798a924e58783cb6d8',1,'DisplayInfo']]],
+  ['openstadiumscolnames_426',['OpenStadiumsColNames',['../class_display_info.html#a8fad8917eadb6cde27c22511614d422f',1,'DisplayInfo']]],
+  ['origin_427',['origin',['../struct_adjacency_list_1_1_vertex.html#a30c3018c7ef3b2348eeb948832306d44',1,'AdjacencyList::Vertex']]]
 ];

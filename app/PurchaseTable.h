@@ -93,9 +93,12 @@ private slots:
     void on_okay_pushButton_clicked();
 
 private:
-    Ui::PurchaseTable *ui; /// Pointer to ui object
-    QVector<Team*>* teamCart; /// Pointer to shopping list information
-    Database* db; /// Pointer to database object
+    /// Pointer to ui object
+    Ui::PurchaseTable *ui;
+    /// Pointer to shopping list information
+    QVector<Team*>* teamCart;
+    /// Pointer to database object
+    Database* db;
 };
 
 #endif // PurchaseTable_H

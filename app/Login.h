@@ -37,7 +37,8 @@ private slots:
 
 
 private:
-    Ui::Login *ui; /// Pointer to ui object
+    /// Pointer to ui object
+    Ui::Login *ui;
 };
 
 #endif // LOGIN_H

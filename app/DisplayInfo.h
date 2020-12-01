@@ -150,13 +150,6 @@ public:
     void InitializeViewTable(QTableWidget* table, const int &cols, const QStringList &headers);
 
     /*!
-     * @brief Populates viewer table with information
-     * @param table; Table to initialize
-     * @param teamList; Container of team information with which to populate table
-     */
-    void PopulateViewTable(QTableWidget* table, QVector<Team*> teamList);
-
-    /*!
      * @brief Populates table with single team information (requirement 2)
      * @param table; Table to initialize
      * @param team; Team information with which to populate table
@@ -294,8 +287,10 @@ private slots:
     void on_Show_Bermuda_Grass_Stadiums_PushButton_clicked();
 
 private:
-    Ui::DisplayInfo *ui; /// Pointer to ui object
-    Database* db; /// Pointer to database object
+    /// Pointer to ui object
+    Ui::DisplayInfo *ui;
+    /// Pointer to database object
+    Database* db;
 };
 
 #endif // DISPLAYINFO_H

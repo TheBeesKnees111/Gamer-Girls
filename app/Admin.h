@@ -62,21 +62,9 @@ public:
 	void PopulateComboBoxesItems(QString sqlQuery, QComboBox* comboBox);
 
     /*!
-     * @brief Will intialize souvenir table to blank
-     * @param table; Table to initialize
-     */
-    void InitializeSouvenirTable(QTableView* table);
-
-    /*!
      * @brief Will populate souvenir table with relevant information
      */
     void PopulateSouvenirTable();
-
-    /*!
-     * @brief Will intialize stadium table to blank
-     * @param table; Table to initialize
-     */
-    void InitializeStadiumTable(QTableView* table);
 
     /*!
      * @brief Will populate souvenir table with relevant information
@@ -150,9 +138,12 @@ private slots:
 	void on_Edit_Stadium_TableView_clicked(const QModelIndex &index);
 
 	private:
-    Ui::Admin *ui; /// UI pointer used to display table
-    int		   souvenirID; /// SouvenirID used for interaction with database
-    int        selectedTeamID = 0; /// Selected team used for interaction with database
+    /// UI pointer used to display table
+    Ui::Admin *ui;
+    /// SouvenirID used for interaction with database
+    int		   souvenirID;
+    /// Selected team used for interaction with database
+    int        selectedTeamID = 0;
 };
 
 #endif // ADMIN_H

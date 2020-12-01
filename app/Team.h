@@ -15,12 +15,18 @@ class Team : public QObject
 {
     Q_OBJECT
 
-    int                 teamID; /// Team's ID
-    QString             teamName; /// Team's name
-    QString             conference; /// Team's conference
-    QString             division; /// Team's division
-    QVector<Souvenir*>  souvenirList; /// Team's souvenir list
-    Stadium             *stadium; /// Pointer to team's stadium
+    /// Team's ID
+    int                 teamID;
+    /// Team's name
+    QString             teamName;
+    /// Team's conference
+    QString             conference;
+    /// Team's division
+    QString             division;
+    /// Team's souvenir list
+    QVector<Souvenir*>  souvenirList;
+    /// Pointer to team's stadium
+    Stadium             *stadium;
 
 public:
     /*!

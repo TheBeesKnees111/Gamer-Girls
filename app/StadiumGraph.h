@@ -6,7 +6,7 @@
 #include "StadiumDistance.h"
 
 /*!
- * @struct StadiumGraph struct creates a graph from which to reference for various traversal algorithms
+ * @brief StadiumGraph struct creates a graph from which to reference for various traversal algorithms
  */
 struct StadiumGraph
 {
@@ -15,13 +15,6 @@ struct StadiumGraph
 
     /// Adjacency list represents each vertex and its associated edge
     QHash<Stadium*, QVector<StadiumDistance*>> adjacencyList;
-
-    // Utility function for the graph.  This doesn't run any queries
-    // by itself, so it doesn't belong in Databse.
-    // static because it's creating a graph instance which will be
-    // shared across the app.
-    // Called a factory function (like a named constructor).
-    // included in the struct because it's a funtion of a graph.
 
     /*!
      * @brief Creates stadium graph object to be used by other modules to reference for traversal

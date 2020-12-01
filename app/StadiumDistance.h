@@ -74,10 +74,14 @@ public:
     void setDistanceID(int value);
 
 private:
-    Stadium *fromStadium;       /// Pointer to origin Stadium
-    Stadium *toStadium;         /// Pointer to destination Stadium
-    int     distance;           /// Weight of edge
-    int     distanceID;         /// Database ID of this edge
+    /// Pointer to origin Stadium
+    Stadium *fromStadium;
+    /// Pointer to destination Stadium
+    Stadium *toStadium;
+    /// Weight of edge
+    int     distance;
+    /// Database ID of this edge
+    int     distanceID;
 };
 
 #endif // STADIUMDISTANCE_H
