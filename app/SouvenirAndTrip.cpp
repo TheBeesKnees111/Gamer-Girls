@@ -462,7 +462,10 @@ void SouvenirAndTrip::on_Confirm_Custom_Trip_PushButton_clicked()
         QString distanceOutput = "Total Distance Traveled: ";
         StadiumGraph graph = StadiumGraph::createStadiumGraph(database);
 
-        // place all stadiums in tripList (for use in shopping cart). Never touch this again
+        // store the intended first city
+        QString firstStadium = database->getStadiumByID(ui->Custom_Trip_Select_Stadium_ComboBox->currentIndex()+1)->getStadiumName();
+
+        customTripList.push_front(firstStadium);
 
         // place all stadiums in pending queue
         for (int i = 0; i < customTripList.size(); i++)
@@ -476,16 +479,13 @@ void SouvenirAndTrip::on_Confirm_Custom_Trip_PushButton_clicked()
          // nextStadium = getstadium(nextName)
         nextStadium = database->getStadiumByName(nextName);
 
-         // pop pending.head()
+        // pop pending.head()
         pending.pop_front();
 
+        // visited.push_back(nextName)
+        visited.push_back(nextName);
 
-         // visited.push_back(nextName)
-         visited.push_back(nextName);
-
-
-
-
+        // While there are stadiums left to visit,
         while(!pending.empty())
         {
           // run dijkstras. nextStadium as origin, queue.head as destination
@@ -523,9 +523,6 @@ void SouvenirAndTrip::on_Confirm_Custom_Trip_PushButton_clicked()
 
     // Enable cart button
     ui->customTrip_cart_button->setEnabled(true);
-
-
-
 }
 
 // Will activate pulling souvenirs for this team
@@ -753,7 +750,6 @@ void SouvenirAndTrip::on_Confirm_Custom_Shortest_Trip_PushButton_clicked()
     int distance = 0;
     QString distanceOutput = "Total Distance Traveled: ";
 
-
     //grab index of selected stadium/team from user-> add one in order to access correct team otherwise it will be an index behind
     int index = ui->Shortest_Distance_Select_Stadium_ComboBox->currentIndex() + 1;
 
@@ -816,21 +812,6 @@ void SouvenirAndTrip::on_shortestCustomTrip_cart_button_clicked()
 
 void SouvenirAndTrip::on_Select_Cities_ListWidget_itemClicked(QListWidgetItem *item)
 {
-    QQueue<QString> listOfStadiums;
-        QList<int>  listOfDistances;
-
-
-        QString nextName; // next stadium's name
-        QStringList visited; // list of visited stadiums
-        QStringList tripList; // list of stadiums returned from dijkstras
-        QQueue<QString> pending; // ongoing list of stadiums to visit
-        Stadium* nextStadium = new Stadium; // next stadium to check
-        int distance = 0;
-       // int index = 0;
-        QQueue<QString> stadiumId;
-
-        QString distanceOutput = "Total Distance Traveled: ";
-
         //if the button is clicked check to see if all tables cities are on my customTripList
         for(int index = 0; index < ui -> Select_Cities_ListWidget -> count(); index++)
         {
@@ -841,6 +822,7 @@ void SouvenirAndTrip::on_Select_Cities_ListWidget_itemClicked(QListWidgetItem *i
                 customTripList.push_back(ui->Select_Cities_ListWidget->item(index)->text());
             }
         }
+
         for (int i = 0; i < customTripList.size(); i++)
         {
               qDebug() << customTripList.at(i);
