@@ -1,0 +1,238 @@
+\hypertarget{class_admin}{}\doxysection{Admin Class Reference}
+\label{class_admin}\index{Admin@{Admin}}
+
+
+The \mbox{\hyperlink{class_admin}{Admin}} class is an object that manages all administrator module functionality.  
+
+
+
+
+{\ttfamily \#include $<$Admin.\+h$>$}
+
+Inheritance diagram for Admin\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_admin}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_admin_a838b854f674ad6a17763adc08bdaecdb}\label{class_admin_a838b854f674ad6a17763adc08bdaecdb}} 
+enum \mbox{\hyperlink{class_admin_a838b854f674ad6a17763adc08bdaecdb}{Admin\+Pages}} 
+\begin{DoxyCompactList}\small\item\em Enum represents ui pages of administrator section. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_admin_a344ce5589de378372bdabbcb1f0299ee}\label{class_admin_a344ce5589de378372bdabbcb1f0299ee}} 
+enum \mbox{\hyperlink{class_admin_a344ce5589de378372bdabbcb1f0299ee}{Souvenir\+Table\+Col\+Positions}} \{ {\bfseries I\+\_\+\+T\+E\+AM}, 
+{\bfseries I\+\_\+\+N\+A\+ME}, 
+{\bfseries I\+\_\+\+P\+R\+I\+CE}
+ \}
+\begin{DoxyCompactList}\small\item\em Positions of columns by name \char`\"{}add souvenir\char`\"{} and \char`\"{}edit souvenir\char`\"{} tab in admin. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_admin_a228ac50d4e6da452399d6f9a21263a96}\label{class_admin_a228ac50d4e6da452399d6f9a21263a96}} 
+enum \mbox{\hyperlink{class_admin_a228ac50d4e6da452399d6f9a21263a96}{stadium\+Table\+Col\+Positions}} \{ \newline
+{\bfseries S\+\_\+\+N\+A\+ME}, 
+{\bfseries S\+\_\+\+T\+E\+AM}, 
+{\bfseries S\+\_\+\+C\+A\+P\+A\+C\+I\+TY}, 
+{\bfseries S\+\_\+\+L\+O\+C\+A\+T\+I\+ON}, 
+\newline
+{\bfseries S\+\_\+\+S\+U\+R\+F\+A\+C\+E\+\_\+\+T\+Y\+PE}, 
+{\bfseries S\+\_\+\+R\+O\+O\+F\+\_\+\+T\+Y\+PE}, 
+{\bfseries S\+\_\+\+D\+A\+T\+E\+\_\+\+O\+P\+E\+N\+ED}
+ \}
+\begin{DoxyCompactList}\small\item\em Positions of columns by name in \char`\"{}edit stadium\char`\"{} tab of admin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_admin_a6d955862eeeee63ffbc6d75ce6cd1d92}{Populate\+Combo\+Boxes}} (Q\+String sql\+Query, Q\+Combo\+Box $\ast$combo\+Box)
+\begin{DoxyCompactList}\small\item\em Populates values in combobox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_admin_a317bd214e4656fa775071382660685ff}{Populate\+Combo\+Boxes\+Items}} (Q\+String sql\+Query, Q\+Combo\+Box $\ast$combo\+Box)
+\begin{DoxyCompactList}\small\item\em Populates items in combobox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_admin_acecf23096ce1036942e899d4fe348d22}{Initialize\+Souvenir\+Table}} (Q\+Table\+View $\ast$table)
+\begin{DoxyCompactList}\small\item\em Will intialize souvenir table to blank. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_admin_ab09adaaf7dbd87214238a3e5045970a2}{Populate\+Souvenir\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Will populate souvenir table with relevant information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_admin_a8f88aae823b49435db6cddf55e8ba84e}{Initialize\+Stadium\+Table}} (Q\+Table\+View $\ast$table)
+\begin{DoxyCompactList}\small\item\em Will intialize stadium table to blank. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_admin_a18bb2c9bf32a48023cb1c5a1da162a9b}\label{class_admin_a18bb2c9bf32a48023cb1c5a1da162a9b}} 
+void \mbox{\hyperlink{class_admin_a18bb2c9bf32a48023cb1c5a1da162a9b}{Populate\+Stadium\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Will populate souvenir table with relevant information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_admin_aae72086dda03cf24ea323de2faa51076}{Populate\+Purchases\+Table}} ()
+\begin{DoxyCompactList}\small\item\em Will populate purchases table with relevant information. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_admin_a981c403e806524e759a09163a63735b5}{Is\+Only\+Spaces}} (Q\+String \&value)
+\begin{DoxyCompactList}\small\item\em Will determine if user input consists only of spaces. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_admin_a94351bd345ea0e3155d8ab691d424d35}{Admin}} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_admin_a8fb5fe72fb4e05d50980c13cdf3b779c}\label{class_admin_a8fb5fe72fb4e05d50980c13cdf3b779c}} 
+\mbox{\hyperlink{class_admin_a8fb5fe72fb4e05d50980c13cdf3b779c}{$\sim$\+Admin}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_admin_a6724ca4810764ce79e88388c725b74b8}\label{class_admin_a6724ca4810764ce79e88388c725b74b8}} 
+const int \mbox{\hyperlink{class_admin_a6724ca4810764ce79e88388c725b74b8}{S\+O\+U\+V\+E\+N\+I\+R\+\_\+\+T\+A\+B\+L\+E\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 3
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}add souvenir\char`\"{} and \char`\"{}edit souvenir\char`\"{} tab in admin (name, team, price) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_admin_ab04fe7785d272b986bb93ca582edfe4e}\label{class_admin_ab04fe7785d272b986bb93ca582edfe4e}} 
+Q\+String\+List \mbox{\hyperlink{class_admin_ab04fe7785d272b986bb93ca582edfe4e}{souvenir\+Table\+Col\+Names}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_souvenir}{Souvenir}} Name\char`\"{} , \char`\"{}\mbox{\hyperlink{class_souvenir}{Souvenir}} Price\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Names of column headers\+: e.\+x. \{ \char`\"{}\+Team Name\char`\"{}, \char`\"{}\char`\"{} \} \char`\"{}add souvenir\char`\"{} and \char`\"{}edit souvenir\char`\"{} tab in admin. \end{DoxyCompactList}\item 
+Q\+String\+List \mbox{\hyperlink{class_admin_a6d48873cda0ebcd9324f2c07b09c6560}{default\+Souvenirs}}
+\begin{DoxyCompactList}\small\item\em Default souvenirs for new teams. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_admin_acbb28d3dccc4812fceb9f92330a9fb55}\label{class_admin_acbb28d3dccc4812fceb9f92330a9fb55}} 
+Q\+Vector$<$ double $>$ \mbox{\hyperlink{class_admin_acbb28d3dccc4812fceb9f92330a9fb55}{souvenir\+Prices}} = \{77.\+99, 99.\+89, 17.\+99, 29.\+99, 199.\+99\}
+\begin{DoxyCompactList}\small\item\em Prices for default souvenirs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_admin}{Admin}} class is an object that manages all administrator module functionality. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_admin_a94351bd345ea0e3155d8ab691d424d35}\label{class_admin_a94351bd345ea0e3155d8ab691d424d35}} 
+\index{Admin@{Admin}!Admin@{Admin}}
+\index{Admin@{Admin}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{Admin()}{Admin()}}
+{\footnotesize\ttfamily Admin\+::\+Admin (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent;} & Pointer to parent object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_admin_acecf23096ce1036942e899d4fe348d22}\label{class_admin_acecf23096ce1036942e899d4fe348d22}} 
+\index{Admin@{Admin}!InitializeSouvenirTable@{InitializeSouvenirTable}}
+\index{InitializeSouvenirTable@{InitializeSouvenirTable}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{InitializeSouvenirTable()}{InitializeSouvenirTable()}}
+{\footnotesize\ttfamily void Admin\+::\+Initialize\+Souvenir\+Table (\begin{DoxyParamCaption}\item[{Q\+Table\+View $\ast$}]{table }\end{DoxyParamCaption})}
+
+
+
+Will intialize souvenir table to blank. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to initialize \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_admin_a8f88aae823b49435db6cddf55e8ba84e}\label{class_admin_a8f88aae823b49435db6cddf55e8ba84e}} 
+\index{Admin@{Admin}!InitializeStadiumTable@{InitializeStadiumTable}}
+\index{InitializeStadiumTable@{InitializeStadiumTable}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{InitializeStadiumTable()}{InitializeStadiumTable()}}
+{\footnotesize\ttfamily void Admin\+::\+Initialize\+Stadium\+Table (\begin{DoxyParamCaption}\item[{Q\+Table\+View $\ast$}]{table }\end{DoxyParamCaption})}
+
+
+
+Will intialize stadium table to blank. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to initialize \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_admin_a981c403e806524e759a09163a63735b5}\label{class_admin_a981c403e806524e759a09163a63735b5}} 
+\index{Admin@{Admin}!IsOnlySpaces@{IsOnlySpaces}}
+\index{IsOnlySpaces@{IsOnlySpaces}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{IsOnlySpaces()}{IsOnlySpaces()}}
+{\footnotesize\ttfamily bool Admin\+::\+Is\+Only\+Spaces (\begin{DoxyParamCaption}\item[{Q\+String \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Will determine if user input consists only of spaces. 
+
+Check if line edit is only composed of spaces.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & Value to text \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool; True/\+False of whether or not input is valid 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_admin_a6d955862eeeee63ffbc6d75ce6cd1d92}\label{class_admin_a6d955862eeeee63ffbc6d75ce6cd1d92}} 
+\index{Admin@{Admin}!PopulateComboBoxes@{PopulateComboBoxes}}
+\index{PopulateComboBoxes@{PopulateComboBoxes}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{PopulateComboBoxes()}{PopulateComboBoxes()}}
+{\footnotesize\ttfamily void Admin\+::\+Populate\+Combo\+Boxes (\begin{DoxyParamCaption}\item[{Q\+String}]{sql\+Query,  }\item[{Q\+Combo\+Box $\ast$}]{combo\+Box }\end{DoxyParamCaption})}
+
+
+
+Populates values in combobox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sql\+Query;} & Query used to populate combobox \\
+\hline
+{\em combo\+Box;} & Combobox object to populate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_admin_a317bd214e4656fa775071382660685ff}\label{class_admin_a317bd214e4656fa775071382660685ff}} 
+\index{Admin@{Admin}!PopulateComboBoxesItems@{PopulateComboBoxesItems}}
+\index{PopulateComboBoxesItems@{PopulateComboBoxesItems}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{PopulateComboBoxesItems()}{PopulateComboBoxesItems()}}
+{\footnotesize\ttfamily void Admin\+::\+Populate\+Combo\+Boxes\+Items (\begin{DoxyParamCaption}\item[{Q\+String}]{sql\+Query,  }\item[{Q\+Combo\+Box $\ast$}]{combo\+Box }\end{DoxyParamCaption})}
+
+
+
+Populates items in combobox. 
+
+Populates all combo boxes with relaed information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sql\+Query;} & Query used to populate combobox \\
+\hline
+{\em combo\+Box;} & Combobox object to populate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_admin_aae72086dda03cf24ea323de2faa51076}\label{class_admin_aae72086dda03cf24ea323de2faa51076}} 
+\index{Admin@{Admin}!PopulatePurchasesTable@{PopulatePurchasesTable}}
+\index{PopulatePurchasesTable@{PopulatePurchasesTable}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{PopulatePurchasesTable()}{PopulatePurchasesTable()}}
+{\footnotesize\ttfamily void Admin\+::\+Populate\+Purchases\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will populate purchases table with relevant information. 
+
+Populate table of purchases. \mbox{\Hypertarget{class_admin_ab09adaaf7dbd87214238a3e5045970a2}\label{class_admin_ab09adaaf7dbd87214238a3e5045970a2}} 
+\index{Admin@{Admin}!PopulateSouvenirTable@{PopulateSouvenirTable}}
+\index{PopulateSouvenirTable@{PopulateSouvenirTable}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{PopulateSouvenirTable()}{PopulateSouvenirTable()}}
+{\footnotesize\ttfamily void Admin\+::\+Populate\+Souvenir\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will populate souvenir table with relevant information. 
+
+Populates souvenir table in the admin section with all data related to souvenirs 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_admin_a6d48873cda0ebcd9324f2c07b09c6560}\label{class_admin_a6d48873cda0ebcd9324f2c07b09c6560}} 
+\index{Admin@{Admin}!defaultSouvenirs@{defaultSouvenirs}}
+\index{defaultSouvenirs@{defaultSouvenirs}!Admin@{Admin}}
+\doxysubsubsection{\texorpdfstring{defaultSouvenirs}{defaultSouvenirs}}
+{\footnotesize\ttfamily Q\+String\+List Admin\+::default\+Souvenirs}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{\textcolor{stringliteral}{"Signed Helmets"},}
+\DoxyCodeLine{                                    \textcolor{stringliteral}{"Autographed Football"},}
+\DoxyCodeLine{                                    \textcolor{stringliteral}{"Team Pennant"},}
+\DoxyCodeLine{                                    \textcolor{stringliteral}{"Team Picture"},}
+\DoxyCodeLine{                                    \textcolor{stringliteral}{"Team Jersey"}\}}
+
+\end{DoxyCode}
+
+
+Default souvenirs for new teams. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Admin.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Admin.\+cpp\end{DoxyCompactItemize}

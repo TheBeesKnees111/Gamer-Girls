@@ -1,0 +1,185 @@
+\hypertarget{class_souvenir_and_trip}{}\doxysection{Souvenir\+And\+Trip Class Reference}
+\label{class_souvenir_and_trip}\index{SouvenirAndTrip@{SouvenirAndTrip}}
+
+
+The \mbox{\hyperlink{class_souvenir_and_trip}{Souvenir\+And\+Trip}} class contains all objects necessary to plan trips and view one team\textquotesingle{}s souvenirs.  
+
+
+
+
+{\ttfamily \#include $<$Souvenir\+And\+Trip.\+h$>$}
+
+Inheritance diagram for Souvenir\+And\+Trip\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_souvenir_and_trip}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_ab0badea07af12cc5bae6e59970ac1670}\label{class_souvenir_and_trip_ab0badea07af12cc5bae6e59970ac1670}} 
+enum \mbox{\hyperlink{class_souvenir_and_trip_ab0badea07af12cc5bae6e59970ac1670}{Souvenir\+Col\+Positions}} \{ {\bfseries T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries S\+O\+U\+V\+E\+N\+I\+R\+\_\+\+N\+A\+ME}, 
+{\bfseries S\+O\+U\+V\+E\+N\+I\+R\+\_\+\+P\+R\+I\+CE}
+ \}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_souvenir}{Souvenir}} column positions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_a781b7127083ff68cbcff3689202a752b}\label{class_souvenir_and_trip_a781b7127083ff68cbcff3689202a752b}} 
+enum \mbox{\hyperlink{class_souvenir_and_trip_a781b7127083ff68cbcff3689202a752b}{Trip\+Table\+Col\+Positions}} \{ {\bfseries T\+\_\+\+T\+E\+AM}, 
+{\bfseries T\+\_\+\+S\+T\+A\+D\+I\+UM}
+ \}
+\begin{DoxyCompactList}\small\item\em Trip table column positions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_souvenir_and_trip_a5bcba4cdb4975c5866f967b329d49d7d}{Initialize\+Souvenir\+Table}} (Q\+Table\+Widget $\ast$table, const int \&cols, const Q\+String\+List \&headers)
+\begin{DoxyCompactList}\small\item\em Initializes souvenir table to blank. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_souvenir_and_trip_a2f0a01da556138d16767f285a90ad2b6}{Populate\+Souvenir\+Table}} (\mbox{\hyperlink{class_team}{Team}} $\ast$team)
+\begin{DoxyCompactList}\small\item\em Populates souvenir table with relevant information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_souvenir_and_trip_a5f230752af19ec48b308015184fdf09c}{Delete\+All\+Table\+Rows}} (Q\+Table\+Widget $\ast$table)
+\begin{DoxyCompactList}\small\item\em Helper method deletes table rows to initialize to blank. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_souvenir_and_trip_a178dca146a226de479a02299389dc2ab}{Initialize\+Trip\+Table}} (Q\+Table\+Widget $\ast$table, const int \&cols, const Q\+String\+List \&headers)
+\begin{DoxyCompactList}\small\item\em Initializes trip table to blank. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_souvenir_and_trip_a18f2ab57e8afa06fd97dba30b37590c0}{Populate\+Trip\+Table}} (Q\+Table\+Widget $\ast$table, const Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$teams)
+\begin{DoxyCompactList}\small\item\em Populates trip table with relevant information. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_souvenir_and_trip_ade541ebba1a0b56f530fd732e95ffc23}{Souvenir\+And\+Trip}} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_a0e331861dbbc38599aac028174ea468c}\label{class_souvenir_and_trip_a0e331861dbbc38599aac028174ea468c}} 
+\mbox{\hyperlink{class_souvenir_and_trip_a0e331861dbbc38599aac028174ea468c}{$\sim$\+Souvenir\+And\+Trip}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_a592f5c33a775a105ee7642b404bb24e9}\label{class_souvenir_and_trip_a592f5c33a775a105ee7642b404bb24e9}} 
+const int \mbox{\hyperlink{class_souvenir_and_trip_a592f5c33a775a105ee7642b404bb24e9}{S\+O\+U\+V\+E\+N\+I\+R\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 3
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_souvenir}{Souvenir}} table column count. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_a802c26b828225ba47e6c6150cc0bf77a}\label{class_souvenir_and_trip_a802c26b828225ba47e6c6150cc0bf77a}} 
+Q\+String\+List \mbox{\hyperlink{class_souvenir_and_trip_a802c26b828225ba47e6c6150cc0bf77a}{souvenir\+Combo\+Box\+Labels}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_souvenir}{Souvenir}} combobox labels. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_acf1f0b6e0308b12ff9e3d4120feb0cf7}\label{class_souvenir_and_trip_acf1f0b6e0308b12ff9e3d4120feb0cf7}} 
+Q\+String\+List \mbox{\hyperlink{class_souvenir_and_trip_acf1f0b6e0308b12ff9e3d4120feb0cf7}{souvenir\+Headers}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_souvenir}{Souvenir}} Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_souvenir}{Souvenir}} Price\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_souvenir}{Souvenir}} column headers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_aa0dba6438457c700df2aecca51be7a5b}\label{class_souvenir_and_trip_aa0dba6438457c700df2aecca51be7a5b}} 
+const int \mbox{\hyperlink{class_souvenir_and_trip_aa0dba6438457c700df2aecca51be7a5b}{T\+R\+I\+P\+\_\+\+T\+A\+B\+L\+E\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 2
+\begin{DoxyCompactList}\small\item\em Trip table column count. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_a9e011cebc966fb3d4374b38114c929fe}\label{class_souvenir_and_trip_a9e011cebc966fb3d4374b38114c929fe}} 
+Q\+String\+List \mbox{\hyperlink{class_souvenir_and_trip_a9e011cebc966fb3d4374b38114c929fe}{trip\+Table\+Headers}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_stadium}{Stadium}} Names\char`\"{}\}
+\begin{DoxyCompactList}\small\item\em Trip table column headers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_souvenir_and_trip_a74e98ef2095bfc4fbc9ed0bbef32795d}\label{class_souvenir_and_trip_a74e98ef2095bfc4fbc9ed0bbef32795d}} 
+int \mbox{\hyperlink{class_souvenir_and_trip_a74e98ef2095bfc4fbc9ed0bbef32795d}{distance\+Traveled}}
+\begin{DoxyCompactList}\small\item\em Total Distance traveled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_souvenir_and_trip}{Souvenir\+And\+Trip}} class contains all objects necessary to plan trips and view one team\textquotesingle{}s souvenirs. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_souvenir_and_trip_ade541ebba1a0b56f530fd732e95ffc23}\label{class_souvenir_and_trip_ade541ebba1a0b56f530fd732e95ffc23}} 
+\index{SouvenirAndTrip@{SouvenirAndTrip}!SouvenirAndTrip@{SouvenirAndTrip}}
+\index{SouvenirAndTrip@{SouvenirAndTrip}!SouvenirAndTrip@{SouvenirAndTrip}}
+\doxysubsubsection{\texorpdfstring{SouvenirAndTrip()}{SouvenirAndTrip()}}
+{\footnotesize\ttfamily Souvenir\+And\+Trip\+::\+Souvenir\+And\+Trip (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$parent;} & Pointer to parent object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_souvenir_and_trip_a5f230752af19ec48b308015184fdf09c}\label{class_souvenir_and_trip_a5f230752af19ec48b308015184fdf09c}} 
+\index{SouvenirAndTrip@{SouvenirAndTrip}!DeleteAllTableRows@{DeleteAllTableRows}}
+\index{DeleteAllTableRows@{DeleteAllTableRows}!SouvenirAndTrip@{SouvenirAndTrip}}
+\doxysubsubsection{\texorpdfstring{DeleteAllTableRows()}{DeleteAllTableRows()}}
+{\footnotesize\ttfamily void Souvenir\+And\+Trip\+::\+Delete\+All\+Table\+Rows (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table }\end{DoxyParamCaption})}
+
+
+
+Helper method deletes table rows to initialize to blank. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table from which to delete all rows \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_souvenir_and_trip_a5bcba4cdb4975c5866f967b329d49d7d}\label{class_souvenir_and_trip_a5bcba4cdb4975c5866f967b329d49d7d}} 
+\index{SouvenirAndTrip@{SouvenirAndTrip}!InitializeSouvenirTable@{InitializeSouvenirTable}}
+\index{InitializeSouvenirTable@{InitializeSouvenirTable}!SouvenirAndTrip@{SouvenirAndTrip}}
+\doxysubsubsection{\texorpdfstring{InitializeSouvenirTable()}{InitializeSouvenirTable()}}
+{\footnotesize\ttfamily void Souvenir\+And\+Trip\+::\+Initialize\+Souvenir\+Table (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table,  }\item[{const int \&}]{cols,  }\item[{const Q\+String\+List \&}]{headers }\end{DoxyParamCaption})}
+
+
+
+Initializes souvenir table to blank. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to initialize to blank \\
+\hline
+{\em cols;} & Number of columns in table \\
+\hline
+{\em headers;} & Column header names \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_souvenir_and_trip_a178dca146a226de479a02299389dc2ab}\label{class_souvenir_and_trip_a178dca146a226de479a02299389dc2ab}} 
+\index{SouvenirAndTrip@{SouvenirAndTrip}!InitializeTripTable@{InitializeTripTable}}
+\index{InitializeTripTable@{InitializeTripTable}!SouvenirAndTrip@{SouvenirAndTrip}}
+\doxysubsubsection{\texorpdfstring{InitializeTripTable()}{InitializeTripTable()}}
+{\footnotesize\ttfamily void Souvenir\+And\+Trip\+::\+Initialize\+Trip\+Table (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table,  }\item[{const int \&}]{cols,  }\item[{const Q\+String\+List \&}]{headers }\end{DoxyParamCaption})}
+
+
+
+Initializes trip table to blank. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to initialize to blank \\
+\hline
+{\em cols;} & Number of columns in table \\
+\hline
+{\em headers;} & Column header names \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_souvenir_and_trip_a2f0a01da556138d16767f285a90ad2b6}\label{class_souvenir_and_trip_a2f0a01da556138d16767f285a90ad2b6}} 
+\index{SouvenirAndTrip@{SouvenirAndTrip}!PopulateSouvenirTable@{PopulateSouvenirTable}}
+\index{PopulateSouvenirTable@{PopulateSouvenirTable}!SouvenirAndTrip@{SouvenirAndTrip}}
+\doxysubsubsection{\texorpdfstring{PopulateSouvenirTable()}{PopulateSouvenirTable()}}
+{\footnotesize\ttfamily void Souvenir\+And\+Trip\+::\+Populate\+Souvenir\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_team}{Team}} $\ast$}]{team }\end{DoxyParamCaption})}
+
+
+
+Populates souvenir table with relevant information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team;} & \mbox{\hyperlink{class_team}{Team}} information with which to populate souvenir table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_souvenir_and_trip_a18f2ab57e8afa06fd97dba30b37590c0}\label{class_souvenir_and_trip_a18f2ab57e8afa06fd97dba30b37590c0}} 
+\index{SouvenirAndTrip@{SouvenirAndTrip}!PopulateTripTable@{PopulateTripTable}}
+\index{PopulateTripTable@{PopulateTripTable}!SouvenirAndTrip@{SouvenirAndTrip}}
+\doxysubsubsection{\texorpdfstring{PopulateTripTable()}{PopulateTripTable()}}
+{\footnotesize\ttfamily void Souvenir\+And\+Trip\+::\+Populate\+Trip\+Table (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table,  }\item[{const Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{teams }\end{DoxyParamCaption})}
+
+
+
+Populates trip table with relevant information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to populate with data \\
+\hline
+{\em $\ast$teams;} & Pointer to container of team objects with which to populate the table \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Souvenir\+And\+Trip.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Souvenir\+And\+Trip.\+cpp\end{DoxyCompactItemize}

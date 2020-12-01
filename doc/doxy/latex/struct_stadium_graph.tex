@@ -1,0 +1,52 @@
+\hypertarget{struct_stadium_graph}{}\doxysection{Stadium\+Graph Struct Reference}
+\label{struct_stadium_graph}\index{StadiumGraph@{StadiumGraph}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_stadium_graph_aed97f17a5789fb18972a2a027b7cf1d1}\label{struct_stadium_graph_aed97f17a5789fb18972a2a027b7cf1d1}} 
+void \mbox{\hyperlink{struct_stadium_graph_aed97f17a5789fb18972a2a027b7cf1d1}{print\+Adj\+List}} ()
+\begin{DoxyCompactList}\small\item\em Test method used to print adjacency list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_stadium_graph}{Stadium\+Graph}} \mbox{\hyperlink{struct_stadium_graph_a8b7d8ac0a4043418f71055dc278e7a4a}{create\+Stadium\+Graph}} (\mbox{\hyperlink{class_database}{Database}} $\ast$db)
+\begin{DoxyCompactList}\small\item\em Creates stadium graph object to be used by other modules to reference for traversal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_stadium_graph_a6fea2908cd4d11ff2cc175d2726f7778}\label{struct_stadium_graph_a6fea2908cd4d11ff2cc175d2726f7778}} 
+Q\+Vector$<$ \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ $>$ \mbox{\hyperlink{struct_stadium_graph_a6fea2908cd4d11ff2cc175d2726f7778}{cities}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_stadium}{Stadium}} pointers in graph represent vertices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_stadium_graph_a278f68565cb5e1609ffc9316e1ed0c49}\label{struct_stadium_graph_a278f68565cb5e1609ffc9316e1ed0c49}} 
+Q\+Hash$<$ \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$, Q\+Vector$<$ \mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$ $>$ $>$ \mbox{\hyperlink{struct_stadium_graph_a278f68565cb5e1609ffc9316e1ed0c49}{adjacency\+List}}
+\begin{DoxyCompactList}\small\item\em Adjacency list represents each vertex and its associated edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+a graph from which to reference for various traversal algorithms 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_stadium_graph_a8b7d8ac0a4043418f71055dc278e7a4a}\label{struct_stadium_graph_a8b7d8ac0a4043418f71055dc278e7a4a}} 
+\index{StadiumGraph@{StadiumGraph}!createStadiumGraph@{createStadiumGraph}}
+\index{createStadiumGraph@{createStadiumGraph}!StadiumGraph@{StadiumGraph}}
+\doxysubsubsection{\texorpdfstring{createStadiumGraph()}{createStadiumGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_stadium_graph}{Stadium\+Graph}} Stadium\+Graph\+::create\+Stadium\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_database}{Database}} $\ast$}]{db }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates stadium graph object to be used by other modules to reference for traversal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$db;} & Pointer to database object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{struct_stadium_graph}{Stadium\+Graph}}; Graph used for traversal algorithms 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Stadium\+Graph.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Stadium\+Graph.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,589 @@
+\hypertarget{class_database}{}\doxysection{Database Class Reference}
+\label{class_database}\index{Database@{Database}}
+Inheritance diagram for Database\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_database}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_team}{Team}} $\ast$ \mbox{\hyperlink{class_database_ae4e4495dbbb55cd28d2d47d3fb8d43f8}{Get\+Team\+By\+Name}} (const Q\+String name)
+\begin{DoxyCompactList}\small\item\em Accessor returns team based on name. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_team}{Team}} $\ast$ \mbox{\hyperlink{class_database_a6c4d6bd4de3281a7adbf1c94d6e26b08}{Get\+Team\+By\+ID}} (const int \&team\+ID)
+\begin{DoxyCompactList}\small\item\em Accessor returns team based on ID. \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ \mbox{\hyperlink{class_database_a35feb4864fb9fc5622038a8c5ea774fe}{Get\+Teams}} ()
+\begin{DoxyCompactList}\small\item\em Accessor returns all team objects. \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_database_a89b38841d637868788641c6ea0cdbafc}{Get\+Team\+Name\+By\+ID}} (const int \&team\+ID)
+\begin{DoxyCompactList}\small\item\em Accessor returns team name by team\+ID. \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ $>$ \mbox{\hyperlink{class_database_aaeb62062d1488f4b721dc8bf4343d727}{get\+Stadiums}} ()
+\begin{DoxyCompactList}\small\item\em Accessor returns container of all stadium objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ \mbox{\hyperlink{class_database_a327276e7c2db5f7d3fe06e72de263640}{get\+Stadium\+By\+ID}} (const int \&team\+ID)
+\begin{DoxyCompactList}\small\item\em Accessor returns stadium object based on team ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ \mbox{\hyperlink{class_database_a40a6643720988879357530c1cfeb6513}{get\+Stadium\+By\+Name}} (const Q\+String name)
+\begin{DoxyCompactList}\small\item\em Accessor returns stadium object based on stadium name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_database_a58d65dfd86863d68031a243ca6cbd00f}{Get\+I\+D\+By\+Stadium\+Name}} (const Q\+String \&stadium\+Name)
+\begin{DoxyCompactList}\small\item\em Accessor returns ID of stadium based on stadium name. \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$ $>$ \mbox{\hyperlink{class_database_a92343fb6e0cdc6333a487e0b1b2ff702}{get\+Stadium\+Distances}} ()
+\begin{DoxyCompactList}\small\item\em Accessor returns distances from each stadium to each other. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$ \mbox{\hyperlink{class_database_a2bf92993d33f6c7ae4e9b95fabeceaaa}{get\+Stadium\+Distance\+By\+ID}} (int id)
+\begin{DoxyCompactList}\small\item\em Accessor returns distances contained at desired vertex based on ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_a2cd2927e29b01f3164ec2917b256f718}{Add\+Default\+Souvenirs\+To\+Database}} (int team\+ID, Q\+String\+List souvenirs, Q\+Vector$<$ double $>$ prices)
+\begin{DoxyCompactList}\small\item\em Adds desired team\textquotesingle{}s default souvenirs to database. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_database_a7865e962d3213cf3c44a82cd0bc9b19e}{Get\+Miles\+Between\+Stadiums}} (const Q\+String \&origin, const Q\+String \&destination)
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve distance between stadiums. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_a77760b2cf5f2a86b0af9aea453b4e50c}{Add\+Distances\+To\+Data\+Base\+From\+File}} (Q\+String \&stadium\+Name, Q\+String\+List \&other\+Stadiums, Q\+Vector$<$ int $>$ \&miles)
+\begin{DoxyCompactList}\small\item\em Adds distances between new stadiums and old stadiums from file. \end{DoxyCompactList}\item 
+Q\+String\+List \mbox{\hyperlink{class_database_a7e6542fba85ffb2366848e3aba67fa3e}{Get\+Team\+Names}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve names of teams in database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_team}{Team}} $\ast$ \mbox{\hyperlink{class_database_ac8f9b0fa1f477b082548836b08d41b2e}{Get\+Single\+Team}} (const Q\+String \&team\+Name)
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all statistics of single team (Requirement 2) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_a10b0e9e19340196078c9cf2a9fd5d0dc}{Get\+Teams\+Order\+By\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all teams ordered by team name (Requirement 3) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_ac36013d09f22fba151c9361137638c06}{Get\+Teams\+Order\+By\+Stadium}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all teams and stadiums ordered by stadium name (Requirement 4) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_a74a99aca90df58e939e6b21f153ce702}{Get\+A\+F\+C\+Teams\+Order\+By\+Team\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all A\+FC Teams sorted by team name (Requirement 5) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_a71054bad4873358b77799c8bfb275d01}{Get\+N\+F\+C\+Teams\+Order\+By\+Team\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all N\+FC teams sorted by team name (Requirement 6) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_a74662183bed172b5fcea8b1b5e2fb23e}{Get\+North\+N\+F\+C\+Teams\+Order\+By\+Team\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all N\+FC North teams sorted by team name (Requirement 7) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_abf5b7366625524ffa8dac877c92079ac}{Get\+Stadiums\+Order\+By\+Date\+Opened}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all stadiums sorted by date opened (Requirement 8) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_a5de0f12ab32151276f19943173715056}{Get\+Open\+Roof\+Stadiums}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all open roof stadiums (Requirement 9) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_database_add74c5947c3fe8ab58bee3fafb78919f}{Get\+Open\+Stadium\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve number of open roof stadiums (Requirement 9) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_a94f3c831dda85deb548cc9ae42238b06}{Get\+Stadiums\+Order\+By\+Seating\+Cap}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all stadiums ordered by seating capacity (Requirement 10) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_database_a187357bad149ac60a9a6776fbf50935c}{Get\+Total\+Seating\+Capacity}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve total seating capacity of entire N\+FL (Requirement 10) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_afd17b4b04d2a64249f2a7a595260b64d}{Get\+Teams\+Order\+By\+Conference}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all teams ordered by conference (Requirement 11) \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_a61b900525782c653b6ad4f1a230b0037}{Get\+Bermuda\+Grass\+Teams}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all teams with bermuda grass surface type (Requirement 12) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_database_ac9f7d716b0cb91c66607d3436cf7a64e}{Get\+Bermuda\+Grass\+Team\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve total total bermuda grass stadiums (Requirement 12) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_team}{Team}} $\ast$ \mbox{\hyperlink{class_database_a03ed9620407f5b07476bde67e94ec377}{Get\+Single\+Team\+Souvenirs}} (const Q\+String \&team\+Name)
+\begin{DoxyCompactList}\small\item\em Accessor to retrieve all souvenirs for one team (Requirement 13) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_adjacency_list}{Adjacency\+List}} $\ast$ \mbox{\hyperlink{class_database_a2b3a344cb801b30ae1cc23f0b0509338}{Get\+Adjacency\+List}} ()
+\begin{DoxyCompactList}\small\item\em Creates and returns adjacency list used for algorithms. \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_database_aa9dcf30400abae04861e1f279c817294}{Create\+Shopping\+List}} (const Q\+String\+List \&stadium\+Names)
+\begin{DoxyCompactList}\small\item\em Creates and returns traversal list and shopping cart for stadiums on trip. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_database_ad46e0907361e41fd593f2e7e86c56c15}{Save\+Purchase}} (Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Saves customer\textquotesingle{}s purchase to database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_database}{Database}} $\ast$ \mbox{\hyperlink{class_database_a5a3b028f980a577ea0b809eb92312761}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Creates one instance of the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_database_a2cd2927e29b01f3164ec2917b256f718}\label{class_database_a2cd2927e29b01f3164ec2917b256f718}} 
+\index{Database@{Database}!AddDefaultSouvenirsToDatabase@{AddDefaultSouvenirsToDatabase}}
+\index{AddDefaultSouvenirsToDatabase@{AddDefaultSouvenirsToDatabase}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{AddDefaultSouvenirsToDatabase()}{AddDefaultSouvenirsToDatabase()}}
+{\footnotesize\ttfamily void Database\+::\+Add\+Default\+Souvenirs\+To\+Database (\begin{DoxyParamCaption}\item[{int}]{team\+ID,  }\item[{Q\+String\+List}]{souvenirs,  }\item[{Q\+Vector$<$ double $>$}]{prices }\end{DoxyParamCaption})}
+
+
+
+Adds desired team\textquotesingle{}s default souvenirs to database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id;} & Desired team\textquotesingle{}s ID \\
+\hline
+{\em souvenirs;} & List of souvenirs \\
+\hline
+{\em prices;} & Prices of souvenirs \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_database_a77760b2cf5f2a86b0af9aea453b4e50c}\label{class_database_a77760b2cf5f2a86b0af9aea453b4e50c}} 
+\index{Database@{Database}!AddDistancesToDataBaseFromFile@{AddDistancesToDataBaseFromFile}}
+\index{AddDistancesToDataBaseFromFile@{AddDistancesToDataBaseFromFile}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{AddDistancesToDataBaseFromFile()}{AddDistancesToDataBaseFromFile()}}
+{\footnotesize\ttfamily void Database\+::\+Add\+Distances\+To\+Data\+Base\+From\+File (\begin{DoxyParamCaption}\item[{Q\+String \&}]{stadium\+Name,  }\item[{Q\+String\+List \&}]{other\+Stadiums,  }\item[{Q\+Vector$<$ int $>$ \&}]{miles }\end{DoxyParamCaption})}
+
+
+
+Adds distances between new stadiums and old stadiums from file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stadium\+Name;} & Name of new stadium \\
+\hline
+{\em other\+Stadiums;} & List of other stadiums\textquotesingle{} names \\
+\hline
+{\em miles;} & Container of other stadiums\textquotesingle{} distances \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_database_aa9dcf30400abae04861e1f279c817294}\label{class_database_aa9dcf30400abae04861e1f279c817294}} 
+\index{Database@{Database}!CreateShoppingList@{CreateShoppingList}}
+\index{CreateShoppingList@{CreateShoppingList}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{CreateShoppingList()}{CreateShoppingList()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Create\+Shopping\+List (\begin{DoxyParamCaption}\item[{const Q\+String\+List \&}]{stadium\+Names }\end{DoxyParamCaption})}
+
+
+
+Creates and returns traversal list and shopping cart for stadiums on trip. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stadium\+Names;} & Stadiums on trip \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; Populated team list used for shopping cart 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a2b3a344cb801b30ae1cc23f0b0509338}\label{class_database_a2b3a344cb801b30ae1cc23f0b0509338}} 
+\index{Database@{Database}!GetAdjacencyList@{GetAdjacencyList}}
+\index{GetAdjacencyList@{GetAdjacencyList}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetAdjacencyList()}{GetAdjacencyList()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_adjacency_list}{Adjacency\+List}} $\ast$ Database\+::\+Get\+Adjacency\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates and returns adjacency list used for algorithms. 
+
+\begin{DoxyReturn}{Returns}
+Adjacency\+List$\ast$; Adjacency list used for algorithms 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a74a99aca90df58e939e6b21f153ce702}\label{class_database_a74a99aca90df58e939e6b21f153ce702}} 
+\index{Database@{Database}!GetAFCTeamsOrderByTeamName@{GetAFCTeamsOrderByTeamName}}
+\index{GetAFCTeamsOrderByTeamName@{GetAFCTeamsOrderByTeamName}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetAFCTeamsOrderByTeamName()}{GetAFCTeamsOrderByTeamName()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+A\+F\+C\+Teams\+Order\+By\+Team\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all A\+FC Teams sorted by team name (Requirement 5) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_ac9f7d716b0cb91c66607d3436cf7a64e}\label{class_database_ac9f7d716b0cb91c66607d3436cf7a64e}} 
+\index{Database@{Database}!GetBermudaGrassTeamCount@{GetBermudaGrassTeamCount}}
+\index{GetBermudaGrassTeamCount@{GetBermudaGrassTeamCount}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetBermudaGrassTeamCount()}{GetBermudaGrassTeamCount()}}
+{\footnotesize\ttfamily int Database\+::\+Get\+Bermuda\+Grass\+Team\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve total total bermuda grass stadiums (Requirement 12) 
+
+\begin{DoxyReturn}{Returns}
+int; Total stadiums with Bermuda Grass turf 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a61b900525782c653b6ad4f1a230b0037}\label{class_database_a61b900525782c653b6ad4f1a230b0037}} 
+\index{Database@{Database}!GetBermudaGrassTeams@{GetBermudaGrassTeams}}
+\index{GetBermudaGrassTeams@{GetBermudaGrassTeams}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetBermudaGrassTeams()}{GetBermudaGrassTeams()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+Bermuda\+Grass\+Teams (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all teams with bermuda grass surface type (Requirement 12) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a58d65dfd86863d68031a243ca6cbd00f}\label{class_database_a58d65dfd86863d68031a243ca6cbd00f}} 
+\index{Database@{Database}!GetIDByStadiumName@{GetIDByStadiumName}}
+\index{GetIDByStadiumName@{GetIDByStadiumName}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetIDByStadiumName()}{GetIDByStadiumName()}}
+{\footnotesize\ttfamily int Database\+::\+Get\+I\+D\+By\+Stadium\+Name (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{stadium\+Name }\end{DoxyParamCaption})}
+
+
+
+Accessor returns ID of stadium based on stadium name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stadium\+Name;} & Name of stadium desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int; \mbox{\hyperlink{class_stadium}{Stadium}} ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a5a3b028f980a577ea0b809eb92312761}\label{class_database_a5a3b028f980a577ea0b809eb92312761}} 
+\index{Database@{Database}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_database}{Database}} $\ast$ Database\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates one instance of the database. 
+
+\begin{DoxyReturn}{Returns}
+Pointer the the instance of the database class 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a7865e962d3213cf3c44a82cd0bc9b19e}\label{class_database_a7865e962d3213cf3c44a82cd0bc9b19e}} 
+\index{Database@{Database}!GetMilesBetweenStadiums@{GetMilesBetweenStadiums}}
+\index{GetMilesBetweenStadiums@{GetMilesBetweenStadiums}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetMilesBetweenStadiums()}{GetMilesBetweenStadiums()}}
+{\footnotesize\ttfamily int Database\+::\+Get\+Miles\+Between\+Stadiums (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{origin,  }\item[{const Q\+String \&}]{destination }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve distance between stadiums. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origin;} & Origin vertex \\
+\hline
+{\em destination;} & Destination vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int; Distance between vertices 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a71054bad4873358b77799c8bfb275d01}\label{class_database_a71054bad4873358b77799c8bfb275d01}} 
+\index{Database@{Database}!GetNFCTeamsOrderByTeamName@{GetNFCTeamsOrderByTeamName}}
+\index{GetNFCTeamsOrderByTeamName@{GetNFCTeamsOrderByTeamName}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetNFCTeamsOrderByTeamName()}{GetNFCTeamsOrderByTeamName()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+N\+F\+C\+Teams\+Order\+By\+Team\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all N\+FC teams sorted by team name (Requirement 6) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a74662183bed172b5fcea8b1b5e2fb23e}\label{class_database_a74662183bed172b5fcea8b1b5e2fb23e}} 
+\index{Database@{Database}!GetNorthNFCTeamsOrderByTeamName@{GetNorthNFCTeamsOrderByTeamName}}
+\index{GetNorthNFCTeamsOrderByTeamName@{GetNorthNFCTeamsOrderByTeamName}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetNorthNFCTeamsOrderByTeamName()}{GetNorthNFCTeamsOrderByTeamName()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+North\+N\+F\+C\+Teams\+Order\+By\+Team\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all N\+FC North teams sorted by team name (Requirement 7) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a5de0f12ab32151276f19943173715056}\label{class_database_a5de0f12ab32151276f19943173715056}} 
+\index{Database@{Database}!GetOpenRoofStadiums@{GetOpenRoofStadiums}}
+\index{GetOpenRoofStadiums@{GetOpenRoofStadiums}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetOpenRoofStadiums()}{GetOpenRoofStadiums()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+Open\+Roof\+Stadiums (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all open roof stadiums (Requirement 9) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_add74c5947c3fe8ab58bee3fafb78919f}\label{class_database_add74c5947c3fe8ab58bee3fafb78919f}} 
+\index{Database@{Database}!GetOpenStadiumCount@{GetOpenStadiumCount}}
+\index{GetOpenStadiumCount@{GetOpenStadiumCount}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetOpenStadiumCount()}{GetOpenStadiumCount()}}
+{\footnotesize\ttfamily int Database\+::\+Get\+Open\+Stadium\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve number of open roof stadiums (Requirement 9) 
+
+\begin{DoxyReturn}{Returns}
+int; Number of open roof stadiums 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_ac8f9b0fa1f477b082548836b08d41b2e}\label{class_database_ac8f9b0fa1f477b082548836b08d41b2e}} 
+\index{Database@{Database}!GetSingleTeam@{GetSingleTeam}}
+\index{GetSingleTeam@{GetSingleTeam}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetSingleTeam()}{GetSingleTeam()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_team}{Team}} $\ast$ Database\+::\+Get\+Single\+Team (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{team\+Name }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all statistics of single team (Requirement 2) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+Name;} & Name of team desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Team$\ast$; \mbox{\hyperlink{class_team}{Team}} object desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a03ed9620407f5b07476bde67e94ec377}\label{class_database_a03ed9620407f5b07476bde67e94ec377}} 
+\index{Database@{Database}!GetSingleTeamSouvenirs@{GetSingleTeamSouvenirs}}
+\index{GetSingleTeamSouvenirs@{GetSingleTeamSouvenirs}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetSingleTeamSouvenirs()}{GetSingleTeamSouvenirs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_team}{Team}} $\ast$ Database\+::\+Get\+Single\+Team\+Souvenirs (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{team\+Name }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all souvenirs for one team (Requirement 13) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+Name;} & Name of team whose souvenirs are desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Team$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a327276e7c2db5f7d3fe06e72de263640}\label{class_database_a327276e7c2db5f7d3fe06e72de263640}} 
+\index{Database@{Database}!getStadiumByID@{getStadiumByID}}
+\index{getStadiumByID@{getStadiumByID}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getStadiumByID()}{getStadiumByID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ Database\+::get\+Stadium\+By\+ID (\begin{DoxyParamCaption}\item[{const int \&}]{team\+ID }\end{DoxyParamCaption})}
+
+
+
+Accessor returns stadium object based on team ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+I\+D;} & ID of team belonging to stadium desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stadium$\ast$; \mbox{\hyperlink{class_stadium}{Stadium}} object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a40a6643720988879357530c1cfeb6513}\label{class_database_a40a6643720988879357530c1cfeb6513}} 
+\index{Database@{Database}!getStadiumByName@{getStadiumByName}}
+\index{getStadiumByName@{getStadiumByName}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getStadiumByName()}{getStadiumByName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ Database\+::get\+Stadium\+By\+Name (\begin{DoxyParamCaption}\item[{const Q\+String}]{name }\end{DoxyParamCaption})}
+
+
+
+Accessor returns stadium object based on stadium name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name;} & Name of stadium desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stadium$\ast$; \mbox{\hyperlink{class_stadium}{Stadium}} object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a2bf92993d33f6c7ae4e9b95fabeceaaa}\label{class_database_a2bf92993d33f6c7ae4e9b95fabeceaaa}} 
+\index{Database@{Database}!getStadiumDistanceByID@{getStadiumDistanceByID}}
+\index{getStadiumDistanceByID@{getStadiumDistanceByID}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getStadiumDistanceByID()}{getStadiumDistanceByID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$ Database\+::get\+Stadium\+Distance\+By\+ID (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Accessor returns distances contained at desired vertex based on ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id;} & Desired stadium\textquotesingle{}s ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stadium\+Distance$\ast$; Distances from desired vertex\textquotesingle{}s ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a92343fb6e0cdc6333a487e0b1b2ff702}\label{class_database_a92343fb6e0cdc6333a487e0b1b2ff702}} 
+\index{Database@{Database}!getStadiumDistances@{getStadiumDistances}}
+\index{getStadiumDistances@{getStadiumDistances}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getStadiumDistances()}{getStadiumDistances()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$ $>$ Database\+::get\+Stadium\+Distances (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor returns distances from each stadium to each other. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Stadium\+Distance$\ast$$>$; Container of stadium distances 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_aaeb62062d1488f4b721dc8bf4343d727}\label{class_database_aaeb62062d1488f4b721dc8bf4343d727}} 
+\index{Database@{Database}!getStadiums@{getStadiums}}
+\index{getStadiums@{getStadiums}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getStadiums()}{getStadiums()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ $>$ Database\+::get\+Stadiums (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor returns container of all stadium objects. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Stadium$\ast$$>$; Container of all stadium objects 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_abf5b7366625524ffa8dac877c92079ac}\label{class_database_abf5b7366625524ffa8dac877c92079ac}} 
+\index{Database@{Database}!GetStadiumsOrderByDateOpened@{GetStadiumsOrderByDateOpened}}
+\index{GetStadiumsOrderByDateOpened@{GetStadiumsOrderByDateOpened}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetStadiumsOrderByDateOpened()}{GetStadiumsOrderByDateOpened()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+Stadiums\+Order\+By\+Date\+Opened (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all stadiums sorted by date opened (Requirement 8) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a94f3c831dda85deb548cc9ae42238b06}\label{class_database_a94f3c831dda85deb548cc9ae42238b06}} 
+\index{Database@{Database}!GetStadiumsOrderBySeatingCap@{GetStadiumsOrderBySeatingCap}}
+\index{GetStadiumsOrderBySeatingCap@{GetStadiumsOrderBySeatingCap}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetStadiumsOrderBySeatingCap()}{GetStadiumsOrderBySeatingCap()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+Stadiums\+Order\+By\+Seating\+Cap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all stadiums ordered by seating capacity (Requirement 10) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a6c4d6bd4de3281a7adbf1c94d6e26b08}\label{class_database_a6c4d6bd4de3281a7adbf1c94d6e26b08}} 
+\index{Database@{Database}!GetTeamByID@{GetTeamByID}}
+\index{GetTeamByID@{GetTeamByID}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTeamByID()}{GetTeamByID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_team}{Team}} $\ast$ Database\+::\+Get\+Team\+By\+ID (\begin{DoxyParamCaption}\item[{const int \&}]{team\+ID }\end{DoxyParamCaption})}
+
+
+
+Accessor returns team based on ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+I\+D;} & ID of team desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Team$\ast$; \mbox{\hyperlink{class_team}{Team}} object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_ae4e4495dbbb55cd28d2d47d3fb8d43f8}\label{class_database_ae4e4495dbbb55cd28d2d47d3fb8d43f8}} 
+\index{Database@{Database}!GetTeamByName@{GetTeamByName}}
+\index{GetTeamByName@{GetTeamByName}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTeamByName()}{GetTeamByName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_team}{Team}} $\ast$ Database\+::\+Get\+Team\+By\+Name (\begin{DoxyParamCaption}\item[{const Q\+String}]{name }\end{DoxyParamCaption})}
+
+
+
+Accessor returns team based on name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name;} & Name of team desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Team$\ast$; \mbox{\hyperlink{class_team}{Team}} object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a89b38841d637868788641c6ea0cdbafc}\label{class_database_a89b38841d637868788641c6ea0cdbafc}} 
+\index{Database@{Database}!GetTeamNameByID@{GetTeamNameByID}}
+\index{GetTeamNameByID@{GetTeamNameByID}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTeamNameByID()}{GetTeamNameByID()}}
+{\footnotesize\ttfamily Q\+String Database\+::\+Get\+Team\+Name\+By\+ID (\begin{DoxyParamCaption}\item[{const int \&}]{team\+ID }\end{DoxyParamCaption})}
+
+
+
+Accessor returns team name by team\+ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+I\+D;} & ID of team desired \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Q\+String; \mbox{\hyperlink{class_team}{Team}} name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a7e6542fba85ffb2366848e3aba67fa3e}\label{class_database_a7e6542fba85ffb2366848e3aba67fa3e}} 
+\index{Database@{Database}!GetTeamNames@{GetTeamNames}}
+\index{GetTeamNames@{GetTeamNames}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTeamNames()}{GetTeamNames()}}
+{\footnotesize\ttfamily Q\+String\+List Database\+::\+Get\+Team\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve names of teams in database. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String\+List; Names of teams in database 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a35feb4864fb9fc5622038a8c5ea774fe}\label{class_database_a35feb4864fb9fc5622038a8c5ea774fe}} 
+\index{Database@{Database}!GetTeams@{GetTeams}}
+\index{GetTeams@{GetTeams}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTeams()}{GetTeams()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ Database\+::\+Get\+Teams (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor returns all team objects. 
+
+\begin{DoxyReturn}{Returns}
+; Q\+Vector$<$\+Team$\ast$$>$; Container of team objects 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_afd17b4b04d2a64249f2a7a595260b64d}\label{class_database_afd17b4b04d2a64249f2a7a595260b64d}} 
+\index{Database@{Database}!GetTeamsOrderByConference@{GetTeamsOrderByConference}}
+\index{GetTeamsOrderByConference@{GetTeamsOrderByConference}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTeamsOrderByConference()}{GetTeamsOrderByConference()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+Teams\+Order\+By\+Conference (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all teams ordered by conference (Requirement 11) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a10b0e9e19340196078c9cf2a9fd5d0dc}\label{class_database_a10b0e9e19340196078c9cf2a9fd5d0dc}} 
+\index{Database@{Database}!GetTeamsOrderByName@{GetTeamsOrderByName}}
+\index{GetTeamsOrderByName@{GetTeamsOrderByName}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTeamsOrderByName()}{GetTeamsOrderByName()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+Teams\+Order\+By\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all teams ordered by team name (Requirement 3) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_ac36013d09f22fba151c9361137638c06}\label{class_database_ac36013d09f22fba151c9361137638c06}} 
+\index{Database@{Database}!GetTeamsOrderByStadium@{GetTeamsOrderByStadium}}
+\index{GetTeamsOrderByStadium@{GetTeamsOrderByStadium}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTeamsOrderByStadium()}{GetTeamsOrderByStadium()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$ Database\+::\+Get\+Teams\+Order\+By\+Stadium (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve all teams and stadiums ordered by stadium name (Requirement 4) 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Team$\ast$$>$$\ast$; \mbox{\hyperlink{class_team}{Team}} objects desired 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_a187357bad149ac60a9a6776fbf50935c}\label{class_database_a187357bad149ac60a9a6776fbf50935c}} 
+\index{Database@{Database}!GetTotalSeatingCapacity@{GetTotalSeatingCapacity}}
+\index{GetTotalSeatingCapacity@{GetTotalSeatingCapacity}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{GetTotalSeatingCapacity()}{GetTotalSeatingCapacity()}}
+{\footnotesize\ttfamily int Database\+::\+Get\+Total\+Seating\+Capacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Accessor to retrieve total seating capacity of entire N\+FL (Requirement 10) 
+
+\begin{DoxyReturn}{Returns}
+int; Total seating capacity of all stadiums combined 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_database_ad46e0907361e41fd593f2e7e86c56c15}\label{class_database_ad46e0907361e41fd593f2e7e86c56c15}} 
+\index{Database@{Database}!SavePurchase@{SavePurchase}}
+\index{SavePurchase@{SavePurchase}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{SavePurchase()}{SavePurchase()}}
+{\footnotesize\ttfamily void Database\+::\+Save\+Purchase (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Saves customer\textquotesingle{}s purchase to database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+List;} & Details of customer purchase \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Database.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Database.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,169 @@
+\hypertarget{classkruskals}{}\doxysection{kruskals Class Reference}
+\label{classkruskals}\index{kruskals@{kruskals}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classkruskals_a51cb74e102801da1da2bbe4baba2f9ea}{kruskals}} (int vertex)
+\begin{DoxyCompactList}\small\item\em Final list of stadiums visited in traversal order. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classkruskals_a06b7ebda197500953cba9927b7e5c2db}{read\+Db}} (Q\+String start)
+\begin{DoxyCompactList}\small\item\em Read necessary data from database. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkruskals_a2467c4004c71d828093a2e934fbee639}\label{classkruskals_a2467c4004c71d828093a2e934fbee639}} 
+void \mbox{\hyperlink{classkruskals_a2467c4004c71d828093a2e934fbee639}{print}} ()
+\begin{DoxyCompactList}\small\item\em Print minimum spanning tree. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classkruskals_a440bde52e5af322ae8be72b13d331de3}{calc\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Calculates and returns total cost of M\+ST. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ \mbox{\hyperlink{classkruskals_a3692d5fd9c0a44c61c033f7f63e9324b}{find\+\_\+parent}} (\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$i)
+\begin{DoxyCompactList}\small\item\em Returns parent of child stadium. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ \mbox{\hyperlink{classkruskals_acea242e65e048e2642b60f1f198212f5}{union\+\_\+set}} (\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$i, \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Checks for loops during traversal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkruskals_aee32c3e072758c06f3c5514ee4157697}\label{classkruskals_aee32c3e072758c06f3c5514ee4157697}} 
+void \mbox{\hyperlink{classkruskals_aee32c3e072758c06f3c5514ee4157697}{solve}} ()
+\begin{DoxyCompactList}\small\item\em Perform traversal. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classkruskals_a63ce9c6ee545b680a6cd59a17154832e}{get\+Distance\+Traveled}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns distance traveled during traversal. \end{DoxyCompactList}\item 
+Q\+String\+List \mbox{\hyperlink{classkruskals_ad591079a1e1b9700d789d66595d37196}{get\+List}} () const
+\begin{DoxyCompactList}\small\item\em Returns list of stadium names in order of traversal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classkruskals_a095da37c4519f99e26538dc97f515e67}{compare\+Weights}} (\mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$uno, \mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$dos)
+\begin{DoxyCompactList}\small\item\em Comparator to compare weights between stadiums. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classkruskals_a51cb74e102801da1da2bbe4baba2f9ea}\label{classkruskals_a51cb74e102801da1da2bbe4baba2f9ea}} 
+\index{kruskals@{kruskals}!kruskals@{kruskals}}
+\index{kruskals@{kruskals}!kruskals@{kruskals}}
+\doxysubsubsection{\texorpdfstring{kruskals()}{kruskals()}}
+{\footnotesize\ttfamily kruskals\+::kruskals (\begin{DoxyParamCaption}\item[{int}]{vertex }\end{DoxyParamCaption})}
+
+
+
+Final list of stadiums visited in traversal order. 
+
+Parameterized Constructor 
+\begin{DoxyParams}{Parameters}
+{\em vertex;} & Number of vertices used in traversal \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classkruskals_a440bde52e5af322ae8be72b13d331de3}\label{classkruskals_a440bde52e5af322ae8be72b13d331de3}} 
+\index{kruskals@{kruskals}!calcCost@{calcCost}}
+\index{calcCost@{calcCost}!kruskals@{kruskals}}
+\doxysubsubsection{\texorpdfstring{calcCost()}{calcCost()}}
+{\footnotesize\ttfamily int kruskals\+::calc\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates and returns total cost of M\+ST. 
+
+\begin{DoxyReturn}{Returns}
+int; Total cost of M\+ST 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkruskals_a095da37c4519f99e26538dc97f515e67}\label{classkruskals_a095da37c4519f99e26538dc97f515e67}} 
+\index{kruskals@{kruskals}!compareWeights@{compareWeights}}
+\index{compareWeights@{compareWeights}!kruskals@{kruskals}}
+\doxysubsubsection{\texorpdfstring{compareWeights()}{compareWeights()}}
+{\footnotesize\ttfamily bool kruskals\+::compare\+Weights (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$}]{uno,  }\item[{\mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} $\ast$}]{dos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Comparator to compare weights between stadiums. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uno;} & First stadium to compare \\
+\hline
+{\em dos;} & Second stadium to compare \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool; Returns whether or not stadium contains shorter cost 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkruskals_a3692d5fd9c0a44c61c033f7f63e9324b}\label{classkruskals_a3692d5fd9c0a44c61c033f7f63e9324b}} 
+\index{kruskals@{kruskals}!find\_parent@{find\_parent}}
+\index{find\_parent@{find\_parent}!kruskals@{kruskals}}
+\doxysubsubsection{\texorpdfstring{find\_parent()}{find\_parent()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ kruskals\+::find\+\_\+parent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$}]{i }\end{DoxyParamCaption})}
+
+
+
+Returns parent of child stadium. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i;} & Child in need of parent information \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stadium$\ast$; Pointer to parent of stadium input 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkruskals_a63ce9c6ee545b680a6cd59a17154832e}\label{classkruskals_a63ce9c6ee545b680a6cd59a17154832e}} 
+\index{kruskals@{kruskals}!getDistanceTraveled@{getDistanceTraveled}}
+\index{getDistanceTraveled@{getDistanceTraveled}!kruskals@{kruskals}}
+\doxysubsubsection{\texorpdfstring{getDistanceTraveled()}{getDistanceTraveled()}}
+{\footnotesize\ttfamily int kruskals\+::get\+Distance\+Traveled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns distance traveled during traversal. 
+
+\begin{DoxyReturn}{Returns}
+int; Distance traveled during traversal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkruskals_ad591079a1e1b9700d789d66595d37196}\label{classkruskals_ad591079a1e1b9700d789d66595d37196}} 
+\index{kruskals@{kruskals}!getList@{getList}}
+\index{getList@{getList}!kruskals@{kruskals}}
+\doxysubsubsection{\texorpdfstring{getList()}{getList()}}
+{\footnotesize\ttfamily Q\+String\+List kruskals\+::get\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns list of stadium names in order of traversal. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String\+List; \mbox{\hyperlink{class_stadium}{Stadium}} names in order of traversal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkruskals_a06b7ebda197500953cba9927b7e5c2db}\label{classkruskals_a06b7ebda197500953cba9927b7e5c2db}} 
+\index{kruskals@{kruskals}!readDb@{readDb}}
+\index{readDb@{readDb}!kruskals@{kruskals}}
+\doxysubsubsection{\texorpdfstring{readDb()}{readDb()}}
+{\footnotesize\ttfamily void kruskals\+::read\+Db (\begin{DoxyParamCaption}\item[{Q\+String}]{start }\end{DoxyParamCaption})}
+
+
+
+Read necessary data from database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start;} & Starting vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkruskals_acea242e65e048e2642b60f1f198212f5}\label{classkruskals_acea242e65e048e2642b60f1f198212f5}} 
+\index{kruskals@{kruskals}!union\_set@{union\_set}}
+\index{union\_set@{union\_set}!kruskals@{kruskals}}
+\doxysubsubsection{\texorpdfstring{union\_set()}{union\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ kruskals\+::union\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$}]{i,  }\item[{\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+Checks for loops during traversal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i;} & Origin vertex \\
+\hline
+{\em v;} & Destination vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Stadium$\ast$; \mbox{\hyperlink{class_stadium}{Stadium}} detected in loop 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/kruskals.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/kruskals.\+cpp\end{DoxyCompactItemize}

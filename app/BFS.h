@@ -5,28 +5,45 @@
 #include <QVector>
 #include "AdjacencyList.h"
 
+/*!
+ * @class BFS
+ * @brief The BFS class contains all objects necessary to run breadth first search traversal of graph
+ */
 class BFS
 {
 public:
-    // Parameterized constructor populates list
+    /*!
+     * @brief Parameterized constructor populates list
+     * @param list; AdjacencyList object to populate and use in traversal
+     */
     BFS(AdjacencyList *list);
 
-    // Performs traversal. Pass in blank list of names and int 0 to return
-    // list of names populated in order of traversal and distance traveled on trip
+    /*!
+     * @brief Performs traversal. Will populate traversal list and distance traveled
+     */
     void Traverse();
 
-    // Returns list of team names in order of traversal
+    /*!
+     * @brief Accessor will return list in order of traversal
+     * @return QStringList; Traversal list in order of traversal
+     */
     QStringList GetTraversalList() const;
 
-    // Return distance traveled over traversal
+    /*!
+     * @brief Accessor will return total weight of edges traversed
+     * @return int; Sum of edge weights
+     */
     int GetDistanceTraveled() const;
+
 private:
+    /// Adjacency list object referenced in traversal
     AdjacencyList* aList;
+    /// Names associated with vertices to traverse
     QVector<QString> originNames;
+    /// Total weight of edges traversed
     int distanceTraveled;
+    /// Final list of vertices traversed in order of traversal
     QStringList traversalList;
-
-
 };
 
 #endif // BFS_H

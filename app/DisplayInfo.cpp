@@ -51,12 +51,6 @@ void DisplayInfo::DeleteAllTableRows(QTableWidget *table)
     }
 }
 
-// Populates viewer table with information
-void DisplayInfo::PopulateViewTable (QTableWidget* table, QVector<Team*> teamList)
-{
-
-}
-
 // Populates viewer table with one team's information
 void DisplayInfo::PopulateOneTeam(QTableWidget* table, Team* team)
 {

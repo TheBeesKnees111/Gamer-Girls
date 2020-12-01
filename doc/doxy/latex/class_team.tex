@@ -1,0 +1,352 @@
+\hypertarget{class_team}{}\doxysection{Team Class Reference}
+\label{class_team}\index{Team@{Team}}
+
+
+The \mbox{\hyperlink{class_team}{Team}} class an individual N\+FL team.  
+
+
+
+
+{\ttfamily \#include $<$Team.\+h$>$}
+
+Inheritance diagram for Team\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_team}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_team_a9b71f2611fae3b7d34a21c5fcb1b75ae}{set\+Team\+ID}} (int value)
+\begin{DoxyCompactList}\small\item\em Mutator alters team\textquotesingle{}s ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_aa93e0a386db14c5e8977ea8a0cc34388}{set\+Team\+Name}} (const Q\+String \&value)
+\begin{DoxyCompactList}\small\item\em Mutator alters team\textquotesingle{}s name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_ab0cd3b5eadb6fbcfa9169c6b9a02a1b3}{set\+Conference}} (const Q\+String \&value)
+\begin{DoxyCompactList}\small\item\em Mutator alters team\textquotesingle{}s conference. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_a839c112e36564889ac7ccb8550523bcc}{set\+Division}} (const Q\+String \&value)
+\begin{DoxyCompactList}\small\item\em Mutator alters team\textquotesingle{}s division. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_aaff8d006eae3f366c78facaa18f26b51}{set\+Souvenir\+List}} (const Q\+Vector$<$ \mbox{\hyperlink{class_souvenir}{Souvenir}} $\ast$ $>$ \&value)
+\begin{DoxyCompactList}\small\item\em Mutator alters team\textquotesingle{}s division. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_a01f1feebd319f03c88f2a15af2a8ae7e}{set\+Stadium}} (\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$value)
+\begin{DoxyCompactList}\small\item\em Mutator alters team\textquotesingle{}s stadium. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_team_ab88e4cebd2ba33bccf9ddb3b8f0fe075}{team\+I\+D\+Changed}} (int value)
+\begin{DoxyCompactList}\small\item\em Takes action when team\textquotesingle{}s ID is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_abef67b97de63d748bee9b5fdcbd6fb0d}{team\+Name\+Changed}} (Q\+String value)
+\begin{DoxyCompactList}\small\item\em Takes action when team\textquotesingle{}s name is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_af5cfc8922689e92ee538f630a8842772}{conference\+Changed}} (Q\+String value)
+\begin{DoxyCompactList}\small\item\em Takes action when team\textquotesingle{}s conference is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_a5cad809d9e1cd8dc54c4ecab47b488bd}{division\+Changed}} (Q\+String value)
+\begin{DoxyCompactList}\small\item\em Takes action when team\textquotesingle{}s division is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_aacd9128f63b11c227007ae973507048a}{souvenir\+List\+Changed}} (const Q\+Vector$<$ \mbox{\hyperlink{class_souvenir}{Souvenir}} $\ast$ $>$ \&value)
+\begin{DoxyCompactList}\small\item\em Takes action when team\textquotesingle{}s souvenir list is changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_team_a818fe46d528666ec407aa7ccf7f9c2a3}{stadium\+Changed}} (\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$value)
+\begin{DoxyCompactList}\small\item\em Takes action when team\textquotesingle{}s stadium is changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_team_a112d778e85a66d9068a1fc9f0ed5648e}{Team}} (Q\+Object $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Pointer to team\textquotesingle{}s stadium. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_team_af1c71629d22d6df1ebba17010c40710f}{get\+Team\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns team\textquotesingle{}s ID. \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_team_a9295404280a4a4083da4a60b0974d035}{get\+Team\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns team\textquotesingle{}s name. \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_team_abe3904217bfef5965edcdd65aad16d2a}{get\+Conference}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns team\textquotesingle{}s conference. \end{DoxyCompactList}\item 
+Q\+String \mbox{\hyperlink{class_team_a5028536c9caa6cf7f7fa5e4d750e9d9e}{get\+Division}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns team\textquotesingle{}s division. \end{DoxyCompactList}\item 
+Q\+Vector$<$ \mbox{\hyperlink{class_souvenir}{Souvenir}} $\ast$ $>$ \mbox{\hyperlink{class_team_a20dbae75c069ff817ac9fb3c415bf191}{get\+Souvenir\+List}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns team\textquotesingle{}s souvenir list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ \mbox{\hyperlink{class_team_acdb6c9093b09a4c11296944a0bc9f2b8}{get\+Stadium}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns pointer to team\textquotesingle{}s stadium. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_team}{Team}} class an individual N\+FL team. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_team_a112d778e85a66d9068a1fc9f0ed5648e}\label{class_team_a112d778e85a66d9068a1fc9f0ed5648e}} 
+\index{Team@{Team}!Team@{Team}}
+\index{Team@{Team}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{Team()}{Team()}}
+{\footnotesize\ttfamily Team\+::\+Team (\begin{DoxyParamCaption}\item[{Q\+Object $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Pointer to team\textquotesingle{}s stadium. 
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$parent;} & Pointer to parent object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_team_af5cfc8922689e92ee538f630a8842772}\label{class_team_af5cfc8922689e92ee538f630a8842772}} 
+\index{Team@{Team}!conferenceChanged@{conferenceChanged}}
+\index{conferenceChanged@{conferenceChanged}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{conferenceChanged}{conferenceChanged}}
+{\footnotesize\ttfamily void Team\+::conference\+Changed (\begin{DoxyParamCaption}\item[{Q\+String}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when team\textquotesingle{}s conference is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s new conference \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_a5cad809d9e1cd8dc54c4ecab47b488bd}\label{class_team_a5cad809d9e1cd8dc54c4ecab47b488bd}} 
+\index{Team@{Team}!divisionChanged@{divisionChanged}}
+\index{divisionChanged@{divisionChanged}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{divisionChanged}{divisionChanged}}
+{\footnotesize\ttfamily void Team\+::division\+Changed (\begin{DoxyParamCaption}\item[{Q\+String}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when team\textquotesingle{}s division is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s new division \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_abe3904217bfef5965edcdd65aad16d2a}\label{class_team_abe3904217bfef5965edcdd65aad16d2a}} 
+\index{Team@{Team}!getConference@{getConference}}
+\index{getConference@{getConference}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{getConference()}{getConference()}}
+{\footnotesize\ttfamily Q\+String Team\+::get\+Conference (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns team\textquotesingle{}s conference. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String; \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s conference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_team_a5028536c9caa6cf7f7fa5e4d750e9d9e}\label{class_team_a5028536c9caa6cf7f7fa5e4d750e9d9e}} 
+\index{Team@{Team}!getDivision@{getDivision}}
+\index{getDivision@{getDivision}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{getDivision()}{getDivision()}}
+{\footnotesize\ttfamily Q\+String Team\+::get\+Division (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns team\textquotesingle{}s division. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String; \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s division 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_team_a20dbae75c069ff817ac9fb3c415bf191}\label{class_team_a20dbae75c069ff817ac9fb3c415bf191}} 
+\index{Team@{Team}!getSouvenirList@{getSouvenirList}}
+\index{getSouvenirList@{getSouvenirList}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{getSouvenirList()}{getSouvenirList()}}
+{\footnotesize\ttfamily Q\+Vector$<$ \mbox{\hyperlink{class_souvenir}{Souvenir}} $\ast$ $>$ Team\+::get\+Souvenir\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns team\textquotesingle{}s souvenir list. 
+
+\begin{DoxyReturn}{Returns}
+Q\+Vector$<$\+Souvenir$\ast$$>$; Container with souvenirs for one team 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_team_acdb6c9093b09a4c11296944a0bc9f2b8}\label{class_team_acdb6c9093b09a4c11296944a0bc9f2b8}} 
+\index{Team@{Team}!getStadium@{getStadium}}
+\index{getStadium@{getStadium}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{getStadium()}{getStadium()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ Team\+::get\+Stadium (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns pointer to team\textquotesingle{}s stadium. 
+
+\begin{DoxyReturn}{Returns}
+Stadium$\ast$; Pointer to team\textquotesingle{}s stadium 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_team_af1c71629d22d6df1ebba17010c40710f}\label{class_team_af1c71629d22d6df1ebba17010c40710f}} 
+\index{Team@{Team}!getTeamID@{getTeamID}}
+\index{getTeamID@{getTeamID}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{getTeamID()}{getTeamID()}}
+{\footnotesize\ttfamily int Team\+::get\+Team\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns team\textquotesingle{}s ID. 
+
+\begin{DoxyReturn}{Returns}
+int; \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_team_a9295404280a4a4083da4a60b0974d035}\label{class_team_a9295404280a4a4083da4a60b0974d035}} 
+\index{Team@{Team}!getTeamName@{getTeamName}}
+\index{getTeamName@{getTeamName}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{getTeamName()}{getTeamName()}}
+{\footnotesize\ttfamily Q\+String Team\+::get\+Team\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns team\textquotesingle{}s name. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String; \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_team_ab0cd3b5eadb6fbcfa9169c6b9a02a1b3}\label{class_team_ab0cd3b5eadb6fbcfa9169c6b9a02a1b3}} 
+\index{Team@{Team}!setConference@{setConference}}
+\index{setConference@{setConference}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{setConference}{setConference}}
+{\footnotesize\ttfamily void Team\+::set\+Conference (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters team\textquotesingle{}s conference. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s conference \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_a839c112e36564889ac7ccb8550523bcc}\label{class_team_a839c112e36564889ac7ccb8550523bcc}} 
+\index{Team@{Team}!setDivision@{setDivision}}
+\index{setDivision@{setDivision}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{setDivision}{setDivision}}
+{\footnotesize\ttfamily void Team\+::set\+Division (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters team\textquotesingle{}s division. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s division \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_aaff8d006eae3f366c78facaa18f26b51}\label{class_team_aaff8d006eae3f366c78facaa18f26b51}} 
+\index{Team@{Team}!setSouvenirList@{setSouvenirList}}
+\index{setSouvenirList@{setSouvenirList}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{setSouvenirList}{setSouvenirList}}
+{\footnotesize\ttfamily void Team\+::set\+Souvenir\+List (\begin{DoxyParamCaption}\item[{const Q\+Vector$<$ \mbox{\hyperlink{class_souvenir}{Souvenir}} $\ast$ $>$ \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters team\textquotesingle{}s division. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s division \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_a01f1feebd319f03c88f2a15af2a8ae7e}\label{class_team_a01f1feebd319f03c88f2a15af2a8ae7e}} 
+\index{Team@{Team}!setStadium@{setStadium}}
+\index{setStadium@{setStadium}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{setStadium}{setStadium}}
+{\footnotesize\ttfamily void Team\+::set\+Stadium (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters team\textquotesingle{}s stadium. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$value;} & Pointer to team\textquotesingle{}s stadium \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_a9b71f2611fae3b7d34a21c5fcb1b75ae}\label{class_team_a9b71f2611fae3b7d34a21c5fcb1b75ae}} 
+\index{Team@{Team}!setTeamID@{setTeamID}}
+\index{setTeamID@{setTeamID}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{setTeamID}{setTeamID}}
+{\footnotesize\ttfamily void Team\+::set\+Team\+ID (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters team\textquotesingle{}s ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s ID \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_aa93e0a386db14c5e8977ea8a0cc34388}\label{class_team_aa93e0a386db14c5e8977ea8a0cc34388}} 
+\index{Team@{Team}!setTeamName@{setTeamName}}
+\index{setTeamName@{setTeamName}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{setTeamName}{setTeamName}}
+{\footnotesize\ttfamily void Team\+::set\+Team\+Name (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Mutator alters team\textquotesingle{}s name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s name \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_aacd9128f63b11c227007ae973507048a}\label{class_team_aacd9128f63b11c227007ae973507048a}} 
+\index{Team@{Team}!souvenirListChanged@{souvenirListChanged}}
+\index{souvenirListChanged@{souvenirListChanged}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{souvenirListChanged}{souvenirListChanged}}
+{\footnotesize\ttfamily void Team\+::souvenir\+List\+Changed (\begin{DoxyParamCaption}\item[{const Q\+Vector$<$ \mbox{\hyperlink{class_souvenir}{Souvenir}} $\ast$ $>$ \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when team\textquotesingle{}s souvenir list is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s new souvenir list \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_a818fe46d528666ec407aa7ccf7f9c2a3}\label{class_team_a818fe46d528666ec407aa7ccf7f9c2a3}} 
+\index{Team@{Team}!stadiumChanged@{stadiumChanged}}
+\index{stadiumChanged@{stadiumChanged}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{stadiumChanged}{stadiumChanged}}
+{\footnotesize\ttfamily void Team\+::stadium\+Changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when team\textquotesingle{}s stadium is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s new stadium \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_ab88e4cebd2ba33bccf9ddb3b8f0fe075}\label{class_team_ab88e4cebd2ba33bccf9ddb3b8f0fe075}} 
+\index{Team@{Team}!teamIDChanged@{teamIDChanged}}
+\index{teamIDChanged@{teamIDChanged}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{teamIDChanged}{teamIDChanged}}
+{\footnotesize\ttfamily void Team\+::team\+I\+D\+Changed (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when team\textquotesingle{}s ID is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s new ID \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_team_abef67b97de63d748bee9b5fdcbd6fb0d}\label{class_team_abef67b97de63d748bee9b5fdcbd6fb0d}} 
+\index{Team@{Team}!teamNameChanged@{teamNameChanged}}
+\index{teamNameChanged@{teamNameChanged}!Team@{Team}}
+\doxysubsubsection{\texorpdfstring{teamNameChanged}{teamNameChanged}}
+{\footnotesize\ttfamily void Team\+::team\+Name\+Changed (\begin{DoxyParamCaption}\item[{Q\+String}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Takes action when team\textquotesingle{}s name is changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_team}{Team}}\textquotesingle{}s new name \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Team.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Team.\+cpp\end{DoxyCompactItemize}

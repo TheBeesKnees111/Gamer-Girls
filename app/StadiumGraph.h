@@ -5,35 +5,42 @@
 #include "Stadium.h"
 #include "StadiumDistance.h"
 
-// Graph of cities and their connections
-// The QHash (map) will have a vector of all the Stadiums,
-// as well as an adjacencyList with a key = Stadium
-// and value = vecor of adjacent Edges (StadiumDistances)
+/*!
+ * @brief StadiumGraph struct creates a graph from which to reference for various traversal algorithms
+ */
 struct StadiumGraph
 {
-    // vector of Stadiums* in graph
+    /// Stadium pointers in graph represent vertices
 	QVector<Stadium*> cities;
 
-    // map of key = Stadium*, value = vector of Edges(StadiumDistance*)
+    /// Adjacency list represents each vertex and its associated edge
     QHash<Stadium*, QVector<StadiumDistance*>> adjacencyList;
 
-    // Utility function for the graph.  This doesn't run any queries
-    // by itself, so it doesn't belong in Databse.
-    // static because it's creating a graph instance which will be
-    // shared across the app.
-    // Called a factory function (like a named constructor).
-    // included in the struct because it's a funtion of a graph.
+    /*!
+     * @brief Creates stadium graph object to be used by other modules to reference for traversal
+     * @param *db; Pointer to database object
+     * @return StadiumGraph; Graph used for traversal algorithms
+     */
     static StadiumGraph createStadiumGraph(Database *db);
 
+    /*!
+     * @brief Test method used to print adjacency list
+     */
     void printAdjList();
 };
 
-// GRAPH UTILITIES
-// given any spanning tree and a given node,
-// trace the path from the given node to the root(origin)
+/*!
+ * @brief Builds path given completed spanning tree and destination vertex
+ * @param prev; Spanning tree created by traversal algorithm
+ * @param destination; Vertex to create path toward
+ * @return QVector<StadiumDistance*>; Path created from origin to destination
+ */
 QVector<StadiumDistance *> buildPath(QHash<QString, StadiumDistance*> prev, Stadium *destination);
 
-// print that path
+/*!
+ * @brief Test method to print path created by buildPath
+ * @param path; Completed path from origin to destination via shortest path
+ */
 void printPath(QVector<StadiumDistance*> path);
 
 #endif // STADIUMGRAPH_H

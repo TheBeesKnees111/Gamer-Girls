@@ -1,0 +1,445 @@
+\hypertarget{class_display_info}{}\doxysection{Display\+Info Class Reference}
+\label{class_display_info}\index{DisplayInfo@{DisplayInfo}}
+
+
+The \mbox{\hyperlink{class_display_info}{Display\+Info}} class is an object that manages all \char`\"{}\+Display Team Information\char`\"{} module functionality.  
+
+
+
+
+{\ttfamily \#include $<$Display\+Info.\+h$>$}
+
+Inheritance diagram for Display\+Info\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_display_info}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_display_info_af7b64978e8a3d2ee02b9d094f77b7925}\label{class_display_info_af7b64978e8a3d2ee02b9d094f77b7925}} 
+enum \mbox{\hyperlink{class_display_info_af7b64978e8a3d2ee02b9d094f77b7925}{One\+Team\+Col\+Positions}} \{ \newline
+{\bfseries O\+T\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries O\+T\+\_\+\+S\+T\+A\+D\+I\+U\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries O\+T\+\_\+\+S\+E\+A\+T\+I\+N\+G\+\_\+\+C\+AP}, 
+{\bfseries O\+T\+\_\+\+L\+O\+C\+A\+T\+I\+ON}, 
+\newline
+{\bfseries O\+T\+\_\+\+C\+O\+N\+F\+E\+R\+E\+N\+CE}, 
+{\bfseries O\+T\+\_\+\+D\+I\+V\+I\+S\+I\+ON}, 
+{\bfseries O\+T\+\_\+\+S\+U\+R\+F\+A\+C\+E\+\_\+\+T\+Y\+PE}, 
+{\bfseries O\+T\+\_\+\+R\+O\+O\+F\+\_\+\+T\+Y\+PE}, 
+\newline
+{\bfseries O\+T\+\_\+\+D\+A\+T\+E\+\_\+\+O\+P\+E\+N\+ED}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+Show One Team\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a89a897ffb8f8c7ec0961240db02cc20a}\label{class_display_info_a89a897ffb8f8c7ec0961240db02cc20a}} 
+enum \mbox{\hyperlink{class_display_info_a89a897ffb8f8c7ec0961240db02cc20a}{All\+Teams\+Col\+Positions}} \{ {\bfseries A\+T\+\_\+\+N\+A\+ME}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+All Teams by Name\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a0c04d227a237117a156b8e5508d466e3}\label{class_display_info_a0c04d227a237117a156b8e5508d466e3}} 
+enum \mbox{\hyperlink{class_display_info_a0c04d227a237117a156b8e5508d466e3}{All\+Stadiums\+Col\+Positions}} \{ {\bfseries A\+S\+\_\+\+S\+T\+A\+D\+I\+U\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries A\+S\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+All Stadiums Sorted by Stadium Name\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_ab275a1a895e758512c21c5903a206873}\label{class_display_info_ab275a1a895e758512c21c5903a206873}} 
+enum \mbox{\hyperlink{class_display_info_ab275a1a895e758512c21c5903a206873}{A\+F\+C\+Team\+Col\+Positions}} \{ {\bfseries A\+A\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries A\+A\+\_\+\+C\+O\+N\+F\+E\+R\+E\+N\+CE}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+Display A\+F\+C Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a9d9d71e601dc3c262f5e63c83bf8c072}\label{class_display_info_a9d9d71e601dc3c262f5e63c83bf8c072}} 
+enum \mbox{\hyperlink{class_display_info_a9d9d71e601dc3c262f5e63c83bf8c072}{N\+F\+C\+Team\+Col\+Positions}} \{ {\bfseries A\+N\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries A\+N\+\_\+\+C\+O\+N\+F\+E\+R\+E\+N\+CE}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+Display N\+F\+C Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a3993ba0d9baec9c0e18fc9670b7bd6e5}\label{class_display_info_a3993ba0d9baec9c0e18fc9670b7bd6e5}} 
+enum \mbox{\hyperlink{class_display_info_a3993ba0d9baec9c0e18fc9670b7bd6e5}{N\+F\+C\+North\+Team\+Col\+Positions}} \{ {\bfseries N\+N\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries N\+N\+\_\+\+D\+I\+V\+I\+S\+I\+ON}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+Display N\+F\+C North Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a8a10d98a9d7d7b6f16f27584dd1f9857}\label{class_display_info_a8a10d98a9d7d7b6f16f27584dd1f9857}} 
+enum \mbox{\hyperlink{class_display_info_a8a10d98a9d7d7b6f16f27584dd1f9857}{Stadiums\+By\+Date\+Col\+Positions}} \{ {\bfseries S\+D\+\_\+\+S\+T\+A\+D\+I\+U\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries S\+D\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries S\+D\+\_\+\+D\+A\+T\+E\+\_\+\+O\+P\+E\+N\+ED}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+Sort Stadiums by Date\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a6405342d89a322d611f73505b35ce1d9}\label{class_display_info_a6405342d89a322d611f73505b35ce1d9}} 
+enum \mbox{\hyperlink{class_display_info_a6405342d89a322d611f73505b35ce1d9}{Open\+Stadiums\+Col\+Positions}} \{ {\bfseries O\+S\+\_\+\+S\+T\+A\+D\+I\+U\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries O\+S\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries O\+S\+\_\+\+R\+O\+O\+F\+\_\+\+T\+Y\+PE}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+Display Open Stadiums\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_afc0649cca56417a6fdec148ec91d0f9a}\label{class_display_info_afc0649cca56417a6fdec148ec91d0f9a}} 
+enum \mbox{\hyperlink{class_display_info_afc0649cca56417a6fdec148ec91d0f9a}{Seating\+Cap\+Stadiums\+Col\+Positions}} \{ {\bfseries S\+C\+\_\+\+S\+T\+A\+D\+I\+U\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries S\+C\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries S\+C\+\_\+\+S\+E\+A\+T\+I\+N\+G\+\_\+\+C\+AP}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+All N\+F\+L Stadiums by Seating Cap\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a481c307f16ce46d5eabfc975015c2a25}\label{class_display_info_a481c307f16ce46d5eabfc975015c2a25}} 
+enum \mbox{\hyperlink{class_display_info_a481c307f16ce46d5eabfc975015c2a25}{Teams\+By\+Conference\+Col\+Positions}} \{ {\bfseries C\+T\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries C\+T\+\_\+\+S\+T\+A\+D\+I\+U\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries C\+T\+\_\+\+C\+O\+N\+F\+E\+R\+E\+N\+CE}, 
+{\bfseries C\+T\+\_\+\+L\+O\+C\+A\+T\+I\+ON}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+Sort Teams by Conference\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a0fd3c24eb50827521eb5234428089438}\label{class_display_info_a0fd3c24eb50827521eb5234428089438}} 
+enum \mbox{\hyperlink{class_display_info_a0fd3c24eb50827521eb5234428089438}{Bermuda\+Grass\+Teams\+Col\+Positions}} \{ {\bfseries B\+G\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries B\+G\+\_\+\+S\+U\+R\+F\+A\+C\+E\+\_\+\+T\+Y\+PE}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+Bermuda Grass Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a063743c2fa0759f2b7e34dc53863005b}\label{class_display_info_a063743c2fa0759f2b7e34dc53863005b}} 
+enum \mbox{\hyperlink{class_display_info_a063743c2fa0759f2b7e34dc53863005b}{One\+Team\+Souvenir\+Col\+Positions}} \{ {\bfseries T\+S\+\_\+\+T\+E\+A\+M\+\_\+\+N\+A\+ME}, 
+{\bfseries T\+S\+\_\+\+S\+O\+U\+V\+E\+N\+I\+R\+\_\+\+N\+A\+ME}, 
+{\bfseries T\+S\+\_\+\+P\+R\+I\+CE}
+ \}
+\begin{DoxyCompactList}\small\item\em Column positions in \char`\"{}\+One Team\textquotesingle{}s Souvenirs\char`\"{} table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_display_info_a91ebebb5774ee025c7ccf18925e4048e}{Initialize\+View\+Table}} (Q\+Table\+Widget $\ast$table, const int \&cols, const Q\+String\+List \&headers)
+\begin{DoxyCompactList}\small\item\em Intializes view table to blank. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_ae9903e8b5e7d7c6f96cc54e149e764ce}{Populate\+View\+Table}} (Q\+Table\+Widget $\ast$table, Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ team\+List)
+\begin{DoxyCompactList}\small\item\em Populates viewer table with information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_aa864fe1cd8fc77b753a03e10938dbbae}{Populate\+One\+Team}} (Q\+Table\+Widget $\ast$table, \mbox{\hyperlink{class_team}{Team}} $\ast$team)
+\begin{DoxyCompactList}\small\item\em Populates table with single team information (requirement 2) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_ae22b4b49a196ada8deb616a15d326263}{Populate\+All\+Teams}} (Q\+Table\+Widget $\ast$table, Q\+String\+List team\+List)
+\begin{DoxyCompactList}\small\item\em Populates table with all team names (requirement 3) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_a177d639dcdef2c6c8493334bb20bd6cc}{Populate\+Teams\+Order\+By\+Stadium}} (Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Populates table with stadiums with teams ordered by stadium name (requirement 4) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_a6613e5d9ffaed03ec1961a407456f96f}{Populate\+Conference\+Teams}} (Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Populates table with teams from conference/division ordered by team name (requirement 5, 6, 7) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_aa170dab6a702bd33bd4960e63a5c1262}{Populate\+Stadiums\+By\+Date}} (Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Populates table with N\+FL stadiums by date opened (requirement 8) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_add77fafed7d9e63a30ac0a71737c4794}{Populate\+Open\+Roof\+Stadiums}} (Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Populates table with open roof stadiums (requirement 9) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_aac40546d30df7b6e846abd121b031d6d}{Populate\+Stadiums\+Order\+By\+Capacity}} (Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Populates table with stadiums ordered by capacity (requirement 10) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_ac5dcee799bf19fbfdbce550230f0fac0}{Populate\+Teams\+Order\+By\+Conference}} (Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Populates table with teams by conference name (requirement 11) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_a3ccc1126d200625e9ed475f33b36f8c4}{Populate\+Bermuda\+Grass\+Teams}} (Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$team\+List)
+\begin{DoxyCompactList}\small\item\em Populates table with teams of type Bermuda Grass (requirement 12) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_info_ab4ab24bffd8c1b8cfb6ee754e4c82cbd}{Delete\+All\+Table\+Rows}} (Q\+Table\+Widget $\ast$table)
+\begin{DoxyCompactList}\small\item\em Delete table rows (helper method) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_display_info_ac2e7d1a699e1c19fe7283755c2fd0d9d}{Display\+Info}} (Q\+Widget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a0f109461f8b6e2bfea0a35a7646a383c}\label{class_display_info_a0f109461f8b6e2bfea0a35a7646a383c}} 
+\mbox{\hyperlink{class_display_info_a0f109461f8b6e2bfea0a35a7646a383c}{$\sim$\+Display\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_display_info_a6300033f6c5c3590a29a1c23e3a23127}\label{class_display_info_a6300033f6c5c3590a29a1c23e3a23127}} 
+const int \mbox{\hyperlink{class_display_info_a6300033f6c5c3590a29a1c23e3a23127}{O\+N\+E\+\_\+\+T\+E\+A\+M\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 9
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+Show One Team\char`\"{} table. \end{DoxyCompactList}\item 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a96e1b08037ba940b8798ef0e9fa152f1}{one\+Team\+Table\+Col\+Names}}
+\begin{DoxyCompactList}\small\item\em Column header names in \char`\"{}\+Show One Team\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_af2f5772c936f612ee264a5d10f0c9e5b}\label{class_display_info_af2f5772c936f612ee264a5d10f0c9e5b}} 
+const int \mbox{\hyperlink{class_display_info_af2f5772c936f612ee264a5d10f0c9e5b}{A\+L\+L\+\_\+\+T\+E\+A\+M\+S\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 1
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+All Teams by Name\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_afcb67e819889891879257869ef6f60dc}\label{class_display_info_afcb67e819889891879257869ef6f60dc}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_afcb67e819889891879257869ef6f60dc}{all\+Teams\+Table\+Col\+Names}} \{ \char`\"{}Team Name\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+All Teams by Name\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_afbad59558eb131eaff799e62ac5e5526}\label{class_display_info_afbad59558eb131eaff799e62ac5e5526}} 
+const int \mbox{\hyperlink{class_display_info_afbad59558eb131eaff799e62ac5e5526}{A\+L\+L\+\_\+\+S\+T\+A\+D\+I\+U\+M\+S\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 2
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+All Stadiums Sorted by Stadium Name\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a63aafd16c8bda77572617958521c5fc5}\label{class_display_info_a63aafd16c8bda77572617958521c5fc5}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a63aafd16c8bda77572617958521c5fc5}{all\+Stadiums\+Col\+Names}} \{ \char`\"{}Stadium Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_team}{Team}} Name\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+All Stadiums Sorted by Stadium Name\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a016024ee1b260b0a1cb8424f29ee4c29}\label{class_display_info_a016024ee1b260b0a1cb8424f29ee4c29}} 
+const int \mbox{\hyperlink{class_display_info_a016024ee1b260b0a1cb8424f29ee4c29}{A\+F\+C\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 2
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+A\+F\+C Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a16dae3bbd66a7036c5aaf4514ad9f18f}\label{class_display_info_a16dae3bbd66a7036c5aaf4514ad9f18f}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a16dae3bbd66a7036c5aaf4514ad9f18f}{A\+F\+C\+Team\+Col\+Names}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}Conference\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+Display A\+F\+C Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a2ca2e649d790cf61a5edd32c2404d495}\label{class_display_info_a2ca2e649d790cf61a5edd32c2404d495}} 
+const int \mbox{\hyperlink{class_display_info_a2ca2e649d790cf61a5edd32c2404d495}{N\+F\+C\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 2
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+N\+F\+C Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a086eb86817cd3c523130d422d4407a22}\label{class_display_info_a086eb86817cd3c523130d422d4407a22}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a086eb86817cd3c523130d422d4407a22}{N\+F\+C\+Team\+Col\+Names}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}Conference\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+Display N\+F\+C Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a64dda927184e21f650f80f5e3b9858a2}\label{class_display_info_a64dda927184e21f650f80f5e3b9858a2}} 
+const int \mbox{\hyperlink{class_display_info_a64dda927184e21f650f80f5e3b9858a2}{N\+O\+R\+T\+H\+\_\+\+N\+F\+C\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 2
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+North N\+F\+C Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_ae5b8c56ce4521554ce75a46659791fbb}\label{class_display_info_ae5b8c56ce4521554ce75a46659791fbb}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_ae5b8c56ce4521554ce75a46659791fbb}{N\+F\+C\+North\+Team\+Col\+Names}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}Division\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+Display N\+F\+C North Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a1844fe2e20117da717ff9b8dd52e3e96}\label{class_display_info_a1844fe2e20117da717ff9b8dd52e3e96}} 
+const int \mbox{\hyperlink{class_display_info_a1844fe2e20117da717ff9b8dd52e3e96}{B\+Y\+\_\+\+D\+A\+T\+E\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 3
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+Sort Stadiums by Date\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a1e3e565bad858e4792d252e9ea5b754a}\label{class_display_info_a1e3e565bad858e4792d252e9ea5b754a}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a1e3e565bad858e4792d252e9ea5b754a}{Stadiums\+By\+Date\+Col\+Names}} \{ \char`\"{}Stadium Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_team}{Team}} Name\char`\"{}, \char`\"{}Date Opened\char`\"{}\}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+Sort Stadiums by Date\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a8380d380a2a871798a924e58783cb6d8}\label{class_display_info_a8380d380a2a871798a924e58783cb6d8}} 
+const int \mbox{\hyperlink{class_display_info_a8380d380a2a871798a924e58783cb6d8}{O\+P\+E\+N\+\_\+\+R\+O\+O\+F\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 3
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+Open Stadiums\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a8fad8917eadb6cde27c22511614d422f}\label{class_display_info_a8fad8917eadb6cde27c22511614d422f}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a8fad8917eadb6cde27c22511614d422f}{Open\+Stadiums\+Col\+Names}} \{ \char`\"{}Stadium Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_team}{Team}} Name\char`\"{}, \char`\"{}Roof Type\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+Display Open Stadiums\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a5739be2cfd3f0d1caaa9e4778975ccc8}\label{class_display_info_a5739be2cfd3f0d1caaa9e4778975ccc8}} 
+const int \mbox{\hyperlink{class_display_info_a5739be2cfd3f0d1caaa9e4778975ccc8}{S\+T\+A\+D\+I\+U\+M\+S\+\_\+\+S\+E\+A\+T\+I\+N\+G\+\_\+\+C\+AP}} = 3
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+All N\+F\+L Stadiums by Seating Cap\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a09baf9329c47c08ec677a204f2671e5c}\label{class_display_info_a09baf9329c47c08ec677a204f2671e5c}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a09baf9329c47c08ec677a204f2671e5c}{Seating\+Cap\+Stadiums\+Col\+Names}} \{ \char`\"{}Stadium Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_team}{Team}} Name\char`\"{}, \char`\"{}Seating Capacity\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+All N\+F\+L Stadiums by Seating Cap\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a6560714f8376a0dabc84aa04ad486643}\label{class_display_info_a6560714f8376a0dabc84aa04ad486643}} 
+const int \mbox{\hyperlink{class_display_info_a6560714f8376a0dabc84aa04ad486643}{B\+Y\+\_\+\+C\+O\+N\+F\+E\+R\+E\+N\+C\+E\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 4
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+Sort Teams by Conference\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a2d1867e05877470aa55ffb2ae96972a6}\label{class_display_info_a2d1867e05877470aa55ffb2ae96972a6}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a2d1867e05877470aa55ffb2ae96972a6}{Teams\+By\+Conference\+Col\+Names}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_stadium}{Stadium}} Name\char`\"{}, \char`\"{}Conference\char`\"{}, \char`\"{}Location\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+Sort Teams by Conference\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a910df2f7e5b09944ebcccf9cd0834833}\label{class_display_info_a910df2f7e5b09944ebcccf9cd0834833}} 
+const int \mbox{\hyperlink{class_display_info_a910df2f7e5b09944ebcccf9cd0834833}{B\+E\+R\+M\+U\+D\+A\+\_\+\+G\+R\+A\+S\+S\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 2
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+Bermuda Grass Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_af2c7df8739da0279f8a643b1bc4b6228}\label{class_display_info_af2c7df8739da0279f8a643b1bc4b6228}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_af2c7df8739da0279f8a643b1bc4b6228}{Bermuda\+Grass\+Teams\+Col\+Names}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}Surface Type\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+Bermuda Grass Teams\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a356987fdb1003df01c45fb8f50be331e}\label{class_display_info_a356987fdb1003df01c45fb8f50be331e}} 
+const int \mbox{\hyperlink{class_display_info_a356987fdb1003df01c45fb8f50be331e}{O\+N\+E\+\_\+\+T\+E\+A\+M\+\_\+\+S\+O\+U\+V\+E\+N\+I\+R\+\_\+\+C\+O\+L\+\_\+\+C\+O\+U\+NT}} = 3
+\begin{DoxyCompactList}\small\item\em Number of columns in \char`\"{}\+One Team\textquotesingle{}s Souvenirs\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_aa3ce3f8b282148865b854b4129dce08c}\label{class_display_info_aa3ce3f8b282148865b854b4129dce08c}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_aa3ce3f8b282148865b854b4129dce08c}{One\+Team\+Souvenir\+Col\+Names}} \{ \char`\"{}Team Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_souvenir}{Souvenir}} Name\char`\"{}, \char`\"{}\mbox{\hyperlink{class_souvenir}{Souvenir}} Price\char`\"{} \}
+\begin{DoxyCompactList}\small\item\em Column names in \char`\"{}\+One Team\textquotesingle{}s Souvenirs\char`\"{} table. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_info_a61243e741d3196cac13bfcb23e0d85a3}\label{class_display_info_a61243e741d3196cac13bfcb23e0d85a3}} 
+Q\+String\+List \mbox{\hyperlink{class_display_info_a61243e741d3196cac13bfcb23e0d85a3}{Team\+Name\+Combo\+Box\+Labels}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_team}{Team}} name combobox to be populated by database when tab is accessed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_display_info}{Display\+Info}} class is an object that manages all \char`\"{}\+Display Team Information\char`\"{} module functionality. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_display_info_ac2e7d1a699e1c19fe7283755c2fd0d9d}\label{class_display_info_ac2e7d1a699e1c19fe7283755c2fd0d9d}} 
+\index{DisplayInfo@{DisplayInfo}!DisplayInfo@{DisplayInfo}}
+\index{DisplayInfo@{DisplayInfo}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{DisplayInfo()}{DisplayInfo()}}
+{\footnotesize\ttfamily Display\+Info\+::\+Display\+Info (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent;} & Pointer to parent object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_display_info_ab4ab24bffd8c1b8cfb6ee754e4c82cbd}\label{class_display_info_ab4ab24bffd8c1b8cfb6ee754e4c82cbd}} 
+\index{DisplayInfo@{DisplayInfo}!DeleteAllTableRows@{DeleteAllTableRows}}
+\index{DeleteAllTableRows@{DeleteAllTableRows}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{DeleteAllTableRows()}{DeleteAllTableRows()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Delete\+All\+Table\+Rows (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table }\end{DoxyParamCaption})}
+
+
+
+Delete table rows (helper method) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table of which rows will be deleted \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_a91ebebb5774ee025c7ccf18925e4048e}\label{class_display_info_a91ebebb5774ee025c7ccf18925e4048e}} 
+\index{DisplayInfo@{DisplayInfo}!InitializeViewTable@{InitializeViewTable}}
+\index{InitializeViewTable@{InitializeViewTable}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{InitializeViewTable()}{InitializeViewTable()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Initialize\+View\+Table (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table,  }\item[{const int \&}]{cols,  }\item[{const Q\+String\+List \&}]{headers }\end{DoxyParamCaption})}
+
+
+
+Intializes view table to blank. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to initialize \\
+\hline
+{\em cols;} & Number of columns in table \\
+\hline
+{\em headers;} & Column header names \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_ae22b4b49a196ada8deb616a15d326263}\label{class_display_info_ae22b4b49a196ada8deb616a15d326263}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateAllTeams@{PopulateAllTeams}}
+\index{PopulateAllTeams@{PopulateAllTeams}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateAllTeams()}{PopulateAllTeams()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+All\+Teams (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table,  }\item[{Q\+String\+List}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates table with all team names (requirement 3) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to initialize \\
+\hline
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_a3ccc1126d200625e9ed475f33b36f8c4}\label{class_display_info_a3ccc1126d200625e9ed475f33b36f8c4}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateBermudaGrassTeams@{PopulateBermudaGrassTeams}}
+\index{PopulateBermudaGrassTeams@{PopulateBermudaGrassTeams}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateBermudaGrassTeams()}{PopulateBermudaGrassTeams()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+Bermuda\+Grass\+Teams (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates table with teams of type Bermuda Grass (requirement 12) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_a6613e5d9ffaed03ec1961a407456f96f}\label{class_display_info_a6613e5d9ffaed03ec1961a407456f96f}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateConferenceTeams@{PopulateConferenceTeams}}
+\index{PopulateConferenceTeams@{PopulateConferenceTeams}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateConferenceTeams()}{PopulateConferenceTeams()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+Conference\+Teams (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates table with teams from conference/division ordered by team name (requirement 5, 6, 7) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_aa864fe1cd8fc77b753a03e10938dbbae}\label{class_display_info_aa864fe1cd8fc77b753a03e10938dbbae}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateOneTeam@{PopulateOneTeam}}
+\index{PopulateOneTeam@{PopulateOneTeam}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateOneTeam()}{PopulateOneTeam()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+One\+Team (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table,  }\item[{\mbox{\hyperlink{class_team}{Team}} $\ast$}]{team }\end{DoxyParamCaption})}
+
+
+
+Populates table with single team information (requirement 2) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to initialize \\
+\hline
+{\em team;} & \mbox{\hyperlink{class_team}{Team}} information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_add77fafed7d9e63a30ac0a71737c4794}\label{class_display_info_add77fafed7d9e63a30ac0a71737c4794}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateOpenRoofStadiums@{PopulateOpenRoofStadiums}}
+\index{PopulateOpenRoofStadiums@{PopulateOpenRoofStadiums}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateOpenRoofStadiums()}{PopulateOpenRoofStadiums()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+Open\+Roof\+Stadiums (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates table with open roof stadiums (requirement 9) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_aa170dab6a702bd33bd4960e63a5c1262}\label{class_display_info_aa170dab6a702bd33bd4960e63a5c1262}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateStadiumsByDate@{PopulateStadiumsByDate}}
+\index{PopulateStadiumsByDate@{PopulateStadiumsByDate}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateStadiumsByDate()}{PopulateStadiumsByDate()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+Stadiums\+By\+Date (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates table with N\+FL stadiums by date opened (requirement 8) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_aac40546d30df7b6e846abd121b031d6d}\label{class_display_info_aac40546d30df7b6e846abd121b031d6d}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateStadiumsOrderByCapacity@{PopulateStadiumsOrderByCapacity}}
+\index{PopulateStadiumsOrderByCapacity@{PopulateStadiumsOrderByCapacity}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateStadiumsOrderByCapacity()}{PopulateStadiumsOrderByCapacity()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+Stadiums\+Order\+By\+Capacity (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates table with stadiums ordered by capacity (requirement 10) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_ac5dcee799bf19fbfdbce550230f0fac0}\label{class_display_info_ac5dcee799bf19fbfdbce550230f0fac0}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateTeamsOrderByConference@{PopulateTeamsOrderByConference}}
+\index{PopulateTeamsOrderByConference@{PopulateTeamsOrderByConference}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateTeamsOrderByConference()}{PopulateTeamsOrderByConference()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+Teams\+Order\+By\+Conference (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates table with teams by conference name (requirement 11) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_a177d639dcdef2c6c8493334bb20bd6cc}\label{class_display_info_a177d639dcdef2c6c8493334bb20bd6cc}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateTeamsOrderByStadium@{PopulateTeamsOrderByStadium}}
+\index{PopulateTeamsOrderByStadium@{PopulateTeamsOrderByStadium}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateTeamsOrderByStadium()}{PopulateTeamsOrderByStadium()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+Teams\+Order\+By\+Stadium (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$ $\ast$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates table with stadiums with teams ordered by stadium name (requirement 4) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_info_ae9903e8b5e7d7c6f96cc54e149e764ce}\label{class_display_info_ae9903e8b5e7d7c6f96cc54e149e764ce}} 
+\index{DisplayInfo@{DisplayInfo}!PopulateViewTable@{PopulateViewTable}}
+\index{PopulateViewTable@{PopulateViewTable}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{PopulateViewTable()}{PopulateViewTable()}}
+{\footnotesize\ttfamily void Display\+Info\+::\+Populate\+View\+Table (\begin{DoxyParamCaption}\item[{Q\+Table\+Widget $\ast$}]{table,  }\item[{Q\+Vector$<$ \mbox{\hyperlink{class_team}{Team}} $\ast$ $>$}]{team\+List }\end{DoxyParamCaption})}
+
+
+
+Populates viewer table with information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table;} & Table to initialize \\
+\hline
+{\em team\+List;} & Container of team information with which to populate table \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_display_info_a96e1b08037ba940b8798ef0e9fa152f1}\label{class_display_info_a96e1b08037ba940b8798ef0e9fa152f1}} 
+\index{DisplayInfo@{DisplayInfo}!oneTeamTableColNames@{oneTeamTableColNames}}
+\index{oneTeamTableColNames@{oneTeamTableColNames}!DisplayInfo@{DisplayInfo}}
+\doxysubsubsection{\texorpdfstring{oneTeamTableColNames}{oneTeamTableColNames}}
+{\footnotesize\ttfamily Q\+String\+List Display\+Info\+::one\+Team\+Table\+Col\+Names}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        \textcolor{stringliteral}{"Team Name"}, \textcolor{stringliteral}{"Stadium Name"}, \textcolor{stringliteral}{"Seating Capacity"}, \textcolor{stringliteral}{"Location"}, \textcolor{stringliteral}{"Conference"},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"Division"}, \textcolor{stringliteral}{"Surface Type"}, \textcolor{stringliteral}{"Stadium Roof Type"}, \textcolor{stringliteral}{"Date Opened"}}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+Column header names in \char`\"{}\+Show One Team\char`\"{} table. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Display\+Info.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Display\+Info.\+cpp\end{DoxyCompactItemize}
