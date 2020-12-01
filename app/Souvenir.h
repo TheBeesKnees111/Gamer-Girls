@@ -24,6 +24,8 @@ class Souvenir : public QObject
     int     qtyPurchased;
 
 public:
+	Souvenir(int sID, int tID, QString iName, float iPrice);
+
     /*!
      * @brief Constructor
      * @param *parent; Pointer to parent object

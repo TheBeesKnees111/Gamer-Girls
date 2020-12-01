@@ -30,8 +30,39 @@ Admin::Admin(QWidget *parent) :
 	PopulateComboBoxes("SELECT roofType FROM teamInfo"   , ui -> Roof_Type_ComboBox);
 	PopulateComboBoxesItems("SELECT teamName, teamID FROM teamInfo"   , ui -> Team_Name_ComboBox);
 
+	//Initialize Map to carry souvenirs
+	InitializeMapSouvenirData();
+
 }
 
+///Initialize map to store all souvenir data
+void Admin::InitializeMapSouvenirData()
+{
+	QSqlQuery query;
+
+	//Call query to select souvenir info
+	if(!query.exec("SELECT * FROM souvenirs"))
+		qDebug() << "INITIALIZE MAP MACHINE BROKE " << query.lastError();
+	else
+	{
+		Souvenir newSouvenir;
+
+		while(query.next())
+		{
+
+			//Set souvenir values
+			newSouvenir.SetSouvenirID(query.value(SOUVENIR_ID).toInt());
+			newSouvenir.SetTeamID    (query.value(TEAM_ID)    .toInt());
+			newSouvenir.SetItemName  (query.value(ITEM_NAME)  .toString());
+			newSouvenir.SetItemPrice (query.value(ITEM_PRICE) .toDouble());
+
+			souvenirs.Insert(query.value(SOUVENIR_ID).toInt(), newSouvenir);
+		}
+	}
+
+}
+
+///Give all comboboxes values
 void Admin::PopulateComboBoxes(QString sqlQuery, QComboBox* comboBox)
 {
 	//list to hold different string values
@@ -113,7 +144,7 @@ void Admin::PopulateSouvenirTable ()
 	ui -> Update_Souvenir_Datatable -> verticalHeader() -> hide();
 }
 
-// Populates stadium table with relevant information
+/// Populates stadium table with relevant information
 void Admin::PopulateStadiumTable ()
 {
 	QSqlQueryModel* model = new QSqlQueryModel;
@@ -170,7 +201,6 @@ void Admin::PopulatePurchasesTable()
 	ui -> Display_Purchases_TableView -> setColumnWidth(1, 200);
 	ui -> Display_Purchases_TableView -> setColumnWidth(2, 200);
 	ui -> Display_Purchases_TableView -> setColumnWidth(3, 100);
-
 
 }
 
@@ -290,11 +320,13 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 	bool    blankData    = (souvenirName == "" || price == 0.00 ||
 							teamID       == 0  || !IsOnlySpaces(souvenirName));
 
-	if(blankData)
-		QMessageBox::information(this,"ERROR", "***** Data left blank *****");
+	if(blankData && !souvenirs.SearchItem(souvenirs[teamID]))
+		QMessageBox::information(this,"ERROR", "***** Data left blank *****\n Or Item already added");
 
 	else
 	{
+		Souvenir newSouvenir;
+
 		query.prepare("INSERT INTO "
 					  "souvenirs(teamID,  itemName,  itemPrice) "
 					  "VALUES   (:teamID, :itemName, :itemPrice)");
@@ -309,8 +341,18 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 		PopulateSouvenirTable();
 		PopulateComboBoxes("SELECT teamName, teamID FROM teamInfo", ui -> Team_Name_ComboBox);
 
+		//Clear inputs
 		ui -> Souvenir_Name_LineEdit -> clear();
 		ui -> Price_Double_SpinBox   -> clear();
+
+		//Add to map
+		newSouvenir.SetItemName  (souvenirName);
+		newSouvenir.SetItemPrice (price);
+		newSouvenir.SetSouvenirID(Database::getInstance() -> GetMaxSouvenirID() + 1);
+		newSouvenir.SetTeamID    (teamID);
+
+		souvenirs.Insert(teamID, newSouvenir);
+
 	}
 
 }
@@ -321,11 +363,6 @@ void Admin::on_Update_Souvenir_PushButton_clicked()
 	QString   souvenirName = ui -> Souvenir_Name_LineEdit -> text();
 	double    price        = ui -> Price_Double_SpinBox   -> text().toDouble();
 	int       teamID       = ui -> Team_Name_ComboBox     -> currentData().toInt();
-
-	qDebug() << souvenirName;
-	qDebug() << price;
-	qDebug() << teamID;
-
 
 	QSqlQuery query;
 

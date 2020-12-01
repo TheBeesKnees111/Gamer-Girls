@@ -443,6 +443,11 @@ void SouvenirAndTrip::on_Confirm_New_England_Trip_PushButton_clicked()
 
     // Enable cart button
     ui->newEngland_cart_button->setEnabled(true);
+
+	ui -> newEngland_tableWidget -> verticalHeader() -> show();
+	ui -> newEngland_tableWidget -> setColumnWidth(0, 200);
+	ui -> newEngland_tableWidget -> setColumnWidth(1, 200);
+
 }
 
             /*********************************************
@@ -523,6 +528,7 @@ void SouvenirAndTrip::on_Confirm_Custom_Trip_PushButton_clicked()
 
     // Enable cart button
     ui->customTrip_cart_button->setEnabled(true);
+
 }
 
 // Will activate pulling souvenirs for this team
@@ -657,8 +663,8 @@ void SouvenirAndTrip::on_Confirm_Lo_sAngeles_Rams_Trip_PushButton_clicked()
     PopulateTripTable(ui->losAngeles_tableWidget, teamList);
 
 	ui -> losAngeles_tableWidget -> verticalHeader() -> show();
-	ui -> losAngeles_tableWidget -> setColumnWidth(0,200);
-	ui -> losAngeles_tableWidget -> setColumnWidth(1,200);
+	ui -> losAngeles_tableWidget -> setColumnWidth(0, 200);
+	ui -> losAngeles_tableWidget -> setColumnWidth(1, 200);
 
 }
 
@@ -666,7 +672,7 @@ void SouvenirAndTrip::on_losAngeles_cart_button_clicked()
 {
     PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
 
-    purchaseTable->show();
+	purchaseTable->show();
 }
 
             /*********************************************
@@ -800,6 +806,9 @@ void SouvenirAndTrip::on_Confirm_Custom_Shortest_Trip_PushButton_clicked()
     // Enable cart button
     ui->shortestCustomTrip_cart_button->setEnabled(true);
 
+	ui -> shortestCustomTrip_tableWidget -> verticalHeader() -> show();
+	ui -> shortestCustomTrip_tableWidget -> setColumnWidth(0, 200);
+	ui -> shortestCustomTrip_tableWidget -> setColumnWidth(1, 200);
 
 }
 

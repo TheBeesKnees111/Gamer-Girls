@@ -7,6 +7,52 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QComboBox>
+#include "MapADT.h"
+
+struct Souvenir
+{
+	int     souvenirID;
+	int     teamID;
+	QString itemName;
+	float   price;
+
+	friend bool operator == (const Souvenir& souvenir, const Souvenir& otherSouvenir)
+	{
+		return (souvenir.souvenirID == otherSouvenir.souvenirID &&
+				souvenir.teamID     == otherSouvenir.teamID     &&
+				souvenir.itemName   == otherSouvenir.itemName   &&
+				souvenir.price      == otherSouvenir.price);
+	}
+
+	friend ostream& operator << (ostream& output, const Souvenir& souvenir)
+	{
+		output  << "SouvenirID: " << souvenir.souvenirID << endl;
+		output  << "Team ID:    " << souvenir.teamID     << endl;
+		output  << "Item Name:  " << souvenir.itemName.toStdString()   << endl;
+		output  << "Item Price: " << souvenir.price      << endl << endl;
+	}
+
+	void SetSouvenirID(int value)
+	{
+		souvenirID = value;
+	}
+
+	void SetTeamID    (int value)
+	{
+		teamID = value;
+	}
+
+	void SetItemName  (const QString &value)
+	{
+		itemName = value;
+	}
+
+	void SetItemPrice (float value)
+	{
+		price = value;
+	}
+};
+
 
 /*!
  * @class Admin
@@ -41,7 +87,16 @@ public:
     /// Prices for default souvenirs
 	QVector <double> souvenirPrices = {77.99, 99.89, 17.99, 29.99, 199.99};
 
-    /// Positions of columns by name "add souvenir" and "edit souvenir" tab in admin
+	//Position of data in souvenir column
+	enum SouvenirTableColumns
+	{
+		SOUVENIR_ID,
+		TEAM_ID,
+		ITEM_NAME,
+		ITEM_PRICE
+	};
+
+    // Positions of columns by name "add souvenir" and "edit souvenir" tab in admin
     enum SouvenirTableColPositions { I_TEAM, I_NAME, I_PRICE };
 
     /// Positions of columns by name in "edit stadium" tab of admin
@@ -89,6 +144,10 @@ public:
      */
     explicit Admin(QWidget *parent = nullptr);
 
+	///Initialize map to store all souvenir data
+	void InitializeMapSouvenirData();
+
+	/// Destructor
     /*!
      * @brief Destructor
      */
@@ -143,7 +202,10 @@ private slots:
     /// SouvenirID used for interaction with database
     int		   souvenirID;
     /// Selected team used for interaction with database
-    int        selectedTeamID = 0;
+    int        selectedTeamID = 0;	
+    
+    MapADT <int, Souvenir> souvenirs;
+
 };
 
 #endif // ADMIN_H

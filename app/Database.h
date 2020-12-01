@@ -128,6 +128,17 @@ public:
      * @brief Accessor to retrieve names of teams in database
      * @return QStringList; Names of teams in database
      */
+    void DeleteSouvenir(const QString &SouvenirName, const QString &teamName);
+
+	///Get maximum souvenir ID
+	int GetMaxSouvenirID();
+
+    /*
+     * DisplayInfo.ui Information Retrieval Methods
+     */
+
+    // Get team names
+
     QStringList GetTeamNames();
 
     /*!
