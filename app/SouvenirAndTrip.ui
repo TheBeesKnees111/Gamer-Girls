@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -729,6 +729,16 @@
        <height>491</height>
       </rect>
      </property>
+     <column>
+      <property name="text">
+       <string>Team Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Stadium Name</string>
+      </property>
+     </column>
     </widget>
     <widget class="QLabel" name="minnesota_distance_label">
      <property name="geometry">
@@ -737,6 +747,32 @@
        <y>670</y>
        <width>191</width>
        <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>520</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Total Distance: </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="MN_total_dist">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>520</y>
+       <width>60</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">

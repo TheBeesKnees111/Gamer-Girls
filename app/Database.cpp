@@ -38,8 +38,9 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
 {
     // Set path
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
-        QString windowsPathFile =  "/db/NFLdb.db";
-        setDatabaseName(QDir::currentPath() + windowsPathFile);
+		QString windowsPathFile =  "/db/NFLdb.db";
+		setDatabaseName(QDir::currentPath() + windowsPathFile);
+
        // QString BLAKESPATH = "/Users/blakedickerson/Downloads/nfldb.db";
        //setDatabaseName(BLAKESPATH);
         setDatabaseName(QDir::currentPath() + windowsPathFile);
@@ -89,8 +90,8 @@ QVector<Stadium*> Database::getStadiums()
 // Returns a vector edge list of (StadiumDistance*)
 QVector<StadiumDistance*> Database::getStadiumDistances()
 {
-    if (stadiumDistanceCache.isEmpty())
-        runGetAllStadiumDistances();
+	stadiumDistanceCache.clear();
+	runGetAllStadiumDistances();
     return stadiumDistanceCache.values().toVector();
 
 }
