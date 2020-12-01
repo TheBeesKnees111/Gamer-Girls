@@ -452,22 +452,79 @@ void SouvenirAndTrip::on_Confirm_New_England_Trip_PushButton_clicked()
 /// Will call rout displayer and show cities the user has selected to travel to
 void SouvenirAndTrip::on_Confirm_Custom_Trip_PushButton_clicked()
 {
-    QStringList listOfStadiums;
-    QList<int>  listOfDistances;
+    QString nextName; // next stadium's name
+        QStringList visited; // list of visited stadiums
+        QStringList tripList; // list of stadiums returned from dijkstras
+        QQueue<QString> pending; // ongoing list of stadiums to visit
+        Stadium* nextStadium = new Stadium; // next stadium to check
+        int distance = 0;
+        int tempDist = 0;
+        QString distanceOutput = "Total Distance Traveled: ";
+        StadiumGraph graph = StadiumGraph::createStadiumGraph(database);
 
-    for(int index = 0; index < ui -> Select_Cities_ListWidget -> count(); index++)
-    {
-        if(ui -> Select_Cities_ListWidget -> item(index) -> checkState() == Qt::Checked)
+        // place all stadiums in tripList (for use in shopping cart). Never touch this again
+
+        // place all stadiums in pending queue
+        for (int i = 0; i < customTripList.size(); i++)
         {
-            listOfStadiums.push_back(ui -> Select_Cities_ListWidget -> item(index) -> text());
+            pending.push_back(customTripList[i]);
         }
-    }
 
-    while(!listOfStadiums.isEmpty())
-    {
-        qDebug() << listOfStadiums.first();
-        listOfStadiums.pop_front();
-    }
+        // nextName = pending.head()
+        nextName = pending.head();
+
+         // nextStadium = getstadium(nextName)
+        nextStadium = database->getStadiumByName(nextName);
+
+         // pop pending.head()
+        pending.pop_front();
+
+
+         // visited.push_back(nextName)
+         visited.push_back(nextName);
+
+
+
+
+        while(!pending.empty())
+        {
+          // run dijkstras. nextStadium as origin, queue.head as destination
+            customTrip(graph, nextStadium, visited, distance, pending.front(), tempDist);
+
+          // nextName =  queue.head()
+            nextName = pending.head();
+
+          // visited.push_back(nextName)
+            visited.push_back(nextName);
+
+          // nextStadium = getStadium(nextName)
+            nextStadium = database->getStadiumByName(nextName);
+
+          // pop queue.head
+            pending.pop_front();
+
+        } // end loop
+
+
+    //tripList.pop_back();
+
+    // Populate shopping list
+    teamList = database->CreateShoppingList(customTripList);
+
+    // Initialize table
+    InitializeTripTable(ui->custom_trip_tableWidget, TRIP_TABLE_COL_COUNT, tripTableHeaders);
+
+    // Populate table
+    PopulateTripTable(ui->custom_trip_tableWidget,teamList);
+
+    // Populate distance label
+    distanceOutput = distanceOutput + QVariant(tempDist).toString();
+    ui->customTrip_distance_label->setText(distanceOutput);
+
+    // Enable cart button
+    ui->customTrip_cart_button->setEnabled(true);
+
+
 
 }
 
@@ -755,4 +812,37 @@ void SouvenirAndTrip::on_shortestCustomTrip_cart_button_clicked()
     PurchaseTable *purchaseTable = new PurchaseTable(this, teamList);
 
     purchaseTable->show();
+}
+
+void SouvenirAndTrip::on_Select_Cities_ListWidget_itemClicked(QListWidgetItem *item)
+{
+    QQueue<QString> listOfStadiums;
+        QList<int>  listOfDistances;
+
+
+        QString nextName; // next stadium's name
+        QStringList visited; // list of visited stadiums
+        QStringList tripList; // list of stadiums returned from dijkstras
+        QQueue<QString> pending; // ongoing list of stadiums to visit
+        Stadium* nextStadium = new Stadium; // next stadium to check
+        int distance = 0;
+       // int index = 0;
+        QQueue<QString> stadiumId;
+
+        QString distanceOutput = "Total Distance Traveled: ";
+
+        //if the button is clicked check to see if all tables cities are on my customTripList
+        for(int index = 0; index < ui -> Select_Cities_ListWidget -> count(); index++)
+        {
+            //If city is chekcedboxed and its not on my list add it
+            if(ui -> Select_Cities_ListWidget -> item(index) -> checkState() == Qt::Checked && !customTripList.contains(ui->Select_Cities_ListWidget->item(index)->text()))
+            {
+                //listOfStadiums.push_back(ui -> Select_Cities_ListWidget -> item(index) -> text());
+                customTripList.push_back(ui->Select_Cities_ListWidget->item(index)->text());
+            }
+        }
+        for (int i = 0; i < customTripList.size(); i++)
+        {
+              qDebug() << customTripList.at(i);
+        }
 }

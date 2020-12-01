@@ -41,9 +41,9 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
         QString windowsPathFile =  "/db/NFLdb.db";
         setDatabaseName(QDir::currentPath() + windowsPathFile);
 
-       // QString BLAKESPATH = "/Users/blakedickerson/Downloads/nfldb.db";
-       //setDatabaseName(BLAKESPATH);
-        setDatabaseName(QDir::currentPath() + windowsPathFile);
+        QString BLAKESPATH = "/Users/blakedickerson/Downloads/nfldb.db";
+       setDatabaseName(BLAKESPATH);
+        //setDatabaseName(QDir::currentPath() + windowsPathFile);
 //        qDebug() << QDir::currentPath() + windowsPathFile;
 //    QString rebecca = "/Users/ST/Documents/12. FALL 2020/1. CS1D/GROUP PROJECT/2. NFL Football/Code/Current Project/Gamer-Girls/app/db/nfldb.db";
 //    setDatabaseName(rebecca);

@@ -146,12 +146,26 @@ private slots:
      */
     void on_Confirm_Minnesota_Trip_PushButton_clicked();
 
+    /*!
+     * @brief Navigates from Minnesota trip to Purchase Table
+     */
     void on_minnesota_cart_button_clicked();
 
-	private:
+    /*!
+     * @brief Gets the items selected from the QListWidget
+     */
+    void on_Select_Cities_ListWidget_itemClicked(QListWidgetItem *item);
 
+private:
+
+    /*!
+     * @brief Finalizes the custom shortest trip. Runs trip.
+     */
     void on_Confirm_Custom_Shortest_Trip_PushButton_clicked();
 
+    /*!
+     * @brief Navigates from custom shortest trip to Purchase Table
+     */
     void on_shortestCustomTrip_cart_button_clicked();
 
 
@@ -168,6 +182,8 @@ private:
     AdjacencyList       *adjList;
     /// Pointer to list of teams to visit. Used for shopping cart construction
     QVector<Team*>      *teamList;
+    /// A QStringList that holds the teams for the custom trip
+    QStringList customTripList;
 };
 
 #endif // SOUVENIRANDTRIP_H
