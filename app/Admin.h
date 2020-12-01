@@ -9,13 +9,26 @@
 #include <QComboBox>
 #include "MapADT.h"
 
+/*!
+ * @brief Souvenir struct exists to circumvent QOBJECT's inability to invoke copy constructor
+ */
 struct Souvenir
 {
+    /// Souvenir ID
 	int     souvenirID;
+    /// Souvenir's team ID
 	int     teamID;
+    /// Souvenir name
 	QString itemName;
+    /// Souvenir price
 	float   price;
 
+    /*!
+     * @brief Friend function to overload comparison operator
+     * @param souvenir; Origin souvenir
+     * @param otherSouvenir; Destination souvenir
+     * @return bool; Status of object equality
+     */
 	friend bool operator == (const Souvenir& souvenir, const Souvenir& otherSouvenir)
 	{
 		return (souvenir.souvenirID == otherSouvenir.souvenirID &&
@@ -24,6 +37,12 @@ struct Souvenir
 				souvenir.price      == otherSouvenir.price);
 	}
 
+    /*!
+     * @brief Friend function to overload ostream operator
+     * @param output; Output desired
+     * @param souvenir; Souvenir object to output
+     * @return ostream; Ostream object to output
+     */
 	friend ostream& operator << (ostream& output, const Souvenir& souvenir)
 	{
 		output  << "SouvenirID: " << souvenir.souvenirID << endl;
@@ -32,21 +51,37 @@ struct Souvenir
 		output  << "Item Price: " << souvenir.price      << endl << endl;
 	}
 
+    /*!
+     * @brief Mutator to alter souvenir's ID
+     * @param value; Souvenir's new ID
+     */
 	void SetSouvenirID(int value)
 	{
 		souvenirID = value;
 	}
 
+    /*!
+     * @brief Mutator to alter souvenir's team's ID
+     * @param value; Souvenir's team's new ID
+     */
 	void SetTeamID    (int value)
 	{
 		teamID = value;
 	}
 
+    /*!
+     * @brief Mutator to alter souvenir's name
+     * @param value; Souvenir's new name
+     */
 	void SetItemName  (const QString &value)
 	{
 		itemName = value;
 	}
 
+    /*!
+     * @brief Mutator to alter souvenir's price
+     * @param value; Souvenir's new price
+     */
 	void SetItemPrice (float value)
 	{
 		price = value;
