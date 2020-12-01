@@ -40,6 +40,7 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     //NOTE IF YOU ARE ON WINDOWS USE WINDOWSPATHFILE, IF YOU ARE ON MAC USE MACPATHFILE
         QString windowsPathFile =  "/db/NFLdb.db";
         setDatabaseName(QDir::currentPath() + windowsPathFile);
+
        // QString BLAKESPATH = "/Users/blakedickerson/Downloads/nfldb.db";
        //setDatabaseName(BLAKESPATH);
         setDatabaseName(QDir::currentPath() + windowsPathFile);
@@ -62,20 +63,6 @@ Database::Database(): QSqlDatabase(addDatabase("QSQLITE"))
     }
 }
 
-// Returns teamID from a search for its location
-//int GetTeamIDByCityName(QString location)
-//{
-//    QSqlQuery query;
-
-//    query.prepare("SELECT teamID FROM teamInfo WHERE location = :location");
-//    query.bindValue(":location", location);
-
-//    if(!query.exec())
-//        qDebug() << query.lastError();
-
-//    return query.value(0).toInt();
-//}
-
 // Creates stadiumDbCacheByID of Stadiums if they don't already exist.
 // Returns a vector of all Stadium*
 QVector<Stadium*> Database::getStadiums()
@@ -94,7 +81,6 @@ QVector<StadiumDistance*> Database::getStadiumDistances()
 	runGetAllStadiumDistances();
 
 	return stadiumDistanceCache.values().toVector();
-
 }
 
 // returns StadiumDistance found by distanceID
@@ -176,52 +162,6 @@ Team *Database::GetTeamByName(const QString name)
       if (!teamDbCacheByName.contains(name))
           runGetAllTeamsAndStadiums();
       return teamDbCacheByName[name];
-}
-
-// For use in admin section
-QVector<Souvenir*> Database::getSouvenirs()
-{
-    // look at the teams & stadiums setup if you want to cache your
-    // data for easier reference & better integration w/ the QMap & QHash
-    QVector<Souvenir*> v(NULL);
-
-    return v;
-}
-
-// For use in admin section
-Souvenir* Database::getSouvenierByID(int souvenirID)
-{
-    return nullptr;
-}
-
-QVector<Purchases*> Database::getPurchases()
-{
-    QVector<Purchases*> v(NULL);
-
-    return v;
-}
-
-Purchases* Database::getPurchasesByID(int purchaseID)
-{
-    return nullptr;
-}
-
-// Add souvenir to database
-void Database::AddSouvenir(const QString &team, const QString &souvenirName, const QString &price)
-{
-
-}
-
-// Change price of souvenir in database
-void Database::UpdateSouvenirPrice(const QString &SouvenirName, const QString teamName, const QString &price)
-{
-
-}
-
-// Remove souvenir from database
-void Database::DeleteSouvenir(const QString &SouvenirName, const QString &teamName)
-{
-
 }
 
 ///get maximum existing souvenir ID

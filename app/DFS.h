@@ -16,18 +16,28 @@
 
 using namespace std;
 
-// single source shortest path from a given start.
-// building whole spanning tree of the shortest paths from the start stadium
-// to all other stadiums.
-// returns the complete spanning tree which can be used for multiple searches
-// for the shortest path.
-//QHash<QString, StadiumDistance*> DFS(const StadiumGraph& graph, Stadium* start);
+/*!
+ * @brief Runs depth-first traversal algorithm using graph and startpoint
+ * @param graph; Graph to reference for traversal
+ * @param start; Starting point for traversal
+ * @return QVector<StadiumDistance*>; Spanning tree resulting from traversal
+ */
 QVector<StadiumDistance*> DFS(const StadiumGraph& graph, Stadium* start);
 
 // Creates & prints the specified path for DFS
+
+/*!
+ * @brief Creates and prints path specified by DFS traveresal
+ * @param graph; Graph to reference for traversal
+ * @param start; Starting point for traversal
+ */
 void runDFS(const StadiumGraph& graph, QString start);
 
 // Runs / calls path for DFS from start stadium
+
+/*!
+ * @brief Method to test traversal algorithm
+ */
 void testDFS();
 
 #endif // DFS_H

@@ -1,0 +1,79 @@
+\hypertarget{class_b_f_s}{}\doxysection{B\+FS Class Reference}
+\label{class_b_f_s}\index{BFS@{BFS}}
+
+
+The \mbox{\hyperlink{class_b_f_s}{B\+FS}} class contains all objects necessary to run breadth first search traversal of graph.  
+
+
+
+
+{\ttfamily \#include $<$B\+F\+S.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_b_f_s_ac30ded4e597b97be3d4922eaf4294d8d}{B\+FS}} (\mbox{\hyperlink{class_adjacency_list}{Adjacency\+List}} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor populates list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_b_f_s_a305fb6665a620e7938929f0f1d1918d3}\label{class_b_f_s_a305fb6665a620e7938929f0f1d1918d3}} 
+void \mbox{\hyperlink{class_b_f_s_a305fb6665a620e7938929f0f1d1918d3}{Traverse}} ()
+\begin{DoxyCompactList}\small\item\em Performs traversal. Will populate traversal list and distance traveled. \end{DoxyCompactList}\item 
+Q\+String\+List \mbox{\hyperlink{class_b_f_s_a54a7dd1574f5e30737dd1ffa49708f30}{Get\+Traversal\+List}} () const
+\begin{DoxyCompactList}\small\item\em Accessor will return list in order of traversal. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_b_f_s_a37796eaedfbaa5e6898103fc835e1a0b}{Get\+Distance\+Traveled}} () const
+\begin{DoxyCompactList}\small\item\em Accessor will return total weight of edges traversed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_b_f_s}{B\+FS}} class contains all objects necessary to run breadth first search traversal of graph. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_b_f_s_ac30ded4e597b97be3d4922eaf4294d8d}\label{class_b_f_s_ac30ded4e597b97be3d4922eaf4294d8d}} 
+\index{BFS@{BFS}!BFS@{BFS}}
+\index{BFS@{BFS}!BFS@{BFS}}
+\doxysubsubsection{\texorpdfstring{BFS()}{BFS()}}
+{\footnotesize\ttfamily B\+F\+S\+::\+B\+FS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_adjacency_list}{Adjacency\+List}} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Parameterized constructor populates list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list;} & \mbox{\hyperlink{class_adjacency_list}{Adjacency\+List}} object to populate and use in traversal \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_b_f_s_a37796eaedfbaa5e6898103fc835e1a0b}\label{class_b_f_s_a37796eaedfbaa5e6898103fc835e1a0b}} 
+\index{BFS@{BFS}!GetDistanceTraveled@{GetDistanceTraveled}}
+\index{GetDistanceTraveled@{GetDistanceTraveled}!BFS@{BFS}}
+\doxysubsubsection{\texorpdfstring{GetDistanceTraveled()}{GetDistanceTraveled()}}
+{\footnotesize\ttfamily int B\+F\+S\+::\+Get\+Distance\+Traveled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor will return total weight of edges traversed. 
+
+\begin{DoxyReturn}{Returns}
+int; Sum of edge weights 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_b_f_s_a54a7dd1574f5e30737dd1ffa49708f30}\label{class_b_f_s_a54a7dd1574f5e30737dd1ffa49708f30}} 
+\index{BFS@{BFS}!GetTraversalList@{GetTraversalList}}
+\index{GetTraversalList@{GetTraversalList}!BFS@{BFS}}
+\doxysubsubsection{\texorpdfstring{GetTraversalList()}{GetTraversalList()}}
+{\footnotesize\ttfamily Q\+String\+List B\+F\+S\+::\+Get\+Traversal\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor will return list in order of traversal. 
+
+\begin{DoxyReturn}{Returns}
+Q\+String\+List; Traversal list in order of traversal 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/B\+F\+S.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/B\+F\+S.\+cpp\end{DoxyCompactItemize}

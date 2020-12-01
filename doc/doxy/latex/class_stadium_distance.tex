@@ -1,0 +1,163 @@
+\hypertarget{class_stadium_distance}{}\doxysection{Stadium\+Distance Class Reference}
+\label{class_stadium_distance}\index{StadiumDistance@{StadiumDistance}}
+
+
+The \mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} class serves as an Edge class for use in graph traversals.  
+
+
+
+
+{\ttfamily \#include $<$Stadium\+Distance.\+h$>$}
+
+Inheritance diagram for Stadium\+Distance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_stadium_distance}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_stadium_distance_ac056460efd901257641e1acf25ae501d}\label{class_stadium_distance_ac056460efd901257641e1acf25ae501d}} 
+\mbox{\hyperlink{class_stadium_distance_ac056460efd901257641e1acf25ae501d}{Stadium\+Distance}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ \mbox{\hyperlink{class_stadium_distance_a64ae7bf7d3a43368ffd2c65a6b3f1670}{get\+From\+Stadium}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns pointer to origin\textquotesingle{}s edge. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_distance_a19c41bd2fb6a93720aaa7a3014c59254}{set\+From\+Stadium}} (\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$value)
+\begin{DoxyCompactList}\small\item\em Mutator sets an origin edge for this object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ \mbox{\hyperlink{class_stadium_distance_ab5a1bcf021b42e9be9bff34e3ef64445}{get\+To\+Stadium}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns pointer to destination\textquotesingle{}s edge. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_distance_a9ed1529f4c519aac856484adb0b12886}{set\+To\+Stadium}} (\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$value)
+\begin{DoxyCompactList}\small\item\em Mutator sets a destination edge for this object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_stadium_distance_a525f6ba1e314ef6c8e564472da5225b7}{get\+Distance}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns distance of this edge. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_distance_a9eebd3d78911c3b3b0b0cc489c011d05}{set\+Distance}} (int value)
+\begin{DoxyCompactList}\small\item\em Mutator sets a weight of this edge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_stadium_distance_ad356f82804f410082e689cdce919154c}{get\+Distance\+ID}} () const
+\begin{DoxyCompactList}\small\item\em Accessor returns database ID of this object\textquotesingle{}s distance attribute. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_stadium_distance_a18a9fd23d83978654fb78594b9ee5e53}{set\+Distance\+ID}} (int value)
+\begin{DoxyCompactList}\small\item\em Mutator sets the database ID of this object\textquotesingle{}s distance attribute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_stadium_distance}{Stadium\+Distance}} class serves as an Edge class for use in graph traversals. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_stadium_distance_a525f6ba1e314ef6c8e564472da5225b7}\label{class_stadium_distance_a525f6ba1e314ef6c8e564472da5225b7}} 
+\index{StadiumDistance@{StadiumDistance}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!StadiumDistance@{StadiumDistance}}
+\doxysubsubsection{\texorpdfstring{getDistance()}{getDistance()}}
+{\footnotesize\ttfamily int Stadium\+Distance\+::get\+Distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns distance of this edge. 
+
+\begin{DoxyReturn}{Returns}
+int; distance of this edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_distance_ad356f82804f410082e689cdce919154c}\label{class_stadium_distance_ad356f82804f410082e689cdce919154c}} 
+\index{StadiumDistance@{StadiumDistance}!getDistanceID@{getDistanceID}}
+\index{getDistanceID@{getDistanceID}!StadiumDistance@{StadiumDistance}}
+\doxysubsubsection{\texorpdfstring{getDistanceID()}{getDistanceID()}}
+{\footnotesize\ttfamily int Stadium\+Distance\+::get\+Distance\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns database ID of this object\textquotesingle{}s distance attribute. 
+
+\begin{DoxyReturn}{Returns}
+int; \mbox{\hyperlink{class_database}{Database}} ID of this object\textquotesingle{}s distance attribute 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_distance_a64ae7bf7d3a43368ffd2c65a6b3f1670}\label{class_stadium_distance_a64ae7bf7d3a43368ffd2c65a6b3f1670}} 
+\index{StadiumDistance@{StadiumDistance}!getFromStadium@{getFromStadium}}
+\index{getFromStadium@{getFromStadium}!StadiumDistance@{StadiumDistance}}
+\doxysubsubsection{\texorpdfstring{getFromStadium()}{getFromStadium()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ Stadium\+Distance\+::get\+From\+Stadium (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns pointer to origin\textquotesingle{}s edge. 
+
+\begin{DoxyReturn}{Returns}
+Stadium$\ast$; Pointer to origin\textquotesingle{}s edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_distance_ab5a1bcf021b42e9be9bff34e3ef64445}\label{class_stadium_distance_ab5a1bcf021b42e9be9bff34e3ef64445}} 
+\index{StadiumDistance@{StadiumDistance}!getToStadium@{getToStadium}}
+\index{getToStadium@{getToStadium}!StadiumDistance@{StadiumDistance}}
+\doxysubsubsection{\texorpdfstring{getToStadium()}{getToStadium()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_stadium}{Stadium}} $\ast$ Stadium\+Distance\+::get\+To\+Stadium (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Accessor returns pointer to destination\textquotesingle{}s edge. 
+
+\begin{DoxyReturn}{Returns}
+Stadium$\ast$; Pointer to destination\textquotesingle{}s edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_stadium_distance_a9eebd3d78911c3b3b0b0cc489c011d05}\label{class_stadium_distance_a9eebd3d78911c3b3b0b0cc489c011d05}} 
+\index{StadiumDistance@{StadiumDistance}!setDistance@{setDistance}}
+\index{setDistance@{setDistance}!StadiumDistance@{StadiumDistance}}
+\doxysubsubsection{\texorpdfstring{setDistance()}{setDistance()}}
+{\footnotesize\ttfamily void Stadium\+Distance\+::set\+Distance (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Mutator sets a weight of this edge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & Weight of this edge \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_distance_a18a9fd23d83978654fb78594b9ee5e53}\label{class_stadium_distance_a18a9fd23d83978654fb78594b9ee5e53}} 
+\index{StadiumDistance@{StadiumDistance}!setDistanceID@{setDistanceID}}
+\index{setDistanceID@{setDistanceID}!StadiumDistance@{StadiumDistance}}
+\doxysubsubsection{\texorpdfstring{setDistanceID()}{setDistanceID()}}
+{\footnotesize\ttfamily void Stadium\+Distance\+::set\+Distance\+ID (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Mutator sets the database ID of this object\textquotesingle{}s distance attribute. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & \mbox{\hyperlink{class_database}{Database}} ID of this object\textquotesingle{}s distance attribute \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_distance_a19c41bd2fb6a93720aaa7a3014c59254}\label{class_stadium_distance_a19c41bd2fb6a93720aaa7a3014c59254}} 
+\index{StadiumDistance@{StadiumDistance}!setFromStadium@{setFromStadium}}
+\index{setFromStadium@{setFromStadium}!StadiumDistance@{StadiumDistance}}
+\doxysubsubsection{\texorpdfstring{setFromStadium()}{setFromStadium()}}
+{\footnotesize\ttfamily void Stadium\+Distance\+::set\+From\+Stadium (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Mutator sets an origin edge for this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & Destination edge \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_stadium_distance_a9ed1529f4c519aac856484adb0b12886}\label{class_stadium_distance_a9ed1529f4c519aac856484adb0b12886}} 
+\index{StadiumDistance@{StadiumDistance}!setToStadium@{setToStadium}}
+\index{setToStadium@{setToStadium}!StadiumDistance@{StadiumDistance}}
+\doxysubsubsection{\texorpdfstring{setToStadium()}{setToStadium()}}
+{\footnotesize\ttfamily void Stadium\+Distance\+::set\+To\+Stadium (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_stadium}{Stadium}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Mutator sets a destination edge for this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value;} & Destination edge \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Stadium\+Distance.\+h\item 
+School/\+C\+S1\+D\+\_\+\+Jerry/\+Project\+\_\+2\+\_\+\+Football/\+Gamer-\/\+Girls/app/Stadium\+Distance.\+cpp\end{DoxyCompactItemize}
