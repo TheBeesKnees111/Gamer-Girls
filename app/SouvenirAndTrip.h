@@ -146,6 +146,15 @@ private slots:
      */
     void on_Confirm_Minnesota_Trip_PushButton_clicked();
 
+    void on_minnesota_cart_button_clicked();
+
+	private:
+
+    void on_Confirm_Custom_Shortest_Trip_PushButton_clicked();
+
+    void on_shortestCustomTrip_cart_button_clicked();
+
+
 private:
     /// Pointer to database object
     Database            *database;
