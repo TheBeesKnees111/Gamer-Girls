@@ -77,8 +77,10 @@ QVector<Stadium*> Database::getStadiums()
 QVector<StadiumDistance*> Database::getStadiumDistances()
 {
 	stadiumDistanceCache.clear();
+
 	runGetAllStadiumDistances();
-    return stadiumDistanceCache.values().toVector();
+
+	return stadiumDistanceCache.values().toVector();
 }
 
 // returns StadiumDistance found by distanceID
@@ -160,6 +162,17 @@ Team *Database::GetTeamByName(const QString name)
       if (!teamDbCacheByName.contains(name))
           runGetAllTeamsAndStadiums();
       return teamDbCacheByName[name];
+}
+
+///get maximum existing souvenir ID
+int Database::GetMaxSouvenirID()
+{
+	QSqlQuery query;
+
+	query.exec("SELECT MAX(souvenirID) FROM souvenirs");
+	query.next();
+
+	return query.value(0).toInt();
 }
 
 void Database::AddDefaultSouvenirsToDatabase(int teamID, QStringList souvenirs, QVector<double> prices)

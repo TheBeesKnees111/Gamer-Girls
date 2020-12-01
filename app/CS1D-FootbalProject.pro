@@ -38,6 +38,7 @@ HEADERS += \
     Dijkstra.h \
     DisplayInfo.h \
     Login.h \
+    MapADT.h \
     PurchaseTable.h \
     Souvenir.h \
     SouvenirAndTrip.h \
