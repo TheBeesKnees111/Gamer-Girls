@@ -158,8 +158,6 @@ private slots:
 
     void on_customTrip_cart_button_clicked();
 
-private:
-
     /*!
      * @brief Finalizes the custom shortest trip. Runs trip.
      */
