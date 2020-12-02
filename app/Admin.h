@@ -31,8 +31,7 @@ struct Souvenir
      */
 	friend bool operator == (const Souvenir& souvenir, const Souvenir& otherSouvenir)
 	{
-		return (souvenir.souvenirID == otherSouvenir.souvenirID &&
-				souvenir.teamID     == otherSouvenir.teamID     &&
+		return (souvenir.teamID     == otherSouvenir.teamID     &&
 				souvenir.itemName   == otherSouvenir.itemName   &&
 				souvenir.price      == otherSouvenir.price);
 	}
@@ -49,6 +48,8 @@ struct Souvenir
 		output  << "Team ID:    " << souvenir.teamID     << endl;
 		output  << "Item Name:  " << souvenir.itemName.toStdString()   << endl;
 		output  << "Item Price: " << souvenir.price      << endl << endl;
+
+		return output;
 	}
 
     /*!
