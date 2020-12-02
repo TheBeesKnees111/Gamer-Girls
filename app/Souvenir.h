@@ -24,6 +24,13 @@ class Souvenir : public QObject
     int     qtyPurchased;
 
 public:
+    /*!
+     * @brief Parameterized Constructor
+     * @param sID; Souvenir ID
+     * @param tID; Souvenir's team ID
+     * @param iName; Souvenir name
+     * @param iPrice; Souvenir price
+     */
 	Souvenir(int sID, int tID, QString iName, float iPrice);
 
     /*!

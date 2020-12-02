@@ -316,17 +316,23 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 	int       teamID       = ui -> Team_Name_ComboBox     -> currentData().toInt();
 	QSqlQuery query;
 
+	Souvenir newSouvenir;
+
+	//Add to map
+	newSouvenir.SetItemName  (souvenirName);
+	newSouvenir.SetItemPrice (price);
+	newSouvenir.SetSouvenirID(Database::getInstance() -> GetMaxSouvenirID() + 1);
+	newSouvenir.SetTeamID    (teamID);
+
 	//Set definition of blank data
 	bool    blankData    = (souvenirName == "" || price == 0.00 ||
 							teamID       == 0  || !IsOnlySpaces(souvenirName));
 
-	if(blankData && !souvenirs.SearchItem(souvenirs[teamID]))
+	if(blankData || souvenirs.SearchItem(newSouvenir))
 		QMessageBox::information(this,"ERROR", "***** Data left blank *****\n Or Item already added");
 
 	else
 	{
-		Souvenir newSouvenir;
-
 		query.prepare("INSERT INTO "
 					  "souvenirs(teamID,  itemName,  itemPrice) "
 					  "VALUES   (:teamID, :itemName, :itemPrice)");
@@ -339,17 +345,16 @@ void Admin::on_Add_Souvenir_PushButton_clicked()
 			qDebug() << query.lastError();
 
 		PopulateSouvenirTable();
-		PopulateComboBoxes("SELECT teamName, teamID FROM teamInfo", ui -> Team_Name_ComboBox);
 
 		//Clear inputs
 		ui -> Souvenir_Name_LineEdit -> clear();
 		ui -> Price_Double_SpinBox   -> clear();
 
-		//Add to map
-		newSouvenir.SetItemName  (souvenirName);
-		newSouvenir.SetItemPrice (price);
-		newSouvenir.SetSouvenirID(Database::getInstance() -> GetMaxSouvenirID() + 1);
-		newSouvenir.SetTeamID    (teamID);
+
+		qDebug() << "newSouvenirID " << newSouvenir.souvenirID;
+		qDebug() << "price " << newSouvenir.price;
+		qDebug() << "teamid " << newSouvenir.teamID;
+		qDebug() << "itemname " << newSouvenir.itemName;
 
 		souvenirs.Insert(teamID, newSouvenir);
 
@@ -407,8 +412,6 @@ void Admin::on_Update_Souvenir_Datatable_clicked(const QModelIndex &index)
 	ui -> Souvenir_Name_LineEdit -> setText (index.siblingAtColumn(1).data().toString());
 	ui -> Price_Double_SpinBox   -> setValue(index.siblingAtColumn(2).data().toDouble());
 	ui -> Team_Name_ComboBox     -> setCurrentText(index.siblingAtColumn(0).data().toString());
-
-	qDebug() << "Team Name Combobox item int   : " << ui -> Team_Name_ComboBox -> currentData().toInt();
 }
 
 ///DELETE item from datatable and from database

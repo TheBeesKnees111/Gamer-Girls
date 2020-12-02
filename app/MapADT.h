@@ -1,87 +1,109 @@
-/***********************
- * NOT LINKED LIST MAP *
- ***********************/
-//USE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE
-//FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR
-//PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR
-//PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR PROJECTUSE FOR
 #include <iostream>
 #include <iterator>
 #include <vector>
-using namespace std;template <typename K, typename Type>
+using namespace std;
+
+/*!
+ * @class MapADT
+ * @brief The Database class manages core methods used to access the data stored in the database
+ */
+template <typename K, typename Type>
 class MapADT
 {
-        public:
+public:
+    /*!
+     * @brief Default constructor will intialize list to empty state
+     */
+    MapADT();
 
-                /**********************************
-                 ***** CONSTRUCTOR/DESTRUCTOR *****
-                 **********************************/
-                MapADT();	//Default constructor initialize list to an empty state
-                                //Post: first = NULL
+    /*!
+     * @brief Destructor will destroy internal list object
+     */
+    ~MapADT();
 
-                ~MapADT();	//Destructor
-                                //Post: list object is destroyed
+    /*!
+     * @brief Accessor will return true if empty. False if not
+     * @return bool; Status of list's contents
+     */
+    bool IsEmptyList() const;
 
-                /********************
-                 ***** ACCESSORS ****
-                 ********************/
-                //Return True if the list is empty
-                //Else return false
-                bool IsEmptyList() const;
+    /*!
+     * @brief Accessor will search for key and return true if found. False if not
+     * @param searchKey; Key to find
+     * @return bool; Status of whether or not list contains specific key
+     */
+    bool SearchKey(K searchKey) const;
 
-                //Return True if the item is in the list
-                //Else return false
-                bool SearchKey(K searchKey) const;
+    /*!
+     * @brief Accessor will print contents of each node in list
+     */
+    void Print() const;
 
-                //Output the info contained in each node
-                void Print() const;
+    //Outputs "Item is found in the list" if searchItem
+    //is in the list; otherwise, outputs "Item not in the list"
 
-                //Outputs "Item is found in the list" if searchItem
-                //is in the list; otherwise, outputs "Item not in the list"
-                bool SearchItem(const Type searchItem) const;
+    /*!
+     * @brief Accessor will search for value and output "Item is found on list" if found.
+     * @param searchItem; Value to find
+     * @return bool; Status of whether or not list contains specific value
+     */
+    bool SearchItem(const Type searchItem) const;
 
-                int Size() const;	//Return the size of the linked list
+    /*!
+     * @brief Accessor will return number of items in list
+     * @return int; Number of items in list
+     */
+    int Size() const;
 
-                //Get index in vector of key
-                int GetKeyIndex(K& key) const;
+    /*!
+     * @brief Accessor will return index of specific key desired
+     * @param key; Key for which to return index
+     * @return int; Index of specific key desired
+     */
+    int GetKeyIndex(K& key) const;
 
-                //Overload [] to reference item in map
-                const Type operator[](K searchKey);
+    /*!
+     * @brief Index operator overload
+     * @param searchKey; Key to find and access
+     * @return Type; item at index
+     */
+    const Type operator[](K searchKey);
 
-//		//returns first element of the map
-//		Iterator Begin();
+    //Delete all nodes from the list
+    //Post: first = NULL
 
-//		//Returns last element in map
-//		Iterator Last();
+    /*!
+     * @brief Destroy list
+     */
+    void Destroy();
 
-//		//returns memory location after last element in map
-//		Iterator End();
+    /*!
+     * @brief Insert element into list
+     * @param insertKey; Key to insert
+     * @param insertItem; Value to insert
+     */
+    void Insert(const K insertKey, const Type insertItem);
 
+    //If found, the node containing the deleteItem is deleted
+    //from the list
+    //Post: first points to the first node of the
+    // new list
 
-                /********************
-                 ***** MODIFIERS ****
-                 ********************/
+    /*!
+     * @brief Delete element from list
+     * @param deleteKey; Key of element to find and delete
+     * @return bool; Status of deletion
+     */
+    bool Delete(const K& deleteKey);
 
-                //Delete all nodes from the list
-                //Post: first = NULL
-                void Destroy();
-
-                //newItem is inserted in the list
-                //Post: first points to the new list and the
-                // newItem is inserted at the proper place in the list
-                void Insert(const K insertKey, const Type insertItem);
-
-                //If found, the node containing the deleteItem is deleted
-                //from the list
-                //Post: first points to the first node of the
-                // new list
-                bool Delete(const K& deleteKey);
-
-        private:
-                vector <K>    keys;
-                vector <Type> items{};
+private:
+    /// Map keys
+    vector <K>    keys;
+    /// Map values
+    vector <Type> items{};
 };
 
+// Class Definition
 
 /**********************************
  ***** CONSTRUCTOR/DESTRUCTOR *****

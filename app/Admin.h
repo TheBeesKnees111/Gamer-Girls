@@ -9,44 +9,80 @@
 #include <QComboBox>
 #include "MapADT.h"
 
+/*!
+ * @brief Souvenir struct exists to circumvent QOBJECT's inability to invoke copy constructor
+ */
 struct Souvenir
 {
+    /// Souvenir ID
 	int     souvenirID;
+    /// Souvenir's team ID
 	int     teamID;
+    /// Souvenir name
 	QString itemName;
+    /// Souvenir price
 	float   price;
 
+    /*!
+     * @brief Friend function to overload comparison operator
+     * @param souvenir; Origin souvenir
+     * @param otherSouvenir; Destination souvenir
+     * @return bool; Status of object equality
+     */
 	friend bool operator == (const Souvenir& souvenir, const Souvenir& otherSouvenir)
 	{
-		return (souvenir.souvenirID == otherSouvenir.souvenirID &&
-				souvenir.teamID     == otherSouvenir.teamID     &&
+		return (souvenir.teamID     == otherSouvenir.teamID     &&
 				souvenir.itemName   == otherSouvenir.itemName   &&
 				souvenir.price      == otherSouvenir.price);
 	}
 
+    /*!
+     * @brief Friend function to overload ostream operator
+     * @param output; Output desired
+     * @param souvenir; Souvenir object to output
+     * @return ostream; Ostream object to output
+     */
 	friend ostream& operator << (ostream& output, const Souvenir& souvenir)
 	{
 		output  << "SouvenirID: " << souvenir.souvenirID << endl;
 		output  << "Team ID:    " << souvenir.teamID     << endl;
 		output  << "Item Name:  " << souvenir.itemName.toStdString()   << endl;
 		output  << "Item Price: " << souvenir.price      << endl << endl;
+
+		return output;
 	}
 
+    /*!
+     * @brief Mutator to alter souvenir's ID
+     * @param value; Souvenir's new ID
+     */
 	void SetSouvenirID(int value)
 	{
 		souvenirID = value;
 	}
 
+    /*!
+     * @brief Mutator to alter souvenir's team's ID
+     * @param value; Souvenir's team's new ID
+     */
 	void SetTeamID    (int value)
 	{
 		teamID = value;
 	}
 
+    /*!
+     * @brief Mutator to alter souvenir's name
+     * @param value; Souvenir's new name
+     */
 	void SetItemName  (const QString &value)
 	{
 		itemName = value;
 	}
 
+    /*!
+     * @brief Mutator to alter souvenir's price
+     * @param value; Souvenir's new price
+     */
 	void SetItemPrice (float value)
 	{
 		price = value;
@@ -67,9 +103,7 @@ class Admin : public QDialog
     Q_OBJECT
 
 public:
-    /*!
-     * @brief Enum represents ui pages of administrator section
-     */
+    /// Enum represents admin pages
     enum AdminPages { };
 
     /// Number of columns in "add souvenir" and "edit souvenir" tab in admin (name, team, price)
@@ -87,7 +121,7 @@ public:
     /// Prices for default souvenirs
 	QVector <double> souvenirPrices = {77.99, 99.89, 17.99, 29.99, 199.99};
 
-	//Position of data in souvenir column
+    /// Position of data in souvenir column
 	enum SouvenirTableColumns
 	{
 		SOUVENIR_ID,
@@ -96,7 +130,7 @@ public:
 		ITEM_PRICE
 	};
 
-    // Positions of columns by name "add souvenir" and "edit souvenir" tab in admin
+    /// Positions of columns by name "add souvenir" and "edit souvenir" tab in admin
     enum SouvenirTableColPositions { I_TEAM, I_NAME, I_PRICE };
 
     /// Positions of columns by name in "edit stadium" tab of admin

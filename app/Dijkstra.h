@@ -40,8 +40,8 @@ QString NewTrips(const StadiumGraph& graph, Stadium* start, QStringList &visited
  * @param start; Starting vertex
  * @param visited; Overarching visited list to keep track of overall trip
  * @param distance; Overarching distance list to keep track of overall trip distance traveled
- * @param destination; The ending destination of the trip
- * @param distanceToDestination;
+ * @param destination; Destination vertex of this iteration
+ * @param distanceToDestination; Distance to this iteration's destination
  */
 void customTrip(const StadiumGraph& graph, Stadium *start, QStringList &visited, int &distance, QString destination, int& distanceToDestination);
 
