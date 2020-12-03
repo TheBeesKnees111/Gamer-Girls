@@ -41,7 +41,7 @@ void Login::on_Login_PushButton_clicked()
 
      //Check if correct username and password are entered
      //Else show an error message.
-    if(username == "" && password == "")
+	if(username == "admin" && password == "admin")
     {//begin if else
 
         adminUI = new Admin(this);

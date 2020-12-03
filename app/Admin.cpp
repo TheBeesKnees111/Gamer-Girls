@@ -505,6 +505,36 @@ void Admin::on_Update_Stadium_PushButton_clicked()
 			qDebug() << query.lastError();
 
 		PopulateStadiumTable();
+
+		//CHANGE TOSTADIUM TEAM NAME IN DISTANCES
+		query.prepare("UPDATE teamDistances SET fromStadium = (:newStadium) WHERE fromStadium = (:oldStadium)");
+
+		//Bind query values
+		query.bindValue(":newStadium"  , ui -> Stadium_Name_LineEdit -> text());
+		query.bindValue(":oldStadium" , originalName);
+
+		qDebug() << "Change fromStadium";
+		qDebug() << "newStadium: " << ui -> Stadium_Name_LineEdit -> text();
+		qDebug() << "oldStadium: " << originalName;
+		qDebug() << "";
+
+		if(!query.exec())
+			qDebug() << query.lastError();
+
+		//CHANGE TOSTADIUM TEAM NAME IN DISTANCES
+		query.prepare("UPDATE teamDistances SET toStadium = (:newStadium) WHERE toStadium = (:oldStadium)");
+
+		//Bind query values
+		query.bindValue(":newStadium"  , ui -> Stadium_Name_LineEdit -> text());
+		query.bindValue(":oldStadium" , originalName);
+
+		qDebug() << "Change toStadium";
+		qDebug() << "newStadium: " << ui -> Stadium_Name_LineEdit -> text();
+		qDebug() << "oldStadium: " << originalName;
+		qDebug() << "";
+
+		if(!query.exec())
+			qDebug() << query.lastError();
 	}
 }
 
@@ -521,4 +551,6 @@ void Admin::on_Edit_Stadium_TableView_clicked(const QModelIndex &index)
 	ui -> Surface_Type_ComboBox	   -> setCurrentText(index.siblingAtColumn(7).data().toString());
 	ui -> Roof_Type_ComboBox	   -> setCurrentText(index.siblingAtColumn(8).data().toString());
 	ui -> Year_SpinBox			   -> setValue(index.siblingAtColumn(9).data().toInt());
+
+	originalName = ui -> Stadium_Name_LineEdit	   -> text();
 }
