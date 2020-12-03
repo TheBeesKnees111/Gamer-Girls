@@ -470,7 +470,7 @@ QVector<Team*>* Database::GetOpenRoofStadiums()
     Team* team = nullptr;
     Stadium* stadium = nullptr;
 
-    query.prepare("SELECT stadiumName, teamName, roofType FROM teamInfo WHERE roofType = 'Open'");
+    query.prepare("SELECT stadiumName, teamName, roofType FROM teamInfo WHERE roofType = 'Open' ORDER BY stadiumName");
 
     if(query.exec())
     {
