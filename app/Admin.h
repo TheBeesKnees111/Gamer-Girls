@@ -239,6 +239,7 @@ private slots:
     int        selectedTeamID = 0;	
     
     MapADT <int, Souvenir> souvenirs;
+	QString originalName;
 
 };
 
